@@ -1,0 +1,9 @@
+[project]
+name = "livia"
+version = "0.1.0"
+description = "Livia Zaharia personal website built with Reflex"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "reflex>=0.8.27",
+]
