@@ -1,9 +1,11 @@
 """CLI entry point for the Livia website."""
 
-import subprocess
-import sys
-
 import typer
+
+from reflex import constants
+from reflex.config import get_config
+from reflex.reflex import _init, _run
+from reflex.utils import console
 
 app = typer.Typer(help="Livia website CLI")
 
@@ -13,10 +15,11 @@ def start(
     init: bool = typer.Option(True, help="Run 'reflex init' before starting the server"),
     loglevel: str = typer.Option("info", help="Reflex log level"),
 ) -> None:
-    """Initialise the Reflex project (if requested) and start the dev server."""
+    """Initialise the Reflex project and start the dev server."""
+    console.set_log_level(constants.LogLevel.from_string(loglevel))
     if init:
-        subprocess.check_call([sys.executable, "-m", "reflex", "init"])
-    subprocess.check_call([sys.executable, "-m", "reflex", "run", "--loglevel", loglevel])
+        _init(name=get_config().app_name)
+    _run()
 
 
 if __name__ == "__main__":
