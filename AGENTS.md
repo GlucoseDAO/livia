@@ -1,10 +1,13 @@
 # Livia Project Agent Guide
 
-## Project Layout
+## Project Layout (src layout)
 
-- `livia/livia.py`: primary Reflex app module containing pages, UI components, and styles.
-- `livia/__init__.py`: package init (do not hardcode package version here).
+- `src/livia/livia.py`: primary Reflex app module containing pages, UI components, and styles.
+- `src/livia/__init__.py`: package init (do not hardcode package version here).
+- `src/livia/plugins.py`: Reflex plugins (Vite dev-server patching).
+- `src/livia/start.py`: CLI entry point (`uv run start`); uses `typer`.
 - `assets/`: static assets used by the app (for example, background images).
+- `content/`: markdown files with page text, loaded by `load_content()`.
 - `rxconfig.py`: Reflex runtime/config entrypoint.
 - `pyproject.toml`: Python project metadata and dependency source of truth.
 - `uv.lock`: dependency lockfile managed by `uv`.
@@ -16,7 +19,7 @@
 
 - Always write Python code with explicit type hints for function/method parameters and return values.
 - Avoid unnecessary `try/except` blocks; prefer straightforward error propagation unless recovery is intentional and justified.
-- Keep architecture and coding style consistent with existing patterns in `livia/livia.py` unless the task requires a refactor.
+- Keep architecture and coding style consistent with existing patterns in `src/livia/livia.py` unless the task requires a refactor.
 - Prefer focused, minimal changes over broad rewrites.
 - Use absolute imports; do not introduce relative imports.
 - For CLI additions, use `typer`.

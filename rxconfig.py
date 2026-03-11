@@ -1,4 +1,6 @@
 import reflex as rx
+
+import livia.plugins
 import os
 from pathlib import Path
 
@@ -36,5 +38,10 @@ config = rx.Config(
     app_name="livia",
     frontend_port=FRONTEND_PORT,
     backend_port=BACKEND_PORT,
-    plugins=[rx.plugins.SitemapPlugin()],
+    vite_allowed_hosts=True,
+    vite_host="0.0.0.0",
+    plugins=[
+        rx.plugins.SitemapPlugin(),
+        livia.plugins.ViteDevServerPlugin(),
+    ],
 )

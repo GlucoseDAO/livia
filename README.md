@@ -11,8 +11,7 @@ The site presents two connected facets of one practice:
 
 ```bash
 uv sync
-uv run reflex init
-uv run reflex run
+uv run start
 ```
 
 The site will be available at `http://localhost:3000/`.
@@ -41,16 +40,19 @@ After editing markdown:
 3. If changes do not appear, restart the dev server:
 
 ```bash
-uv run reflex run
+uv run start
 ```
 
 ## Project structure
 
 ```
 livia/
-├── livia/
-│   ├── __init__.py
-│   └── livia.py          # Pages, components, styling, and content loader
+├── src/
+│   └── livia/
+│       ├── __init__.py
+│       ├── livia.py       # Pages, components, styling, and content loader
+│       ├── plugins.py     # Reflex plugins (Vite dev-server patching)
+│       └── start.py       # CLI entry point (typer)
 ├── content/
 │   ├── home.md            # Homepage tagline text
 │   ├── about.md           # Bio paragraph

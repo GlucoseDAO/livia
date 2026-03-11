@@ -6,7 +6,7 @@ import re
 
 import reflex as rx
 
-CONTENT_DIR = Path(__file__).parent.parent / "content"
+CONTENT_DIR = Path(__file__).parent.parent.parent / "content"
 
 SERIF_FONT = '"Cormorant Garamond", Georgia, serif'
 SANS_FONT = '"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'

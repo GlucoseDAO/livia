@@ -6,4 +6,12 @@ readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "reflex>=0.8.27",
+    "typer>=0.15",
 ]
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[project.scripts]
+start = "livia.start:app"
