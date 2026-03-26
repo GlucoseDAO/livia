@@ -7,6 +7,24 @@ The site presents two connected facets of one practice:
 - **Parametric art, jewellery, and computational design** (presented under [@paral_design](https://www.instagram.com/paral_design/))
 - **GlucoseDAO — digital health, glucose prediction, and open technical experimentation** ([GitHub](https://github.com/GlucoseDAO/) · [Hugging Face Spaces](https://huggingface.co/spaces/GlucoseDao))
 
+## Recent additions
+
+- **Romanian Jewelry Week 2025 photos** — 12 exhibition photographs in `assets/RJW2025/`, documenting Livia's science-inspired jewellery line at ROJW 2025 (Nanot-of-Power, Mitochondria, Embryo, and more).
+- **Artist knowledge base** — comprehensive reference document at `docs/livia-zaharia-knowledge-base.md` covering identity, practice, materials, collections catalogue, exhibition history, ecosystem connections (GlucoseDAO, Longevity Genie, HEALES, ARDD), and RPG lore.
+
+## Prerequisites
+
+### Git LFS
+
+This repository uses [Git LFS](https://git-lfs.github.com/) to store image assets (`.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`). After cloning, you must pull the actual binary content:
+
+```bash
+git lfs install
+git lfs pull
+```
+
+Without this step, image files (e.g. `assets/livia.jpg`) will be small text pointer files instead of real images, and the site background will be broken.
+
 ## Quick start
 
 ```bash
@@ -59,7 +77,10 @@ livia/
 │   ├── art_design.md      # Art & Design intro
 │   └── glucosedao.md      # GlucoseDAO description
 ├── assets/
-│   └── livia.jpg          # Full-screen portrait used as the background
+│   ├── livia.jpg          # Full-screen portrait used as the background
+│   └── RJW2025/           # Romanian Jewelry Week 2025 exhibition photos (12 images)
+├── docs/
+│   └── livia-zaharia-knowledge-base.md  # Artist knowledge base & catalogue
 ├── rxconfig.py            # Reflex configuration
 ├── pyproject.toml         # Python project / dependencies
 ├── .python-version        # Pinned to 3.13 (Reflex does not yet support 3.14)
@@ -175,8 +196,16 @@ The Instagram sidebar uses `InstagramSidebarState` (a single boolean `is_open`) 
 
 - Instagram: https://www.instagram.com/paral_design/
 - LinkedIn: https://ro.linkedin.com/in/livia-zaharia-4b1425a0
-- Romanian Jewelry Week 2022: https://www.romanianjewelryweek.com/participants-2022/livia-zaharia
+- Romanian Jewelry Week 2021: https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
+- Romanian Jewelry Week 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
 - Romanian Jewelry Week 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
+- Romanian Jewelry Week 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
+
+### Longevity / science collaborations
+
+- Materialized Enhancements: https://materialized-enhancements.longevity-genie.info/
+- Longevity Genie: https://longevity-genie.github.io
+- Longevity Genie GitHub: https://github.com/longevity-genie
 
 ### GlucoseDAO
 

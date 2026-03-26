@@ -149,6 +149,18 @@ class CardItem:
     external: bool = False
 
 
+@dataclass(frozen=True)
+class BubbleItem:
+    icon_label: str
+    title: str
+    tooltip: str
+    preview: str
+    href: str
+    angle: float
+    accent: str
+    external: bool = False
+
+
 NAV_LINKS = (
     LinkItem("Home", "/"),
     LinkItem("About", "/about"),
@@ -198,6 +210,75 @@ SELECTED_WORK = (
         href="https://www.romanianjewelryweek.com/participants-2022/livia-zaharia",
         link_label="Romanian Jewelry Week 2022",
         accent=AMBER,
+        external=True,
+    ),
+)
+
+
+BUBBLE_ITEMS: tuple[BubbleItem, ...] = (
+    BubbleItem(
+        icon_label="About",
+        title="About",
+        tooltip="Designer, maker, founder",
+        preview=(
+            "Livia Zaharia is a parametric designer, jewellery maker, "
+            "and founder of GlucoseDAO."
+        ),
+        href="/about",
+        angle=200,
+        accent="green",
+    ),
+    BubbleItem(
+        icon_label="Home",
+        title="Home",
+        tooltip="Between living systems and form",
+        preview="Computational Design, Science Art & Digital Health.",
+        href="/",
+        angle=228,
+        accent="green",
+    ),
+    BubbleItem(
+        icon_label="Art & Design",
+        title="Art & Design",
+        tooltip="Parametric form & fabrication",
+        preview=(
+            "Parametric form, digital fabrication, and the translation "
+            "of controlled systems into organic objects."
+        ),
+        href="/art-design",
+        angle=256,
+        accent="green",
+    ),
+    BubbleItem(
+        icon_label="Glucose DAO",
+        title="GlucoseDAO",
+        tooltip="Digital health & glucose dynamics",
+        preview=(
+            "GlucoseDAO is a healthtech startup building tools that "
+            "help people understand and predict glucose dynamics."
+        ),
+        href="/glucosedao",
+        angle=284,
+        accent="amber",
+    ),
+    BubbleItem(
+        icon_label="GitHub",
+        title="GitHub",
+        tooltip="GlucoseDAO open source",
+        preview="Explore GlucoseDAO repositories and open-source projects.",
+        href=GLUCOSEDAO_GITHUB_URL,
+        angle=312,
+        accent="amber",
+        external=True,
+    ),
+    BubbleItem(
+        icon_label="YouTube",
+        title="YouTube",
+        tooltip="Startup story & interviews",
+        preview="Watch the GlucoseDAO story and Rubik Garage HealthTech interview.",
+        href=GLUCOSEDAO_YOUTUBE_URL,
+        angle=340,
+        accent="amber",
         external=True,
     ),
 )
@@ -524,8 +605,42 @@ def section_heading(title: str, accent: str) -> rx.Component:
     )
 
 
+def _bubble_html(item: BubbleItem) -> str:
+    """Generate HTML for a single floating bubble."""
+    target = ' target="_blank" rel="noopener noreferrer"' if item.external else ""
+    side = "left" if 90 < item.angle < 270 else "right"
+    return (
+        f'<div class="bubble" data-angle="{item.angle}" data-accent="{item.accent}">'
+        f'  <span class="bubble-label">{item.icon_label}</span>'
+        f'  <span class="bubble-tooltip">{item.tooltip}</span>'
+        f'  <div class="bubble-preview" data-side="{side}">'
+        f'    <p class="bubble-preview-title">{item.title}</p>'
+        f'    <p class="bubble-preview-text">{item.preview}</p>'
+        f'    <a class="bubble-preview-link" data-accent="{item.accent}"'
+        f'       href="{item.href}"{target}>View More</a>'
+        f'  </div>'
+        f'</div>'
+    )
+
+
+def bubble_overlay() -> rx.Component:
+    """Floating navigation bubbles arranged in an arc around viewport center."""
+    bubbles_html = "\n".join(_bubble_html(b) for b in BUBBLE_ITEMS)
+    html_str = (
+        '<div class="bubble-container">'
+        '  <div class="bubble-origin">'
+        f"    {bubbles_html}"
+        "  </div>"
+        "</div>"
+    )
+    return rx.fragment(
+        rx.html(html_str),
+        rx.script(src="/bubbles.js"),
+    )
+
+
 def home_page() -> rx.Component:
-    """Homepage: fullscreen portrait + name overlay + bottom nav."""
+    """Homepage: fullscreen portrait + name overlay + floating bubbles + bottom nav."""
     return rx.box(
         fullscreen_bg(),
         rx.box(
@@ -537,6 +652,7 @@ def home_page() -> rx.Component:
             ),
             z_index="2",
         ),
+        bubble_overlay(),
         instagram_sidebar(),
         bottom_nav(),
         min_height="100vh",
@@ -596,6 +712,7 @@ def glucosedao_page() -> rx.Component:
 app = rx.App(
     stylesheets=[
         "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
+        "/bubbles.css",
     ],
     style={
         "background": BACKGROUND,
