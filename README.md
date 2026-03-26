@@ -34,28 +34,70 @@ uv run start
 
 The site will be available at `http://localhost:3000/`.
 
-## Updating website content
+## Content system (folder-based tabs)
 
-All editable page copy lives in `content/*.md`:
+Page content lives under `content/`. Standalone pages (`home.md`, `biography.md`) sit at the root. Tabbed pages are subfolders — each markdown file inside becomes a tab automatically.
 
-- `content/home.md` - homepage tagline text
-- `content/about.md` - About page body
-- `content/art_design.md` - Art & Design page body
-- `content/glucosedao.md` - GlucoseDAO page body
+### Directory layout
 
-The app renders these files through `rx.markdown` with a custom component map. In practice, this means standard markdown is supported and styled consistently:
+```
+content/
+  home.md                              # standalone (homepage)
+  biography.md                         # standalone
+  art-design/                          # tabbed page → /art-design
+    _meta.yaml                         # page heading, accent colour, background, sidebar side
+    _instagram.yaml                    # special tab (Instagram embed)
+    1_Overview.md
+    2_Materialized Enhancements.md     # reference → _shared/materialized_enhancements.md
+    3_Cell Life.md
+    4_Survival.md
+    5_Science-Inspired.md
+    6_Cry, Dance, Repeat.md
+    7_Spotlight Pavilion.md
+  science-tech/                        # tabbed page → /science-tech
+    _meta.yaml
+    _links.yaml                        # special tab (link list)
+    1_Overview.md
+    2_GlucoseDAO.md
+    3_Materialized Enhancements.md     # reference → _shared/
+    4_Longevity Genie.md
+  _shared/                             # shared content reused across pages
+    materialized_enhancements.md
+```
 
-- Paragraphs
-- Links like `[label](https://example.com)`
-- Headings `#` and `##`
+### Naming convention
 
-There is also one custom behavior: a standalone YouTube link (either `youtube.com/watch?...` or `youtu.be/...`) is auto-rendered as an embedded video.
+Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display; you only see "Overview", "Cell Life", etc.
 
-After editing markdown:
+### Adding a new tab
 
-1. Save the file.
-2. Reload the page in the browser.
-3. If changes do not appear, restart the dev server:
+1. Drop a file like `8_My New Tab.md` into the page's folder.
+2. Restart the dev server (`uv run start`).
+
+No Python code changes needed.
+
+### Shared content (reference files)
+
+To reuse the same markdown on multiple pages, put the content in `_shared/` and create a reference file in each page folder:
+
+```yaml
+---
+ref: _shared/materialized_enhancements.md
+---
+```
+
+### Special (non-markdown) tabs
+
+YAML files prefixed with `_` (other than `_meta.yaml`) define special UI tabs like Instagram embeds or link lists. See `AGENTS.md` for the full schema.
+
+### Supported markdown features
+
+The app renders markdown with a custom component map. Standard markdown is supported:
+
+- Paragraphs, links (`[label](url)`), headings (`#`, `##`)
+- Standalone YouTube links are auto-rendered as embedded videos
+
+After editing any markdown file, reload the page in the browser. If changes do not appear, restart the dev server:
 
 ```bash
 uv run start
@@ -69,13 +111,13 @@ livia/
 │   └── livia/
 │       ├── __init__.py
 │       ├── livia.py       # Pages, components, styling, and content loader
-│       ├── plugins.py     # Reflex plugins (Vite dev-server patching)
 │       └── start.py       # CLI entry point (typer)
 ├── content/
-│   ├── home.md            # Homepage tagline text
-│   ├── about.md           # Bio paragraph
-│   ├── art_design.md      # Art & Design intro
-│   └── glucosedao.md      # GlucoseDAO description
+│   ├── home.md            # Homepage tagline
+│   ├── biography.md       # Biography page
+│   ├── art-design/        # Tabbed page: Art & Design (each .md = one tab)
+│   ├── science-tech/      # Tabbed page: Science & Tech
+│   └── _shared/           # Shared markdown referenced by multiple pages
 ├── assets/
 │   ├── livia.jpg          # Full-screen portrait used as the background
 │   └── RJW2025/           # Romanian Jewelry Week 2025 exhibition photos (12 images)
@@ -87,16 +129,16 @@ livia/
 └── README.md
 ```
 
-Page text lives in `content/*.md` files. The `load_content()` helper reads them at import time and feeds them to `rx.markdown` with a styled `component_map`.
+Tabbed pages auto-discover tabs from their content subfolder. See the "Content system" section above for naming conventions and how to add tabs.
 
 ## Pages
 
-| Route          | Purpose |
-|----------------|---------|
-| `/`            | Homepage — full-screen portrait, name overlay, bottom nav |
-| `/about`       | Bio + links connecting art and GlucoseDAO work |
-| `/art-design`  | Selected collections + collapsible Instagram sidebar |
-| `/glucosedao`  | GlucoseDAO description with links to the org |
+| Route           | Purpose |
+|-----------------|---------|
+| `/`             | Homepage — full-screen portrait, floating bubbles, bottom nav |
+| `/biography`    | Biography + external links |
+| `/art-design`   | Art & Design — tabbed page (auto-discovered from `content/art-design/`) |
+| `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
 
 ## Design principles
 
@@ -181,14 +223,17 @@ The component set is deliberately small:
 
 ## Data model
 
-Content text lives in `content/*.md` files and is loaded by `load_content()` at import time.
+Content text is loaded from `content/` at import time:
+- Standalone pages use `load_content(name)` to read a single `.md` file.
+- Tabbed pages use `load_tabs_from_folder(folder)` to scan a subfolder and build tabs automatically.
 
 Structured data is defined as frozen dataclasses at the top of `livia.py`:
 
 - `LinkItem(label, href, external)` — a single link
-- `CardItem(title, body, href, link_label, accent, external)` — a project card
+- `TabSpec(label, value, content)` — a single tab definition
+- `BubbleItem(icon_label, title, tooltip, preview, href, angle, accent)` — a floating navigation bubble
 
-The Instagram sidebar uses `InstagramSidebarState` (a single boolean `is_open`) — the only piece of Reflex state in the app.
+The app has minimal Reflex state: `InstagramSidebarState` and `GithubSidebarState` (each a single `is_open` boolean).
 
 ## Links
 

@@ -1,0 +1,13 @@
+Livia Zaharia is a Romanian architect and parametric jewellery artist who uses script-driven, generative geometry to create nature-evoking wearable objects and installations. She works under the label **Paral Design** (Parametric Livia), translating computational architectural methods into intimate, research-driven, body-scale artefacts.
+
+Her artistic identity sits at the intersection of three domains: **generative art** rooted in architectural parametric tools, **speculative design for health and longevity**, and **experimental contemporary jewellery** — exhibited at [Romanian Jewelry Week](https://www.romanianjewelryweek.com/participants-2025/livia-zaharia) every year since 2021.
+
+Her tools include **Grasshopper** (visual programming for Rhino), **COMPAS** (computational architecture framework), and **Python** scripts for generative geometry. Digital models are 3D-printed, cast primarily in silver, and sometimes combined with natural materials — walnut husks, amber, quartz — through traditional metalworking.
+
+Beyond her art practice, Livia is the founder of [GlucoseDAO](https://github.com/GlucoseDAO/), a healthtech initiative building open-source tools for glucose prediction and metabolic health, including the [Sugar-Sugar Game](https://sugar-sugar.glucosedao.org) — a browser-based tool where participants predict blood glucose trajectories and compare their accuracy against ML models. GlucoseDAO operates in collaboration with Universitätsmedizin Rostock.
+
+She is a contributor to the [Longevity Genie](https://longevity-genie.github.io) open-source ecosystem, where her [Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) project bridges physical artefact-making and computational biology. She is affiliated with [HEALES](https://heales.org/) (Healthy Life Extension Society) and has taught AI agentic workshops in bioinformatics.
+
+Outside the studio and the lab, Livia is an avid **swimmer** — her proper stroke is crawl, and she is currently learning butterfly and monofin. She is also a dedicated **hiker**, with Jepii Mici being her favourite Romanian hiking route and the Predeal mountain race her favourite running event. She is obsessed with **gemstones** and with **growing plants** — passions that feed directly back into her nature-inspired parametric work.
+
+Her design work is presented under [@paral_design](https://www.instagram.com/paral_design/) on Instagram and professionally on [LinkedIn](https://www.linkedin.com/in/livia-zaharia-4b1425a0). Together, these two branches — art and science — form one interdisciplinary practice between living systems and computational form.

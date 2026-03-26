@@ -20,9 +20,9 @@
 
 .bubble {
   position: absolute;
-  min-width: clamp(100px, 12vw, 200px);
-  height: clamp(42px, 4.5vw, 62px);
-  padding: 0 clamp(18px, 2.2vw, 36px);
+  min-width: clamp(130px, 15vw, 260px);
+  height: clamp(54px, 6vw, 78px);
+  padding: 0 clamp(24px, 2.8vw, 46px);
   border-radius: 999px;
   pointer-events: auto;
   cursor: pointer;
@@ -44,11 +44,13 @@
 }
 
 .bubble[data-accent="green"] {
+  border: 1.5px solid rgba(94, 168, 130, 0.55);
   box-shadow: 0 0 18px 4px rgba(94, 168, 130, 0.18),
               inset 0 0 12px rgba(94, 168, 130, 0.08);
 }
 
 .bubble[data-accent="amber"] {
+  border: 1.5px solid rgba(212, 148, 58, 0.55);
   box-shadow: 0 0 18px 4px rgba(212, 148, 58, 0.18),
               inset 0 0 12px rgba(212, 148, 58, 0.08);
 }
@@ -59,11 +61,13 @@
 }
 
 .bubble[data-accent="green"]:hover {
+  border-color: rgba(94, 168, 130, 0.85);
   box-shadow: 0 0 32px 10px rgba(94, 168, 130, 0.35),
               inset 0 0 18px rgba(94, 168, 130, 0.14);
 }
 
 .bubble[data-accent="amber"]:hover {
+  border-color: rgba(212, 148, 58, 0.85);
   box-shadow: 0 0 32px 10px rgba(212, 148, 58, 0.35),
               inset 0 0 18px rgba(212, 148, 58, 0.14);
 }
@@ -76,7 +80,7 @@
 
 .bubble-label {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(0.95rem, 1.6vw, 1.4rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.9rem);
   font-weight: 600;
   color: rgba(245, 240, 232, 0.92);
   letter-spacing: 0.05em;
@@ -149,25 +153,25 @@
 
 @media (max-width: 768px) {
   .bubble {
-    min-width: clamp(70px, 15vw, 120px);
-    height: clamp(34px, 5.5vw, 48px);
-    padding: 0 clamp(12px, 2.5vw, 22px);
+    min-width: clamp(85px, 17vw, 140px);
+    height: clamp(38px, 6vw, 54px);
+    padding: 0 clamp(14px, 2.8vw, 26px);
   }
 
   .bubble-label {
-    font-size: clamp(0.72rem, 2.2vw, 1rem);
+    font-size: clamp(0.85rem, 2.6vw, 1.2rem);
   }
 }
 
 @media (max-width: 480px) {
   .bubble {
-    min-width: clamp(56px, 18vw, 100px);
-    height: clamp(30px, 7vw, 42px);
-    padding: 0 clamp(8px, 3vw, 16px);
+    min-width: clamp(68px, 20vw, 110px);
+    height: clamp(34px, 8vw, 46px);
+    padding: 0 clamp(10px, 3.5vw, 18px);
   }
 
   .bubble-label {
-    font-size: clamp(0.6rem, 3vw, 0.85rem);
+    font-size: clamp(0.72rem, 3.5vw, 1rem);
   }
 
   .bubble-tooltip {

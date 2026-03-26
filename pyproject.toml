@@ -7,6 +7,7 @@ requires-python = ">=3.13,<3.14"
 dependencies = [
     "compas>=2.15.1",
     "pythreejs>=2.4.2",
+    "pyyaml>=6.0.3",
     "reflex>=0.8.27",
     "typer>=0.15",
 ]

@@ -1,0 +1,17 @@
+label: Links
+order: 5
+type: link_list
+accent: green
+links:
+  - label: GlucoseDAO
+    href: https://glucosedao.org/
+  - label: GlucoseDAO GitHub
+    href: https://github.com/GlucoseDAO/
+  - label: Hugging Face Spaces
+    href: https://huggingface.co/spaces/GlucoseDao
+  - label: Materialized Enhancements
+    href: https://materialized-enhancements.longevity-genie.info/
+  - label: Longevity Genie
+    href: https://longevity-genie.github.io
+  - label: Longevity Genie GitHub
+    href: https://github.com/longevity-genie

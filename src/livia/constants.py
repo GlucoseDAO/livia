@@ -1,0 +1,159 @@
+"""Shared constants, paths, regexes, and data classes for the Livia website."""
+
+from dataclasses import dataclass
+from pathlib import Path
+import re
+
+import reflex as rx
+
+CONTENT_DIR = Path(__file__).parent.parent.parent / "content"
+ASSETS_DIR = Path(__file__).parent.parent.parent / "assets"
+
+SERIF_FONT = '"Cormorant Garamond", Georgia, serif'
+SANS_FONT = '"Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+
+BACKGROUND = "#120f0c"
+PANEL_BG = "rgba(18, 15, 12, 0.82)"
+PANEL_BORDER = "rgba(255, 248, 238, 0.12)"
+TEXT_LIGHT = "#f5f0e8"
+TEXT_MUTED = "rgba(245, 240, 232, 0.7)"
+GREEN = "#5ea882"
+GREEN_DIM = "#2f5b46"
+AMBER = "#d4943a"
+AMBER_DIM = "#9a6527"
+SHADOW = "0 12px 48px rgba(0, 0, 0, 0.35)"
+
+ACCENT_MAP: dict[str, str] = {"amber": AMBER, "green": GREEN}
+ACCENT_DIM_MAP: dict[str, str] = {"amber": AMBER_DIM, "green": GREEN_DIM}
+
+MARKDOWN_COMPONENT_MAP = {
+    "p": lambda text: rx.text(
+        text,
+        color=TEXT_LIGHT,
+        line_height="2",
+        font_size=["1.15rem", "1.25rem", "1.35rem"],
+        margin_top="0.8rem",
+        margin_bottom="0.8rem",
+    ),
+    "a": lambda text, **props: rx.link(
+        text,
+        color=AMBER,
+        text_decoration="none",
+        font_weight="600",
+        font_size="inherit",
+        _hover={"color": TEXT_LIGHT},
+        **props,
+    ),
+    "h1": lambda text: rx.heading(
+        text,
+        font_family=SERIF_FONT,
+        color=TEXT_LIGHT,
+        font_size=["2rem", "2.5rem", "3rem"],
+        margin_top="2.5rem",
+        margin_bottom="1rem",
+    ),
+    "h2": lambda text: rx.heading(
+        text,
+        font_family=SERIF_FONT,
+        color=TEXT_LIGHT,
+        font_size=["1.6rem", "2rem", "2.4rem"],
+        margin_top="2rem",
+        margin_bottom="0.8rem",
+    ),
+}
+
+YOUTUBE_WATCH_RE = re.compile(r"^https?://(?:www\.)?youtube\.com/watch\?[^#\s]*v=([A-Za-z0-9_-]{11})[^#\s]*$")
+YOUTUBE_SHORT_RE = re.compile(r"^https?://(?:www\.)?youtu\.be/([A-Za-z0-9_-]{11})[^#\s]*$")
+MARKDOWN_LINK_RE = re.compile(r"^\[[^\]]+\]\((https?://[^)\s]+)\)$")
+GALLERY_DIRECTIVE_RE = re.compile(r"^<!--\s*gallery:\s*(.+?)\s*-->$")
+ARTIFACT_IMAGE_RE = re.compile(r"^<!--\s*artifact:\s*(.+?)\s*-->$")
+
+_TAB_PREFIX_RE = re.compile(r"^(\d+)_(.+)$")
+_REF_FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*$", re.DOTALL)
+
+
+@dataclass(frozen=True)
+class LinkItem:
+    label: str
+    href: str
+    external: bool = False
+    icon: str | None = None
+
+
+@dataclass(frozen=True)
+class BubbleItem:
+    icon_label: str
+    title: str
+    tooltip: str
+    preview: str
+    href: str
+    angle: float
+    accent: str
+    external: bool = False
+
+
+@dataclass(frozen=True)
+class TabSpec:
+    label: str
+    value: str
+    content: rx.Component
+
+
+NAV_LINKS = (
+    LinkItem("Home", "/"),
+    LinkItem("Biography", "/biography"),
+    LinkItem("Art & Design", "/art-design"),
+    LinkItem("Science & Tech", "/science-tech"),
+)
+
+BIOGRAPHY_LINKS = (
+    LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
+    LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
+    LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
+    LinkItem("GlucoseDAO GitHub", "https://github.com/GlucoseDAO/", True),
+    LinkItem("Sugar-Sugar Game", "https://sugar-sugar.glucosedao.org", True),
+    LinkItem("GlucoseDAO Hugging Face Spaces", "https://huggingface.co/spaces/GlucoseDao", True),
+    LinkItem("Longevity Genie", "https://longevity-genie.github.io", True),
+    LinkItem("Longevity Genie GitHub", "https://github.com/longevity-genie", True),
+    LinkItem("HEALES", "https://heales.org/", True),
+    LinkItem("Romanian Jewelry Week 2025", "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia", True),
+)
+
+BUBBLE_ITEMS: tuple[BubbleItem, ...] = (
+    BubbleItem(
+        icon_label="Science & Tech",
+        title="Science & Tech",
+        tooltip="Digital health & glucose dynamics",
+        preview=(
+            "GlucoseDAO is a healthtech startup building tools that "
+            "help people understand and predict glucose dynamics."
+        ),
+        href="/science-tech",
+        angle=200,
+        accent="green",
+    ),
+    BubbleItem(
+        icon_label="Biography",
+        title="Biography",
+        tooltip="Designer, maker, founder",
+        preview=(
+            "Livia Zaharia is a parametric designer, jewellery maker, "
+            "and founder of GlucoseDAO."
+        ),
+        href="/biography",
+        angle=270,
+        accent="amber",
+    ),
+    BubbleItem(
+        icon_label="Art & Design",
+        title="Art & Design",
+        tooltip="Parametric form & fabrication",
+        preview=(
+            "Parametric form, digital fabrication, and the translation "
+            "of controlled systems into organic objects."
+        ),
+        href="/art-design",
+        angle=340,
+        accent="amber",
+    ),
+)
