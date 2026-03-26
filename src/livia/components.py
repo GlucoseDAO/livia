@@ -59,12 +59,27 @@ class InstagramSidebarState(rx.State):
     def toggle(self) -> None:
         self.is_open = not self.is_open
 
+    def close(self) -> None:
+        self.is_open = False
+
 
 class GithubSidebarState(rx.State):
     is_open: bool = True
 
     def toggle(self) -> None:
         self.is_open = not self.is_open
+
+    def close(self) -> None:
+        self.is_open = False
+
+
+class NarrowScreenDetector(rx.State):
+    """Detects narrow physical screens and closes sidebars accordingly."""
+
+    def check_and_close_sidebars(self, screen_width: int) -> None:
+        if screen_width < 1024:
+            yield InstagramSidebarState.close  # type: ignore[misc]
+            yield GithubSidebarState.close  # type: ignore[misc]
 
 
 # ---------------------------------------------------------------------------
@@ -502,6 +517,25 @@ def bottom_nav() -> rx.Component:
         box_shadow=SHADOW,
         padding_x=["1.2rem", "1.6rem", "2.4rem"],
         padding_y=["0.7rem", "0.8rem", "0.9rem"],
+    )
+
+
+# ---------------------------------------------------------------------------
+# Narrow screen detection
+# ---------------------------------------------------------------------------
+
+def narrow_screen_sidebar_closer() -> rx.Component:
+    """Invisible component that closes sidebars on narrow physical screens.
+
+    Even though we force a 1280px CSS viewport, on physically small screens
+    the sidebars would crowd the zoomed-out view.
+    """
+    return rx.box(
+        on_mount=rx.call_script(
+            "window.screen.width",
+            callback=NarrowScreenDetector.check_and_close_sidebars,
+        ),
+        display="none",
     )
 
 

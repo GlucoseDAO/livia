@@ -35,6 +35,7 @@ from livia.components import (
     instagram_sidebar,
     link_list,
     markdown_panel,
+    narrow_screen_sidebar_closer,
     page_content,
     panel,
     section_heading,
@@ -137,6 +138,7 @@ def home_page() -> rx.Component:
         bubble_overlay(),
         instagram_sidebar(),
         github_sidebar(),
+        narrow_screen_sidebar_closer(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -200,6 +202,7 @@ def science_tech_page() -> rx.Component:
             sidebar_tabs(tabs=tabs, accent=accent, sidebar_side=sidebar_side, default_value=default_value),
         ),
         github_sidebar(),
+        narrow_screen_sidebar_closer(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -222,6 +225,21 @@ def create_app() -> rx.App:
             "color": TEXT_LIGHT,
             "font_family": SANS_FONT,
         },
+        head_components=[
+            rx.el.meta(
+                name="viewport",
+                content="width=1280",
+            ),
+            rx.script(
+                """
+                (function() {
+                    if (window.screen && window.screen.width < 1024) {
+                        window.__livia_narrow_device = true;
+                    }
+                })();
+                """
+            ),
+        ],
     )
     application.add_page(home_page, route="/", title="Livia Zaharia")
     application.add_page(biography_page, route="/biography", title="Biography | Livia Zaharia")
