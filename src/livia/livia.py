@@ -25,12 +25,13 @@ GLUCOSEDAO_GITHUB_URL = "https://github.com/GlucoseDAO/"
 GLUCOSEDAO_YOUTUBE_URL = "https://www.youtube.com/watch?v=6aTajGZCnEA"
 
 MARKDOWN_COMPONENT_MAP = {
-    "p": lambda text: rx.text(text, color=TEXT_LIGHT, line_height="1.8", font_size="0.95rem"),
+    "p": lambda text: rx.text(text, color=TEXT_LIGHT, line_height="2", font_size=["1.15rem", "1.25rem", "1.35rem"]),
     "a": lambda text, **props: rx.link(
         text,
         color=AMBER,
         text_decoration="none",
         font_weight="600",
+        font_size="inherit",
         _hover={"color": TEXT_LIGHT},
         **props,
     ),
@@ -38,13 +39,13 @@ MARKDOWN_COMPONENT_MAP = {
         text,
         font_family=SERIF_FONT,
         color=TEXT_LIGHT,
-        font_size=["1.6rem", "1.8rem", "2rem"],
+        font_size=["2rem", "2.5rem", "3rem"],
     ),
     "h2": lambda text: rx.heading(
         text,
         font_family=SERIF_FONT,
         color=TEXT_LIGHT,
-        font_size=["1.3rem", "1.45rem", "1.6rem"],
+        font_size=["1.6rem", "2rem", "2.4rem"],
     ),
 }
 
@@ -363,7 +364,7 @@ def fullscreen_bg() -> rx.Component:
 
 
 def fullscreen_bg_dimmed() -> rx.Component:
-    """Dimmed background for inner pages so panels are readable."""
+    """Dimmed background with Livia portrait for neutral/contact pages."""
     return rx.fragment(
         rx.box(
             position="fixed",
@@ -382,6 +383,46 @@ def fullscreen_bg_dimmed() -> rx.Component:
     )
 
 
+def fullscreen_bg_green() -> rx.Component:
+    """Green-tinted background for science/GlucoseDAO pages."""
+    return rx.fragment(
+        rx.box(
+            position="fixed",
+            inset="0",
+            background_image='url("/green_side.jpg")',
+            background_size="cover",
+            background_position="center center",
+            z_index="0",
+        ),
+        rx.box(
+            position="fixed",
+            inset="0",
+            background="rgba(10, 8, 6, 0.55)",
+            z_index="1",
+        ),
+    )
+
+
+def fullscreen_bg_yellow() -> rx.Component:
+    """Yellow/amber background for art & design pages."""
+    return rx.fragment(
+        rx.box(
+            position="fixed",
+            inset="0",
+            background_image='url("/yellow_side.jpg")',
+            background_size="cover",
+            background_position="center center",
+            z_index="0",
+        ),
+        rx.box(
+            position="fixed",
+            inset="0",
+            background="rgba(10, 8, 6, 0.55)",
+            z_index="1",
+        ),
+    )
+
+
 def panel(*children: rx.Component) -> rx.Component:
     """Opaque readable content panel."""
     return rx.box(
@@ -390,7 +431,7 @@ def panel(*children: rx.Component) -> rx.Component:
         backdrop_filter="blur(20px)",
         border=f"1px solid {PANEL_BORDER}",
         border_radius="1.2rem",
-        padding=["1.2rem", "1.4rem", "1.6rem"],
+        padding=["1.6rem", "2.5rem", "3.5rem"],
         box_shadow=SHADOW,
         width="100%",
     )
@@ -415,10 +456,10 @@ def feature_card(item: CardItem) -> rx.Component:
             rx.heading(
                 item.title,
                 font_family=SERIF_FONT,
-                font_size=["1.4rem", "1.55rem", "1.7rem"],
+                font_size=["1.7rem", "2rem", "2.4rem"],
                 color=TEXT_LIGHT,
             ),
-            rx.text(item.body, color=TEXT_MUTED, line_height="1.7", font_size="0.95rem"),
+            rx.text(item.body, color=TEXT_MUTED, line_height="1.9", font_size=["1.15rem", "1.25rem", "1.35rem"]),
             rx.link(
                 item.link_label,
                 href=item.href,
@@ -426,7 +467,7 @@ def feature_card(item: CardItem) -> rx.Component:
                 color=item.accent,
                 text_decoration="none",
                 font_weight="600",
-                font_size="0.9rem",
+                font_size=["1.1rem", "1.18rem", "1.25rem"],
             ),
             align_items="start",
             spacing="3",
@@ -441,10 +482,10 @@ def link_list(title: str, links: tuple[LinkItem, ...], accent: str) -> rx.Compon
             title,
             text_transform="uppercase",
             letter_spacing="0.14em",
-            font_size="0.72rem",
+            font_size=["0.85rem", "0.95rem", "1rem"],
             color=accent,
             font_weight="700",
-            margin_bottom="0.8rem",
+            margin_bottom="1rem",
         ),
         rx.vstack(
             *(
@@ -454,13 +495,13 @@ def link_list(title: str, links: tuple[LinkItem, ...], accent: str) -> rx.Compon
                     is_external=link.external,
                     color=TEXT_LIGHT,
                     text_decoration="none",
-                    font_size="0.95rem",
+                    font_size=["1.15rem", "1.25rem", "1.35rem"],
                     _hover={"color": accent},
                 )
                 for link in links
             ),
             align_items="start",
-            spacing="3",
+            spacing="4",
         ),
     )
 
@@ -568,16 +609,15 @@ def page_content(*children: rx.Component) -> rx.Component:
     return rx.box(
         rx.vstack(
             *children,
-            spacing="4",
+            spacing="6",
             width="100%",
-            max_width="42rem",
             align_items="stretch",
         ),
         position="relative",
         z_index="3",
-        max_width="76rem",
+        width="100%",
         margin="0 auto",
-        padding_x=["1rem", "1.5rem", "2.5rem"],
+        padding_x=["1rem", "2.5rem", "4rem"],
         padding_top=["1.5rem", "2rem", "3rem"],
         padding_bottom=["6rem", "6.5rem", "7rem"],
     )
@@ -590,12 +630,12 @@ def section_heading(title: str, accent: str) -> rx.Component:
             title,
             font_family=SERIF_FONT,
             color=TEXT_LIGHT,
-            font_size=["2rem", "2.4rem", "2.8rem"],
+            font_size=["2.2rem", "2.8rem", "3.4rem"],
             letter_spacing="0.03em",
         ),
         rx.box(
             height="3px",
-            width="5rem",
+            width="6rem",
             border_radius="999px",
             background=f"linear-gradient(90deg, {accent}, transparent)",
         ),
@@ -607,19 +647,20 @@ def section_heading(title: str, accent: str) -> rx.Component:
 
 def _bubble_html(item: BubbleItem) -> str:
     """Generate HTML for a single floating bubble."""
-    target = ' target="_blank" rel="noopener noreferrer"' if item.external else ""
-    side = "left" if 90 < item.angle < 270 else "right"
+    if item.external:
+        return (
+            f'<a class="bubble" data-angle="{item.angle}" data-accent="{item.accent}"'
+            f' href="{item.href}" target="_blank" rel="noopener noreferrer">'
+            f'  <span class="bubble-label">{item.icon_label}</span>'
+            f'  <span class="bubble-tooltip">{item.tooltip}</span>'
+            f'</a>'
+        )
     return (
-        f'<div class="bubble" data-angle="{item.angle}" data-accent="{item.accent}">'
+        f'<a class="bubble" data-angle="{item.angle}" data-accent="{item.accent}"'
+        f' href="{item.href}">'
         f'  <span class="bubble-label">{item.icon_label}</span>'
         f'  <span class="bubble-tooltip">{item.tooltip}</span>'
-        f'  <div class="bubble-preview" data-side="{side}">'
-        f'    <p class="bubble-preview-title">{item.title}</p>'
-        f'    <p class="bubble-preview-text">{item.preview}</p>'
-        f'    <a class="bubble-preview-link" data-accent="{item.accent}"'
-        f'       href="{item.href}"{target}>View More</a>'
-        f'  </div>'
-        f'</div>'
+        f'</a>'
     )
 
 
@@ -676,7 +717,7 @@ def about_page() -> rx.Component:
 
 def art_design_page() -> rx.Component:
     return rx.box(
-        fullscreen_bg_dimmed(),
+        fullscreen_bg_yellow(),
         page_content(
             section_heading("Art & Design", AMBER),
             markdown_panel("art_design"),
@@ -690,7 +731,7 @@ def art_design_page() -> rx.Component:
 
 def glucosedao_page() -> rx.Component:
     return rx.box(
-        fullscreen_bg_dimmed(),
+        fullscreen_bg_green(),
         page_content(
             section_heading("GlucoseDAO", GREEN),
             markdown_panel("glucosedao"),
