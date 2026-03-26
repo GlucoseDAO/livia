@@ -8,12 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .bubble-origin {
   position: relative;
   width: 0;
   height: 0;
+  left: -4vw;
 }
 
 /* ── Individual Bubble ──────────────────────────────────────────── */

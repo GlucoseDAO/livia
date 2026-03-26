@@ -521,8 +521,8 @@ def bottom_nav() -> rx.Component:
     return rx.box(
         rx.hstack(
             *(_nav_link(link) for link in NAV_LINKS),
-            spacing="6",
-            wrap="wrap",
+            spacing="4",
+            wrap="nowrap",
             justify="center",
             align="center",
         ),
@@ -538,7 +538,7 @@ def bottom_nav() -> rx.Component:
         border=f"1px solid {PANEL_BORDER}",
         border_radius="999px",
         box_shadow=SHADOW,
-        padding_x="2.4rem",
+        padding_x="1.6rem",
         padding_y="0.9rem",
     )
 
@@ -838,7 +838,7 @@ def sidebar_tabs(
     """Desktop: vertical sidebar tabs; mobile: horizontal tabs."""
     tab_trigger_style = {
         "font_family": SERIF_FONT,
-        "font_size": ["1.2rem", "1.4rem", "1.6rem"],
+        "font_size": ["1.8rem", "2rem", "2.2rem"],
         "font_weight": "600",
         "color": TEXT_MUTED,
         "cursor": "pointer",
@@ -846,6 +846,7 @@ def sidebar_tabs(
         "word_break": "break-word",
         "text_align": sidebar_side,
         "width": "100%",
+        "padding": "0.3rem 0.6rem",
         "_selected": {
             "color": accent,
         },
@@ -856,8 +857,8 @@ def sidebar_tabs(
         flex_direction="column",
         align_items="flex-start" if sidebar_side == "left" else "flex-end",
         justify_content="flex-start",
-        gap="0.5rem",
-        min_width="14rem",
+        gap="0.6rem",
+        min_width="16rem",
         width="auto",
         flex_shrink="0",
         position="sticky",
@@ -977,19 +978,30 @@ useEffect(() => {
     var vh = window.innerHeight * 0.44;
     var radius = Math.min(vw, vh);
     if (window.screen && window.screen.width < 1024) {
-      radius = Math.min(radius, window.innerWidth * 0.36);
+      radius = Math.min(radius, window.innerWidth * 0.32);
     }
     return radius;
   }
 
   function positionBubbles() {
     var radius = computeArcRadius();
+    var vpW = window.innerWidth;
+    var vpH = window.innerHeight;
     var bubbles = document.querySelectorAll(".bubble[data-angle]");
     bubbles.forEach(function (el) {
       var angleDeg = parseFloat(el.getAttribute("data-angle"));
       var rad = (angleDeg * Math.PI) / 180;
       var ox = Math.cos(rad) * radius;
       var oy = Math.sin(rad) * radius;
+      var bw = el.offsetWidth || 160;
+      var bh = el.offsetHeight || 54;
+      var margin = 8;
+      var maxOx = (vpW / 2) - (bw / 2) - margin;
+      var maxOy = (vpH / 2) - (bh / 2) - margin;
+      if (ox > maxOx) ox = maxOx;
+      if (ox < -maxOx) ox = -maxOx;
+      if (oy > maxOy) oy = maxOy;
+      if (oy < -maxOy) oy = -maxOy;
       el.style.setProperty("--offset-x", ox + "px");
       el.style.setProperty("--offset-y", oy + "px");
     });

@@ -238,7 +238,9 @@ def create_app() -> rx.App:
                         var style = document.createElement('style');
                         style.textContent =
                             '.livia-bottom-nav a { font-size: 2.8rem !important; }' +
-                            '.livia-bottom-nav { padding: 1.2rem 3.2rem !important; }';
+                            '.livia-bottom-nav { padding: 1.2rem 2rem !important; }' +
+                            '.livia-bottom-nav .rt-HStack { gap: 1.2rem !important; }' +
+                            '[role="tablist"] button { font-size: 3rem !important; padding: 0.5rem 0.8rem !important; }';
                         document.head.appendChild(style);
                     }
 
