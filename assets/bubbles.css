@@ -22,9 +22,9 @@
 
 .bubble {
   position: absolute;
-  min-width: clamp(130px, 15vw, 260px);
-  height: clamp(54px, 6vw, 78px);
-  padding: 0 clamp(24px, 2.8vw, 46px);
+  min-width: clamp(180px, 18vw, 320px);
+  height: clamp(68px, 7.5vw, 100px);
+  padding: 0 clamp(30px, 3.2vw, 56px);
   border-radius: 999px;
   pointer-events: auto;
   cursor: pointer;
@@ -82,7 +82,7 @@
 
 .bubble-label {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.25rem, 2.2vw, 1.9rem);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 600;
   color: rgba(245, 240, 232, 0.92);
   letter-spacing: 0.05em;
