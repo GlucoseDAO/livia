@@ -150,3 +150,6 @@ When a change affects UI/UX, validation is required before considering the task 
 - Bubble positions: Science & Tech = left arc (green border), Biography = top center, Art & Design = right arc (yellow border); the Home bubble was removed as redundant since bubbles only appear on the home page.
 - Art & Design and Science & Tech pages use the folder-based tab system; tabs are auto-discovered from `content/art-design/` and `content/science-tech/` respectively. Bottom nav uses `rx.State.router.page.path` to highlight the active page.
 - GitHub and LinkedIn do not offer embeddable iframe widgets; a custom "tech sidebar" component is used instead with links and icons.
+- The site forces desktop rendering on mobile via `<meta name="viewport" content="width=1280">` in `head_components`. Mobile-specific CSS breakpoints are intentionally bypassed; the page is always rendered as a 1280px-wide desktop layout and scaled down on phones.
+- Sidebars (`InstagramSidebarState`, `GithubSidebarState`) default to **closed** (`is_open=False`). On wide screens (≥1024px physical), `ScreenWidthDetector.open_sidebars_if_wide` opens them via `on_mount` + `rx.call_script("window.screen.width")`. This prevents sidebars from crowding the view on phones.
+- Bottom nav and bubble labels use CSS `max()` / `clamp()` with pixel minimums to ensure tappability on scaled-down mobile viewports.

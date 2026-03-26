@@ -54,32 +54,38 @@ class GalleryState(rx.State):
 
 
 class InstagramSidebarState(rx.State):
-    is_open: bool = True
+    is_open: bool = False
 
     def toggle(self) -> None:
         self.is_open = not self.is_open
+
+    def open(self) -> None:
+        self.is_open = True
 
     def close(self) -> None:
         self.is_open = False
 
 
 class GithubSidebarState(rx.State):
-    is_open: bool = True
+    is_open: bool = False
 
     def toggle(self) -> None:
         self.is_open = not self.is_open
+
+    def open(self) -> None:
+        self.is_open = True
 
     def close(self) -> None:
         self.is_open = False
 
 
-class NarrowScreenDetector(rx.State):
-    """Detects narrow physical screens and closes sidebars accordingly."""
+class ScreenWidthDetector(rx.State):
+    """Detects physical screen width and opens sidebars on wide screens."""
 
-    def check_and_close_sidebars(self, screen_width: int) -> None:
-        if screen_width < 1024:
-            yield InstagramSidebarState.close  # type: ignore[misc]
-            yield GithubSidebarState.close  # type: ignore[misc]
+    def open_sidebars_if_wide(self, screen_width: int) -> None:
+        if screen_width >= 1024:
+            yield InstagramSidebarState.open  # type: ignore[misc]
+            yield GithubSidebarState.open  # type: ignore[misc]
 
 
 # ---------------------------------------------------------------------------
@@ -471,26 +477,42 @@ def markdown_panel(content_name: str) -> rx.Component:
 
 def _nav_link(link: LinkItem) -> rx.Component:
     """Single bottom-nav link with active-page highlight."""
-    is_active = rx.State.router.page.path == link.href
+    if link.href == "/":
+        is_active = (rx.State.router.page.path == "/") | (rx.State.router.page.path == "")
+    else:
+        is_active = rx.State.router.page.path == link.href
     return rx.link(
-        rx.hstack(
-            rx.cond(
-                bool(link.icon),
-                rx.icon(tag=link.icon or "link", size=16),
-                rx.fragment(),
+        rx.vstack(
+            rx.hstack(
+                rx.cond(
+                    bool(link.icon),
+                    rx.icon(tag=link.icon or "link", size=16),
+                    rx.fragment(),
+                ),
+                rx.text(link.label),
+                spacing="2",
+                align="center",
             ),
-            rx.text(link.label),
-            spacing="2",
+            rx.box(
+                class_name="livia-nav-indicator",
+                height="2px",
+                width=rx.cond(is_active, "100%", "0%"),
+                background=f"linear-gradient(90deg, {AMBER}, {GREEN})",
+                border_radius="999px",
+                transition="width 0.3s ease",
+            ),
+            spacing="1",
             align="center",
         ),
         href=link.href,
         is_external=link.external,
         color=rx.cond(is_active, TEXT_LIGHT, TEXT_MUTED),
         font_weight=rx.cond(is_active, "700", "500"),
-        font_size=["1.05rem", "1.15rem", "1.25rem"],
+        font_size="clamp(1.4rem, 2.5vw, 1.8rem)",
         text_decoration="none",
         _hover={"color": TEXT_LIGHT},
         transition="color 0.2s ease",
+        custom_attrs={"data-href": link.href},
     )
 
 
@@ -504,36 +526,37 @@ def bottom_nav() -> rx.Component:
             justify="center",
             align="center",
         ),
+        class_name="livia-bottom-nav",
         position="fixed",
-        bottom=["0.6rem", "0.85rem", "1rem"],
+        bottom="1rem",
         left="50%",
         transform="translateX(-50%)",
         z_index="50",
-        width=["calc(100% - 1.5rem)", "calc(100% - 2rem)", "auto"],
+        width="auto",
         backdrop_filter="blur(24px)",
         background="rgba(18, 15, 12, 0.72)",
         border=f"1px solid {PANEL_BORDER}",
         border_radius="999px",
         box_shadow=SHADOW,
-        padding_x=["1.2rem", "1.6rem", "2.4rem"],
-        padding_y=["0.7rem", "0.8rem", "0.9rem"],
+        padding_x="2.4rem",
+        padding_y="0.9rem",
     )
 
 
 # ---------------------------------------------------------------------------
-# Narrow screen detection
+# Screen-width-aware sidebar opener
 # ---------------------------------------------------------------------------
 
-def narrow_screen_sidebar_closer() -> rx.Component:
-    """Invisible component that closes sidebars on narrow physical screens.
+def screen_aware_sidebar_opener() -> rx.Component:
+    """Invisible component that opens sidebars only on wide physical screens.
 
-    Even though we force a 1280px CSS viewport, on physically small screens
-    the sidebars would crowd the zoomed-out view.
+    Sidebars default to closed. On devices with screen.width >= 1024 they
+    open automatically on mount so desktop users see them immediately.
     """
     return rx.box(
         on_mount=rx.call_script(
             "window.screen.width",
-            callback=NarrowScreenDetector.check_and_close_sidebars,
+            callback=ScreenWidthDetector.open_sidebars_if_wide,
         ),
         display="none",
     )
@@ -952,7 +975,11 @@ useEffect(() => {
   function computeArcRadius() {
     var vw = window.innerWidth * 0.48;
     var vh = window.innerHeight * 0.44;
-    return Math.min(vw, vh);
+    var radius = Math.min(vw, vh);
+    if (window.screen && window.screen.width < 1024) {
+      radius = Math.min(radius, window.innerWidth * 0.36);
+    }
+    return radius;
   }
 
   function positionBubbles() {

@@ -35,7 +35,7 @@ from livia.components import (
     instagram_sidebar,
     link_list,
     markdown_panel,
-    narrow_screen_sidebar_closer,
+    screen_aware_sidebar_opener,
     page_content,
     panel,
     section_heading,
@@ -138,7 +138,7 @@ def home_page() -> rx.Component:
         bubble_overlay(),
         instagram_sidebar(),
         github_sidebar(),
-        narrow_screen_sidebar_closer(),
+        screen_aware_sidebar_opener(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -202,7 +202,7 @@ def science_tech_page() -> rx.Component:
             sidebar_tabs(tabs=tabs, accent=accent, sidebar_side=sidebar_side, default_value=default_value),
         ),
         github_sidebar(),
-        narrow_screen_sidebar_closer(),
+        screen_aware_sidebar_opener(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -235,7 +235,37 @@ def create_app() -> rx.App:
                 (function() {
                     if (window.screen && window.screen.width < 1024) {
                         window.__livia_narrow_device = true;
+                        var style = document.createElement('style');
+                        style.textContent =
+                            '.livia-bottom-nav a { font-size: 2.8rem !important; }' +
+                            '.livia-bottom-nav { padding: 1.2rem 3.2rem !important; }';
+                        document.head.appendChild(style);
                     }
+
+                    function highlightActiveNav() {
+                        var path = window.location.pathname;
+                        if (path === '' || path === '/index') path = '/';
+                        var links = document.querySelectorAll('.livia-bottom-nav a[data-href]');
+                        links.forEach(function(a) {
+                            var href = a.getAttribute('data-href');
+                            var isActive = (href === path);
+                            if (isActive) {
+                                a.style.color = '#f5f0e8';
+                                a.style.fontWeight = '700';
+                                var bar = a.querySelector('.livia-nav-indicator');
+                                if (bar) bar.style.width = '100%';
+                            }
+                        });
+                    }
+
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', highlightActiveNav);
+                    } else {
+                        highlightActiveNav();
+                    }
+                    // Re-run after a short delay to catch React hydration
+                    setTimeout(highlightActiveNav, 500);
+                    setTimeout(highlightActiveNav, 1500);
                 })();
                 """
             ),
