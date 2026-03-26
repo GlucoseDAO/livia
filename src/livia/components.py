@@ -516,11 +516,26 @@ def _nav_link(link: LinkItem) -> rx.Component:
     )
 
 
+def _nav_divider() -> rx.Component:
+    """Thin vertical separator between nav links."""
+    return rx.box(
+        width="1px",
+        height="1.6rem",
+        background="rgba(255, 248, 238, 0.25)",
+        flex_shrink="0",
+    )
+
+
 def bottom_nav() -> rx.Component:
     """Floating bottom navigation dock."""
+    nav_items: list[rx.Component] = []
+    for i, link in enumerate(NAV_LINKS):
+        if i > 0:
+            nav_items.append(_nav_divider())
+        nav_items.append(_nav_link(link))
     return rx.box(
         rx.hstack(
-            *(_nav_link(link) for link in NAV_LINKS),
+            *nav_items,
             spacing="4",
             wrap="nowrap",
             justify="center",
