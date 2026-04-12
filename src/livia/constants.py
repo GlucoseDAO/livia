@@ -78,18 +78,8 @@ class LinkItem:
     href: str
     external: bool = False
     icon: str | None = None
-
-
-@dataclass(frozen=True)
-class BubbleItem:
-    icon_label: str
-    title: str
-    tooltip: str
-    preview: str
-    href: str
-    angle: float
-    accent: str
-    external: bool = False
+    accent: str | None = None
+    tooltip: str | None = None
 
 
 @dataclass(frozen=True)
@@ -100,10 +90,30 @@ class TabSpec:
 
 
 NAV_LINKS = (
-    LinkItem("Home", "/"),
-    LinkItem("Biography", "/biography"),
-    LinkItem("Art & Design", "/art-design"),
-    LinkItem("Science & Tech", "/science-tech"),
+    LinkItem(
+        "Home",
+        "/",
+        accent="neutral",
+        tooltip="Portrait background and entry",
+    ),
+    LinkItem(
+        "Biography",
+        "/biography",
+        accent="amber",
+        tooltip="Designer, maker, founder",
+    ),
+    LinkItem(
+        "Art & Design",
+        "/art-design",
+        accent="amber",
+        tooltip="Parametric form and fabrication",
+    ),
+    LinkItem(
+        "Science & Tech",
+        "/science-tech",
+        accent="green",
+        tooltip="Digital health and glucose dynamics",
+    ),
 )
 
 BIOGRAPHY_LINKS = (
@@ -119,41 +129,3 @@ BIOGRAPHY_LINKS = (
     LinkItem("Romanian Jewelry Week 2025", "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia", True),
 )
 
-BUBBLE_ITEMS: tuple[BubbleItem, ...] = (
-    BubbleItem(
-        icon_label="Science & Tech",
-        title="Science & Tech",
-        tooltip="Digital health & glucose dynamics",
-        preview=(
-            "GlucoseDAO is a healthtech startup building tools that "
-            "help people understand and predict glucose dynamics."
-        ),
-        href="/science-tech",
-        angle=200,
-        accent="green",
-    ),
-    BubbleItem(
-        icon_label="Biography",
-        title="Biography",
-        tooltip="Designer, maker, founder",
-        preview=(
-            "Livia Zaharia is a parametric designer, jewellery maker, "
-            "and founder of GlucoseDAO."
-        ),
-        href="/biography",
-        angle=270,
-        accent="amber",
-    ),
-    BubbleItem(
-        icon_label="Art & Design",
-        title="Art & Design",
-        tooltip="Parametric form & fabrication",
-        preview=(
-            "Parametric form, digital fabrication, and the translation "
-            "of controlled systems into organic objects."
-        ),
-        href="/art-design",
-        angle=340,
-        accent="amber",
-    ),
-)

@@ -9,8 +9,6 @@ from livia.constants import (
     ACCENT_MAP,
     AMBER,
     AMBER_DIM,
-    BUBBLE_ITEMS,
-    BubbleItem,
     CONTENT_DIR,
     GREEN,
     LinkItem,
@@ -221,6 +219,7 @@ def section_heading(title: str, accent: str) -> rx.Component:
         align_items="start",
         spacing="2",
         width="100%",
+        class_name="livia-heading-target",
     )
 
 
@@ -481,6 +480,7 @@ def _nav_link(link: LinkItem) -> rx.Component:
         is_active = (rx.State.router.page.path == "/") | (rx.State.router.page.path == "")
     else:
         is_active = rx.State.router.page.path == link.href
+    accent_attr = link.accent or "neutral"
     return rx.link(
         rx.vstack(
             rx.hstack(
@@ -489,10 +489,11 @@ def _nav_link(link: LinkItem) -> rx.Component:
                     rx.icon(tag=link.icon or "link", size=16),
                     rx.fragment(),
                 ),
-                rx.text(link.label),
+                rx.text(link.label, class_name="livia-nav-label"),
                 spacing="2",
                 align="center",
             ),
+            rx.el.span(link.tooltip or "", class_name="livia-nav-tooltip"),
             rx.box(
                 class_name="livia-nav-indicator",
                 height="2px",
@@ -508,11 +509,9 @@ def _nav_link(link: LinkItem) -> rx.Component:
         is_external=link.external,
         color=rx.cond(is_active, TEXT_LIGHT, TEXT_MUTED),
         font_weight=rx.cond(is_active, "700", "500"),
-        font_size="clamp(1.4rem, 2.5vw, 1.8rem)",
         text_decoration="none",
-        _hover={"color": TEXT_LIGHT},
         transition="color 0.2s ease",
-        custom_attrs={"data-href": link.href},
+        custom_attrs={"data-href": link.href, "data-accent": accent_attr},
     )
 
 
@@ -545,7 +544,6 @@ def bottom_nav() -> rx.Component:
         position="fixed",
         bottom="1rem",
         left="50%",
-        transform="translateX(-50%)",
         z_index="50",
         width="auto",
         backdrop_filter="blur(24px)",
@@ -553,8 +551,6 @@ def bottom_nav() -> rx.Component:
         border=f"1px solid {PANEL_BORDER}",
         border_radius="999px",
         box_shadow=SHADOW,
-        padding_x="1.6rem",
-        padding_y="0.9rem",
     )
 
 
@@ -866,15 +862,20 @@ def sidebar_tabs(
             "color": accent,
         },
     }
-    desktop_sidebar = rx.tabs.list(
-        *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
+    desktop_sidebar = rx.box(
+        rx.tabs.list(
+            *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
+            display="flex",
+            flex_direction="column",
+            align_items="flex-start" if sidebar_side == "left" else "flex-end",
+            justify_content="flex-start",
+            gap="0.6rem",
+            width="100%",
+        ),
+        class_name="livia-tab-rail",
         display=["none", "none", "flex"],
         flex_direction="column",
-        align_items="flex-start" if sidebar_side == "left" else "flex-end",
-        justify_content="flex-start",
-        gap="0.6rem",
-        min_width="16rem",
-        width="auto",
+        align_items="stretch",
         flex_shrink="0",
         position="sticky",
         top="1.5rem",
@@ -882,7 +883,7 @@ def sidebar_tabs(
         border_radius="1rem",
         background="rgba(18, 15, 12, 0.78)",
         backdrop_filter="blur(16px)",
-        padding="1rem",
+        padding="0.45rem",
     )
     mobile_tabs = rx.tabs.list(
         *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
@@ -982,120 +983,3 @@ def instagram_embed_panel() -> rx.Component:
     )
 
 
-# ---------------------------------------------------------------------------
-# Bubbles (home page)
-# ---------------------------------------------------------------------------
-
-BUBBLE_EFFECT_JS = """
-useEffect(() => {
-  function computeArcRadius() {
-    var vw = window.innerWidth * 0.48;
-    var vh = window.innerHeight * 0.44;
-    var radius = Math.min(vw, vh);
-    if (window.screen && window.screen.width < 1024) {
-      radius = Math.min(radius, window.innerWidth * 0.32);
-    }
-    return radius;
-  }
-
-  function positionBubbles() {
-    var radius = computeArcRadius();
-    var vpW = window.innerWidth;
-    var vpH = window.innerHeight;
-    var bubbles = document.querySelectorAll(".bubble[data-angle]");
-    bubbles.forEach(function (el) {
-      var angleDeg = parseFloat(el.getAttribute("data-angle"));
-      var rad = (angleDeg * Math.PI) / 180;
-      var ox = Math.cos(rad) * radius;
-      var oy = Math.sin(rad) * radius;
-      var bw = el.offsetWidth || 160;
-      var bh = el.offsetHeight || 54;
-      var margin = 8;
-      var maxOx = (vpW / 2) - (bw / 2) - margin;
-      var maxOy = (vpH / 2) - (bh / 2) - margin;
-      if (ox > maxOx) ox = maxOx;
-      if (ox < -maxOx) ox = -maxOx;
-      if (oy > maxOy) oy = maxOy;
-      if (oy < -maxOy) oy = -maxOy;
-      el.style.setProperty("--offset-x", ox + "px");
-      el.style.setProperty("--offset-y", oy + "px");
-    });
-  }
-
-  var shiverTimers = [];
-
-  function scheduleShiver(bubble) {
-    var delay = 3000 + Math.random() * 5000;
-    var timerId = setTimeout(function () {
-      bubble.classList.add("shiver");
-      var removeId = setTimeout(function () {
-        bubble.classList.remove("shiver");
-      }, 400);
-      shiverTimers.push(removeId);
-      scheduleShiver(bubble);
-    }, delay);
-    shiverTimers.push(timerId);
-  }
-
-  positionBubbles();
-
-  var bubbles = document.querySelectorAll(".bubble[data-angle]");
-  bubbles.forEach(function (bubble) {
-    var floatDur = 4 + Math.random() * 3;
-    var floatDelay = Math.random() * -6;
-    var floatAmp = 6 + Math.random() * 6;
-    bubble.style.setProperty("--float-dur", floatDur + "s");
-    bubble.style.setProperty("--float-delay", floatDelay + "s");
-    bubble.style.setProperty("--float-amp", floatAmp + "px");
-    scheduleShiver(bubble);
-  });
-
-  window.addEventListener("resize", positionBubbles);
-
-  return function () {
-    window.removeEventListener("resize", positionBubbles);
-    shiverTimers.forEach(function (id) { clearTimeout(id); });
-  };
-}, [])
-"""
-
-
-class BubbleHooks(rx.Fragment):
-    """Invisible component that injects the bubble positioning and animation hooks."""
-
-    def add_hooks(self) -> list[str]:
-        return [BUBBLE_EFFECT_JS]
-
-
-def _bubble_component(item: BubbleItem) -> rx.Component:
-    """Build a native Reflex component for a single floating bubble."""
-    label = rx.el.span(item.icon_label, class_name="bubble-label")
-    tooltip = rx.el.span(item.tooltip, class_name="bubble-tooltip")
-    attrs: dict[str, str] = {
-        "data-angle": str(item.angle),
-        "data-accent": item.accent,
-    }
-    if item.external:
-        attrs["target"] = "_blank"
-        attrs["rel"] = "noopener noreferrer"
-    return rx.el.a(
-        label,
-        tooltip,
-        href=item.href,
-        class_name="bubble",
-        custom_attrs=attrs,
-    )
-
-
-def bubble_overlay() -> rx.Component:
-    """Floating navigation bubbles arranged in an arc around viewport center."""
-    return rx.fragment(
-        rx.box(
-            rx.box(
-                *(_bubble_component(b) for b in BUBBLE_ITEMS),
-                class_name="bubble-origin",
-            ),
-            class_name="bubble-container",
-        ),
-        BubbleHooks.create(),
-    )

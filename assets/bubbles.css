@@ -1,133 +1,46 @@
-/* ── Bubble Overlay ─────────────────────────────────────────────── */
+/* Bottom navigation dock — proportional sizing, bubble-like hover on wide screens */
 
-.bubble-container {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
+.livia-bottom-nav {
+  --livia-nav-unit: min(1.05rem, 0.55vw + 0.42vh);
+  font-size: var(--livia-nav-unit);
+  transform: translateX(-50%) translateZ(0);
+  transform-origin: bottom center;
 }
 
-.bubble-origin {
+.livia-bottom-nav .rt-HStack {
+  gap: clamp(0.6em, 1.2vw, 1.1em);
+}
+
+.livia-bottom-nav a[data-href] {
   position: relative;
-  width: 0;
-  height: 0;
-  left: -4vw;
-}
-
-/* ── Individual Bubble ──────────────────────────────────────────── */
-
-.bubble {
-  position: absolute;
-  min-width: clamp(180px, 18vw, 320px);
-  height: clamp(68px, 7.5vw, 100px);
-  padding: 0 clamp(30px, 3.2vw, 56px);
+  display: inline-block;
+  font-size: 1.62em;
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 0.35em 0.55em;
   border-radius: 999px;
-  pointer-events: auto;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
-  background: rgba(18, 15, 12, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 248, 238, 0.15);
-  transform: translate(var(--offset-x), var(--offset-y));
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
-  animation: bubble-float var(--float-dur, 5s) ease-in-out var(--float-delay, 0s) infinite;
-  user-select: none;
-  -webkit-user-select: none;
+  color: rgba(245, 240, 232, 0.7);
+  border: 1px solid transparent;
+  background: transparent;
+  transform: scale(1);
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    color 0.2s ease,
+    background 0.25s ease;
 }
 
-.bubble[data-accent="green"] {
-  border: 1.5px solid rgba(94, 168, 130, 0.55);
-  box-shadow: 0 0 18px 4px rgba(94, 168, 130, 0.18),
-              inset 0 0 12px rgba(94, 168, 130, 0.08);
+.livia-bottom-nav a[data-href] .livia-nav-label {
+  display: inline-block;
 }
 
-.bubble[data-accent="amber"] {
-  border: 1.5px solid rgba(212, 148, 58, 0.55);
-  box-shadow: 0 0 18px 4px rgba(212, 148, 58, 0.18),
-              inset 0 0 12px rgba(212, 148, 58, 0.08);
-}
-
-.bubble:hover {
-  border-color: rgba(255, 248, 238, 0.35);
-  transform: translate(var(--offset-x), var(--offset-y)) scale(1.08);
-}
-
-.bubble[data-accent="green"]:hover {
-  border-color: rgba(94, 168, 130, 0.85);
-  box-shadow: 0 0 32px 10px rgba(94, 168, 130, 0.35),
-              inset 0 0 18px rgba(94, 168, 130, 0.14);
-}
-
-.bubble[data-accent="amber"]:hover {
-  border-color: rgba(212, 148, 58, 0.85);
-  box-shadow: 0 0 32px 10px rgba(212, 148, 58, 0.35),
-              inset 0 0 18px rgba(212, 148, 58, 0.14);
-}
-
-.bubble:active {
-  transform: translate(var(--offset-x), var(--offset-y)) scale(0.95);
-}
-
-/* ── Bubble Label ───────────────────────────────────────────────── */
-
-.bubble-label {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  font-weight: 600;
-  color: rgba(245, 240, 232, 0.92);
-  letter-spacing: 0.05em;
-  line-height: 1.15;
-  text-align: center;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-/* ── Float Animation ────────────────────────────────────────────── */
-
-@keyframes bubble-float {
-  0%, 100% { translate: 0 0; }
-  25%      { translate: 0 calc(var(--float-amp, 8px) * -1); }
-  50%      { translate: 0 0; }
-  75%      { translate: 0 var(--float-amp, 8px); }
-}
-
-/* ── Shiver Animation ───────────────────────────────────────────── */
-
-@keyframes bubble-shiver {
-  0%   { translate: 0 0; }
-  10%  { translate: -2px 1px; }
-  20%  { translate: 2px -1px; }
-  30%  { translate: -1px -2px; }
-  40%  { translate: 1px 2px; }
-  50%  { translate: -2px -1px; }
-  60%  { translate: 2px 1px; }
-  70%  { translate: -1px 2px; }
-  80%  { translate: 1px -2px; }
-  90%  { translate: -2px 0; }
-  100% { translate: 0 0; }
-}
-
-.bubble.shiver {
-  animation: bubble-shiver 0.4s ease-in-out !important;
-}
-
-/* ── Tooltip ────────────────────────────────────────────────────── */
-
-.bubble-tooltip {
+.livia-nav-tooltip {
   position: absolute;
   bottom: calc(100% + 10px);
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(4px);
   white-space: nowrap;
   background: rgba(18, 15, 12, 0.88);
   backdrop-filter: blur(14px);
@@ -135,48 +48,155 @@
   border: 1px solid rgba(255, 248, 238, 0.12);
   border-radius: 8px;
   padding: 6px 12px;
-  font-family: "Manrope", sans-serif;
-  font-size: 0.85rem;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.72em;
   font-weight: 500;
   color: rgba(245, 240, 232, 0.85);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
-  transform: translateX(-50%) translateY(4px);
   z-index: 12;
 }
 
-.bubble:hover .bubble-tooltip {
+.livia-nav-tooltip:empty {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.livia-wide .livia-bottom-nav a[data-href]:hover {
+    color: #f5f0e8;
+    transform: scale(1.08);
+    border-color: rgba(255, 248, 238, 0.35);
+  }
+
+  html.livia-wide .livia-bottom-nav a[data-accent="green"]:hover {
+    border-color: rgba(94, 168, 130, 0.85);
+    box-shadow:
+      0 0 32px 10px rgba(94, 168, 130, 0.35),
+      inset 0 0 18px rgba(94, 168, 130, 0.14);
+  }
+
+  html.livia-wide .livia-bottom-nav a[data-accent="amber"]:hover {
+    border-color: rgba(212, 148, 58, 0.85);
+    box-shadow:
+      0 0 32px 10px rgba(212, 148, 58, 0.35),
+      inset 0 0 18px rgba(212, 148, 58, 0.14);
+  }
+
+  html.livia-wide .livia-bottom-nav a[data-accent="neutral"]:hover {
+    box-shadow:
+      0 0 24px 8px rgba(255, 248, 238, 0.12),
+      inset 0 0 14px rgba(255, 248, 238, 0.06);
+  }
+
+  html.livia-wide .livia-bottom-nav a[data-href]:hover .livia-nav-tooltip:not(:empty) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+html.livia-wide .livia-bottom-nav a[data-href]:active {
+  transform: scale(0.97);
+}
+
+/* Narrow devices: larger tap targets, dock auto-hide (see .livia-nav-auto-hidden) */
+html.livia-narrow .livia-bottom-nav a[data-href] {
+  font-size: 2.05em;
+  padding: 0.42em 0.62em;
+}
+
+html.livia-narrow .livia-bottom-nav {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+html.livia-narrow .livia-bottom-nav .rt-HStack {
+  gap: 1rem;
+}
+
+html.livia-narrow .livia-bottom-nav {
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.35s ease;
+}
+
+html.livia-narrow .livia-bottom-nav.livia-nav-auto-hidden {
+  transform: translateX(-50%) translateY(calc(100% + 8px));
+  opacity: 0.22;
+}
+
+html.livia-narrow [role="tablist"] button {
+  font-size: 2.05rem;
+  padding: 0.45rem 0.75rem;
+}
+
+/* Page transition overlay (wide screens, internal nav) */
+.livia-fly-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(10, 8, 6, 0.52);
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  pointer-events: none;
 }
 
-/* ── Responsive ─────────────────────────────────────────────────── */
-
-@media (max-width: 768px) {
-  .bubble {
-    min-width: clamp(85px, 17vw, 140px);
-    height: clamp(38px, 6vw, 54px);
-    padding: 0 clamp(14px, 2.8vw, 26px);
-  }
-
-  .bubble-label {
-    font-size: clamp(0.85rem, 2.6vw, 1.2rem);
-  }
+.livia-fly-ghost {
+  position: fixed;
+  z-index: 10001;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5em;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1rem, min(3.5vw, 4.5vh), 2.6rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+  text-align: center;
+  color: rgba(245, 240, 232, 0.95);
+  background: rgba(18, 15, 12, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 248, 238, 0.15);
+  border-radius: 0.35em;
+  opacity: 1;
 }
 
-@media (max-width: 480px) {
-  .bubble {
-    min-width: clamp(68px, 20vw, 110px);
-    height: clamp(34px, 8vw, 46px);
-    padding: 0 clamp(10px, 3.5vw, 18px);
-  }
+/* Desktop tab rail: slim strip that expands on hover */
+html.livia-wide .livia-tab-rail {
+  max-width: min(22rem, 100%);
+  width: 3.1rem;
+  overflow: hidden;
+  transition:
+    width 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
+    padding 0.35s ease;
+  flex-shrink: 0;
+}
 
-  .bubble-label {
-    font-size: clamp(0.72rem, 3.5vw, 1rem);
-  }
+html.livia-wide .livia-tab-rail:hover {
+  width: min(22rem, 100%);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 
-  .bubble-tooltip {
-    display: none;
-  }
+html.livia-wide .livia-tab-rail [role="tablist"] {
+  width: 100%;
+}
+
+html.livia-wide .livia-tab-rail:not(:hover) button {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  max-height: none;
+  justify-content: center;
+}
+
+html.livia-wide .livia-tab-rail:hover button {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }

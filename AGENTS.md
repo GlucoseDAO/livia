@@ -3,9 +3,9 @@
 ## Project Layout (src layout)
 
 - `src/livia/livia.py`: thin app entrypoint — imports `create_app()` from `pages.py` and exposes `app`.
-- `src/livia/constants.py`: shared constants (colors, fonts, paths, regexes), data classes (`LinkItem`, `BubbleItem`, `TabSpec`), and static config data (nav links, bubble items).
+- `src/livia/constants.py`: shared constants (colors, fonts, paths, regexes), data classes (`LinkItem`, `TabSpec`), and static config data (nav links with optional `accent` / `tooltip`).
 - `src/livia/content.py`: content loading from the `content/` directory — markdown file reading, YAML front-matter ref resolution, tab slug scanning, YouTube/gallery/artifact directive preprocessing for dynamic state rendering.
-- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars, tabs layout, gallery/lightbox, bubble overlay, markdown rendering with custom embeds. Also contains interactive state classes (`GalleryState`, `InstagramSidebarState`, `GithubSidebarState`).
+- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars, tabs layout, gallery/lightbox, markdown rendering with custom embeds. Also contains interactive state classes (`GalleryState`, `InstagramSidebarState`, `GithubSidebarState`).
 - `src/livia/pages.py`: page functions (`home_page`, `biography_page`, `art_design_page`, `science_tech_page`), content state classes (`ArtDesignContentState`, `ScienceTechContentState`), dynamic tab spec building, and `create_app()` which registers all pages.
 - `src/livia/__init__.py`: package init (do not hardcode package version here).
 - `src/livia/plugins.py`: removed; `ViteDevServerPlugin` is now inlined in `rxconfig.py`.
@@ -13,8 +13,8 @@
 - `assets/`: static assets used by the app (for example, background images).
   - `assets/livia.jpg`: full-screen portrait used as the site background.
   - `assets/RJW2025/`: Romanian Jewelry Week 2025 exhibition photographs (12 images).
-  - `assets/bubbles.css`: CSS for the floating navigation bubble overlay (keyframes, glass-morphism, tooltips, preview cards, responsive breakpoints).
-  - The bubble JS logic (arc positioning, periodic shiver, resize repositioning) is implemented as a React `useEffect` hook via the `BubbleHooks` component in `components.py`, not as an external JS file.
+  - `assets/bubbles.css`: CSS for the bottom navigation dock (proportional sizing, hover glows, fly transition overlay, tab rail expand-on-hover on wide screens, narrow-device nav auto-hide).
+  - `assets/livia_nav.js`: client script injected via `pages.py` — device class on `html`, active nav highlighting, internal nav click → session fly rect → `window.location.assign`, fly animation on destination, narrow touch/scroll nav auto-hide.
 - `content/`: page content organised as a **folder-based tab system** (see "Content System" below). Standalone pages (`home.md`, `biography.md`) live at the root; tabbed pages live in subfolders (`art-design/`, `science-tech/`). Shared content lives in `_shared/`.
 - `docs/`: reference documentation not rendered by the app.
   - `docs/livia-zaharia-knowledge-base.md`: comprehensive artist knowledge base covering identity, practice, collections catalogue, exhibition history, and ecosystem connections.
@@ -147,7 +147,7 @@ When a change affects UI/UX, validation is required before considering the task 
 - The site uses per-page-category background images: `green_side.jpg` for Science & Tech pages, `yellow_side.jpg` for Art & Design pages, `livia.jpg` for neutral/home pages.
 - Site navigation structure: Home (`/`), Biography (`/biography`), Art & Design (`/art-design`), Science & Tech (`/science-tech`). No external links in top-level nav.
 - The GitHub remote is `github.com:GlucoseDAO/livia.git`; diverged histories from LFS migration may require `--force` push.
-- Bubble positions: Science & Tech = left arc (green border), Biography = top center, Art & Design = right arc (yellow border); the Home bubble was removed as redundant since bubbles only appear on the home page.
+- Home page uses the portrait background and bottom nav only (no duplicate floating arc nav).
 - Art & Design and Science & Tech pages use the folder-based tab system; tabs are auto-discovered from `content/art-design/` and `content/science-tech/` respectively. Bottom nav uses `rx.State.router.page.path` to highlight the active page.
 - GitHub and LinkedIn do not offer embeddable iframe widgets; a custom "tech sidebar" component is used instead with links and icons.
 - The site forces desktop rendering on mobile via `<meta name="viewport" content="width=1280">` in `head_components`. Mobile-specific CSS breakpoints are intentionally bypassed; the page is always rendered as a 1280px-wide desktop layout and scaled down on phones.

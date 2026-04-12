@@ -135,7 +135,7 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 
 | Route           | Purpose |
 |-----------------|---------|
-| `/`             | Homepage — full-screen portrait, floating bubbles, bottom nav |
+| `/`             | Homepage — full-screen portrait, bottom nav |
 | `/biography`    | Biography + external links |
 | `/art-design`   | Art & Design — tabbed page (auto-discovered from `content/art-design/`) |
 | `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
@@ -227,11 +227,10 @@ Content text is loaded from `content/` at import time:
 - Standalone pages use `load_content(name)` to read a single `.md` file.
 - Tabbed pages use `load_tabs_from_folder(folder)` to scan a subfolder and build tabs automatically.
 
-Structured data is defined as frozen dataclasses at the top of `livia.py`:
+Structured data is defined as frozen dataclasses in `constants.py`:
 
-- `LinkItem(label, href, external)` — a single link
+- `LinkItem(label, href, external=False, icon=None, accent=None, tooltip=None)` — links; `accent` and `tooltip` drive bottom-nav hover styling and tooltips
 - `TabSpec(label, value, content)` — a single tab definition
-- `BubbleItem(icon_label, title, tooltip, preview, href, angle, accent)` — a floating navigation bubble
 
 The app has minimal Reflex state: `InstagramSidebarState` and `GithubSidebarState` (each a single `is_open` boolean).
 

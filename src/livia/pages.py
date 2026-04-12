@@ -8,6 +8,7 @@ import yaml
 from livia.constants import (
     ACCENT_MAP,
     AMBER,
+    ASSETS_DIR,
     BACKGROUND,
     BIOGRAPHY_LINKS,
     CONTENT_DIR,
@@ -27,7 +28,6 @@ from livia.components import (
     BG_FUNC_MAP,
     _build_special_tab,
     bottom_nav,
-    bubble_overlay,
     fullscreen_bg,
     fullscreen_bg_dimmed,
     github_sidebar,
@@ -41,6 +41,8 @@ from livia.components import (
     section_heading,
     sidebar_tabs,
 )
+
+_LIVIA_NAV_JS = (ASSETS_DIR / "livia_nav.js").read_text(encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
@@ -123,7 +125,7 @@ def _build_dynamic_tab_specs(
 # ---------------------------------------------------------------------------
 
 def home_page() -> rx.Component:
-    """Homepage: fullscreen portrait + name overlay + floating bubbles + bottom nav."""
+    """Homepage: fullscreen portrait + bottom navigation."""
     return rx.box(
         fullscreen_bg(),
         rx.box(
@@ -135,7 +137,6 @@ def home_page() -> rx.Component:
             ),
             z_index="2",
         ),
-        bubble_overlay(),
         instagram_sidebar(),
         github_sidebar(),
         screen_aware_sidebar_opener(),
@@ -230,47 +231,7 @@ def create_app() -> rx.App:
                 name="viewport",
                 content="width=1280",
             ),
-            rx.script(
-                """
-                (function() {
-                    if (window.screen && window.screen.width < 1024) {
-                        window.__livia_narrow_device = true;
-                        var style = document.createElement('style');
-                        style.textContent =
-                            '.livia-bottom-nav a { font-size: 2.8rem !important; }' +
-                            '.livia-bottom-nav { padding: 1.2rem 2rem !important; }' +
-                            '.livia-bottom-nav .rt-HStack { gap: 1.2rem !important; }' +
-                            '[role="tablist"] button { font-size: 3rem !important; padding: 0.5rem 0.8rem !important; }';
-                        document.head.appendChild(style);
-                    }
-
-                    function highlightActiveNav() {
-                        var path = window.location.pathname;
-                        if (path === '' || path === '/index') path = '/';
-                        var links = document.querySelectorAll('.livia-bottom-nav a[data-href]');
-                        links.forEach(function(a) {
-                            var href = a.getAttribute('data-href');
-                            var isActive = (href === path);
-                            if (isActive) {
-                                a.style.color = '#f5f0e8';
-                                a.style.fontWeight = '700';
-                                var bar = a.querySelector('.livia-nav-indicator');
-                                if (bar) bar.style.width = '100%';
-                            }
-                        });
-                    }
-
-                    if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', highlightActiveNav);
-                    } else {
-                        highlightActiveNav();
-                    }
-                    // Re-run after a short delay to catch React hydration
-                    setTimeout(highlightActiveNav, 500);
-                    setTimeout(highlightActiveNav, 1500);
-                })();
-                """
-            ),
+            rx.script(_LIVIA_NAV_JS),
         ],
     )
     application.add_page(home_page, route="/", title="Livia Zaharia")
