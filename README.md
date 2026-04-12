@@ -217,7 +217,8 @@ The component set is deliberately small:
 | `markdown_panel`     | Panel that renders markdown from `content/` |
 | `feature_card`       | Project card (extends `panel`) |
 | `link_list`          | Labelled link group (extends `panel`) |
-| `instagram_sidebar`  | Collapsible right-edge `@paral_design` embed |
+| `instagram_sidebar`  | Right-edge tool rail: collapsed `@paral_design` grip; hover or focus-within expands |
+| `github_sidebar`       | Left-edge tool rail: collapsed `GITHUB / TECH` grip; hover or focus-within expands |
 | `page_content`       | Centered content wrapper with bottom padding |
 | `section_heading`    | Page title with accent gradient underline |
 
@@ -232,7 +233,7 @@ Structured data is defined as frozen dataclasses in `constants.py`:
 - `LinkItem(label, href, external=False, icon=None, accent=None, tooltip=None)` — links; `accent` and `tooltip` drive bottom-nav hover styling and tooltips
 - `TabSpec(label, value, content)` — a single tab definition
 
-The app has minimal Reflex state: `InstagramSidebarState` and `GithubSidebarState` (each a single `is_open` boolean).
+The app has minimal Reflex state (for example `GalleryState` for the image lightbox). Instagram and GitHub edge panels are CSS width rails (collapsed until hover on a fine pointer, or until the rail has focus for tap/keyboard), not state toggles.
 
 ## Links
 

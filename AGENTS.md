@@ -5,7 +5,7 @@
 - `src/livia/livia.py`: thin app entrypoint — imports `create_app()` from `pages.py` and exposes `app`.
 - `src/livia/constants.py`: shared constants (colors, fonts, paths, regexes), data classes (`LinkItem`, `TabSpec`), and static config data (nav links with optional `accent` / `tooltip`).
 - `src/livia/content.py`: content loading from the `content/` directory — markdown file reading, YAML front-matter ref resolution, tab slug scanning, YouTube/gallery/artifact directive preprocessing for dynamic state rendering.
-- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars, tabs layout, gallery/lightbox, markdown rendering with custom embeds. Also contains interactive state classes (`GalleryState`, `InstagramSidebarState`, `GithubSidebarState`).
+- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars (CSS hover-expand tool rails, no sidebar state), tabs layout, gallery/lightbox, markdown rendering with custom embeds. Also contains `GalleryState` for the lightbox.
 - `src/livia/pages.py`: page functions (`home_page`, `biography_page`, `art_design_page`, `science_tech_page`), content state classes (`ArtDesignContentState`, `ScienceTechContentState`), dynamic tab spec building, and `create_app()` which registers all pages.
 - `src/livia/__init__.py`: package init (do not hardcode package version here).
 - `src/livia/plugins.py`: removed; `ViteDevServerPlugin` is now inlined in `rxconfig.py`.
@@ -13,8 +13,8 @@
 - `assets/`: static assets used by the app (for example, background images).
   - `assets/livia.jpg`: full-screen portrait used as the site background.
   - `assets/RJW2025/`: Romanian Jewelry Week 2025 exhibition photographs (12 images).
-  - `assets/bubbles.css`: CSS for the bottom navigation dock (proportional sizing, hover glows, fly transition overlay, tab rail expand-on-hover on wide screens, narrow-device nav auto-hide).
-  - `assets/livia_nav.js`: client script injected via `pages.py` — device class on `html`, active nav highlighting, internal nav click → session fly rect → `window.location.assign`, fly animation on destination, narrow touch/scroll nav auto-hide.
+  - `assets/bubbles.css`: Chrome UI — `--livia-ui-scale` is `1` on `html.livia-wide` and `2.5` on `html.livia-narrow`. Bottom nav, page tabs, and tool-rail typography use `calc(Npx * var(--livia-ui-scale))` so phone is **2.5×** laptop pixel sizes. Hover glows, tab rail expand-on-hover, edge tool rails.
+  - `assets/livia_nav.js`: sets `livia-narrow` when **`screen.width < 1024` OR `innerWidth < 1024`** (so Firefox/Chrome responsive mode works: `screen.width` often stays desktop-sized while `innerWidth` matches the emulated device). Sets `livia-wide` otherwise. Active nav highlighting, stale session key cleanup. Listens to `resize` and `visualViewport.resize`.
 - `content/`: page content organised as a **folder-based tab system** (see "Content System" below). Standalone pages (`home.md`, `biography.md`) live at the root; tabbed pages live in subfolders (`art-design/`, `science-tech/`). Shared content lives in `_shared/`.
 - `docs/`: reference documentation not rendered by the app.
   - `docs/livia-zaharia-knowledge-base.md`: comprehensive artist knowledge base covering identity, practice, collections catalogue, exhibition history, and ecosystem connections.
@@ -134,7 +134,7 @@ When a change affects UI/UX, validation is required before considering the task 
 - The deployment server (agingkills.eu) runs Caddy as a reverse proxy; Caddy is not on the local dev machine.
 - Content panels and text must fill available screen space with generous sizing and large fonts; never render small, narrow text boxes that waste screen real estate.
 - When asked to act (e.g. "do stuff for me"), proceed decisively without asking for further confirmation.
-- Sidebars (Instagram on right, GitHub/LinkedIn on left) must be open/visible by default on the home page; users can close them, but they should not be hidden requiring a click to reveal.
+- Edge tool rails (Instagram on the right, GitHub & Tech on the left) stay **collapsed** to a grip strip whose minimum width scales with `--livia-ui-scale`. They **expand** on fine-pointer **hover** or when the rail has **`:focus-within`** (tap the strip on touch). Bottom nav never auto-hides.
 - On large screens, content pages should use sidebar tabs (left for Science & Tech, right for Art & Design) rather than full-width vertical layouts that cause super-wide, hard-to-read text lines.
 
 ## Learned Workspace Facts
@@ -151,5 +151,5 @@ When a change affects UI/UX, validation is required before considering the task 
 - Art & Design and Science & Tech pages use the folder-based tab system; tabs are auto-discovered from `content/art-design/` and `content/science-tech/` respectively. Bottom nav uses `rx.State.router.page.path` to highlight the active page.
 - GitHub and LinkedIn do not offer embeddable iframe widgets; a custom "tech sidebar" component is used instead with links and icons.
 - The site forces desktop rendering on mobile via `<meta name="viewport" content="width=1280">` in `head_components`. Mobile-specific CSS breakpoints are intentionally bypassed; the page is always rendered as a 1280px-wide desktop layout and scaled down on phones.
-- Sidebars (`InstagramSidebarState`, `GithubSidebarState`) default to **closed** (`is_open=False`). On wide screens (≥1024px physical), `ScreenWidthDetector.open_sidebars_if_wide` opens them via `on_mount` + `rx.call_script("window.screen.width")`. This prevents sidebars from crowding the view on phones.
+- Edge sidebars (`instagram_sidebar`, `github_sidebar`) are fixed tool rails: a narrow grip (`@paral_design` on the right, `GITHUB / TECH` on the left) with the same typography as before; on fine pointers they **expand on hover** (and `focus-within` for keyboard) via `assets/bubbles.css`. On coarse pointers they stay at a usable width (`min(360px, 88vw)`). No Reflex state for open/close.
 - Bottom nav and bubble labels use CSS `max()` / `clamp()` with pixel minimums to ensure tappability on scaled-down mobile viewports.

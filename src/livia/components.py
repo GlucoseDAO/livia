@@ -51,41 +51,6 @@ class GalleryState(rx.State):
         self.lightbox_open = False
 
 
-class InstagramSidebarState(rx.State):
-    is_open: bool = False
-
-    def toggle(self) -> None:
-        self.is_open = not self.is_open
-
-    def open(self) -> None:
-        self.is_open = True
-
-    def close(self) -> None:
-        self.is_open = False
-
-
-class GithubSidebarState(rx.State):
-    is_open: bool = False
-
-    def toggle(self) -> None:
-        self.is_open = not self.is_open
-
-    def open(self) -> None:
-        self.is_open = True
-
-    def close(self) -> None:
-        self.is_open = False
-
-
-class ScreenWidthDetector(rx.State):
-    """Detects physical screen width and opens sidebars on wide screens."""
-
-    def open_sidebars_if_wide(self, screen_width: int) -> None:
-        if screen_width >= 1024:
-            yield InstagramSidebarState.open  # type: ignore[misc]
-            yield GithubSidebarState.open  # type: ignore[misc]
-
-
 # ---------------------------------------------------------------------------
 # Backgrounds
 # ---------------------------------------------------------------------------
@@ -219,7 +184,6 @@ def section_heading(title: str, accent: str) -> rx.Component:
         align_items="start",
         spacing="2",
         width="100%",
-        class_name="livia-heading-target",
     )
 
 
@@ -492,6 +456,7 @@ def _nav_link(link: LinkItem) -> rx.Component:
                 rx.text(link.label, class_name="livia-nav-label"),
                 spacing="2",
                 align="center",
+                wrap="nowrap",
             ),
             rx.el.span(link.tooltip or "", class_name="livia-nav-tooltip"),
             rx.box(
@@ -518,8 +483,8 @@ def _nav_link(link: LinkItem) -> rx.Component:
 def _nav_divider() -> rx.Component:
     """Thin vertical separator between nav links."""
     return rx.box(
+        class_name="livia-nav-divider",
         width="1px",
-        height="1.6rem",
         background="rgba(255, 248, 238, 0.25)",
         flex_shrink="0",
     )
@@ -535,10 +500,11 @@ def bottom_nav() -> rx.Component:
     return rx.box(
         rx.hstack(
             *nav_items,
-            spacing="4",
+            spacing="0",
             wrap="nowrap",
             justify="center",
             align="center",
+            class_name="livia-bottom-nav-row",
         ),
         class_name="livia-bottom-nav",
         position="fixed",
@@ -555,284 +521,231 @@ def bottom_nav() -> rx.Component:
 
 
 # ---------------------------------------------------------------------------
-# Screen-width-aware sidebar opener
-# ---------------------------------------------------------------------------
-
-def screen_aware_sidebar_opener() -> rx.Component:
-    """Invisible component that opens sidebars only on wide physical screens.
-
-    Sidebars default to closed. On devices with screen.width >= 1024 they
-    open automatically on mount so desktop users see them immediately.
-    """
-    return rx.box(
-        on_mount=rx.call_script(
-            "window.screen.width",
-            callback=ScreenWidthDetector.open_sidebars_if_wide,
-        ),
-        display="none",
-    )
-
-
-# ---------------------------------------------------------------------------
-# Sidebars
+# Sidebars (hover-expand tool rails; labels @paral_design and GITHUB / TECH)
 # ---------------------------------------------------------------------------
 
 def instagram_sidebar() -> rx.Component:
-    """Collapsible Instagram sidebar fixed to the right edge of the viewport."""
-    return rx.box(
-        rx.box(
+    """Instagram tool rail on the right: narrow grip with @paral_design; expands on hover."""
+    grip = rx.box(
+        rx.text(
+            "@paral_design",
+            white_space="nowrap",
+            style={"writing_mode": "vertical-rl", "text_orientation": "mixed"},
+        ),
+        class_name="livia-tool-rail-grip livia-tool-rail-grip--instagram",
+        display="flex",
+        align_items="center",
+        justify_content="center",
+        flex_shrink="0",
+        padding_y="0.85rem",
+        padding_x="0.35rem",
+        background=PANEL_BG,
+    )
+    body = rx.box(
+        rx.vstack(
             rx.text(
                 "@paral_design",
-                font_size="0.72rem",
-                font_weight="700",
-                letter_spacing="0.14em",
-                text_transform="uppercase",
-                color=AMBER,
-                white_space="nowrap",
-                style={"writing_mode": "vertical-rl", "text_orientation": "mixed"},
-            ),
-            on_click=InstagramSidebarState.toggle,
-            cursor="pointer",
-            position="absolute",
-            top="50%",
-            right="100%",
-            transform="translateY(-50%)",
-            background=PANEL_BG,
-            backdrop_filter="blur(20px)",
-            border=f"1px solid {PANEL_BORDER}",
-            border_radius="0.6rem 0 0 0.6rem",
-            padding_x="0.4rem",
-            padding_y="0.8rem",
-            z_index="52",
-        ),
-        rx.box(
-            rx.vstack(
-                rx.hstack(
-                    rx.text(
-                        "@paral_design",
-                        text_transform="uppercase",
-                        letter_spacing="0.14em",
-                        font_size="0.72rem",
-                        color=AMBER,
-                        font_weight="700",
-                    ),
-                    rx.box(
-                        rx.text("✕", color=TEXT_MUTED, font_size="1.1rem", cursor="pointer"),
-                        on_click=InstagramSidebarState.toggle,
-                    ),
-                    justify="between",
-                    width="100%",
-                    align="center",
-                ),
-                rx.box(
-                    rx.el.iframe(
-                        src="https://www.instagram.com/paral_design/embed",
-                        width="115%",
-                        height="600px",
-                        frameborder="0",
-                        scrolling="no",
-                        style={
-                            "border": "none",
-                            "background": "#1a1714",
-                            "color_scheme": "dark",
-                            "margin_top": "-1rem",
-                            "margin_left": "-7.5%",
-                            "filter": "saturate(1.1) brightness(0.65)",
-                        },
-                    ),
-                    rx.box(
-                        position="absolute",
-                        top="0",
-                        left="0",
-                        right="0",
-                        height="1.5rem",
-                        background="linear-gradient(to top, transparent, rgba(18, 15, 12, 0.95))",
-                        pointer_events="none",
-                        z_index="1",
-                    ),
-                    rx.box(
-                        position="absolute",
-                        bottom="0",
-                        left="0",
-                        right="0",
-                        height="3rem",
-                        background="linear-gradient(to bottom, transparent, rgba(18, 15, 12, 0.95))",
-                        pointer_events="none",
-                        z_index="1",
-                    ),
-                    position="relative",
-                    overflow="hidden",
-                    border_radius="0.8rem",
-                    height="340px",
-                    width="100%",
-                ),
-                rx.link(
-                    "Open on Instagram",
-                    href="https://www.instagram.com/paral_design/",
-                    is_external=True,
-                    color=AMBER,
-                    text_decoration="none",
-                    font_weight="600",
-                    font_size="0.9rem",
-                ),
-                spacing="3",
+                class_name="livia-tool-rail-heading livia-tool-rail-heading--instagram",
                 width="100%",
             ),
-            padding="1rem",
+            rx.box(
+                rx.el.iframe(
+                    src="https://www.instagram.com/paral_design/embed",
+                    width="115%",
+                    height="600px",
+                    frameborder="0",
+                    scrolling="no",
+                    style={
+                        "border": "none",
+                        "background": "#1a1714",
+                        "color_scheme": "dark",
+                        "margin_top": "-1rem",
+                        "margin_left": "-7.5%",
+                        "filter": "saturate(1.1) brightness(0.65)",
+                    },
+                ),
+                rx.box(
+                    position="absolute",
+                    top="0",
+                    left="0",
+                    right="0",
+                    height="1.5rem",
+                    background="linear-gradient(to top, transparent, rgba(18, 15, 12, 0.95))",
+                    pointer_events="none",
+                    z_index="1",
+                ),
+                rx.box(
+                    position="absolute",
+                    bottom="0",
+                    left="0",
+                    right="0",
+                    height="3rem",
+                    background="linear-gradient(to bottom, transparent, rgba(18, 15, 12, 0.95))",
+                    pointer_events="none",
+                    z_index="1",
+                ),
+                position="relative",
+                overflow="hidden",
+                border_radius="0.8rem",
+                height="340px",
+                width="100%",
+            ),
+            rx.link(
+                "Open on Instagram",
+                href="https://www.instagram.com/paral_design/",
+                is_external=True,
+                color=AMBER,
+                text_decoration="none",
+                font_weight="600",
+                class_name="livia-tool-rail-cta",
+            ),
+            spacing="3",
             width="100%",
-            overflow_y="auto",
+            align_items="start",
         ),
+        class_name="livia-tool-rail-body",
+        padding="1rem",
+        width="100%",
+        min_width="0",
+        max_height="85vh",
+        overflow_y="auto",
+    )
+    inner = rx.box(
+        body,
+        grip,
+        class_name="livia-tool-rail-inner livia-tool-rail-inner--right",
+    )
+    return rx.box(
+        inner,
+        class_name="livia-tool-rail livia-tool-rail--right",
         position="fixed",
         top="50%",
         right="0",
-        transform=rx.cond(
-            InstagramSidebarState.is_open,
-            "translateY(-50%)",
-            "translateY(-50%) translateX(100%)",
-        ),
-        width=["85vw", "340px", "360px"],
+        transform="translateY(-50%)",
         max_height="85vh",
-        overflow="visible",
-        background=PANEL_BG,
+        overflow="hidden",
         backdrop_filter="blur(20px)",
+        background=PANEL_BG,
         border=f"1px solid {PANEL_BORDER}",
         border_radius="1.2rem 0 0 1.2rem",
         box_shadow=SHADOW,
         z_index="51",
-        transition="transform 0.3s ease",
+        custom_attrs={"tabindex": "0"},
     )
 
 
 def github_sidebar() -> rx.Component:
-    """Collapsible GitHub & Tech sidebar fixed to the left edge of the viewport."""
-    return rx.box(
-        rx.box(
-            rx.text(
-                "GITHUB / TECH",
-                font_size="0.72rem",
-                font_weight="700",
-                letter_spacing="0.14em",
-                text_transform="uppercase",
-                color=GREEN,
-                white_space="nowrap",
-            ),
-            on_click=GithubSidebarState.toggle,
-            cursor="pointer",
-            position="absolute",
-            top="50%",
-            right="-3.3rem",
-            transform="translateY(-50%) rotate(90deg)",
-            transform_origin="top center",
-            background=PANEL_BG,
-            backdrop_filter="blur(20px)",
-            border=f"1px solid {PANEL_BORDER}",
-            border_radius="0.6rem 0.6rem 0 0",
-            padding_x="0.8rem",
-            padding_y="0.4rem",
-            z_index="100",
-            height="auto",
+    """GitHub & Tech tool rail on the left: narrow grip GITHUB / TECH; expands on hover."""
+    grip = rx.box(
+        rx.text(
+            "GITHUB / TECH",
+            white_space="nowrap",
+            style={"writing_mode": "vertical-rl", "text_orientation": "mixed"},
         ),
-        rx.box(
+        class_name="livia-tool-rail-grip livia-tool-rail-grip--github",
+        display="flex",
+        align_items="center",
+        justify_content="center",
+        flex_shrink="0",
+        padding_y="0.85rem",
+        padding_x="0.35rem",
+        background=PANEL_BG,
+    )
+    body = rx.box(
+        rx.vstack(
+            rx.text(
+                "GITHUB & TECH",
+                class_name="livia-tool-rail-heading livia-tool-rail-heading--github",
+                width="100%",
+            ),
             rx.vstack(
-                rx.hstack(
-                    rx.box(
-                        rx.text("✕", color=TEXT_MUTED, font_size="1.1rem", cursor="pointer"),
-                        on_click=GithubSidebarState.toggle,
+                rx.box(
+                    rx.hstack(
+                        rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
+                        rx.text("GlucoseDAO", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
+                        align="center",
+                        spacing="2",
                     ),
-                    rx.text(
-                        "GITHUB & TECH",
-                        text_transform="uppercase",
-                        letter_spacing="0.14em",
-                        font_size="0.72rem",
-                        color=GREEN,
-                        font_weight="700",
-                    ),
-                    justify="between",
+                    rx.text("Open-source tools for glucose prediction and metabolic health.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
+                    rx.link("View GitHub ↗", href="https://github.com/GlucoseDAO/", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
+                    background="rgba(255, 255, 255, 0.03)",
+                    border=f"1px solid {PANEL_BORDER}",
+                    border_radius="0.6rem",
+                    padding="1rem",
                     width="100%",
-                    align="center",
+                    _hover={"background": "rgba(255, 255, 255, 0.06)"},
+                    transition="background 0.2s",
                 ),
-                rx.vstack(
-                    rx.box(
-                        rx.hstack(
-                            rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
-                            rx.text("GlucoseDAO", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
-                            align="center",
-                            spacing="2",
-                        ),
-                        rx.text("Open-source tools for glucose prediction and metabolic health.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
-                        rx.link("View GitHub ↗", href="https://github.com/GlucoseDAO/", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
-                        background="rgba(255, 255, 255, 0.03)",
-                        border=f"1px solid {PANEL_BORDER}",
-                        border_radius="0.6rem",
-                        padding="1rem",
-                        width="100%",
-                        _hover={"background": "rgba(255, 255, 255, 0.06)"},
-                        transition="background 0.2s",
+                rx.box(
+                    rx.hstack(
+                        rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
+                        rx.text("Longevity Genie", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
+                        align="center",
+                        spacing="2",
                     ),
-                    rx.box(
-                        rx.hstack(
-                            rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
-                            rx.text("Longevity Genie", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
-                            align="center",
-                            spacing="2",
-                        ),
-                        rx.text("AI-driven tools and open-source ecosystem for longevity biology.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
-                        rx.link("View GitHub ↗", href="https://github.com/longevity-genie", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
-                        background="rgba(255, 255, 255, 0.03)",
-                        border=f"1px solid {PANEL_BORDER}",
-                        border_radius="0.6rem",
-                        padding="1rem",
-                        width="100%",
-                        _hover={"background": "rgba(255, 255, 255, 0.06)"},
-                        transition="background 0.2s",
-                    ),
-                    rx.box(
-                        rx.hstack(
-                            rx.icon(tag="linkedin", size=18, color=GREEN, flex_shrink="0"),
-                            rx.text("LinkedIn", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
-                            align="center",
-                            spacing="2",
-                        ),
-                        rx.text("Professional network & recent activity.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
-                        rx.link("View Profile ↗", href="https://ro.linkedin.com/in/livia-zaharia-4b1425a0", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
-                        background="rgba(255, 255, 255, 0.03)",
-                        border=f"1px solid {PANEL_BORDER}",
-                        border_radius="0.6rem",
-                        padding="1rem",
-                        width="100%",
-                        _hover={"background": "rgba(255, 255, 255, 0.06)"},
-                        transition="background 0.2s",
-                    ),
-                    spacing="4",
+                    rx.text("AI-driven tools and open-source ecosystem for longevity biology.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
+                    rx.link("View GitHub ↗", href="https://github.com/longevity-genie", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
+                    background="rgba(255, 255, 255, 0.03)",
+                    border=f"1px solid {PANEL_BORDER}",
+                    border_radius="0.6rem",
+                    padding="1rem",
                     width="100%",
-                    margin_top="1rem",
+                    _hover={"background": "rgba(255, 255, 255, 0.06)"},
+                    transition="background 0.2s",
+                ),
+                rx.box(
+                    rx.hstack(
+                        rx.icon(tag="linkedin", size=18, color=GREEN, flex_shrink="0"),
+                        rx.text("LinkedIn", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
+                        align="center",
+                        spacing="2",
+                    ),
+                    rx.text("Professional network & recent activity.", font_size="0.85rem", color=TEXT_MUTED, margin_top="0.2rem"),
+                    rx.link("View Profile ↗", href="https://ro.linkedin.com/in/livia-zaharia-4b1425a0", is_external=True, color=GREEN, font_size="0.85rem", margin_top="0.5rem", display="block"),
+                    background="rgba(255, 255, 255, 0.03)",
+                    border=f"1px solid {PANEL_BORDER}",
+                    border_radius="0.6rem",
+                    padding="1rem",
+                    width="100%",
+                    _hover={"background": "rgba(255, 255, 255, 0.06)"},
+                    transition="background 0.2s",
                 ),
                 spacing="4",
                 width="100%",
+                margin_top="1rem",
             ),
-            padding="1rem",
+            spacing="4",
             width="100%",
-            max_height="80vh",
-            overflow_y="auto",
+            align_items="start",
         ),
+        class_name="livia-tool-rail-body",
+        padding="1rem",
+        width="100%",
+        min_width="0",
+        max_height="80vh",
+        overflow_y="auto",
+    )
+    inner = rx.box(
+        grip,
+        body,
+        class_name="livia-tool-rail-inner livia-tool-rail-inner--left",
+    )
+    return rx.box(
+        inner,
+        class_name="livia-tool-rail livia-tool-rail--left",
         position="fixed",
         top="50%",
         left="0",
-        transform=rx.cond(
-            GithubSidebarState.is_open,
-            "translateY(-50%)",
-            "translateY(-50%) translateX(-100%)",
-        ),
-        width=["85vw", "340px", "360px"],
+        transform="translateY(-50%)",
         max_height="85vh",
-        overflow="visible",
-        background=PANEL_BG,
+        overflow="hidden",
         backdrop_filter="blur(20px)",
+        background=PANEL_BG,
         border=f"1px solid {PANEL_BORDER}",
         border_radius="0 1.2rem 1.2rem 0",
         box_shadow=SHADOW,
         z_index="100",
-        transition="transform 0.3s ease",
+        custom_attrs={"tabindex": "0"},
     )
 
 
@@ -914,6 +827,7 @@ def sidebar_tabs(
         desktop_row,
         default_value=default_value,
         width="100%",
+        class_name="livia-page-tabs",
     )
 
 
