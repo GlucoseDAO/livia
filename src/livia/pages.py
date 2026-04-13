@@ -537,6 +537,10 @@ def create_app() -> rx.App:
                 name="viewport",
                 content="width=device-width, initial-scale=1",
             ),
+            rx.el.meta(
+                name="google-site-verification",
+                content="rwVg_JOvfmsKPIt2j1kcJ3wT7XW-vTCtajAd4p5i7Ts",
+            ),
             rx.script(_LIVIA_NAV_JS),
             _json_ld_script(_PERSON_SCHEMA),
         ],
