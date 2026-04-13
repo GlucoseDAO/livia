@@ -14,14 +14,21 @@ from livia.constants import (
     CONTENT_DIR,
     GREEN,
     MARKDOWN_COMPONENT_MAP,
+    PIECES_MARKDOWN_COMPONENT_MAP,
     SANS_FONT,
     TEXT_LIGHT,
+    TEXT_MUTED,
     TabSpec,
 )
 from livia.content import (
     _label_to_slug,
+    heading_to_rail_title,
+    load_content,
     load_folder_md_content,
     load_page_meta,
+    load_pieces_tab_content,
+    parse_pieces_tab_entries,
+    preprocess_markdown_for_state,
     scan_tab_slugs,
 )
 from livia.components import (
@@ -65,6 +72,15 @@ class ScienceTechContentState(rx.State):
         self.tab_content = load_folder_md_content("science-tech")
 
 
+class PiecesContentState(rx.State):
+    """Per-tab markdown for Pieces (overview + one tab per work with photos)."""
+
+    tab_content: dict[str, str] = load_pieces_tab_content()
+
+    def load_content(self) -> None:
+        self.tab_content = load_pieces_tab_content()
+
+
 # ---------------------------------------------------------------------------
 # Tab building (static structure, dynamic content)
 # ---------------------------------------------------------------------------
@@ -92,6 +108,7 @@ def _build_dynamic_tab_specs(
                     rx.markdown(
                         content_state.tab_content[slug],
                         component_map=MARKDOWN_COMPONENT_MAP,
+                        use_unwrap_images=False,
                     ),
                 ),
             ))
@@ -118,6 +135,75 @@ def _build_dynamic_tab_specs(
             ))
 
     return tabs
+
+
+def _build_pieces_tab_specs() -> tuple[TabSpec, ...]:
+    """Sidebar tabs for Pieces: optional overview plus one tab per gallery with images."""
+    intro, entries = parse_pieces_tab_entries()
+    tabs: list[TabSpec] = []
+    if intro is not None:
+        tabs.append(
+            TabSpec(
+                label="Overview",
+                value="overview",
+                content=panel(
+                    rx.markdown(
+                        PiecesContentState.tab_content["overview"],
+                        component_map=PIECES_MARKDOWN_COMPONENT_MAP,
+                        use_unwrap_images=False,
+                    ),
+                ),
+            ),
+        )
+    for e in entries:
+        rail = heading_to_rail_title(e.raw_heading)
+        stack_children: list[rx.Component] = [
+            rx.heading(
+                rail,
+                font_family=SANS_FONT,
+                font_weight="700",
+                color=TEXT_LIGHT,
+                font_size=["1.85rem", "2.25rem", "2.75rem"],
+                line_height="1.15",
+                letter_spacing="0.02em",
+                margin_bottom="0.85rem",
+                width="100%",
+                class_name="livia-pieces-title",
+            ),
+        ]
+        if e.date_hint:
+            stack_children.append(
+                rx.text(
+                    e.date_hint,
+                    color=TEXT_MUTED,
+                    font_size="0.95rem",
+                    font_style="italic",
+                    margin_bottom="0.75rem",
+                    class_name="livia-pieces-date",
+                ),
+            )
+        stack_children.append(
+            rx.markdown(
+                PiecesContentState.tab_content[e.tab_key],
+                component_map=PIECES_MARKDOWN_COMPONENT_MAP,
+                use_unwrap_images=False,
+            ),
+        )
+        tabs.append(
+            TabSpec(
+                label=rail,
+                value=e.tab_key,
+                content=panel(
+                    rx.vstack(
+                        *stack_children,
+                        spacing="3",
+                        width="100%",
+                        align_items="stretch",
+                    ),
+                ),
+            ),
+        )
+    return tuple(tabs)
 
 
 # ---------------------------------------------------------------------------
@@ -152,6 +238,38 @@ def biography_page() -> rx.Component:
             section_heading("Biography", GREEN),
             markdown_panel("biography"),
             link_list_grouped("Links", BIOGRAPHY_LINK_GROUPS, GREEN),
+        ),
+        bottom_nav(),
+        min_height="100vh",
+        font_family=SANS_FONT,
+    )
+
+
+def pieces_page() -> rx.Component:
+    """Object-centric list of works: one sidebar tab per piece (like Art & Design)."""
+    tabs = _build_pieces_tab_specs()
+    default_value = tabs[0].value if tabs else "overview"
+    body = (
+        rx.box(
+            sidebar_tabs(
+                tabs=tabs,
+                accent=AMBER,
+                sidebar_side="right",
+                default_value=default_value,
+                collapsed_label="WORKS",
+                rail_variant="pieces",
+            ),
+            class_name="livia-pieces",
+            width="100%",
+        )
+        if tabs
+        else panel(rx.text("No pieces with photos are available yet.", color=TEXT_LIGHT))
+    )
+    return rx.box(
+        BG_FUNC_MAP["yellow"](),
+        page_content(
+            section_heading("Pieces", AMBER),
+            body,
         ),
         bottom_nav(),
         min_height="100vh",
@@ -233,6 +351,12 @@ def create_app() -> rx.App:
     )
     application.add_page(home_page, route="/", title="Livia Zaharia")
     application.add_page(biography_page, route="/biography", title="Biography | Livia Zaharia")
+    application.add_page(
+        pieces_page,
+        route="/pieces",
+        title="Pieces | Livia Zaharia",
+        on_load=[PiecesContentState.load_content, MobileTabRailState.collapse_expanded],
+    )
     application.add_page(
         art_design_page,
         route="/art-design",

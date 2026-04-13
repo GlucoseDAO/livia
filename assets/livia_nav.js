@@ -44,11 +44,29 @@
     });
   }
 
+  function initSequenceCyclers() {
+    document.querySelectorAll(".livia-sequence:not([data-livia-seq-init])").forEach(function (seq) {
+      seq.setAttribute("data-livia-seq-init", "1");
+      var imgs = seq.querySelectorAll("img");
+      if (imgs.length < 2) return;
+      var i = 0;
+      function tick() {
+        imgs.forEach(function (img, j) {
+          img.style.opacity = j === i ? "1" : "0";
+        });
+        i = (i + 1) % imgs.length;
+      }
+      tick();
+      window.setInterval(tick, 400);
+    });
+  }
+
   function init() {
     if (window.sessionStorage) {
       sessionStorage.removeItem("livia_fly_nav");
     }
     highlightActiveNav();
+    initSequenceCyclers();
   }
 
   if (document.readyState === "loading") {
@@ -56,6 +74,19 @@
   } else {
     init();
   }
+
+  var seqObserverTimer = null;
+  try {
+    var seqObserver = new MutationObserver(function () {
+      if (seqObserverTimer) window.clearTimeout(seqObserverTimer);
+      seqObserverTimer = window.setTimeout(function () {
+        initSequenceCyclers();
+      }, 120);
+    });
+    if (document.body) {
+      seqObserver.observe(document.body, { childList: true, subtree: true });
+    }
+  } catch (e) {}
   window.setTimeout(highlightActiveNav, 500);
   window.setTimeout(highlightActiveNav, 1500);
 

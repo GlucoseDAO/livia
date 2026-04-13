@@ -4,6 +4,10 @@
 
 Sometimes food inspires us — not only in the kitchen while we prepare it, or at the table where we enjoy it, but also in shape and form. Memories and experiences are tied to our taste. Using materials which are most certainly not edible, this collection remembers some very familiar elements. The sweet paste filled *Nocciola*, or the *Bird's nest*, are only some of them. At first people might wonder where the connection is, but we all have to keep in mind: some of humanity's most persistent memories revolve around food. Those treasured memories come back in a way that will last longer than the food itself and reflect what matters most.
 
+## Exhibition venue (Bucharest)
+
+<!-- artifact: /RJW2024/1150560393740284.jpg -->
+
 ## Pieces
 
 ### Bubinga Heart

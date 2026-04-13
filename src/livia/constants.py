@@ -62,11 +62,80 @@ MARKDOWN_COMPONENT_MAP = {
     ),
 }
 
+# Pieces page: single body size (no responsive type ramp) to avoid uneven blocks of text.
+_PIECES_TEXT = "1.05rem"
+PIECES_MARKDOWN_COMPONENT_MAP = {
+    "p": lambda text: rx.text(
+        text,
+        color=TEXT_LIGHT,
+        font_size=_PIECES_TEXT,
+        line_height="1.65",
+        word_break="break-word",
+        overflow_wrap="anywhere",
+        margin_top="0.55rem",
+        margin_bottom="0.55rem",
+    ),
+    "a": lambda text, **props: rx.link(
+        text,
+        color=AMBER,
+        text_decoration="none",
+        font_weight="600",
+        font_size=_PIECES_TEXT,
+        word_break="break-all",
+        _hover={"color": TEXT_LIGHT},
+        **props,
+    ),
+    "h1": lambda text: rx.heading(
+        text,
+        font_family=SERIF_FONT,
+        color=TEXT_LIGHT,
+        font_size="1.35rem",
+        line_height="1.35",
+        margin_top="1.5rem",
+        margin_bottom="0.6rem",
+    ),
+    "h2": lambda text: rx.heading(
+        text,
+        font_family=SERIF_FONT,
+        color=TEXT_LIGHT,
+        font_size="1.35rem",
+        line_height="1.35",
+        margin_top="2rem",
+        margin_bottom="0.65rem",
+    ),
+    "h3": lambda text: rx.heading(
+        text,
+        font_family=SERIF_FONT,
+        color=TEXT_LIGHT,
+        font_size="1.2rem",
+        line_height="1.35",
+        margin_top="1.25rem",
+        margin_bottom="0.5rem",
+    ),
+    "em": lambda text: rx.text(
+        text,
+        as_="em",
+        color=TEXT_MUTED,
+        font_size=_PIECES_TEXT,
+        font_style="italic",
+        line_height="1.65",
+    ),
+    "strong": lambda text: rx.text(
+        text,
+        as_="b",
+        color=TEXT_LIGHT,
+        font_size=_PIECES_TEXT,
+        font_weight="600",
+        line_height="1.65",
+    ),
+}
+
 YOUTUBE_WATCH_RE = re.compile(r"^https?://(?:www\.)?youtube\.com/watch\?[^#\s]*v=([A-Za-z0-9_-]{11})[^#\s]*$")
 YOUTUBE_SHORT_RE = re.compile(r"^https?://(?:www\.)?youtu\.be/([A-Za-z0-9_-]{11})[^#\s]*$")
 MARKDOWN_LINK_RE = re.compile(r"^\[[^\]]+\]\((https?://[^)\s]+)\)$")
 GALLERY_DIRECTIVE_RE = re.compile(r"^<!--\s*gallery:\s*(.+?)\s*-->$")
 ARTIFACT_IMAGE_RE = re.compile(r"^<!--\s*artifact:\s*(.+?)\s*-->$")
+SEQUENCE_DIRECTIVE_RE = re.compile(r"^<!--\s*sequence:\s*(.+?)\s*-->$")
 
 _TAB_PREFIX_RE = re.compile(r"^(\d+)_(.+)$")
 _REF_FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*$", re.DOTALL)
@@ -107,6 +176,12 @@ NAV_LINKS = (
         "/art-design",
         accent="amber",
         tooltip="Parametric form and fabrication",
+    ),
+    LinkItem(
+        "Pieces",
+        "/pieces",
+        accent="amber",
+        tooltip="Works and objects",
     ),
     LinkItem(
         "Science & Tech",

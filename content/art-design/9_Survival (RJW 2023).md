@@ -4,6 +4,10 @@
 
 Being lost in a lush jungle where everything is as changing as it is beautiful. Deep colours recall plants which may or may not be dangerous. The only certain thing is that there is beauty of different shapes and sizes which sometimes can morph into function or form. Each item is unique and tells its own tale of survival — an ever-changing deep forest and its hidden paths. All pieces were cast in silver after being modelled in 3D; some mechanisms were manually assembled.
 
+## Exhibition venue
+
+<!-- artifact: /RJW2023/543721001090896.jpg -->
+
 ## Pieces
 
 ### Vittoria Amazonica

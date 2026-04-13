@@ -763,51 +763,70 @@ def github_sidebar() -> rx.Component:
 # Tabs
 # ---------------------------------------------------------------------------
 
-_RJW_TAB_SUFFIX_RE = re.compile(r"\s*\(RJW\s+(\d{4})\)\s*$")
-_CONTEST_NAME_YEAR_RE = re.compile(
-    r"\s*\((Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})\)\s*$",
-    re.IGNORECASE,
-)
-_YEAR_ONLY_PAREN_RE = re.compile(r"\s*\((\d{4})\)\s*$")
+def _split_trailing_paren_label(label: str) -> tuple[str, str | None]:
+    """Split `Title (subtitle)` on the last pair of parentheses; supports nested parens in the title."""
+    s = label.rstrip()
+    if not s.endswith(")"):
+        return label, None
+    depth = 0
+    for i in range(len(s) - 1, -1, -1):
+        ch = s[i]
+        if ch == ")":
+            depth += 1
+        elif ch == "(":
+            depth -= 1
+            if depth == 0:
+                primary = s[:i].strip()
+                subtitle = s[i + 1 : -1].strip()
+                if primary and subtitle:
+                    return primary, subtitle
+                return label, None
+    return label, None
 
 
 def _split_collection_tab_label(label: str) -> tuple[str, str | None]:
-    """If label has a trailing contest suffix, return (title line, centered subtitle line)."""
-    m = _RJW_TAB_SUFFIX_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            return primary, f"RJW {m.group(1)}"
-    m = _CONTEST_NAME_YEAR_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            contest = m.group(1).lower()
-            if contest == "vinnca":
-                cap = "Vinnca"
-            elif contest == "vinca":
-                cap = "Vinca"
-            elif contest == "spotlight":
-                cap = "Spotlight"
-            else:
-                cap = m.group(1).title()
-            return primary, f"{cap} {m.group(2)}"
-    m = _YEAR_ONLY_PAREN_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            return primary, m.group(1)
-    return label, None
+    """If label has a trailing `… (contest / year)` suffix, return (title line, centered subtitle line)."""
+    primary, subtitle = _split_trailing_paren_label(label)
+    if subtitle is None:
+        return label, None
+    m_rjw = re.match(r"^RJW\s+(\d{4})$", subtitle)
+    if m_rjw:
+        return primary, f"RJW {m_rjw.group(1)}"
+    m_berlin = re.match(r"^Berlin\s+(\d{4})$", subtitle, re.IGNORECASE)
+    if m_berlin:
+        return primary, f"Berlin {m_berlin.group(1)}"
+    m_contest = re.match(
+        r"^(Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})$",
+        subtitle,
+        re.IGNORECASE,
+    )
+    if m_contest:
+        contest = m_contest.group(1).lower()
+        if contest == "vinnca":
+            cap = "Vinnca"
+        elif contest == "vinca":
+            cap = "Vinca"
+        elif contest == "spotlight":
+            cap = "Spotlight"
+        else:
+            cap = m_contest.group(1).title()
+        return primary, f"{cap} {m_contest.group(2)}"
+    m_year = re.fullmatch(r"(\d{4})", subtitle)
+    if m_year:
+        return primary, m_year.group(1)
+    return primary, subtitle
 
 
 def _sidebar_tab_label_stack(
     label: str,
     sidebar_side: Literal["left", "right"],
+    *,
+    center_labels: bool = False,
 ) -> rx.Component:
     """Two lines when label has a contest/year suffix: title, then centered subtitle."""
     primary, subtitle = _split_collection_tab_label(label)
     text_align: Literal["left", "right", "center", "start", "end"] = (
-        "left" if sidebar_side == "left" else "right"
+        "center" if center_labels else ("left" if sidebar_side == "left" else "right")
     )
     if subtitle is None:
         return rx.text(
@@ -820,7 +839,7 @@ def _sidebar_tab_label_stack(
         rx.text(
             primary,
             width="100%",
-            text_align=text_align,
+            text_align="center",
             class_name="livia-tab-label-primary",
         ),
         rx.text(
@@ -847,6 +866,7 @@ def sidebar_tabs(
     sidebar_side: Literal["left", "right"],
     default_value: str,
     collapsed_label: str = "MORE",
+    rail_variant: Literal["default", "pieces"] = "default",
 ) -> rx.Component:
     """Desktop: collapsible rail with a short grip label; mobile: horizontal tabs."""
     tab_trigger_style = {
@@ -863,8 +883,24 @@ def sidebar_tabs(
             "color": accent,
         },
     }
+    if rail_variant == "pieces":
+        tab_trigger_style = {
+            **tab_trigger_style,
+            "font_size": "calc(1.08rem * max(1, var(--livia-ui-scale, 1)))",
+            "letter_spacing": "0.06em",
+            "line_height": "1.35",
+            "text_align": "center",
+        }
     rail_side_class = (
         "livia-tab-rail--left" if sidebar_side == "left" else "livia-tab-rail--right"
+    )
+    rail_variant_class = (
+        " livia-tab-rail--pieces" if rail_variant == "pieces" else ""
+    )
+    trigger_btn_class = (
+        "livia-tab-trigger-btn livia-tab-trigger-btn--pieces"
+        if rail_variant == "pieces"
+        else "livia-tab-trigger-btn"
     )
     tab_rail_grip = rx.box(
         rx.text(
@@ -874,27 +910,36 @@ def sidebar_tabs(
         ),
         class_name="livia-tab-rail-grip",
     )
+    center_piece_labels = rail_variant == "pieces"
     desktop_sidebar = rx.box(
         tab_rail_grip,
         rx.tabs.list(
             *(
                 rx.tabs.trigger(
-                    _sidebar_tab_label_stack(tab.label, sidebar_side),
+                    _sidebar_tab_label_stack(
+                        tab.label,
+                        sidebar_side,
+                        center_labels=center_piece_labels,
+                    ),
                     value=tab.value,
                     style=tab_trigger_style,
-                    class_name="livia-tab-trigger-btn",
+                    class_name=trigger_btn_class,
                     custom_attrs={"aria-label": tab.label},
                 )
                 for tab in tabs
             ),
             display="flex",
             flex_direction="column",
-            align_items="flex-start" if sidebar_side == "left" else "flex-end",
+            align_items=(
+                "stretch"
+                if rail_variant == "pieces"
+                else ("flex-start" if sidebar_side == "left" else "flex-end")
+            ),
             justify_content="flex-start",
             gap="1.95rem",
             width="100%",
         ),
-        class_name=f"livia-tab-rail livia-desktop-tab-rail {rail_side_class}",
+        class_name=f"livia-tab-rail livia-desktop-tab-rail {rail_side_class}{rail_variant_class}",
         flex_direction="column",
         align_items="stretch",
         flex_shrink="0",
@@ -910,10 +955,14 @@ def sidebar_tabs(
     mobile_tabs = rx.tabs.list(
         *(
             rx.tabs.trigger(
-                _sidebar_tab_label_stack(tab.label, sidebar_side),
+                _sidebar_tab_label_stack(
+                    tab.label,
+                    sidebar_side,
+                    center_labels=center_piece_labels,
+                ),
                 value=tab.value,
                 style=tab_trigger_style,
-                class_name="livia-tab-trigger-btn livia-tab-trigger-btn--mobile",
+                class_name=f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
                 custom_attrs={"aria-label": tab.label},
             )
             for tab in tabs
@@ -966,12 +1015,17 @@ def sidebar_tabs(
         if sidebar_side == "left"
         else rx.hstack(content_stack, desktop_sidebar, spacing="5", width="100%", align="start")
     )
+    page_tabs_class = (
+        "livia-page-tabs livia-page-tabs--pieces"
+        if rail_variant == "pieces"
+        else "livia-page-tabs"
+    )
     return rx.tabs.root(
         desktop_row,
         default_value=default_value,
         on_change=MobileTabRailState.on_tab_change,
         width="100%",
-        class_name="livia-page-tabs",
+        class_name=page_tabs_class,
     )
 
 

@@ -237,6 +237,10 @@ html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-single
   text-align: center !important;
 }
 
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-sub {
+  text-align: center !important;
+}
+
 /*
  * Mobile MORE rail vs desktop side rail — html.livia-narrow / livia-wide (livia_nav.js).
  * Reflex responsive display[] used layout viewport width; meta width=1280 broke this — we tie chrome to JS class.
@@ -277,6 +281,10 @@ html.livia-wide .livia-desktop-tab-rail {
 /* Tight gap between collection title and centered RJW line */
 .livia-tab-label-stack {
   gap: 0.2rem !important;
+}
+
+.livia-page-tabs [role="tablist"] button:has(.livia-tab-label-stack) {
+  text-align: center !important;
 }
 
 .livia-page-tabs [role="tablist"] button .livia-tab-label-sub {
@@ -538,4 +546,39 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
   .livia-tool-rail--left:hover {
     width: var(--livia-tool-open);
   }
+}
+
+/* Pieces page: one body size in component map; prevent long links / words from breaking layout */
+.livia-pieces {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.livia-pieces-title {
+  text-wrap: balance;
+}
+
+/* Pieces page: tab rail — centered labels (including wrapped multi-line titles) */
+.livia-tab-rail--pieces .livia-tab-label-single,
+.livia-tab-rail--pieces .livia-tab-label-primary {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-wrap: balance;
+  text-align: center !important;
+}
+
+.livia-tab-rail--pieces .livia-tab-label-sub {
+  letter-spacing: 0.05em;
+  text-align: center !important;
+}
+
+.livia-pieces-date {
+  letter-spacing: 0.03em;
+}
+
+.livia-pieces .markdown,
+.livia-pieces [class*="Markdown"] {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }

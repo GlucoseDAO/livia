@@ -6,6 +6,10 @@ Even though it looks unrestrained, nature has a set of hidden rules. Using those
 
 Includes *Ceartari* earrings and rings, *Ice*, *Splash*, and *Fasolaluna (Beanut)* pendants, *Mountain of gold* ring and pendant, and *Mycelium* ring.
 
+## Exhibition venue
+
+<!-- artifact: /RJW2021/2966209293695990.jpg -->
+
 ## Pieces
 
 ### Ceartari
