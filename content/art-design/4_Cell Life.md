@@ -4,4 +4,10 @@ Built around the narrative "it all started with a cell." Includes pieces Nucleus
 
 Combines digitally modelled, 3D-printed elements with walnut husks and amber via traditional metalworking.
 
-[Romanian Jewelry Week 2023](https://www.romanianjewelryweek.com/participants-2023/livia-zaharia)
+The collection also includes the ongoing stream of microscope- and molecule-inspired work: rings, pendants, and earrings echoing cells, tissues, nanoparticles, and organelles — including the Nanot-of-Power pendant (inspired by nanomedicine nanoparticles) and the Mitochondria ring (reimagining mitochondria as sculptural, wearable form).
+
+## Romanian Jewelry Week 2025
+
+<!-- gallery: RJW2025 -->
+
+[Romanian Jewelry Week 2025](https://www.romanianjewelryweek.com/participants-2025/livia-zaharia)

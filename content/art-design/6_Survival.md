@@ -4,4 +4,4 @@ Centred on the story of being lost in a lush, ever-changing jungle. Deep colours
 
 Modelled in 3D, cast in silver, mechanisms manually assembled.
 
-[Romanian Jewelry Week 2024](https://www.romanianjewelryweek.com/participants-2024/livia-zaharia)
+[Romanian Jewelry Week 2023](https://www.romanianjewelryweek.com/participants-2023/livia-zaharia)

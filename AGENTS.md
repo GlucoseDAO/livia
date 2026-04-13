@@ -38,10 +38,14 @@ content/
   art-design/                          # tabbed page → /art-design
     _meta.yaml                         # page-level config
     _instagram.yaml                    # special (non-markdown) tab
-    1_Overview.md                      # tab 1
-    2_Materialized Enhancements.md     # tab 2 (reference file)
-    3_Cell Life.md                     # tab 3
-    ...
+    1_Overview.md
+    2_Livia Lore.md
+    3_Materialized Enhancements.md     # reference file
+    4_Cell Life.md                    # RJW 2025
+    5_Beloved Food.md                 # RJW 2024
+    6_Survival.md                     # RJW 2023
+    7_Cry, Dance, Repeat.md
+    8_Spotlight Pavilion.md
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab

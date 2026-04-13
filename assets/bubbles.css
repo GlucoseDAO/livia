@@ -150,7 +150,7 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   transform: scale(0.97);
 }
 
-/* Page tabs: same 1× / 2.5× scale */
+/* Page tabs: match bottom-nav label size (homepage chrome) */
 .livia-page-tabs [role="tablist"] button {
   font-size: calc(19px * var(--livia-ui-scale));
   padding: calc(0.35rem * var(--livia-ui-scale)) calc(0.55rem * var(--livia-ui-scale));
@@ -158,38 +158,85 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   white-space: nowrap;
 }
 
-/* Desktop tab rail: slim strip that expands on hover */
+/* Desktop tab rail: collapsed shows MORE grip; open shows full subtopic labels */
 html.livia-wide .livia-tab-rail {
   max-width: min(22rem, 100%);
   width: 3.1rem;
   overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   transition:
     width 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
     padding 0.35s ease;
   flex-shrink: 0;
 }
 
-html.livia-wide .livia-tab-rail:hover {
+html.livia-wide .livia-tab-rail:not(:hover):not(:focus-within) {
+  min-height: 12rem;
+}
+
+html.livia-wide .livia-tab-rail:hover,
+html.livia-wide .livia-tab-rail:focus-within {
   width: min(22rem, 100%);
+  min-height: 0;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+html.livia-wide .livia-tab-rail:focus-visible {
+  outline: 2px solid rgba(212, 148, 58, 0.65);
+  outline-offset: 3px;
 }
 
 html.livia-wide .livia-tab-rail [role="tablist"] {
   width: 100%;
 }
 
-html.livia-wide .livia-tab-rail:not(:hover) button {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  max-height: none;
+html.livia-wide .livia-tab-rail-grip {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(20px * var(--livia-ui-scale));
+  padding: 2rem 0;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: calc(26px * var(--livia-ui-scale));
+  line-height: 1.2;
+  user-select: none;
 }
 
-html.livia-wide .livia-tab-rail:hover button {
+html.livia-wide .livia-tab-rail-grip-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
+}
+
+html.livia-wide .livia-tab-rail:not(:hover):not(:focus-within) [role="tablist"] {
+  display: none;
+}
+
+html.livia-wide .livia-tab-rail:hover .livia-tab-rail-grip,
+html.livia-wide .livia-tab-rail:focus-within .livia-tab-rail-grip {
+  display: none;
+}
+
+html.livia-wide .livia-tab-rail:hover [role="tablist"],
+html.livia-wide .livia-tab-rail:focus-within [role="tablist"] {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button,
+html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
+  white-space: normal;
+  text-align: inherit;
+  font-size: calc(26px * var(--livia-ui-scale));
+  padding: calc(0.5rem * var(--livia-ui-scale)) calc(0.72rem * var(--livia-ui-scale));
+  line-height: 1.3;
 }
 
 /* Instagram / GitHub edge tool rails: always collapsed until hover (mouse) or focus (tap / Tab) */

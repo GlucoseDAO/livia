@@ -207,6 +207,26 @@ def page_content(*children: rx.Component) -> rx.Component:
     )
 
 
+def _link_list_items(links: tuple[LinkItem, ...], accent: str) -> rx.Component:
+    return rx.vstack(
+        *(
+            rx.link(
+                link.label,
+                href=link.href,
+                is_external=link.external,
+                color=TEXT_LIGHT,
+                text_decoration="none",
+                font_size=["1.15rem", "1.25rem", "1.35rem"],
+                _hover={"color": accent},
+            )
+            for link in links
+        ),
+        align_items="start",
+        spacing="4",
+        width="100%",
+    )
+
+
 def link_list(title: str, links: tuple[LinkItem, ...], accent: str) -> rx.Component:
     """Compact link list panel."""
     return panel(
@@ -219,21 +239,48 @@ def link_list(title: str, links: tuple[LinkItem, ...], accent: str) -> rx.Compon
             font_weight="700",
             margin_bottom="1rem",
         ),
+        _link_list_items(links, accent),
+    )
+
+
+def link_list_grouped(
+    title: str,
+    groups: tuple[tuple[str, tuple[LinkItem, ...]], ...],
+    accent: str,
+) -> rx.Component:
+    """Link panel with category subheadings (e.g. biography links)."""
+    return panel(
+        rx.text(
+            title,
+            text_transform="uppercase",
+            letter_spacing="0.14em",
+            font_size=["0.85rem", "0.95rem", "1rem"],
+            color=accent,
+            font_weight="700",
+            margin_bottom="1.25rem",
+        ),
         rx.vstack(
             *(
-                rx.link(
-                    link.label,
-                    href=link.href,
-                    is_external=link.external,
-                    color=TEXT_LIGHT,
-                    text_decoration="none",
-                    font_size=["1.15rem", "1.25rem", "1.35rem"],
-                    _hover={"color": accent},
+                rx.vstack(
+                    rx.text(
+                        category_title,
+                        text_transform="uppercase",
+                        letter_spacing="0.12em",
+                        font_size=["0.75rem", "0.82rem", "0.88rem"],
+                        color=TEXT_MUTED,
+                        font_weight="600",
+                        margin_bottom="0.5rem",
+                    ),
+                    _link_list_items(links, accent),
+                    spacing="2",
+                    align_items="start",
+                    width="100%",
                 )
-                for link in links
+                for category_title, links in groups
             ),
-            align_items="start",
-            spacing="4",
+            spacing="6",
+            align_items="stretch",
+            width="100%",
         ),
     )
 
@@ -758,11 +805,11 @@ def sidebar_tabs(
     accent: str,
     sidebar_side: Literal["left", "right"],
     default_value: str,
+    collapsed_label: str = "MORE",
 ) -> rx.Component:
-    """Desktop: vertical sidebar tabs; mobile: horizontal tabs."""
+    """Desktop: collapsible rail with a short grip label; mobile: horizontal tabs."""
     tab_trigger_style = {
         "font_family": SERIF_FONT,
-        "font_size": ["1.8rem", "2rem", "2.2rem"],
         "font_weight": "600",
         "color": TEXT_MUTED,
         "cursor": "pointer",
@@ -775,7 +822,19 @@ def sidebar_tabs(
             "color": accent,
         },
     }
+    rail_side_class = (
+        "livia-tab-rail--left" if sidebar_side == "left" else "livia-tab-rail--right"
+    )
+    tab_rail_grip = rx.box(
+        rx.text(
+            collapsed_label,
+            class_name="livia-tab-rail-grip-text",
+            color=accent,
+        ),
+        class_name="livia-tab-rail-grip",
+    )
     desktop_sidebar = rx.box(
+        tab_rail_grip,
         rx.tabs.list(
             *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
             display="flex",
@@ -785,7 +844,7 @@ def sidebar_tabs(
             gap="0.6rem",
             width="100%",
         ),
-        class_name="livia-tab-rail",
+        class_name=f"livia-tab-rail {rail_side_class}",
         display=["none", "none", "flex"],
         flex_direction="column",
         align_items="stretch",
@@ -797,6 +856,7 @@ def sidebar_tabs(
         background="rgba(18, 15, 12, 0.78)",
         backdrop_filter="blur(16px)",
         padding="0.45rem",
+        custom_attrs={"tabindex": "0", "role": "navigation", "aria-label": "Page sections"},
     )
     mobile_tabs = rx.tabs.list(
         *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),

@@ -116,16 +116,35 @@ NAV_LINKS = (
     ),
 )
 
-BIOGRAPHY_LINKS = (
-    LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
-    LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
-    LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
-    LinkItem("GlucoseDAO GitHub", "https://github.com/GlucoseDAO/", True),
-    LinkItem("Sugar-Sugar Game", "https://sugar-sugar.glucosedao.org", True),
-    LinkItem("GlucoseDAO Hugging Face Spaces", "https://huggingface.co/spaces/GlucoseDao", True),
-    LinkItem("Longevity Genie", "https://longevity-genie.github.io", True),
-    LinkItem("Longevity Genie GitHub", "https://github.com/longevity-genie", True),
-    LinkItem("HEALES", "https://heales.org/", True),
-    LinkItem("Romanian Jewelry Week 2025", "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia", True),
+BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
+    (
+        "Science & Tech",
+        (
+            LinkItem("GlucoseDAO GitHub", "https://github.com/GlucoseDAO/", True),
+            LinkItem("Sugar-Sugar Game", "https://sugar-sugar.glucosedao.org", True),
+            LinkItem("GlucoseDAO Hugging Face Spaces", "https://huggingface.co/spaces/GlucoseDao", True),
+            LinkItem("Longevity Genie", "https://longevity-genie.github.io", True),
+            LinkItem("Longevity Genie GitHub", "https://github.com/longevity-genie", True),
+            LinkItem("HEALES", "https://heales.org/", True),
+        ),
+    ),
+    (
+        "Art & Design",
+        (
+            LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
+            LinkItem(
+                "Romanian Jewelry Week 2025",
+                "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia",
+                True,
+            ),
+        ),
+    ),
+    (
+        "Social media & contacts",
+        (
+            LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
+            LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
+        ),
+    ),
 )
 

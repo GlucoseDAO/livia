@@ -83,23 +83,23 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
   - GitHub: https://github.com/longevity-genie
 
 ### 2. "It's Just a Cell Life — Biology Collection"
-- **Context:** Romanian Jewelry Week 2023
-- **Description:** Built around the narrative "it all started with a cell." Includes pieces "Nucleus" and "Embryo." Forms represent stages of cellular life — division, growth, specialisation, differentiation. Combines digitally modelled, 3D-printed elements with walnut husks and amber via traditional metalworking.
-- **Links:**
-  - ROJW 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
-
-### 3. "Survival"
-- **Context:** Romanian Jewelry Week 2024
-- **Description:** Centred on the story of being lost in a lush, ever-changing jungle. Deep colours and organic forms reminiscent of potentially dangerous but beautiful plants. Each piece is a "tale of survival" in a dense forest of shapes, emphasising resilience and adaptation. Modelled in 3D, cast in silver, mechanisms manually assembled.
-- **Links:**
-  - ROJW 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
-
-### 4. "Biology / Science-Inspired Jewellery"
-- **Context:** Paral Design — ongoing line
-- **Description:** Ongoing stream drawing from microscopic, cellular, or molecular imagery and concepts from longevity and aging conferences. Rings, pendants, and earrings echoing cells, tissues, nanoparticles, or organelles.
+- **Context:** Romanian Jewelry Week 2025 (main exhibition presentation of this collection; ongoing Paral Design line)
+- **Description:** Built around the narrative "it all started with a cell." Includes pieces such as Nucleus, Embryo, Mitoring, and DarkNut. Forms represent stages of cellular life — division, growth, specialisation, differentiation. Combines digitally modelled, 3D-printed elements with walnut husks and amber via traditional metalworking. The same collection also encompasses microscope- and molecule-inspired pieces (e.g. Nanot-of-Power, Mitochondria ring) shown at ROJW 2025 and in longevity-conference contexts (e.g. ARDD). There is no separate "science-inspired" category — those pieces belong to this collection.
 - **Links:**
   - ROJW 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
   - ARDD context: https://www.linkedin.com/posts/antonkulaga_ardd-parametricjewelery-biomimetics-activity-7317611459939565568-CZnA
+
+### 3. "Beloved Food"
+- **Context:** Romanian Jewelry Week 2024
+- **Description:** ROJW 2024 used *Beloved Food* as its curatorial theme. Jewellery engaging with food, memory, devotion, and ritual.
+- **Links:**
+  - ROJW 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
+
+### 4. "Survival"
+- **Context:** Romanian Jewelry Week 2023
+- **Description:** Centred on the story of being lost in a lush, ever-changing jungle. Deep colours and organic forms reminiscent of potentially dangerous but beautiful plants. Each piece is a "tale of survival" in a dense forest of shapes, emphasising resilience and adaptation. Modelled in 3D, cast in silver, mechanisms manually assembled.
+- **Links:**
+  - ROJW 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
 
 ### 5. "Nanot-of-Power" Pendant (also "Nanot")
 - **Context:** Nanomedicine / Berlin Longevity Week / ARDD
@@ -166,17 +166,19 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
 
 ## Exhibition History
 
+(Within Romanian Jewelry Week rows, years run from **most recent to oldest**.)
+
 | Year | Event | Collection/Focus |
 |------|-------|-----------------|
-| 2021 | Romanian Jewelry Week | Spotlight Pavilion — early parametric work |
-| 2023 | Romanian Jewelry Week | "It's Just a Cell Life" — biology collection |
+| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (materialized-enhancements.longevity-genie.info, site to be updated) |
+| 2025 | Romanian Jewelry Week | "It's Just a Cell Life" — biology collection (Nanot-of-Power, Mitochondria, Embryo, exhibition gallery) |
+| 2024 | Romanian Jewelry Week | "Beloved Food" |
+| 2023 | Romanian Jewelry Week | "Survival" — jungle/resilience collection |
 | 2023 | ROJW Timișoara | Process and parametric method showcase |
-| 2024 | Romanian Jewelry Week | "Survival" — jungle/resilience collection |
-| 2025 | Romanian Jewelry Week | Science-inspired line, Nanot-of-Power, Mitochondria |
+| 2021 | Romanian Jewelry Week | Spotlight Pavilion — early parametric work |
 | — | Berlin Longevity Week | Nanomedicine-inspired pieces |
 | — | ARDD conferences | Berry Nova, science-jewellery presentations |
 | — | Data as Wearable Art | "Cry, Dance, Repeat" |
-| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (materialized-enhancements.longevity-genie.info, site to be updated) |
 
 ---
 
