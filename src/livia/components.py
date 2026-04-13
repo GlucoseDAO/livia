@@ -40,16 +40,19 @@ from livia.constants import GALLERY_DIRECTIVE_RE, ARTIFACT_IMAGE_RE
 # State classes for interactive UI elements
 # ---------------------------------------------------------------------------
 
-class GalleryState(rx.State):
-    lightbox_src: str = ""
-    lightbox_open: bool = False
+class MobileTabRailState(rx.State):
+    """Mobile / narrow: tab titles fold behind a MORE control until expanded."""
 
-    def open_lightbox(self, src: str) -> None:
-        self.lightbox_src = src
-        self.lightbox_open = True
+    expanded: bool = False
 
-    def close_lightbox(self) -> None:
-        self.lightbox_open = False
+    def toggle_expanded(self) -> None:
+        self.expanded = not self.expanded
+
+    def collapse_expanded(self) -> None:
+        self.expanded = False
+
+    def on_tab_change(self, _value: str) -> None:
+        self.expanded = False
 
 
 # ---------------------------------------------------------------------------
@@ -322,7 +325,7 @@ def youtube_embed(video_id: str) -> rx.Component:
 
 
 def image_gallery(folder: str) -> rx.Component:
-    """Responsive masonry-style image gallery with lightbox."""
+    """Responsive masonry-style image gallery; full-size view via ``livia_nav.js`` lightbox."""
     images = collect_gallery_images(folder)
     if not images:
         return rx.text(f"No images found in {folder}", color=TEXT_MUTED)
@@ -341,74 +344,31 @@ def image_gallery(folder: str) -> rx.Component:
                     "transform": "scale(1.03)",
                     "box_shadow": "0 8px 32px rgba(0,0,0,0.5)",
                 },
+                class_name="livia-lightbox-thumb",
+                custom_attrs={"data-full-src": src},
             ),
             cursor="pointer",
-            on_click=GalleryState.open_lightbox(src),
             overflow="hidden",
             border_radius="0.6rem",
             border=f"1px solid {PANEL_BORDER}",
+            class_name="livia-lightbox-thumb-wrap",
         )
 
-    lightbox = rx.cond(
-        GalleryState.lightbox_open,
-        rx.box(
-            rx.box(
-                rx.text(
-                    "✕",
-                    color="white",
-                    font_size="2rem",
-                    cursor="pointer",
-                    position="absolute",
-                    top="1rem",
-                    right="1.5rem",
-                    z_index="102",
-                    _hover={"opacity": "0.7"},
-                ),
-                rx.image(
-                    src=GalleryState.lightbox_src,
-                    max_width="90vw",
-                    max_height="85vh",
-                    object_fit="contain",
-                    border_radius="0.8rem",
-                ),
-                on_click=GalleryState.close_lightbox,
-                display="flex",
-                align_items="center",
-                justify_content="center",
-                position="relative",
-                width="100%",
-                height="100%",
-            ),
-            on_click=GalleryState.close_lightbox,
-            position="fixed",
-            inset="0",
-            z_index="200",
-            background="rgba(0, 0, 0, 0.88)",
-            backdrop_filter="blur(8px)",
-            display="flex",
-            align_items="center",
-            justify_content="center",
-        ),
-    )
-
-    return rx.fragment(
-        rx.box(
-            *[gallery_thumb(src) for src in images],
-            display="grid",
-            grid_template_columns=[
-                "repeat(2, 1fr)",
-                "repeat(3, 1fr)",
-                "repeat(4, 1fr)",
-            ],
-            gap="0.8rem",
-            width="100%",
-        ),
-        lightbox,
+    return rx.box(
+        *[gallery_thumb(src) for src in images],
+        display="grid",
+        grid_template_columns=[
+            "repeat(2, 1fr)",
+            "repeat(3, 1fr)",
+            "repeat(4, 1fr)",
+        ],
+        gap="0.8rem",
+        width="100%",
     )
 
 
 def artifact_image(src: str) -> rx.Component:
-    """Render a single artifact image, centered and clickable for lightbox."""
+    """Render a single artifact image, centered; full-size view via ``livia_nav.js`` lightbox."""
     return rx.box(
         rx.image(
             src=src,
@@ -426,13 +386,15 @@ def artifact_image(src: str) -> rx.Component:
                 "transform": "scale(1.03)",
                 "box_shadow": "0 8px 36px rgba(154, 101, 39, 0.5)",
             },
+            class_name="livia-lightbox-thumb",
+            custom_attrs={"data-full-src": src},
         ),
-        on_click=GalleryState.open_lightbox(src),
         display="flex",
         justify_content="center",
         width="100%",
         margin_top="1rem",
         margin_bottom="1rem",
+        class_name="livia-lightbox-thumb-wrap",
     )
 
 
@@ -802,29 +764,52 @@ def github_sidebar() -> rx.Component:
 # ---------------------------------------------------------------------------
 
 _RJW_TAB_SUFFIX_RE = re.compile(r"\s*\(RJW\s+(\d{4})\)\s*$")
+_CONTEST_NAME_YEAR_RE = re.compile(
+    r"\s*\((Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})\)\s*$",
+    re.IGNORECASE,
+)
+_YEAR_ONLY_PAREN_RE = re.compile(r"\s*\((\d{4})\)\s*$")
 
 
-def _split_rjw_tab_label(label: str) -> tuple[str, str | None]:
-    """If label ends with '(RJW YYYY)', return (collection title, 'RJW YYYY')."""
+def _split_collection_tab_label(label: str) -> tuple[str, str | None]:
+    """If label has a trailing contest suffix, return (title line, centered subtitle line)."""
     m = _RJW_TAB_SUFFIX_RE.search(label)
-    if not m:
-        return label, None
-    primary = label[: m.start()].strip()
-    if not primary:
-        return label, None
-    return primary, f"RJW {m.group(1)}"
+    if m:
+        primary = label[: m.start()].strip()
+        if primary:
+            return primary, f"RJW {m.group(1)}"
+    m = _CONTEST_NAME_YEAR_RE.search(label)
+    if m:
+        primary = label[: m.start()].strip()
+        if primary:
+            contest = m.group(1).lower()
+            if contest == "vinnca":
+                cap = "Vinnca"
+            elif contest == "vinca":
+                cap = "Vinca"
+            elif contest == "spotlight":
+                cap = "Spotlight"
+            else:
+                cap = m.group(1).title()
+            return primary, f"{cap} {m.group(2)}"
+    m = _YEAR_ONLY_PAREN_RE.search(label)
+    if m:
+        primary = label[: m.start()].strip()
+        if primary:
+            return primary, m.group(1)
+    return label, None
 
 
 def _sidebar_tab_label_stack(
     label: str,
     sidebar_side: Literal["left", "right"],
 ) -> rx.Component:
-    """Two lines when label contains '(RJW YYYY)': title, then RJW + year."""
-    primary, rjw = _split_rjw_tab_label(label)
+    """Two lines when label has a contest/year suffix: title, then centered subtitle."""
+    primary, subtitle = _split_collection_tab_label(label)
     text_align: Literal["left", "right", "center", "start", "end"] = (
         "left" if sidebar_side == "left" else "right"
     )
-    if rjw is None:
+    if subtitle is None:
         return rx.text(
             label,
             width="100%",
@@ -839,10 +824,10 @@ def _sidebar_tab_label_stack(
             class_name="livia-tab-label-primary",
         ),
         rx.text(
-            rjw,
+            subtitle,
             width="100%",
             text_align="center",
-            class_name="livia-tab-label-rjw",
+            class_name="livia-tab-label-sub",
             font_size="0.72em",
             letter_spacing="0.06em",
             font_weight="500",
@@ -909,8 +894,7 @@ def sidebar_tabs(
             gap="1.95rem",
             width="100%",
         ),
-        class_name=f"livia-tab-rail {rail_side_class}",
-        display=["none", "none", "flex"],
+        class_name=f"livia-tab-rail livia-desktop-tab-rail {rail_side_class}",
         flex_direction="column",
         align_items="stretch",
         flex_shrink="0",
@@ -921,7 +905,7 @@ def sidebar_tabs(
         background="rgba(18, 15, 12, 0.78)",
         backdrop_filter="blur(16px)",
         padding="0.45rem",
-        custom_attrs={"tabindex": "0", "role": "navigation", "aria-label": "Page sections"},
+        custom_attrs={"role": "navigation", "aria-label": "Page sections"},
     )
     mobile_tabs = rx.tabs.list(
         *(
@@ -934,18 +918,42 @@ def sidebar_tabs(
             )
             for tab in tabs
         ),
-        display=["flex", "flex", "none"],
+        display="flex",
         flex_wrap="wrap",
         justify_content="flex-start",
         align_content="flex-start",
-        border_bottom=f"1px solid {PANEL_BORDER}",
-        padding_bottom="0.65rem",
         width="100%",
         class_name="livia-mobile-tablist",
     )
+    mobile_tab_section = rx.vstack(
+        rx.hstack(
+            rx.button(
+                rx.cond(MobileTabRailState.expanded, "CLOSE", collapsed_label),
+                on_click=MobileTabRailState.toggle_expanded,
+                variant="outline",
+                color=accent,
+                border_color=accent,
+                border_radius="0.6rem",
+                font_weight="700",
+                letter_spacing="0.14em",
+                padding_x="1rem",
+                padding_y="0.45rem",
+            ),
+            width="100%",
+            justify="start",
+            padding_bottom="0.65rem",
+            border_bottom=f"1px solid {PANEL_BORDER}",
+            class_name="livia-mobile-tab-more-row",
+        ),
+        rx.cond(MobileTabRailState.expanded, mobile_tabs, rx.fragment()),
+        spacing="3",
+        width="100%",
+        align_items="stretch",
+        class_name="livia-mobile-tab-rail",
+    )
     contents = tuple(rx.tabs.content(tab.content, value=tab.value, width="100%") for tab in tabs)
     content_stack = rx.vstack(
-        mobile_tabs,
+        mobile_tab_section,
         *contents,
         spacing="4",
         width="100%",
@@ -961,6 +969,7 @@ def sidebar_tabs(
     return rx.tabs.root(
         desktop_row,
         default_value=default_value,
+        on_change=MobileTabRailState.on_tab_change,
         width="100%",
         class_name="livia-page-tabs",
     )

@@ -1,33 +1,41 @@
 /*
  * UI typography scale: 1 = laptop (html.livia-wide), 2.5 = phone (html.livia-narrow).
- * Set by livia_nav.js on <html>; all “chrome” text uses calc(base * var(--livia-ui-scale)).
+ * Set by livia_nav.js on <html>. Narrow bottom nav: one row of four buttons, same font size as laptop; labels wrap inside a button when needed. Home tool rails use --livia-tool-rail-scale (1.5 on narrow).
  */
 html {
   --livia-ui-scale: 1;
+  --livia-bottom-nav-scale: 1;
+  /* Home-page edge tool rails (Instagram / GitHub): not full 2.5× on narrow */
+  --livia-tool-rail-scale: 1;
 }
 
 html.livia-narrow {
   --livia-ui-scale: 2.5;
+  --livia-tool-rail-scale: 1.5;
 }
 
-/* Bottom navigation dock — one row; 2.5× type on phone vs laptop */
+/* Bottom navigation dock — laptop type size; narrow: one row × four equal cells, text wraps inside each cell */
 
 .livia-bottom-nav {
   box-sizing: border-box;
   white-space: nowrap;
   max-width: min(96vw, 90rem);
-  font-size: calc(20px * var(--livia-ui-scale));
+  font-size: calc(20px * var(--livia-bottom-nav-scale));
   transform: translateX(-50%) translateZ(0);
   transform-origin: bottom center;
-  padding: calc(0.5rem * var(--livia-ui-scale)) calc(0.65rem * var(--livia-ui-scale));
+  padding: calc(0.5rem * var(--livia-bottom-nav-scale)) calc(0.65rem * var(--livia-bottom-nav-scale));
 }
 
 .livia-bottom-nav-row,
 .livia-bottom-nav .livia-bottom-nav-row,
 .livia-bottom-nav .rt-HStack {
+  gap: clamp(0.3em, 1.1vmin, 0.8em);
+}
+
+html.livia-wide .livia-bottom-nav .livia-bottom-nav-row,
+html.livia-wide .livia-bottom-nav .rt-HStack {
   flex-wrap: nowrap;
   white-space: nowrap;
-  gap: clamp(0.3em, 1.1vmin, 0.8em);
 }
 
 .livia-bottom-nav a[data-href] {
@@ -35,10 +43,10 @@ html.livia-narrow {
   display: inline-block;
   flex-shrink: 0;
   white-space: nowrap;
-  font-size: calc(19px * var(--livia-ui-scale));
+  font-size: calc(19px * var(--livia-bottom-nav-scale));
   font-weight: 500;
   line-height: 1.2;
-  padding: calc(0.28rem * var(--livia-ui-scale)) calc(0.36rem * var(--livia-ui-scale));
+  padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.36rem * var(--livia-bottom-nav-scale));
   border-radius: 999px;
   text-decoration: none;
   color: rgba(245, 240, 232, 0.7);
@@ -66,25 +74,71 @@ html.livia-narrow {
 .livia-nav-divider {
   align-self: center;
   height: 1.4em;
-  min-height: calc(14px * var(--livia-ui-scale));
-  max-height: calc(22px * var(--livia-ui-scale));
+  min-height: calc(14px * var(--livia-bottom-nav-scale));
+  max-height: calc(22px * var(--livia-bottom-nav-scale));
 }
 
 html.livia-narrow .livia-bottom-nav {
   max-width: calc(100vw - 0.6rem);
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  white-space: normal;
+  overflow: visible;
 }
 
-html.livia-narrow .livia-bottom-nav::-webkit-scrollbar {
-  height: 0;
-}
-
+/*
+ * Narrow: exactly four buttons in one row. Same font/padding as laptop; each cell flexes equally
+ * and label text wraps (two lines max is typical) instead of shrinking type or scrolling.
+ */
 html.livia-narrow .livia-bottom-nav .livia-bottom-nav-row,
 html.livia-narrow .livia-bottom-nav .rt-HStack {
-  gap: 0.28rem;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  align-items: stretch;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html.livia-narrow .livia-bottom-nav a[data-href] {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+  font-size: calc(19px * var(--livia-bottom-nav-scale));
+  line-height: 1.22;
+  padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.36rem * var(--livia-bottom-nav-scale));
+}
+
+html.livia-narrow .livia-bottom-nav a[data-href] .livia-nav-label {
+  display: block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+html.livia-narrow .livia-bottom-nav a[data-href] .rt-HStack {
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  white-space: normal;
+  max-width: 100%;
+}
+
+/* Let the inner stack use the full button width so wrapped labels stay centered */
+html.livia-narrow .livia-bottom-nav a[data-href] > div {
+  width: 100%;
+  min-width: 0;
+  align-items: center;
+}
+
+html.livia-narrow .livia-bottom-nav .livia-nav-divider {
+  display: none;
 }
 
 .livia-nav-tooltip {
@@ -100,7 +154,7 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   border-radius: 8px;
   padding: 6px 12px;
   font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: calc(14px * var(--livia-ui-scale));
+  font-size: calc(14px * var(--livia-bottom-nav-scale));
   font-weight: 500;
   color: rgba(245, 240, 232, 0.85);
   opacity: 0;
@@ -150,7 +204,10 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   transform: scale(0.97);
 }
 
-/* Page tabs: match bottom-nav label size (homepage chrome) */
+/*
+ * Page tabs: on narrow viewports, --livia-ui-scale is 2.5 (tappable bottom nav).
+ * With width=device-width, that same scale on tab buttons dominates the screen — cap tab chrome.
+ */
 .livia-page-tabs [role="tablist"] button {
   font-size: calc(19px * var(--livia-ui-scale));
   padding: calc(0.45rem * var(--livia-ui-scale)) calc(0.55rem * var(--livia-ui-scale));
@@ -158,9 +215,57 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   white-space: normal;
 }
 
-/* Mobile: wrapped tab rows — generous gap between buttons; title vs RJW is tight in the component */
+html.livia-narrow .livia-page-tabs [role="tablist"] button {
+  font-size: calc(19px * min(var(--livia-ui-scale), 1.28));
+  padding: calc(0.4rem * min(var(--livia-ui-scale), 1.28))
+    calc(0.5rem * min(var(--livia-ui-scale), 1.28));
+}
+
+/* Mobile: wrapped tab rows — generous gap; submenu labels centered */
 .livia-mobile-tablist {
-  gap: calc(1.35rem * var(--livia-ui-scale)) calc(1rem * var(--livia-ui-scale));
+  gap: calc(1.35rem * min(var(--livia-ui-scale), 1.28)) calc(1rem * min(var(--livia-ui-scale), 1.28));
+  justify-content: center;
+}
+
+html.livia-narrow .livia-mobile-tab-more-row {
+  justify-content: center;
+}
+
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist button,
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-primary,
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-single {
+  text-align: center !important;
+}
+
+/*
+ * Mobile MORE rail vs desktop side rail — html.livia-narrow / livia-wide (livia_nav.js).
+ * Reflex responsive display[] used layout viewport width; meta width=1280 broke this — we tie chrome to JS class.
+ */
+html.livia-wide .livia-mobile-tab-rail {
+  display: none !important;
+}
+
+html.livia-narrow .livia-mobile-tab-rail {
+  display: flex !important;
+  flex-direction: column;
+  width: 100%;
+  align-items: stretch;
+  box-sizing: border-box;
+  background: rgba(18, 15, 12, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 248, 238, 0.12);
+  border-radius: 1rem;
+  padding: 0.65rem 0.75rem;
+}
+
+html.livia-narrow .livia-tab-rail {
+  display: none !important;
+}
+
+html.livia-wide .livia-desktop-tab-rail {
+  display: flex !important;
+  flex-direction: column;
 }
 
 .livia-page-tabs [role="tablist"] button .livia-tab-label-primary,
@@ -174,14 +279,14 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   gap: 0.2rem !important;
 }
 
-.livia-page-tabs [role="tablist"] button .livia-tab-label-rjw {
+.livia-page-tabs [role="tablist"] button .livia-tab-label-sub {
   display: block;
   margin-top: 0;
   text-align: center;
 }
 
-.livia-page-tabs [role="tablist"] button[data-state="active"] .livia-tab-label-rjw,
-.livia-page-tabs [role="tablist"] button[aria-selected="true"] .livia-tab-label-rjw {
+.livia-page-tabs [role="tablist"] button[data-state="active"] .livia-tab-label-sub,
+.livia-page-tabs [role="tablist"] button[aria-selected="true"] .livia-tab-label-sub {
   opacity: 0.92;
 }
 
@@ -199,21 +304,16 @@ html.livia-wide .livia-tab-rail {
   flex-shrink: 0;
 }
 
-html.livia-wide .livia-tab-rail:not(:hover):not(:focus-within) {
+html.livia-wide .livia-tab-rail:not(:hover) {
   min-height: 12rem;
 }
 
-html.livia-wide .livia-tab-rail:hover,
-html.livia-wide .livia-tab-rail:focus-within {
+/* Hover only: rail does not stay open from keyboard focus (use MORE on touch / narrow). */
+html.livia-wide .livia-tab-rail:hover {
   width: min(22rem, 100%);
   min-height: 0;
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-html.livia-wide .livia-tab-rail:focus-visible {
-  outline: 2px solid rgba(212, 148, 58, 0.65);
-  outline-offset: 3px;
 }
 
 html.livia-wide .livia-tab-rail [role="tablist"] {
@@ -239,24 +339,27 @@ html.livia-wide .livia-tab-rail-grip-text {
   white-space: nowrap;
 }
 
-html.livia-wide .livia-tab-rail:not(:hover):not(:focus-within) [role="tablist"] {
+html.livia-wide .livia-tab-rail:not(:hover) [role="tablist"] {
   display: none;
 }
 
-html.livia-wide .livia-tab-rail:hover .livia-tab-rail-grip,
-html.livia-wide .livia-tab-rail:focus-within .livia-tab-rail-grip {
+html.livia-wide .livia-tab-rail:hover .livia-tab-rail-grip {
   display: none;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"],
-html.livia-wide .livia-tab-rail:focus-within [role="tablist"] {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] {
   display: flex;
   flex-direction: column;
   width: 100%;
+  /* Many tabs + large UI scale: keep last tab (e.g. Instagram) reachable */
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button,
-html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
   white-space: normal;
@@ -266,8 +369,7 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button {
   line-height: 1.25;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button .livia-tab-label-rjw,
-html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button .livia-tab-label-rjw {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button .livia-tab-label-sub {
   font-size: 0.68em;
   margin-top: 0;
   text-align: center;
@@ -278,29 +380,79 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button .livia-tab-
  * Two-line tabs: add a little top padding so the stripe reads with the first line, not through the RJW subtitle.
  */
 html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--left:focus-within [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[aria-selected="true"],
-html.livia-wide .livia-tab-rail--left:focus-within [role="tablist"] button[aria-selected="true"] {
+html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[aria-selected="true"] {
   box-shadow: inset 3px 0 0 0 currentColor;
 }
 
 html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--right:focus-within [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[aria-selected="true"],
-html.livia-wide .livia-tab-rail--right:focus-within [role="tablist"] button[aria-selected="true"] {
+html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[aria-selected="true"] {
   box-shadow: inset -3px 0 0 0 currentColor;
 }
 
 html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
-html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"],
-html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
   padding-top: calc(0.28rem * var(--livia-ui-scale));
+}
+
+/* Wide layout but no hover (touch tablet): keep section list visible — hover cannot expand the rail. */
+@media (hover: none) {
+  html.livia-wide .livia-tab-rail {
+    width: min(22rem, 100%) !important;
+    min-height: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  html.livia-wide .livia-tab-rail .livia-tab-rail-grip {
+    display: none !important;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    max-height: calc(100vh - 2.5rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    white-space: normal;
+    text-align: inherit;
+    font-size: calc(26px * var(--livia-ui-scale));
+    padding: calc(0.62rem * var(--livia-ui-scale)) calc(0.72rem * var(--livia-ui-scale));
+    line-height: 1.25;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button .livia-tab-label-sub {
+    font-size: 0.68em;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  html.livia-wide .livia-tab-rail--left [role="tablist"] button[data-state="active"],
+  html.livia-wide .livia-tab-rail--left [role="tablist"] button[aria-selected="true"] {
+    box-shadow: inset 3px 0 0 0 currentColor;
+  }
+
+  html.livia-wide .livia-tab-rail--right [role="tablist"] button[data-state="active"],
+  html.livia-wide .livia-tab-rail--right [role="tablist"] button[aria-selected="true"] {
+    box-shadow: inset -3px 0 0 0 currentColor;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
+  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+    padding-top: calc(0.28rem * var(--livia-ui-scale));
+  }
 }
 
 /* Instagram / GitHub edge tool rails: always collapsed until hover (mouse) or focus (tap / Tab) */
 .livia-tool-rail {
-  --livia-tool-grip: max(calc(1.4rem * var(--livia-ui-scale)), calc(22px * var(--livia-ui-scale)));
+  --livia-tool-grip: max(calc(1.4rem * var(--livia-tool-rail-scale)), calc(22px * var(--livia-tool-rail-scale)));
   --livia-tool-open: min(360px, 92vw);
   box-sizing: border-box;
   transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -331,7 +483,7 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: calc(16px * var(--livia-ui-scale));
+  font-size: calc(16px * var(--livia-tool-rail-scale));
 }
 
 .livia-tool-rail-grip--instagram {
@@ -353,12 +505,12 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-
 .livia-tool-rail-body {
   flex: 1 1 auto;
   min-width: 0;
-  font-size: calc(19px * var(--livia-ui-scale));
+  font-size: calc(19px * var(--livia-tool-rail-scale));
   line-height: 1.45;
 }
 
 .livia-tool-rail-heading {
-  font-size: calc(16px * var(--livia-ui-scale));
+  font-size: calc(16px * var(--livia-tool-rail-scale));
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -373,7 +525,7 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-
 }
 
 .livia-tool-rail-cta {
-  font-size: calc(19px * var(--livia-ui-scale));
+  font-size: calc(19px * var(--livia-tool-rail-scale));
 }
 
 .livia-tool-rail--right:focus-within,

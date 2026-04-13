@@ -26,6 +26,7 @@ from livia.content import (
 )
 from livia.components import (
     BG_FUNC_MAP,
+    MobileTabRailState,
     _build_special_tab,
     bottom_nav,
     fullscreen_bg,
@@ -225,7 +226,7 @@ def create_app() -> rx.App:
         head_components=[
             rx.el.meta(
                 name="viewport",
-                content="width=1280",
+                content="width=device-width, initial-scale=1",
             ),
             rx.script(_LIVIA_NAV_JS),
         ],
@@ -236,12 +237,12 @@ def create_app() -> rx.App:
         art_design_page,
         route="/art-design",
         title="Art & Design | Livia Zaharia",
-        on_load=ArtDesignContentState.load_content,
+        on_load=[ArtDesignContentState.load_content, MobileTabRailState.collapse_expanded],
     )
     application.add_page(
         science_tech_page,
         route="/science-tech",
         title="Science & Tech | Livia Zaharia",
-        on_load=ScienceTechContentState.load_content,
+        on_load=[ScienceTechContentState.load_content, MobileTabRailState.collapse_expanded],
     )
     return application

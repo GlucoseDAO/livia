@@ -128,9 +128,10 @@ def preprocess_markdown_for_state(content: str) -> str:
             images = collect_gallery_images(folder)
             if images:
                 img_tags = "".join(
-                    f'<div style="border-radius:0.6rem;overflow:hidden;border:1px solid rgba(255,248,238,0.12)">'
-                    f'<img src="{encode_url_path(src)}" style="width:100%;height:auto;object-fit:cover;border-radius:0.6rem" loading="lazy"/>'
-                    f'</div>'
+                    f'<div class="livia-lightbox-thumb-wrap" style="border-radius:0.6rem;overflow:hidden;border:1px solid rgba(255,248,238,0.12)">'
+                    f'<img class="livia-lightbox-thumb" src="{encode_url_path(src)}" data-full-src="{encode_url_path(src)}" '
+                    f'style="width:100%;height:auto;object-fit:cover;border-radius:0.6rem" loading="lazy" alt=""/>'
+                    f"</div>"
                     for src in images
                 )
                 output_lines.append(
@@ -141,12 +142,15 @@ def preprocess_markdown_for_state(content: str) -> str:
 
         artifact_match = ARTIFACT_IMAGE_RE.match(stripped)
         if artifact_match is not None:
-            src = encode_url_path(artifact_match.group(1))
+            raw_path = artifact_match.group(1).strip()
+            src = encode_url_path(raw_path) if raw_path.startswith("/") else raw_path
             output_lines.append(
-                f'<div style="display:flex;justify-content:center;width:100%;margin:1rem 0">'
-                f'<img src="{src}" style="max-width:400px;width:100%;height:auto;object-fit:contain;'
-                f'border-radius:0.8rem;border:2px solid {AMBER_DIM};'
-                f'box-shadow:0 4px 24px rgba(154,101,39,0.3)" loading="lazy"/></div>'
+                f'<div class="livia-artifact-wrap livia-lightbox-thumb-wrap">'
+                f'<img class="livia-lightbox-thumb" src="{src}" data-full-src="{src}" alt="" '
+                f'style="max-width:400px;width:100%;height:auto;object-fit:contain;'
+                f"border-radius:0.8rem;border:2px solid {AMBER_DIM};"
+                f'box-shadow:0 4px 24px rgba(154,101,39,0.3)" loading="lazy"/>'
+                f"</div>"
             )
             continue
 
@@ -185,7 +189,11 @@ def scan_tab_slugs(folder: str) -> list[tuple[int, str, str, str]]:
 
 
 def load_folder_md_content(folder: str) -> dict[str, str]:
-    """Read all markdown tab files from a content subfolder, returning {slug: preprocessed_content}."""
+    """Read all markdown tab files from a content subfolder, returning {slug: preprocessed markdown}.
+
+    Artifacts become markdown images (for ``component_map`` ``img`` + lightbox); galleries and
+    YouTube stay as embedded HTML processed for ``rx.markdown`` + rehype-raw.
+    """
     folder_path = CONTENT_DIR / folder
     data: dict[str, str] = {}
     for md_file in sorted(folder_path.glob("*.md")):
