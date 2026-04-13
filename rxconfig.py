@@ -105,35 +105,51 @@ class LlmsTxtPlugin(Plugin):
 
 
 class ViteDevServerPlugin(Plugin):
-    """Plugin that patches vite.config.js with host and allowedHosts from rxconfig."""
+    """Plugin that patches vite.config.js with host, allowedHosts, and SSR fixes."""
 
     def post_compile(self, **context: object) -> None:
-        config = get_config()
-        allowed_hosts = getattr(config, "vite_allowed_hosts", None)
-        host = getattr(config, "vite_host", None)
-        if allowed_hosts is None and host is None:
-            return
-
         vite_path = get_web_dir() / constants.ReactRouter.VITE_CONFIG_FILE
         if not vite_path.exists():
             return
 
         content = vite_path.read_text()
-        needs_host = host is not None and "host:" not in content
-        needs_allowed_hosts = allowed_hosts is True and "allowedHosts" not in content
-        if not needs_host and not needs_allowed_hosts:
-            return
+        new_content = content
 
-        insert_after = "port: process.env.PORT,"
-        additions: list[str] = []
-        if needs_host:
-            additions.append(f'    host: "{host}",')
-        if needs_allowed_hosts:
-            additions.append("    allowedHosts: true,")
+        # --- server.host / server.allowedHosts ---
+        rx_config = get_config()
+        allowed_hosts = getattr(rx_config, "vite_allowed_hosts", None)
+        host = getattr(rx_config, "vite_host", None)
+        if host is not None and "host:" not in new_content:
+            new_content = re.sub(
+                r"(port: process\.env\.PORT,)",
+                rf"\1\n    host: \"{host}\",",
+                new_content,
+                count=1,
+            )
+        if allowed_hosts is True and "allowedHosts" not in new_content:
+            new_content = re.sub(
+                r"(port: process\.env\.PORT,)",
+                r"\1\n    allowedHosts: true,",
+                new_content,
+                count=1,
+            )
 
-        pattern = re.compile(rf"({re.escape(insert_after)})", re.MULTILINE)
-        replacement = insert_after + "\n" + "\n".join(additions)
-        new_content = pattern.sub(replacement, content, count=1)
+        # --- SSR / CJS-ESM fix for react-syntax-highlighter ---
+        # react-syntax-highlighter (CJS) tries to require() refractor (ESM-only).
+        # Listing it in ssr.noExternal forces Vite to bundle it for SSR, handling
+        # the conversion internally instead of letting Node.js hit the require() error.
+        if "noExternal" not in new_content:
+            new_content = new_content.rstrip()
+            # Insert before the closing })); of defineConfig
+            new_content = new_content[: new_content.rfind("}));")] + (
+                "  ssr: {\n"
+                "    noExternal: ['react-syntax-highlighter'],\n"
+                "  },\n"
+                "  optimizeDeps: {\n"
+                "    include: ['react-syntax-highlighter'],\n"
+                "  },\n"
+                "}));"
+            )
 
         if new_content != content:
             vite_path.write_text(new_content)
