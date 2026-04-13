@@ -104,6 +104,9 @@ class LlmsTxtPlugin(Plugin):
             (web_public / "llms.txt").write_text(txt, encoding="utf-8")
 
 
+_ANSI_RE = re.compile(r"\x1b\[[0-9;]*[A-Za-z]")
+
+
 class ViteDevServerPlugin(Plugin):
     """Plugin that patches vite.config.js with host, allowedHosts, and SSR fixes."""
 
@@ -112,26 +115,27 @@ class ViteDevServerPlugin(Plugin):
         if not vite_path.exists():
             return
 
-        content = vite_path.read_text()
+        raw = vite_path.read_text(encoding="utf-8")
+        # Strip any ANSI escape codes that may have been embedded by Reflex's
+        # console output (they cause rolldown/Vite parse errors).
+        content = _ANSI_RE.sub("", raw)
         new_content = content
 
         # --- server.host / server.allowedHosts ---
         rx_config = get_config()
         allowed_hosts = getattr(rx_config, "vite_allowed_hosts", None)
         host = getattr(rx_config, "vite_host", None)
-        if host is not None and "host:" not in new_content:
-            new_content = re.sub(
-                r"(port: process\.env\.PORT,)",
-                rf"\1\n    host: \"{host}\",",
-                new_content,
-                count=1,
+        if host is not None and '"host"' not in new_content and "host:" not in new_content:
+            new_content = new_content.replace(
+                "port: process.env.PORT,",
+                f'port: process.env.PORT,\n    host: "{host}",',
+                1,
             )
         if allowed_hosts is True and "allowedHosts" not in new_content:
-            new_content = re.sub(
-                r"(port: process\.env\.PORT,)",
-                r"\1\n    allowedHosts: true,",
-                new_content,
-                count=1,
+            new_content = new_content.replace(
+                "port: process.env.PORT,",
+                "port: process.env.PORT,\n    allowedHosts: true,",
+                1,
             )
 
         # --- SSR / CJS-ESM fix for react-syntax-highlighter ---
@@ -139,20 +143,22 @@ class ViteDevServerPlugin(Plugin):
         # Listing it in ssr.noExternal forces Vite to bundle it for SSR, handling
         # the conversion internally instead of letting Node.js hit the require() error.
         if "noExternal" not in new_content:
-            new_content = new_content.rstrip()
-            # Insert before the closing })); of defineConfig
-            new_content = new_content[: new_content.rfind("}));")] + (
-                "  ssr: {\n"
-                "    noExternal: ['react-syntax-highlighter'],\n"
-                "  },\n"
-                "  optimizeDeps: {\n"
-                "    include: ['react-syntax-highlighter'],\n"
-                "  },\n"
-                "}));"
-            )
+            closing = "}));"
+            idx = new_content.rfind(closing)
+            if idx != -1:
+                new_content = (
+                    new_content[:idx]
+                    + "  ssr: {\n"
+                    "    noExternal: ['react-syntax-highlighter'],\n"
+                    "  },\n"
+                    "  optimizeDeps: {\n"
+                    "    include: ['react-syntax-highlighter'],\n"
+                    "  },\n"
+                    + closing
+                )
 
-        if new_content != content:
-            vite_path.write_text(new_content)
+        if new_content != raw:
+            vite_path.write_text(new_content, encoding="utf-8")
 
 
 FRONTEND_PORT = int(os.getenv("PORT", "3010"))
