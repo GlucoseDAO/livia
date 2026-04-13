@@ -1,12 +1,15 @@
 import os
 import re
-from pathlib import Path
 
 import reflex as rx
+from dotenv import load_dotenv
 from reflex import constants
 from reflex.config import get_config
 from reflex.plugins import Plugin
 from reflex.utils.prerequisites import get_web_dir
+
+# Load .env from the project root before reading any env vars.
+load_dotenv()
 
 
 class ViteDevServerPlugin(Plugin):
@@ -44,39 +47,20 @@ class ViteDevServerPlugin(Plugin):
             vite_path.write_text(new_content)
 
 
-def _port_from_dotenv(dotenv_path: Path) -> str | None:
-    if not dotenv_path.exists():
-        return None
-    for raw_line in dotenv_path.read_text().splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        if key.strip() != "PORT":
-            continue
-        return value.strip().strip("\"'")
-    return None
-
-
-def _resolve_frontend_port() -> int:
-    raw_value = os.getenv("PORT")
-    if raw_value is None:
-        raw_value = _port_from_dotenv(Path(__file__).parent / ".env")
-    if not raw_value:
-        return 3010
-    try:
-        return int(raw_value)
-    except ValueError:
-        return 3010
-
-
-FRONTEND_PORT = _resolve_frontend_port()
+FRONTEND_PORT = int(os.getenv("PORT", "3010"))
 BACKEND_PORT = int(os.getenv("BACKEND_PORT", str(FRONTEND_PORT + 1)))
+_DEPLOY_URL: str | None = os.getenv("DEPLOY_URL")
+
+# Enable SSR/prerendering by default so bots and search engines get
+# pre-rendered HTML. No effect in Vite dev server; kicks in on production
+# builds. Set REFLEX_SSR=false in the environment to disable.
+os.environ.setdefault("REFLEX_SSR", "true")
 
 config = rx.Config(
     app_name="livia",
     frontend_port=FRONTEND_PORT,
     backend_port=BACKEND_PORT,
+    **({} if _DEPLOY_URL is None else {"deploy_url": _DEPLOY_URL}),
     vite_allowed_hosts=True,
     vite_host="0.0.0.0",
     plugins=[

@@ -147,7 +147,7 @@ When a change affects UI/UX, validation is required before considering the task 
 - All text rendered over background images must have a sufficiently opaque panel or backdrop behind it to ensure readability; never place gray or low-contrast text directly on a photo.
 - Do not bloat the homepage with all content at once; show content only when the user navigates to it.
 - Prefer Reflex internal Python APIs (e.g. `_init`, `_run` from `reflex.reflex`) over spawning subprocesses for Reflex commands.
-- The deployment server (agingkills.eu) runs Caddy as a reverse proxy; Caddy is not on the local dev machine.
+- The deployment server runs Caddy as a reverse proxy; Caddy is not on the local dev machine. The production site URL is https://livia.glucosedao.org (set as DEPLOY_URL in .env).
 - Content panels and text must fill available screen space with generous sizing and large fonts; never render small, narrow text boxes that waste screen real estate.
 - When asked to act (e.g. "do stuff for me"), proceed decisively without asking for further confirmation.
 - Edge tool rails (Instagram on the right, GitHub & Tech on the left) stay **collapsed** to a grip strip whose minimum width scales with `--livia-ui-scale`. They **expand** on fine-pointer **hover** or when the rail has **`:focus-within`** (tap the strip on touch). Bottom nav never auto-hides.

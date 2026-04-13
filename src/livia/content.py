@@ -527,6 +527,25 @@ def scan_tab_slugs(folder: str) -> list[tuple[int, str, str, str]]:
     return entries
 
 
+def load_folder_raw_md(folder: str) -> list[tuple[str, str, str]]:
+    """Read raw (unprocessed) markdown for each tab in a folder.
+
+    Returns a list of (slug, label, raw_markdown) tuples in tab order (N_ prefix).
+    Used for building JSON-LD structured data and the content-map page, where
+    clean text is preferred over preprocessed HTML.
+    """
+    folder_path = CONTENT_DIR / folder
+    entries: list[tuple[int, str, str, str]] = []  # (order, slug, label, raw)
+    for md_file in folder_path.glob("*.md"):
+        if md_file.name.startswith("_"):
+            continue
+        order, label = _parse_tab_filename(md_file.stem)
+        slug = _label_to_slug(label)
+        entries.append((order, slug, label, _resolve_md_content(md_file)))
+    entries.sort(key=lambda t: t[0])
+    return [(slug, label, raw) for _order, slug, label, raw in entries]
+
+
 def load_folder_md_content(folder: str) -> dict[str, str]:
     """Read all markdown tab files from a content subfolder, returning {slug: preprocessed markdown}.
 

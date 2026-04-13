@@ -1,5 +1,6 @@
 """Page definitions and content state for the Livia website."""
 
+import json
 from typing import Literal
 
 import reflex as rx
@@ -24,7 +25,7 @@ from livia.content import (
     _label_to_slug,
     heading_to_rail_title,
     load_content,
-    load_folder_md_content,
+    load_folder_raw_md,
     load_page_meta,
     load_pieces_tab_content,
     load_single_piece_tab_content,
@@ -52,6 +53,60 @@ from livia.components import (
 )
 
 _LIVIA_NAV_JS = (ASSETS_DIR / "livia_nav.js").read_text(encoding="utf-8")
+
+_BIOGRAPHY_TEXT = load_content("biography")
+_HOME_TEXT = load_content("home")
+
+# Rich tab content loaded once at module level for JSON-LD and the content-map page.
+_ART_DESIGN_RAW: list[tuple[str, str, str]] = load_folder_raw_md("art-design")   # (slug, label, raw)
+_SCI_TECH_RAW: list[tuple[str, str, str]] = load_folder_raw_md("science-tech")
+_PIECES_INTRO, _PIECES_ENTRIES = parse_pieces_tab_entries()
+
+
+def _json_ld_script(schema: dict) -> rx.Component:
+    """Return a <script type="application/ld+json"> component for structured data."""
+    return rx.el.script(
+        json.dumps(schema, ensure_ascii=False, indent=2),
+        type="application/ld+json",
+    )
+
+
+_PERSON_SCHEMA: dict = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Livia Zaharia",
+    "alternateName": ["Parametric Livia", "Paral Design"],
+    "description": (
+        "Romanian architect and parametric jewellery artist. Works at the intersection "
+        "of generative art, speculative design for health/longevity, and experimental "
+        "contemporary jewellery. Founder of GlucoseDAO."
+    ),
+    "url": "https://livia.glucosedao.org",
+    "sameAs": [
+        "https://www.instagram.com/paral_design/",
+        "https://www.facebook.com/byLiviaZaharia/",
+        "https://www.linkedin.com/in/livia-zaharia-4b1425a0",
+        "https://github.com/GlucoseDAO/",
+    ],
+    "knowsAbout": [
+        "parametric design",
+        "computational architecture",
+        "generative art",
+        "jewellery making",
+        "digital health",
+        "longevity research",
+        "glucose prediction",
+        "machine learning",
+        "Grasshopper",
+        "COMPAS",
+    ],
+    "affiliation": [
+        {"@type": "Organization", "name": "GlucoseDAO", "url": "https://glucosedao.org"},
+        {"@type": "Organization", "name": "Longevity Genie", "url": "https://longevity-genie.github.io"},
+        {"@type": "Organization", "name": "HEALES"},
+        {"@type": "Organization", "name": "Universitätsmedizin Rostock (IBIMA)"},
+    ],
+}
 
 # Empty-string sentinel dicts keyed by all known md slugs — avoids KeyErrors in
 # state-var subscript expressions before content is loaded on demand.
@@ -402,6 +457,66 @@ def science_tech_page() -> rx.Component:
 
 
 # ---------------------------------------------------------------------------
+# Content map page (for bots / LLMs — not in user navigation)
+# ---------------------------------------------------------------------------
+
+def _content_section(title: str, markdown_text: str) -> rx.Component:
+    """A heading + rendered markdown block for the content map page."""
+    return rx.box(
+        rx.heading(title, size="4", margin_bottom="0.5rem", margin_top="1.5rem"),
+        rx.markdown(markdown_text, component_map=MARKDOWN_COMPONENT_MAP, use_unwrap_images=False),
+        width="100%",
+    )
+
+
+def content_map_page() -> rx.Component:
+    """Flat HTML page containing all site content for search bots and LLMs.
+
+    Not linked from the user-facing navigation. Registered in the sitemap so
+    crawlers find it. All markdown is embedded at compile time so it appears
+    fully in the pre-rendered HTML without JavaScript or WebSocket.
+    """
+    art_sections = [_content_section(label, raw) for _slug, label, raw in _ART_DESIGN_RAW]
+    sci_sections = [_content_section(label, raw) for _slug, label, raw in _SCI_TECH_RAW]
+
+    pieces_sections: list[rx.Component] = []
+    if _PIECES_INTRO:
+        pieces_sections.append(_content_section("Pieces — Overview", _PIECES_INTRO))
+    for entry in _PIECES_ENTRIES:
+        pieces_sections.append(_content_section(entry.raw_heading, entry.body_md))
+
+    return rx.box(
+        rx.box(
+            rx.heading("Livia Zaharia — Full Content Index", size="6", margin_bottom="0.5rem"),
+            rx.text(
+                "This page provides all site content in a single document for search engines and AI assistants.",
+                color="gray",
+                margin_bottom="2rem",
+            ),
+            rx.divider(),
+            rx.heading("Biography", size="5", margin_top="1.5rem"),
+            _content_section("Biography", _BIOGRAPHY_TEXT),
+            rx.divider(margin_top="2rem"),
+            rx.heading("Art & Design", size="5", margin_top="1.5rem"),
+            *art_sections,
+            rx.divider(margin_top="2rem"),
+            rx.heading("Science & Tech", size="5", margin_top="1.5rem"),
+            *sci_sections,
+            rx.divider(margin_top="2rem"),
+            rx.heading("Pieces", size="5", margin_top="1.5rem"),
+            *pieces_sections,
+            max_width="860px",
+            margin="0 auto",
+            padding="2rem 1.5rem 4rem",
+            font_family=SANS_FONT,
+        ),
+        background="white",
+        color="#1a1a1a",
+        min_height="100vh",
+    )
+
+
+# ---------------------------------------------------------------------------
 # App registration
 # ---------------------------------------------------------------------------
 
@@ -423,26 +538,150 @@ def create_app() -> rx.App:
                 content="width=device-width, initial-scale=1",
             ),
             rx.script(_LIVIA_NAV_JS),
+            _json_ld_script(_PERSON_SCHEMA),
         ],
     )
-    application.add_page(home_page, route="/", title="Livia Zaharia")
-    application.add_page(biography_page, route="/biography", title="Biography | Livia Zaharia")
+    application.add_page(
+        home_page,
+        route="/",
+        title="Livia Zaharia",
+        description="Between living systems and generative form. Computational Design, Science Art & Digital Health.",
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Livia Zaharia"},
+            {"property": "og:description", "content": "Romanian architect and parametric jewellery artist. Generative art, speculative design for longevity, experimental contemporary jewellery. Founder of GlucoseDAO."},
+            {"property": "og:image", "content": "/livia.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            {"name": "twitter:title", "content": "Livia Zaharia"},
+            {"name": "twitter:description", "content": "Between living systems and generative form. Computational Design, Science Art & Digital Health."},
+        ],
+    )
+    application.add_page(
+        biography_page,
+        route="/biography",
+        title="Biography | Livia Zaharia",
+        description="Livia Zaharia — Romanian architect, parametric jewellery artist, and citizen scientist. Founder of GlucoseDAO, contributor to Longevity Genie, exhibited at Romanian Jewelry Week since 2021.",
+        meta=[
+            {"property": "og:type", "content": "profile"},
+            {"property": "og:title", "content": "Biography | Livia Zaharia"},
+            {"property": "og:description", "content": _BIOGRAPHY_TEXT[:300].replace("\n", " ")},
+            {"property": "og:image", "content": "/livia.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "AboutPage",
+                "name": "Biography — Livia Zaharia",
+                "description": "Biography of Livia Zaharia, Romanian architect and parametric jewellery artist.",
+                "mainEntity": {**_PERSON_SCHEMA, "description": _BIOGRAPHY_TEXT},
+            }),
+        ],
+    )
     application.add_page(
         pieces_page,
         route="/pieces",
         title="Pieces | Livia Zaharia",
+        description="Wearable objects and jewellery by Livia Zaharia — parametric, script-driven pieces cast in silver, incorporating amber, walnut, and natural materials. Exhibited at Romanian Jewelry Week since 2021.",
         on_load=[PiecesContentState.load_content, MobileTabRailState.collapse_expanded],
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Pieces | Livia Zaharia"},
+            {"property": "og:description", "content": "Wearable objects and jewellery by Livia Zaharia — parametric, script-driven pieces cast in silver, amber, and natural materials."},
+            {"property": "og:image", "content": "/yellow_side.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Pieces — Livia Zaharia",
+                "description": "Wearable objects and jewellery by Livia Zaharia. Parametric, script-driven designs cast in silver and mixed materials.",
+                "creator": {"@type": "Person", "name": "Livia Zaharia"},
+                "keywords": "parametric jewellery, silver, generative design, Paral Design, Romanian Jewelry Week",
+                "hasPart": [
+                    {"@type": "VisualArtwork", "name": e.raw_heading, "description": e.body_md}
+                    for e in _PIECES_ENTRIES
+                ],
+            }),
+        ],
     )
     application.add_page(
         art_design_page,
         route="/art-design",
         title="Art & Design | Livia Zaharia",
+        description="Art & Design practice of Livia Zaharia (Paral Design). Parametric jewellery, generative architecture, and wearable art using Grasshopper, COMPAS, and Python — exhibited internationally since 2019.",
         on_load=[ArtDesignContentState.load_content, MobileTabRailState.collapse_expanded],
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Art & Design | Livia Zaharia"},
+            {"property": "og:description", "content": "Parametric jewellery and generative art by Livia Zaharia (Paral Design). Script-driven 3D design, cast in silver, amber, and natural materials."},
+            {"property": "og:image", "content": "/yellow_side.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "CreativeWork",
+                "name": "Art & Design — Livia Zaharia / Paral Design",
+                "description": (
+                    "Parametric jewellery and generative art practice by Livia Zaharia, working under the label Paral Design. "
+                    "Uses Grasshopper, COMPAS, and Python scripts to design nature-evoking wearable artefacts — rings, pendants, "
+                    "earrings — cast in silver and mixed with natural materials. Exhibited at Romanian Jewelry Week 2021–2025, "
+                    "Berlin Longevity Week, ARDD, and Data as Wearable Art."
+                ),
+                "creator": {"@type": "Person", "name": "Livia Zaharia", "alternateName": "Paral Design"},
+                "keywords": "parametric jewellery, generative art, Grasshopper, COMPAS, silver casting, Romanian Jewelry Week, Paral Design",
+                "hasPart": [
+                    {"@type": "CreativeWork", "name": label, "description": raw}
+                    for _slug, label, raw in _ART_DESIGN_RAW
+                ],
+            }),
+        ],
     )
     application.add_page(
         science_tech_page,
         route="/science-tech",
         title="Science & Tech | Livia Zaharia",
+        description="Livia Zaharia as citizen scientist: founder of GlucoseDAO (open glucose prediction research), contributor to Longevity Genie, ML practitioner, and bioinformatics workshop instructor.",
         on_load=[ScienceTechContentState.load_content, MobileTabRailState.collapse_expanded],
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Science & Tech | Livia Zaharia"},
+            {"property": "og:description", "content": "Citizen scientist: founder of GlucoseDAO, contributor to Longevity Genie open-source ecosystem, ML practitioner in digital health and longevity research."},
+            {"property": "og:image", "content": "/green_side.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "ProfilePage",
+                "name": "Science & Tech — Livia Zaharia",
+                "description": (
+                    "Livia Zaharia as citizen scientist and open-source contributor. "
+                    "Founder of GlucoseDAO — building open tools for glucose prediction benchmarking and comparing ML models "
+                    "against human intuition (Sugar-Sugar Game at sugar-sugar.glucosedao.org). "
+                    "Contributor to Longevity Genie open-source ecosystem. "
+                    "Affiliated with HEALES and Universitätsmedizin Rostock (IBIMA). "
+                    "Technical stack: Python, PyTorch, Polars, NeuralForecaster, Reflex. "
+                    "Has taught AI agentic workshops in bioinformatics."
+                ),
+                "mainEntity": {
+                    "@type": "Person",
+                    "name": "Livia Zaharia",
+                    "founder": [
+                        {"@type": "Organization", "name": "GlucoseDAO", "url": "https://glucosedao.org", "description": "Decentralized autonomous organization for open-source glucose prediction benchmarking"},
+                    ],
+                    "memberOf": [
+                        {"@type": "Organization", "name": "Longevity Genie", "url": "https://longevity-genie.github.io"},
+                        {"@type": "Organization", "name": "HEALES"},
+                        {"@type": "Organization", "name": "Universitätsmedizin Rostock (IBIMA)"},
+                    ],
+                },
+                "hasPart": [
+                    {"@type": "CreativeWork", "name": label, "description": raw}
+                    for _slug, label, raw in _SCI_TECH_RAW
+                ],
+            }),
+        ],
+    )
+    application.add_page(
+        content_map_page,
+        route="/content",
+        title="Full Content Index | Livia Zaharia",
+        description="All content from livia.glucosedao.org in a single page: biography, art & design collections, science & tech projects, and pieces — for search engines and AI assistants.",
+        context={"sitemap": {"changefreq": "weekly", "priority": 0.3}},
     )
     return application
