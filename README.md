@@ -49,6 +49,7 @@ Use these **single-line** HTML comments on their own line (see `content/art-desi
 |-----------|----------------|
 | `<!-- gallery: FolderName -->` | Renders every image in `assets/FolderName/` as a responsive grid (lightbox on the live site). `FolderName` is only the subfolder under `assets/`, not `assets/` itself. |
 | `<!-- artifact: /Folder/file.jpg -->` | Renders one centered image with the artefact styling. The path is the **URL path** under the site root: leading `/`, then path inside `assets/` (e.g. `/RJW2025/IMG_3493.jpg`). |
+| `<!-- sequence: FolderName -->` | Cycles images in `assets/FolderName/` whose filenames start with `UG_` in an opacity slideshow (no lightbox). |
 
 Ordinary markdown images work too if you use full URL paths that match files under `assets/` (same as above).
 

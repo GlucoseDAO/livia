@@ -67,6 +67,7 @@ YOUTUBE_SHORT_RE = re.compile(r"^https?://(?:www\.)?youtu\.be/([A-Za-z0-9_-]{11}
 MARKDOWN_LINK_RE = re.compile(r"^\[[^\]]+\]\((https?://[^)\s]+)\)$")
 GALLERY_DIRECTIVE_RE = re.compile(r"^<!--\s*gallery:\s*(.+?)\s*-->$")
 ARTIFACT_IMAGE_RE = re.compile(r"^<!--\s*artifact:\s*(.+?)\s*-->$")
+SEQUENCE_DIRECTIVE_RE = re.compile(r"^<!--\s*sequence:\s*(.+?)\s*-->$")
 
 _TAB_PREFIX_RE = re.compile(r"^(\d+)_(.+)$")
 _REF_FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*$", re.DOTALL)

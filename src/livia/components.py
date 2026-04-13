@@ -763,41 +763,55 @@ def github_sidebar() -> rx.Component:
 # Tabs
 # ---------------------------------------------------------------------------
 
-_RJW_TAB_SUFFIX_RE = re.compile(r"\s*\(RJW\s+(\d{4})\)\s*$")
-_CONTEST_NAME_YEAR_RE = re.compile(
-    r"\s*\((Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})\)\s*$",
-    re.IGNORECASE,
-)
-_YEAR_ONLY_PAREN_RE = re.compile(r"\s*\((\d{4})\)\s*$")
+def _split_trailing_paren_label(label: str) -> tuple[str, str | None]:
+    """Split `Title (subtitle)` on the last pair of parentheses; supports nested parens in the title."""
+    s = label.rstrip()
+    if not s.endswith(")"):
+        return label, None
+    depth = 0
+    for i in range(len(s) - 1, -1, -1):
+        ch = s[i]
+        if ch == ")":
+            depth += 1
+        elif ch == "(":
+            depth -= 1
+            if depth == 0:
+                primary = s[:i].strip()
+                subtitle = s[i + 1 : -1].strip()
+                if primary and subtitle:
+                    return primary, subtitle
+                return label, None
+    return label, None
 
 
 def _split_collection_tab_label(label: str) -> tuple[str, str | None]:
-    """If label has a trailing contest suffix, return (title line, centered subtitle line)."""
-    m = _RJW_TAB_SUFFIX_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            return primary, f"RJW {m.group(1)}"
-    m = _CONTEST_NAME_YEAR_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            contest = m.group(1).lower()
-            if contest == "vinnca":
-                cap = "Vinnca"
-            elif contest == "vinca":
-                cap = "Vinca"
-            elif contest == "spotlight":
-                cap = "Spotlight"
-            else:
-                cap = m.group(1).title()
-            return primary, f"{cap} {m.group(2)}"
-    m = _YEAR_ONLY_PAREN_RE.search(label)
-    if m:
-        primary = label[: m.start()].strip()
-        if primary:
-            return primary, m.group(1)
-    return label, None
+    """If label has a trailing `… (contest / year)` suffix, return (title line, centered subtitle line)."""
+    primary, subtitle = _split_trailing_paren_label(label)
+    if subtitle is None:
+        return label, None
+    m_rjw = re.match(r"^RJW\s+(\d{4})$", subtitle)
+    if m_rjw:
+        return primary, f"RJW {m_rjw.group(1)}"
+    m_contest = re.match(
+        r"^(Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})$",
+        subtitle,
+        re.IGNORECASE,
+    )
+    if m_contest:
+        contest = m_contest.group(1).lower()
+        if contest == "vinnca":
+            cap = "Vinnca"
+        elif contest == "vinca":
+            cap = "Vinca"
+        elif contest == "spotlight":
+            cap = "Spotlight"
+        else:
+            cap = m_contest.group(1).title()
+        return primary, f"{cap} {m_contest.group(2)}"
+    m_year = re.fullmatch(r"(\d{4})", subtitle)
+    if m_year:
+        return primary, m_year.group(1)
+    return primary, subtitle
 
 
 def _sidebar_tab_label_stack(
@@ -820,7 +834,7 @@ def _sidebar_tab_label_stack(
         rx.text(
             primary,
             width="100%",
-            text_align=text_align,
+            text_align="center",
             class_name="livia-tab-label-primary",
         ),
         rx.text(

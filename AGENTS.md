@@ -68,6 +68,12 @@ content/
 
 Drop a file like `8_New Tab Name.md` into the page's folder. The number sets its position among existing tabs. **Adding a new tab file** requires a server restart (the tab structure is built at compile time). **Editing existing tab content** is picked up on the next page load without restart — markdown content is stored in `rx.State` and re-read from disk via `on_load`.
 
+### Markdown directives (tabbed pages)
+
+- `<!-- gallery: Subfolder -->` — responsive grid of all images in `assets/Subfolder/` (click to enlarge).
+- `<!-- artifact: /path/under/assets.jpg -->` — one centered image (click to enlarge); path is site-root under `assets/`.
+- `<!-- sequence: Subfolder -->` — opacity slideshow of files in `assets/Subfolder/` whose names start with `UG_` (assembly-style preview; no lightbox).
+
 ### Reference files (shared content)
 
 A `.md` file whose entire content is YAML front-matter with a `ref` key:

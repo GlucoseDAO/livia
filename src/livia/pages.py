@@ -92,6 +92,7 @@ def _build_dynamic_tab_specs(
                     rx.markdown(
                         content_state.tab_content[slug],
                         component_map=MARKDOWN_COMPONENT_MAP,
+                        use_unwrap_images=False,
                     ),
                 ),
             ))

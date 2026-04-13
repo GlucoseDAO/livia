@@ -237,6 +237,10 @@ html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-single
   text-align: center !important;
 }
 
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-sub {
+  text-align: center !important;
+}
+
 /*
  * Mobile MORE rail vs desktop side rail — html.livia-narrow / livia-wide (livia_nav.js).
  * Reflex responsive display[] used layout viewport width; meta width=1280 broke this — we tie chrome to JS class.
@@ -277,6 +281,10 @@ html.livia-wide .livia-desktop-tab-rail {
 /* Tight gap between collection title and centered RJW line */
 .livia-tab-label-stack {
   gap: 0.2rem !important;
+}
+
+.livia-page-tabs [role="tablist"] button:has(.livia-tab-label-stack) {
+  text-align: center !important;
 }
 
 .livia-page-tabs [role="tablist"] button .livia-tab-label-sub {

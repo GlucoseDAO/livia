@@ -13,6 +13,7 @@ from livia.constants import (
     GALLERY_DIRECTIVE_RE,
     ARTIFACT_IMAGE_RE,
     MARKDOWN_LINK_RE,
+    SEQUENCE_DIRECTIVE_RE,
     YOUTUBE_WATCH_RE,
     YOUTUBE_SHORT_RE,
     _REF_FRONTMATTER_RE,
@@ -101,6 +102,19 @@ def collect_gallery_images(folder: str) -> list[str]:
     return [f"/{folder}/{name}" for name in images]
 
 
+def collect_sequence_images(folder: str, filename_prefix: str = "UG_") -> list[str]:
+    """Collect image paths for assembly-style cycling (e.g. Untold stage UG_* frames)."""
+    folder_path = ASSETS_DIR / folder
+    if not folder_path.is_dir():
+        return []
+    extensions = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+    images = sorted(
+        p.name for p in folder_path.iterdir()
+        if p.suffix.lower() in extensions and p.name.startswith(filename_prefix)
+    )
+    return [f"/{folder}/{name}" for name in images]
+
+
 def preprocess_markdown_for_state(content: str) -> str:
     """Convert custom directives (YouTube, gallery, artifact) into HTML that rx.markdown can render.
 
@@ -124,7 +138,7 @@ def preprocess_markdown_for_state(content: str) -> str:
 
         gallery_match = GALLERY_DIRECTIVE_RE.match(stripped)
         if gallery_match is not None:
-            folder = gallery_match.group(1)
+            folder = gallery_match.group(1).strip()
             images = collect_gallery_images(folder)
             if images:
                 img_tags = "".join(
@@ -152,6 +166,25 @@ def preprocess_markdown_for_state(content: str) -> str:
                 f'box-shadow:0 4px 24px rgba(154,101,39,0.3)" loading="lazy"/>'
                 f"</div>"
             )
+            continue
+
+        sequence_match = SEQUENCE_DIRECTIVE_RE.match(stripped)
+        if sequence_match is not None:
+            folder = sequence_match.group(1).strip()
+            images = collect_sequence_images(folder)
+            if images:
+                img_tags = "".join(
+                    f'<img src="{encode_url_path(src)}" alt="" loading="lazy" '
+                    f'style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;'
+                    f'opacity:{1 if i == 0 else 0};transition:opacity 0.45s ease" />'
+                    for i, src in enumerate(images)
+                )
+                output_lines.append(
+                    f'<div class="livia-sequence" style="position:relative;width:100%;'
+                    f"max-width:min(960px,100%);margin:1rem auto;border-radius:0.85rem;"
+                    f"overflow:hidden;background:rgba(0,0,0,0.35);aspect-ratio:16/9;"
+                    f'min-height:min(52vh,520px)">{img_tags}</div>'
+                )
             continue
 
         output_lines.append(line)
