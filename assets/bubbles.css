@@ -458,6 +458,66 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
   }
 }
 
+/*
+ * Full HD (1920×1080) and larger: keep the side tab rail fully open without hover.
+ * Width ≥1920px matches Full HD width; height ≥1000px avoids missing real 1080p windows (browser chrome
+ * often leaves the viewport under 1080px tall). Narrower “wide” layouts still use the collapsed grip + hover.
+ */
+@media (min-width: 1920px) and (min-height: 1000px) {
+  html.livia-wide .livia-tab-rail {
+    width: min(22rem, 100%) !important;
+    min-height: 0 !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  html.livia-wide .livia-tab-rail .livia-tab-rail-grip {
+    display: none !important;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    max-height: calc(100vh - 2.5rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    white-space: normal;
+    text-align: inherit;
+    font-size: calc(26px * var(--livia-ui-scale));
+    padding: calc(0.62rem * var(--livia-ui-scale)) calc(0.72rem * var(--livia-ui-scale));
+    line-height: 1.25;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button .livia-tab-label-sub {
+    font-size: 0.68em;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  html.livia-wide .livia-tab-rail--left [role="tablist"] button[data-state="active"],
+  html.livia-wide .livia-tab-rail--left [role="tablist"] button[aria-selected="true"] {
+    box-shadow: inset 3px 0 0 0 currentColor;
+  }
+
+  html.livia-wide .livia-tab-rail--right [role="tablist"] button[data-state="active"],
+  html.livia-wide .livia-tab-rail--right [role="tablist"] button[aria-selected="true"] {
+    box-shadow: inset -3px 0 0 0 currentColor;
+  }
+
+  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
+  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+    padding-top: calc(0.28rem * var(--livia-ui-scale));
+  }
+}
+
 /* Instagram / GitHub edge tool rails: always collapsed until hover (mouse) or focus (tap / Tab) */
 .livia-tool-rail {
   --livia-tool-grip: max(calc(1.4rem * var(--livia-tool-rail-scale)), calc(22px * var(--livia-tool-rail-scale)));
