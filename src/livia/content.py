@@ -543,3 +543,27 @@ def load_folder_md_content(folder: str) -> dict[str, str]:
         content_text = _resolve_md_content(md_file)
         data[slug] = preprocess_markdown_for_state(content_text)
     return data
+
+
+def load_single_tab_md_content(folder: str, slug: str) -> str | None:
+    """Read and preprocess a single markdown tab file by slug. Returns None if not found."""
+    folder_path = CONTENT_DIR / folder
+    for md_file in sorted(folder_path.glob("*.md")):
+        if md_file.name.startswith("_"):
+            continue
+        _, label = _parse_tab_filename(md_file.stem)
+        if _label_to_slug(label) == slug:
+            return preprocess_markdown_for_state(_resolve_md_content(md_file))
+    return None
+
+
+def load_single_piece_tab_content(tab_key: str) -> str | None:
+    """Read and preprocess a single piece's markdown by tab_key. Returns None if not found."""
+    intro, entries = parse_pieces_tab_entries()
+    if tab_key == "overview" and intro is not None:
+        return preprocess_markdown_for_state(intro)
+    for e in entries:
+        if e.tab_key == tab_key:
+            body = _strip_facebook_mention_line(e.body_md)
+            return preprocess_markdown_for_state(body)
+    return None

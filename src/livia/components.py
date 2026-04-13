@@ -867,6 +867,7 @@ def sidebar_tabs(
     default_value: str,
     collapsed_label: str = "MORE",
     rail_variant: Literal["default", "pieces"] = "default",
+    on_tab_select: rx.EventHandler | None = None,
 ) -> rx.Component:
     """Desktop: collapsible rail with a short grip label; mobile: horizontal tabs."""
     tab_trigger_style = {
@@ -1020,10 +1021,13 @@ def sidebar_tabs(
         if rail_variant == "pieces"
         else "livia-page-tabs"
     )
+    tab_change_handlers: list = [MobileTabRailState.on_tab_change]
+    if on_tab_select is not None:
+        tab_change_handlers.append(on_tab_select)
     return rx.tabs.root(
         desktop_row,
         default_value=default_value,
-        on_change=MobileTabRailState.on_tab_change,
+        on_change=tab_change_handlers,
         width="100%",
         class_name=page_tabs_class,
     )

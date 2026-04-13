@@ -27,6 +27,8 @@ from livia.content import (
     load_folder_md_content,
     load_page_meta,
     load_pieces_tab_content,
+    load_single_piece_tab_content,
+    load_single_tab_md_content,
     parse_pieces_tab_entries,
     preprocess_markdown_for_state,
     scan_tab_slugs,
@@ -51,34 +53,95 @@ from livia.components import (
 
 _LIVIA_NAV_JS = (ASSETS_DIR / "livia_nav.js").read_text(encoding="utf-8")
 
+# Empty-string sentinel dicts keyed by all known md slugs — avoids KeyErrors in
+# state-var subscript expressions before content is loaded on demand.
+_ART_DESIGN_EMPTY: dict[str, str] = {
+    slug: ""
+    for _, _, slug, st in scan_tab_slugs("art-design")
+    if st.startswith("md:")
+}
+_SCIENCE_TECH_EMPTY: dict[str, str] = {
+    slug: ""
+    for _, _, slug, st in scan_tab_slugs("science-tech")
+    if st.startswith("md:")
+}
+_intro_pieces, _entries_pieces = parse_pieces_tab_entries()
+_PIECES_EMPTY: dict[str, str] = {
+    **({} if _intro_pieces is None else {"overview": ""}),
+    **{e.tab_key: "" for e in _entries_pieces},
+}
+
 
 # ---------------------------------------------------------------------------
-# Content state classes — re-read markdown from disk on every page load
+# Content state classes — lazy: only the active tab's markdown is fetched
 # ---------------------------------------------------------------------------
 
 class ArtDesignContentState(rx.State):
-    """Markdown content for each Art & Design tab, re-read from disk on page load."""
-    tab_content: dict[str, str] = load_folder_md_content("art-design")
+    """Markdown content for Art & Design tabs. Only the selected tab is loaded from disk."""
+    tab_content: dict[str, str] = _ART_DESIGN_EMPTY
 
     def load_content(self) -> None:
-        self.tab_content = load_folder_md_content("art-design")
+        """On page load: reset to empty then load only the first (default) tab."""
+        self.tab_content = _ART_DESIGN_EMPTY.copy()
+        for _, _, slug, st in scan_tab_slugs("art-design"):
+            if st.startswith("md:"):
+                content = load_single_tab_md_content("art-design", slug)
+                if content is not None:
+                    self.tab_content = {**self.tab_content, slug: content}
+                break
+
+    def load_tab(self, slug: str) -> None:
+        """On tab select: load that tab's markdown on demand (no-op if already cached)."""
+        if not self.tab_content.get(slug):
+            content = load_single_tab_md_content("art-design", slug)
+            if content is not None:
+                self.tab_content = {**self.tab_content, slug: content}
 
 
 class ScienceTechContentState(rx.State):
-    """Markdown content for each Science & Tech tab, re-read from disk on page load."""
-    tab_content: dict[str, str] = load_folder_md_content("science-tech")
+    """Markdown content for Science & Tech tabs. Only the selected tab is loaded from disk."""
+    tab_content: dict[str, str] = _SCIENCE_TECH_EMPTY
 
     def load_content(self) -> None:
-        self.tab_content = load_folder_md_content("science-tech")
+        """On page load: reset to empty then load only the first (default) tab."""
+        self.tab_content = _SCIENCE_TECH_EMPTY.copy()
+        for _, _, slug, st in scan_tab_slugs("science-tech"):
+            if st.startswith("md:"):
+                content = load_single_tab_md_content("science-tech", slug)
+                if content is not None:
+                    self.tab_content = {**self.tab_content, slug: content}
+                break
+
+    def load_tab(self, slug: str) -> None:
+        """On tab select: load that tab's markdown on demand (no-op if already cached)."""
+        if not self.tab_content.get(slug):
+            content = load_single_tab_md_content("science-tech", slug)
+            if content is not None:
+                self.tab_content = {**self.tab_content, slug: content}
 
 
 class PiecesContentState(rx.State):
-    """Per-tab markdown for Pieces (overview + one tab per work with photos)."""
-
-    tab_content: dict[str, str] = load_pieces_tab_content()
+    """Per-tab markdown for Pieces. Only the selected tab is loaded from disk."""
+    tab_content: dict[str, str] = _PIECES_EMPTY
 
     def load_content(self) -> None:
-        self.tab_content = load_pieces_tab_content()
+        """On page load: reset to empty then load only the first (default) tab."""
+        self.tab_content = _PIECES_EMPTY.copy()
+        intro, entries = parse_pieces_tab_entries()
+        if intro is not None:
+            self.tab_content = {**self.tab_content, "overview": preprocess_markdown_for_state(intro)}
+        elif entries:
+            first_key = entries[0].tab_key
+            content = load_single_piece_tab_content(first_key)
+            if content is not None:
+                self.tab_content = {**self.tab_content, first_key: content}
+
+    def load_tab(self, tab_key: str) -> None:
+        """On tab select: load that tab's markdown on demand (no-op if already cached)."""
+        if not self.tab_content.get(tab_key):
+            content = load_single_piece_tab_content(tab_key)
+            if content is not None:
+                self.tab_content = {**self.tab_content, tab_key: content}
 
 
 # ---------------------------------------------------------------------------
@@ -258,6 +321,7 @@ def pieces_page() -> rx.Component:
                 default_value=default_value,
                 collapsed_label="WORKS",
                 rail_variant="pieces",
+                on_tab_select=PiecesContentState.load_tab,
             ),
             class_name="livia-pieces",
             width="100%",
@@ -293,7 +357,13 @@ def art_design_page() -> rx.Component:
         bg_func(),
         page_content(
             section_heading(heading, accent),
-            sidebar_tabs(tabs=tabs, accent=accent, sidebar_side=sidebar_side, default_value=default_value),
+            sidebar_tabs(
+                tabs=tabs,
+                accent=accent,
+                sidebar_side=sidebar_side,
+                default_value=default_value,
+                on_tab_select=ArtDesignContentState.load_tab,
+            ),
         ),
         bottom_nav(),
         min_height="100vh",
@@ -317,7 +387,13 @@ def science_tech_page() -> rx.Component:
         bg_func(),
         page_content(
             section_heading(heading, accent),
-            sidebar_tabs(tabs=tabs, accent=accent, sidebar_side=sidebar_side, default_value=default_value),
+            sidebar_tabs(
+                tabs=tabs,
+                accent=accent,
+                sidebar_side=sidebar_side,
+                default_value=default_value,
+                on_tab_select=ScienceTechContentState.load_tab,
+            ),
         ),
         bottom_nav(),
         min_height="100vh",
