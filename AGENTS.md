@@ -13,9 +13,9 @@
 - `assets/`: static assets used by the app (for example, background images).
   - `assets/livia.jpg`: full-screen portrait used as the site background.
   - `assets/RJW2025/`: Romanian Jewelry Week 2025 exhibition photographs (12 images).
-  - `assets/bubbles.css`: Chrome UI — `--livia-ui-scale` is `1` on `html.livia-wide` and `2.5` on `html.livia-narrow`. The **bottom nav** on narrow is **one row of four equal-width buttons** at the **same font size as laptop**; long labels **wrap inside** the button (typically up to two lines). Home **edge tool rails** (Instagram / GitHub) use `--livia-tool-rail-scale` (**1.5** on narrow) instead of the full `2.5`. Page tabs and other chrome use `--livia-ui-scale` (or capped tab rules). Hover glows, tab rail expand-on-hover.
+  - `assets/bubbles.css`: Chrome UI — `--livia-ui-scale` is `1` on `html.livia-wide` and `2.5` on `html.livia-narrow`. The **bottom nav** on narrow is **one row of equal-width buttons** at the **same font size as laptop**; long labels **wrap inside** the button (typically up to two lines). Home **edge tool rails** (Instagram / GitHub) use `--livia-tool-rail-scale` (**1.5** on narrow) instead of the full `2.5`. Page tabs and other chrome use `--livia-ui-scale` (or capped tab rules). Hover glows, tab rail expand-on-hover.
   - `assets/livia_nav.js`: sets `livia-narrow` when **`screen.width < 1024` OR `innerWidth < 1024`** (so Firefox/Chrome responsive mode works: `screen.width` often stays desktop-sized while `innerWidth` matches the emulated device). Sets `livia-wide` otherwise. Active nav highlighting, stale session key cleanup. Listens to `resize` and `visualViewport.resize`.
-- `content/`: page content organised as a **folder-based tab system** (see "Content System" below). Standalone pages (`home.md`, `biography.md`) live at the root; tabbed pages live in subfolders (`art-design/`, `science-tech/`). Shared content lives in `_shared/`.
+- `content/`: page content organised as a **folder-based tab system** (see "Content System" below). Standalone pages (`home.md`, `biography.md`, `pieces.md` → `/pieces`) live at the root; tabbed pages live in subfolders (`art-design/`, `science-tech/`). Shared content lives in `_shared/`. **`content/not_shared/`** is gitignored: local Facebook exports and private notes only — not read by the app and not for GitHub. Regenerate `pieces.md` after updating the export: `uv run python scripts/generate_pieces_from_fb_export.py`.
 - `docs/`: reference documentation not rendered by the app.
   - `docs/livia-zaharia-knowledge-base.md`: comprehensive artist knowledge base covering identity, practice, collections catalogue, exhibition history, and ecosystem connections.
 - `rxconfig.py`: Reflex runtime/config entrypoint.
@@ -35,19 +35,19 @@ Each tabbed page corresponds to a subfolder under `content/`. Tabs are auto-disc
 content/
   home.md                              # standalone page (no tabs)
   biography.md                         # standalone page (no tabs)
+  pieces.md                            # → /pieces; split on ``##`` into sidebar tabs; images from ``assets/pieces/<folder>/`` (folder name may contain spaces; must match the ``<!-- gallery: pieces/… -->`` path) or, when that folder is empty, matched files under ``assets/RJWYYYY/`` (Romanian Jewelry Week)
   art-design/                          # tabbed page → /art-design
     _meta.yaml                         # page-level config
     _instagram.yaml                    # special (non-markdown) tab
     1_Overview.md
     2_Livia Lore.md
     3_Materialized Enhancements.md     # reference file
-    4_It's Just a Cell Life (RJW 2025).md
-    5_Beloved Food (RJW 2024).md
-    6_Survival (RJW 2023).md
-    7_Paths. Memories. Guides (RJW 2022).md
-    8_Parametric (by) nature (RJW 2021).md
-    9_Cry, Dance, Repeat.md
-    10_Spotlight Pavilion.md
+    4_A world for everyone (RJW 2026).md
+    5_Death Yes No Maybe (Berlin 2026).md   # A Hidden Variable festival (not RJW)
+    6_It's Just a Cell Life (RJW 2025).md
+    7_Shine bright like a star (Osmium 2025).md
+    8_Beloved Food (RJW 2024).md
+    … then reverse-chronological competition and context tabs through 19_iMAPP (iMapp 2017-2018).md
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab
@@ -88,7 +88,7 @@ The loader follows the pointer and renders content from the referenced path. Thi
 
 ### Linking Instagram or Facebook posts
 
-Use normal markdown links in tab markdown. Example (see `content/art-design/9_Cry, Dance, Repeat.md`): `[View on Instagram](https://www.instagram.com/p/POST_ID/)`. For Facebook, use the post permalink from [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) (open the post → **···** or **Share** → copy link). You can add multiple lines such as `[View on Facebook](https://www.facebook.com/...)` next to collection descriptions.
+Use normal markdown links in tab markdown. Example: `[View on Instagram](https://www.instagram.com/p/POST_ID/)`. For Facebook, use the post permalink from [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) (open the post → **···** or **Share** → copy link). You can add multiple lines such as `[View on Facebook](https://www.facebook.com/...)` next to collection descriptions.
 
 ### `_meta.yaml` (page config)
 
@@ -160,12 +160,11 @@ When a change affects UI/UX, validation is required before considering the task 
 - `rxconfig.py` must not import from the `src/livia/` package because Reflex's `get_config()` strips `sys.path` during early init; `ViteDevServerPlugin` and similar must be inlined there (the old `src/livia/plugins.py` was removed for this reason).
 - The user-visible port is controlled by `frontend_port` in Reflex config, not `backend_port`; default is 3010 with backend at 3011.
 - Git LFS is configured (`.gitattributes`) to track `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.webp`.
-- `encode_url_path()` in `src/livia/content.py` percent-encodes path segments for `gallery` and `artifact` image URLs so asset filenames with spaces resolve correctly in the browser.
+- `encode_url_path()` in `src/livia/content.py` percent-encodes path segments for `gallery` and `artifact` image URLs so path segments resolve in the browser; still prefer simple URL-safe names under `assets/` (no spaces; avoid `+` in filenames) because static hosting and tooling can fail on awkward paths even when encoded.
 - `github_sidebar()` is used on the home page only; the Science & Tech page layout does not include that left rail.
-- The site uses per-page-category background images: `green_side.jpg` for Science & Tech pages, `yellow_side.jpg` for Art & Design pages, `livia.jpg` for neutral/home pages.
-- Site navigation: Home (`/`), Biography (`/biography`), Art & Design (`/art-design`), Science & Tech (`/science-tech`); no external links in top-level nav. Home uses the portrait background and bottom nav only (no duplicate floating arc nav). Art & Design and Science & Tech use folder-based tabs auto-discovered from `content/art-design/` and `content/science-tech/`; bottom nav highlights the active page via `rx.State.router.page.path`.
+- The site uses per-page-category background images: `green_side.jpg` for Science & Tech pages, `yellow_side.jpg` for Art & Design and Pieces (`/pieces`) pages, `livia.jpg` for neutral/home pages. Site navigation: Home (`/`), Biography (`/biography`), Art & Design (`/art-design`), Science & Tech (`/science-tech`), Pieces (`/pieces`); no external links in top-level nav. Home uses the portrait background and bottom nav only (no duplicate floating arc nav). Art & Design and Science & Tech use folder-based tabs auto-discovered from `content/art-design/` and `content/science-tech/`; bottom nav highlights the active page via `rx.State.router.page.path`.
 - Art & Design expanded desktop tab list scrolls vertically in CSS so many rail tabs (including the last special tab from `_instagram.yaml`) stay reachable; `order` in `_instagram.yaml` is sort-only and is not shown as a visible tab number.
-- Sidebar tab labels stack when the tab title ends with `(RJW YYYY)`, `(Osmium YYYY)`, `(Vinnca YYYY)` / `(Vinca YYYY)`, `(Spotlight YYYY)`, or a trailing year-only `(YYYY)`; the second line is centered (class `livia-tab-label-sub` in `assets/bubbles.css`, split logic in `components.py`).
-- The site uses `<meta name="viewport" content="width=device-width, initial-scale=1">` in `head_components`. Narrow layouts are detected via `livia_nav.js` (`html.livia-narrow` / `livia-wide`, including `matchMedia("(max-width: 1023px)")`). The bottom nav on narrow is **one row** of four flex-equal links at **laptop text size**; labels **wrap inside** each pill when needed. Home-page tool rails use `--livia-tool-rail-scale` (`1.5` on narrow). Other chrome uses `--livia-ui-scale` (`2.5` on narrow); page tab buttons cap that scale (see `assets/bubbles.css`).
+- Sidebar tab labels stack when the tab title ends with `(RJW YYYY)`, `(Berlin YYYY)`, `(Osmium YYYY)`, `(Vinnca YYYY)` / `(Vinca YYYY)`, `(Spotlight YYYY)`, or a trailing year-only `(YYYY)`; the second line is centered (class `livia-tab-label-sub` in `assets/bubbles.css`, split logic in `components.py`).
+- The site uses `<meta name="viewport" content="width=device-width, initial-scale=1">` in `head_components`. Narrow layouts are detected via `livia_nav.js` (`html.livia-narrow` / `livia-wide`, including `matchMedia("(max-width: 1023px)")`). The bottom nav on narrow is **one row** of four flex-equal links at **laptop text size**; labels **wrap inside** each pill when needed. Home-page tool rails use `--livia-tool-rail-scale` (`1.5` on narrow). Other chrome uses `--livia-ui-scale` (`2.5` on narrow); page tab buttons cap that scale (see `assets/bubbles.css`). Bottom-nav and related chrome use CSS `max()` / `clamp()` with pixel minimums so controls stay tappable on narrow viewports.
 - Edge sidebars (`instagram_sidebar`, `github_sidebar`) are fixed tool rails: a narrow grip (`@paral_design` on the right, `GITHUB / TECH` on the left) with the same typography as before; on fine pointers they **expand on hover** (and `focus-within` for keyboard) via `assets/bubbles.css`. On coarse pointers they stay at a usable width (`min(360px, 88vw)`). No Reflex state for open/close.
-- Bottom nav and bubble labels use CSS `max()` / `clamp()` with pixel minimums to ensure tappability on scaled-down mobile viewports.
+- Folder-tab page bodies use `rx.markdown(..., use_unwrap_images=False)` in `pages.py` so HTML injected during markdown preprocessing (gallery grids, artifacts, `sequence` blocks) is not broken by Reflex’s default rehype-unwrap-images pass.

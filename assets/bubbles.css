@@ -547,3 +547,38 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
     width: var(--livia-tool-open);
   }
 }
+
+/* Pieces page: one body size in component map; prevent long links / words from breaking layout */
+.livia-pieces {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.livia-pieces-title {
+  text-wrap: balance;
+}
+
+/* Pieces page: tab rail — centered labels (including wrapped multi-line titles) */
+.livia-tab-rail--pieces .livia-tab-label-single,
+.livia-tab-rail--pieces .livia-tab-label-primary {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-wrap: balance;
+  text-align: center !important;
+}
+
+.livia-tab-rail--pieces .livia-tab-label-sub {
+  letter-spacing: 0.05em;
+  text-align: center !important;
+}
+
+.livia-pieces-date {
+  letter-spacing: 0.03em;
+}
+
+.livia-pieces .markdown,
+.livia-pieces [class*="Markdown"] {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

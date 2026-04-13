@@ -1,6 +1,8 @@
 """Content loading, markdown preprocessing, and tab scanning for the Livia website."""
 
 import re
+from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import quote
 
@@ -102,6 +104,222 @@ def collect_gallery_images(folder: str) -> list[str]:
     return [f"/{folder}/{name}" for name in images]
 
 
+_RJW_IMAGE_INDEX: dict[str, list[str]] | None = None
+
+
+def _split_trailing_paren_label(label: str) -> tuple[str, str | None]:
+    """Split ``Title (subtitle)`` on the last pair of parentheses (mirrors ``components``)."""
+    s = label.rstrip()
+    if not s.endswith(")"):
+        return label, None
+    depth = 0
+    for i in range(len(s) - 1, -1, -1):
+        ch = s[i]
+        if ch == ")":
+            depth += 1
+        elif ch == "(":
+            depth -= 1
+            if depth == 0:
+                primary = s[:i].strip()
+                subtitle = s[i + 1 : -1].strip()
+                if primary and subtitle:
+                    return primary, subtitle
+                return label, None
+    return label, None
+
+
+_TITLE_SMALL_WORDS = frozenset(
+    "a an the and or but of at to in for on by with from as per via".split()
+)
+
+
+def _title_case_phrase(s: str) -> str:
+    """Title case with small words lowercased in the middle."""
+    words = re.split(r"(\s+)", s.strip())
+    out: list[str] = []
+    for i, w in enumerate(words):
+        if not w.strip():
+            out.append(w)
+            continue
+        lw = w.lower()
+        if i > 0 and lw in _TITLE_SMALL_WORDS:
+            out.append(lw)
+        else:
+            out.append(w[:1].upper() + w[1:].lower() if len(w) > 1 else w.upper())
+    return "".join(out)
+
+
+def heading_to_rail_title(raw: str) -> str:
+    """Readable tab-rail label: title case, keep trailing (…) for two-line stack in the rail."""
+    s = raw.strip()
+    primary, subtitle = _split_trailing_paren_label(s)
+    if subtitle is None:
+        return _title_case_phrase(primary)
+    return f"{_title_case_phrase(primary)} ({subtitle})"
+
+
+def extract_posting_date_hint(body_md: str) -> str | None:
+    """Parse ``*Mentioned on Facebook between YYYY and YYYY.*`` into a short caption."""
+    m = re.search(
+        r"\*Mentioned on Facebook between (\d{4}) and (\d{4})\.\*",
+        body_md,
+    )
+    if not m:
+        return None
+    a, b = m.group(1), m.group(2)
+    if a == b:
+        return f"Estimated from posts: {a}"
+    return f"Estimated from posts: {a}–{b}"
+
+
+def resolve_piece_date_hint(body_md: str, tab_key: str, gallery_slug: str) -> str | None:
+    """Prefer Facebook posting range; if absent and images come from RJW only, use exhibition year."""
+    fb = extract_posting_date_hint(body_md)
+    if fb is not None:
+        return fb
+    if collect_gallery_images(f"pieces/{gallery_slug}"):
+        return None
+    for u in resolve_piece_gallery_urls(tab_key, gallery_slug):
+        m = re.match(r"^/RJW(\d{4})/", u)
+        if m:
+            return f"Estimated from exhibition photographs: RJW {m.group(1)}"
+    return None
+
+
+def _strip_facebook_mention_line(body_md: str) -> str:
+    return re.sub(
+        r"\n*\*Mentioned on Facebook between \d{4} and \d{4}\.\*\s*",
+        "\n",
+        body_md,
+        count=1,
+    ).strip()
+
+
+def _piece_field_slugs(piece_field: str) -> set[str]:
+    slugs: set[str] = set()
+    if "(" in piece_field and ")" in piece_field:
+        inner = re.search(r"\(([^)]+)\)", piece_field)
+        if inner:
+            slugs.add(_label_to_slug(inner.group(1)))
+    cleaned = re.sub(r"[()]", "", piece_field)
+    slugs.add(_label_to_slug(cleaned.strip()))
+    return {s for s in slugs if s}
+
+
+def _rjw_slug_tokens_from_stem(stem: str) -> set[str]:
+    """Derive piece slug keys from Romanian Jewelry Week filenames."""
+    slugs: set[str] = set()
+    if stem.startswith("LiviaZaharia-"):
+        rest = stem[len("LiviaZaharia-") :]
+        m = re.match(
+            r"(?:pendant|ring|earings-and-rings)-(.+?)-(\d+)-(\d{4})",
+            rest,
+            re.I,
+        )
+        if m:
+            piece = m.group(1).strip()
+            slugs.add(_label_to_slug(piece))
+    parts = stem.split("_")
+    if len(parts) >= 4 and parts[0] == "LiviaZaharia" and parts[3].isdigit():
+        slugs |= _piece_field_slugs(parts[2])
+    if len(parts) >= 7 and parts[0] == "LiviaZaharia" and parts[1] == "ring":
+        if parts[2] == "deep" and parts[3] == "sea" and parts[4] == "pearl":
+            slugs.add(_label_to_slug("deep sea pearl Karmazina"))
+    if len(parts) >= 5 and parts[0] == "LiviaZaharia" and parts[1] == "ring":
+        if parts[2] == "rotary" and parts[3] == "magneticfields":
+            slugs.add(_label_to_slug("rotary magnetic fields"))
+    return {s for s in slugs if s}
+
+
+def _rjw_extra_keys_from_stem(stem: str) -> set[str]:
+    """Map non-standard stems to ``pieces.md`` gallery tab keys (``_label_to_slug`` of folder labels)."""
+    s = stem.lower().replace(" ", "_")
+    out: set[str] = set()
+    if "eye_of_winter" in s or "ringpendant_eye" in s:
+        out.add("eye-of-winter-double-ring-and-pendant")
+    if "deep_sea_pearl" in s or "karmazina" in s:
+        out.add("deep-sea-pearl-karmazina")
+    if "rotary_magneticfields" in s or "rotary_magnetic" in s:
+        out.add("rotary-magnetic-ring")
+    return out
+
+
+# ``pieces/…`` folder labels in pieces.md → RJW index key produced from filenames (suffix-stripped, spelling).
+_RJW_TAB_KEY_ALIASES: dict[str, str] = {
+    "ammonite-ring": "amonite",
+    "beanut-fasolaluna-pendant": "beanut",
+    "hollywood-pendant": "hollywood",
+    "timeface-pendant": "timeface",
+    "la-navette-pendant": "la-navette",
+    "mountain-of-gold-double-ring": "mountain-of-gold",
+    "piguen-nonaltra-pendant": "piguen",
+    "sticks-and-stones-pendant": "sticks-and-stones",
+    "the-nest-ring": "nest",
+}
+
+# RJW2025 booth photos (``IMG_*.jpg``) keyed by stem number → ``pieces.md`` tab key.
+_RJW2025_IMG_TAB_KEYS: dict[str, str] = {
+    "3493": "nut-of-power-pendant",
+    "3496": "nut-of-power-pendant",
+    "3481": "the-dark-nut-of-power-pendant",
+    "3485": "the-dark-nut-of-power-pendant",
+    "3433": "nanot-pendant",
+    "3434": "nanot-pendant",
+    "3438": "nanot-pendant",
+    "3439": "nanot-pendant",
+    "3475": "mitoring-mitochondria-ring",
+    "3480": "mitoring-mitochondria-ring",
+    "3465": "embryo-ring",
+    "3466": "embryo-ring",
+}
+
+
+def _build_rjw_piece_image_index() -> dict[str, list[str]]:
+    """Map normalized piece slug → image URL paths under ``assets/RJWYYYY/``."""
+    index: dict[str, list[str]] = defaultdict(list)
+    extensions = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+    for rjw_dir in sorted(ASSETS_DIR.glob("RJW[0-9][0-9][0-9][0-9]")):
+        if not rjw_dir.is_dir():
+            continue
+        prefix = rjw_dir.name
+        for p in rjw_dir.iterdir():
+            if p.suffix.lower() not in extensions:
+                continue
+            stem = p.stem
+            rel_url = f"/{prefix}/{p.name}"
+            if prefix == "RJW2025" and stem.startswith("IMG_"):
+                num = stem.split("_")[-1]
+                tab = _RJW2025_IMG_TAB_KEYS.get(num)
+                if tab:
+                    index[tab].append(rel_url)
+                continue
+            for slug in _rjw_slug_tokens_from_stem(stem):
+                index[slug].append(rel_url)
+            for slug in _rjw_extra_keys_from_stem(stem):
+                index[slug].append(rel_url)
+    for slug in list(index.keys()):
+        index[slug] = sorted(set(index[slug]))
+    for tab_key, rjw_key in _RJW_TAB_KEY_ALIASES.items():
+        if rjw_key in index and tab_key not in index:
+            index[tab_key] = list(index[rjw_key])
+    return dict(index)
+
+
+def get_rjw_piece_image_index() -> dict[str, list[str]]:
+    global _RJW_IMAGE_INDEX
+    if _RJW_IMAGE_INDEX is None:
+        _RJW_IMAGE_INDEX = _build_rjw_piece_image_index()
+    return _RJW_IMAGE_INDEX
+
+
+def resolve_piece_gallery_urls(tab_key: str, raw_subpath: str) -> list[str]:
+    """Prefer ``assets/pieces/<raw_subpath>``; otherwise Romanian Jewelry Week images for that work."""
+    local = collect_gallery_images(f"pieces/{raw_subpath}")
+    if local:
+        return local
+    return list(get_rjw_piece_image_index().get(tab_key, []))
+
+
 def collect_sequence_images(folder: str, filename_prefix: str = "UG_") -> list[str]:
     """Collect image paths for assembly-style cycling (e.g. Untold stage UG_* frames)."""
     folder_path = ASSETS_DIR / folder
@@ -139,7 +357,12 @@ def preprocess_markdown_for_state(content: str) -> str:
         gallery_match = GALLERY_DIRECTIVE_RE.match(stripped)
         if gallery_match is not None:
             folder = gallery_match.group(1).strip()
-            images = collect_gallery_images(folder)
+            if folder.startswith("pieces/"):
+                raw_sub = folder[len("pieces/") :]
+                tab_key = _label_to_slug(raw_sub)
+                images = resolve_piece_gallery_urls(tab_key, raw_sub)
+            else:
+                images = collect_gallery_images(folder)
             if images:
                 img_tags = "".join(
                     f'<div class="livia-lightbox-thumb-wrap" style="border-radius:0.6rem;overflow:hidden;border:1px solid rgba(255,248,238,0.12)">'
@@ -190,6 +413,89 @@ def preprocess_markdown_for_state(content: str) -> str:
         output_lines.append(line)
 
     return "\n".join(output_lines)
+
+
+_PIECES_GALLERY_IN_BODY_RE = re.compile(
+    r"<!--\s*gallery:\s*pieces/(.+?)\s*-->",
+)
+
+
+@dataclass(frozen=True)
+class PiecesTabEntry:
+    """One piece section in ``pieces.md`` with a gallery or RJW exhibition images."""
+
+    tab_key: str
+    raw_heading: str
+    body_md: str
+    date_hint: str | None
+
+
+def title_to_camel_case(raw: str) -> str:
+    """Convert a piece ``##`` heading to lowerCamelCase for prominent titles."""
+    words = re.findall(r"[A-Za-z0-9]+", raw)
+    if not words:
+        return raw.strip()
+    first = words[0].lower()
+    rest_parts: list[str] = []
+    for w in words[1:]:
+        if w.isdigit():
+            rest_parts.append(w)
+        else:
+            rest_parts.append(w[:1].upper() + w[1:].lower())
+    return first + "".join(rest_parts)
+
+
+def parse_pieces_tab_entries() -> tuple[str | None, list[PiecesTabEntry]]:
+    """Split ``content/pieces.md`` into an optional intro and piece sections with photo galleries.
+
+    Uses ``assets/pieces/<slug>/`` when present; otherwise matches Romanian Jewelry Week files
+    under ``assets/RJWYYYY/`` for the same work.
+    """
+    raw = load_content("pieces")
+    sections = re.split(r"(?m)^## ", raw)
+    intro = sections[0].strip() if sections else ""
+    intro_out: str | None = intro if intro else None
+
+    entries: list[PiecesTabEntry] = []
+    seen_keys: set[str] = set()
+    for chunk in sections[1:]:
+        lines = chunk.splitlines()
+        if not lines:
+            continue
+        raw_heading = lines[0].strip()
+        body_md = "\n".join(lines[1:]).strip()
+        m = _PIECES_GALLERY_IN_BODY_RE.search(body_md)
+        if m is None:
+            continue
+        gallery_slug = m.group(1).strip()
+        tab_key = _label_to_slug(gallery_slug)
+        if not resolve_piece_gallery_urls(tab_key, gallery_slug):
+            continue
+        if tab_key in seen_keys:
+            continue
+        seen_keys.add(tab_key)
+        entries.append(
+            PiecesTabEntry(
+                tab_key=tab_key,
+                raw_heading=raw_heading,
+                body_md=body_md,
+                date_hint=resolve_piece_date_hint(body_md, tab_key, gallery_slug),
+            ),
+        )
+
+    return intro_out, entries
+
+
+def load_pieces_tab_content() -> dict[str, str]:
+    """Preprocessed markdown per tab key for the Pieces page (overview + one entry per work)."""
+    intro, entries = parse_pieces_tab_entries()
+    out: dict[str, str] = {}
+    if intro is not None:
+        out["overview"] = preprocess_markdown_for_state(intro)
+    for e in entries:
+        body = _strip_facebook_mention_line(e.body_md)
+        out[e.tab_key] = preprocess_markdown_for_state(body)
+    return out
 
 
 def scan_tab_slugs(folder: str) -> list[tuple[int, str, str, str]]:

@@ -792,6 +792,9 @@ def _split_collection_tab_label(label: str) -> tuple[str, str | None]:
     m_rjw = re.match(r"^RJW\s+(\d{4})$", subtitle)
     if m_rjw:
         return primary, f"RJW {m_rjw.group(1)}"
+    m_berlin = re.match(r"^Berlin\s+(\d{4})$", subtitle, re.IGNORECASE)
+    if m_berlin:
+        return primary, f"Berlin {m_berlin.group(1)}"
     m_contest = re.match(
         r"^(Osmium|Vinnca|Vinca|Spotlight)\s+(\d{4})$",
         subtitle,
@@ -817,11 +820,13 @@ def _split_collection_tab_label(label: str) -> tuple[str, str | None]:
 def _sidebar_tab_label_stack(
     label: str,
     sidebar_side: Literal["left", "right"],
+    *,
+    center_labels: bool = False,
 ) -> rx.Component:
     """Two lines when label has a contest/year suffix: title, then centered subtitle."""
     primary, subtitle = _split_collection_tab_label(label)
     text_align: Literal["left", "right", "center", "start", "end"] = (
-        "left" if sidebar_side == "left" else "right"
+        "center" if center_labels else ("left" if sidebar_side == "left" else "right")
     )
     if subtitle is None:
         return rx.text(
@@ -861,6 +866,7 @@ def sidebar_tabs(
     sidebar_side: Literal["left", "right"],
     default_value: str,
     collapsed_label: str = "MORE",
+    rail_variant: Literal["default", "pieces"] = "default",
 ) -> rx.Component:
     """Desktop: collapsible rail with a short grip label; mobile: horizontal tabs."""
     tab_trigger_style = {
@@ -877,8 +883,24 @@ def sidebar_tabs(
             "color": accent,
         },
     }
+    if rail_variant == "pieces":
+        tab_trigger_style = {
+            **tab_trigger_style,
+            "font_size": "calc(1.08rem * max(1, var(--livia-ui-scale, 1)))",
+            "letter_spacing": "0.06em",
+            "line_height": "1.35",
+            "text_align": "center",
+        }
     rail_side_class = (
         "livia-tab-rail--left" if sidebar_side == "left" else "livia-tab-rail--right"
+    )
+    rail_variant_class = (
+        " livia-tab-rail--pieces" if rail_variant == "pieces" else ""
+    )
+    trigger_btn_class = (
+        "livia-tab-trigger-btn livia-tab-trigger-btn--pieces"
+        if rail_variant == "pieces"
+        else "livia-tab-trigger-btn"
     )
     tab_rail_grip = rx.box(
         rx.text(
@@ -888,27 +910,36 @@ def sidebar_tabs(
         ),
         class_name="livia-tab-rail-grip",
     )
+    center_piece_labels = rail_variant == "pieces"
     desktop_sidebar = rx.box(
         tab_rail_grip,
         rx.tabs.list(
             *(
                 rx.tabs.trigger(
-                    _sidebar_tab_label_stack(tab.label, sidebar_side),
+                    _sidebar_tab_label_stack(
+                        tab.label,
+                        sidebar_side,
+                        center_labels=center_piece_labels,
+                    ),
                     value=tab.value,
                     style=tab_trigger_style,
-                    class_name="livia-tab-trigger-btn",
+                    class_name=trigger_btn_class,
                     custom_attrs={"aria-label": tab.label},
                 )
                 for tab in tabs
             ),
             display="flex",
             flex_direction="column",
-            align_items="flex-start" if sidebar_side == "left" else "flex-end",
+            align_items=(
+                "stretch"
+                if rail_variant == "pieces"
+                else ("flex-start" if sidebar_side == "left" else "flex-end")
+            ),
             justify_content="flex-start",
             gap="1.95rem",
             width="100%",
         ),
-        class_name=f"livia-tab-rail livia-desktop-tab-rail {rail_side_class}",
+        class_name=f"livia-tab-rail livia-desktop-tab-rail {rail_side_class}{rail_variant_class}",
         flex_direction="column",
         align_items="stretch",
         flex_shrink="0",
@@ -924,10 +955,14 @@ def sidebar_tabs(
     mobile_tabs = rx.tabs.list(
         *(
             rx.tabs.trigger(
-                _sidebar_tab_label_stack(tab.label, sidebar_side),
+                _sidebar_tab_label_stack(
+                    tab.label,
+                    sidebar_side,
+                    center_labels=center_piece_labels,
+                ),
                 value=tab.value,
                 style=tab_trigger_style,
-                class_name="livia-tab-trigger-btn livia-tab-trigger-btn--mobile",
+                class_name=f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
                 custom_attrs={"aria-label": tab.label},
             )
             for tab in tabs
@@ -980,12 +1015,17 @@ def sidebar_tabs(
         if sidebar_side == "left"
         else rx.hstack(content_stack, desktop_sidebar, spacing="5", width="100%", align="start")
     )
+    page_tabs_class = (
+        "livia-page-tabs livia-page-tabs--pieces"
+        if rail_variant == "pieces"
+        else "livia-page-tabs"
+    )
     return rx.tabs.root(
         desktop_row,
         default_value=default_value,
         on_change=MobileTabRailState.on_tab_change,
         width="100%",
-        class_name="livia-page-tabs",
+        class_name=page_tabs_class,
     )
 
 

@@ -80,13 +80,12 @@ content/
     1_Overview.md
     2_Livia Lore.md
     3_Materialized Enhancements.md     # reference → _shared/materialized_enhancements.md
-    4_It's Just a Cell Life (RJW 2025).md
-    5_Beloved Food (RJW 2024).md
-    6_Survival (RJW 2023).md
-    7_Paths. Memories. Guides (RJW 2022).md
-    8_Parametric (by) nature (RJW 2021).md
-    9_Cry, Dance, Repeat.md
-    10_Spotlight Pavilion.md         # 2019 architecture; context for RJW journey
+    4_A world for everyone (RJW 2026).md
+    5_Death Yes No Maybe (Berlin 2026).md
+    6_It's Just a Cell Life (RJW 2025).md
+    7_Shine bright like a star (Osmium 2025).md
+    8_Beloved Food (RJW 2024).md
+    … (reverse-chronological tabs through 19_iMAPP …)
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab (link list)
@@ -100,7 +99,7 @@ content/
 
 ### Naming convention
 
-Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display (for example `4_It's Just a Cell Life (RJW 2025).md` shows as **It's Just a Cell Life (RJW 2025)**).
+Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display (for example `6_It's Just a Cell Life (RJW 2025).md` shows as **It's Just a Cell Life** with **RJW 2025** on a second line in the sidebar when the label ends with `(RJW YYYY)`).
 
 ### Adding a new tab
 
