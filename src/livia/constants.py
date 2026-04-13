@@ -78,18 +78,8 @@ class LinkItem:
     href: str
     external: bool = False
     icon: str | None = None
-
-
-@dataclass(frozen=True)
-class BubbleItem:
-    icon_label: str
-    title: str
-    tooltip: str
-    preview: str
-    href: str
-    angle: float
-    accent: str
-    external: bool = False
+    accent: str | None = None
+    tooltip: str | None = None
 
 
 @dataclass(frozen=True)
@@ -100,60 +90,62 @@ class TabSpec:
 
 
 NAV_LINKS = (
-    LinkItem("Home", "/"),
-    LinkItem("Biography", "/biography"),
-    LinkItem("Art & Design", "/art-design"),
-    LinkItem("Science & Tech", "/science-tech"),
-)
-
-BIOGRAPHY_LINKS = (
-    LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
-    LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
-    LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
-    LinkItem("GlucoseDAO GitHub", "https://github.com/GlucoseDAO/", True),
-    LinkItem("Sugar-Sugar Game", "https://sugar-sugar.glucosedao.org", True),
-    LinkItem("GlucoseDAO Hugging Face Spaces", "https://huggingface.co/spaces/GlucoseDao", True),
-    LinkItem("Longevity Genie", "https://longevity-genie.github.io", True),
-    LinkItem("Longevity Genie GitHub", "https://github.com/longevity-genie", True),
-    LinkItem("HEALES", "https://heales.org/", True),
-    LinkItem("Romanian Jewelry Week 2025", "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia", True),
-)
-
-BUBBLE_ITEMS: tuple[BubbleItem, ...] = (
-    BubbleItem(
-        icon_label="Science & Tech",
-        title="Science & Tech",
-        tooltip="Digital health & glucose dynamics",
-        preview=(
-            "GlucoseDAO is a healthtech startup building tools that "
-            "help people understand and predict glucose dynamics."
-        ),
-        href="/science-tech",
-        angle=200,
-        accent="green",
+    LinkItem(
+        "Home",
+        "/",
+        accent="neutral",
+        tooltip="Portrait background and entry",
     ),
-    BubbleItem(
-        icon_label="Biography",
-        title="Biography",
+    LinkItem(
+        "Biography",
+        "/biography",
+        accent="amber",
         tooltip="Designer, maker, founder",
-        preview=(
-            "Livia Zaharia is a parametric designer, jewellery maker, "
-            "and founder of GlucoseDAO."
-        ),
-        href="/biography",
-        angle=270,
-        accent="amber",
     ),
-    BubbleItem(
-        icon_label="Art & Design",
-        title="Art & Design",
-        tooltip="Parametric form & fabrication",
-        preview=(
-            "Parametric form, digital fabrication, and the translation "
-            "of controlled systems into organic objects."
-        ),
-        href="/art-design",
-        angle=340,
+    LinkItem(
+        "Art & Design",
+        "/art-design",
         accent="amber",
+        tooltip="Parametric form and fabrication",
+    ),
+    LinkItem(
+        "Science & Tech",
+        "/science-tech",
+        accent="green",
+        tooltip="Digital health and glucose dynamics",
     ),
 )
+
+BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
+    (
+        "Science & Tech",
+        (
+            LinkItem("GlucoseDAO GitHub", "https://github.com/GlucoseDAO/", True),
+            LinkItem("Sugar-Sugar Game", "https://sugar-sugar.glucosedao.org", True),
+            LinkItem("GlucoseDAO Hugging Face Spaces", "https://huggingface.co/spaces/GlucoseDao", True),
+            LinkItem("Longevity Genie", "https://longevity-genie.github.io", True),
+            LinkItem("Longevity Genie GitHub", "https://github.com/longevity-genie", True),
+            LinkItem("HEALES", "https://heales.org/", True),
+        ),
+    ),
+    (
+        "Art & Design",
+        (
+            LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
+            LinkItem(
+                "Romanian Jewelry Week 2025",
+                "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia",
+                True,
+            ),
+        ),
+    ),
+    (
+        "Social media & contacts",
+        (
+            LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
+            LinkItem("Facebook byLiviaZaharia", "https://www.facebook.com/byLiviaZaharia/", True),
+            LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
+        ),
+    ),
+)
+

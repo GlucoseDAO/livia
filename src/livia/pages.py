@@ -8,8 +8,9 @@ import yaml
 from livia.constants import (
     ACCENT_MAP,
     AMBER,
+    ASSETS_DIR,
     BACKGROUND,
-    BIOGRAPHY_LINKS,
+    BIOGRAPHY_LINK_GROUPS,
     CONTENT_DIR,
     GREEN,
     MARKDOWN_COMPONENT_MAP,
@@ -25,22 +26,23 @@ from livia.content import (
 )
 from livia.components import (
     BG_FUNC_MAP,
+    MobileTabRailState,
     _build_special_tab,
     bottom_nav,
-    bubble_overlay,
     fullscreen_bg,
     fullscreen_bg_dimmed,
     github_sidebar,
     instagram_embed_panel,
     instagram_sidebar,
-    link_list,
+    link_list_grouped,
     markdown_panel,
-    screen_aware_sidebar_opener,
     page_content,
     panel,
     section_heading,
     sidebar_tabs,
 )
+
+_LIVIA_NAV_JS = (ASSETS_DIR / "livia_nav.js").read_text(encoding="utf-8")
 
 
 # ---------------------------------------------------------------------------
@@ -123,7 +125,7 @@ def _build_dynamic_tab_specs(
 # ---------------------------------------------------------------------------
 
 def home_page() -> rx.Component:
-    """Homepage: fullscreen portrait + name overlay + floating bubbles + bottom nav."""
+    """Homepage: fullscreen portrait + bottom navigation."""
     return rx.box(
         fullscreen_bg(),
         rx.box(
@@ -135,10 +137,8 @@ def home_page() -> rx.Component:
             ),
             z_index="2",
         ),
-        bubble_overlay(),
         instagram_sidebar(),
         github_sidebar(),
-        screen_aware_sidebar_opener(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -151,7 +151,7 @@ def biography_page() -> rx.Component:
         page_content(
             section_heading("Biography", GREEN),
             markdown_panel("biography"),
-            link_list("Links", BIOGRAPHY_LINKS, GREEN),
+            link_list_grouped("Links", BIOGRAPHY_LINK_GROUPS, GREEN),
         ),
         bottom_nav(),
         min_height="100vh",
@@ -201,8 +201,6 @@ def science_tech_page() -> rx.Component:
             section_heading(heading, accent),
             sidebar_tabs(tabs=tabs, accent=accent, sidebar_side=sidebar_side, default_value=default_value),
         ),
-        github_sidebar(),
-        screen_aware_sidebar_opener(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,
@@ -228,49 +226,9 @@ def create_app() -> rx.App:
         head_components=[
             rx.el.meta(
                 name="viewport",
-                content="width=1280",
+                content="width=device-width, initial-scale=1",
             ),
-            rx.script(
-                """
-                (function() {
-                    if (window.screen && window.screen.width < 1024) {
-                        window.__livia_narrow_device = true;
-                        var style = document.createElement('style');
-                        style.textContent =
-                            '.livia-bottom-nav a { font-size: 2.8rem !important; }' +
-                            '.livia-bottom-nav { padding: 1.2rem 2rem !important; }' +
-                            '.livia-bottom-nav .rt-HStack { gap: 1.2rem !important; }' +
-                            '[role="tablist"] button { font-size: 3rem !important; padding: 0.5rem 0.8rem !important; }';
-                        document.head.appendChild(style);
-                    }
-
-                    function highlightActiveNav() {
-                        var path = window.location.pathname;
-                        if (path === '' || path === '/index') path = '/';
-                        var links = document.querySelectorAll('.livia-bottom-nav a[data-href]');
-                        links.forEach(function(a) {
-                            var href = a.getAttribute('data-href');
-                            var isActive = (href === path);
-                            if (isActive) {
-                                a.style.color = '#f5f0e8';
-                                a.style.fontWeight = '700';
-                                var bar = a.querySelector('.livia-nav-indicator');
-                                if (bar) bar.style.width = '100%';
-                            }
-                        });
-                    }
-
-                    if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', highlightActiveNav);
-                    } else {
-                        highlightActiveNav();
-                    }
-                    // Re-run after a short delay to catch React hydration
-                    setTimeout(highlightActiveNav, 500);
-                    setTimeout(highlightActiveNav, 1500);
-                })();
-                """
-            ),
+            rx.script(_LIVIA_NAV_JS),
         ],
     )
     application.add_page(home_page, route="/", title="Livia Zaharia")
@@ -279,12 +237,12 @@ def create_app() -> rx.App:
         art_design_page,
         route="/art-design",
         title="Art & Design | Livia Zaharia",
-        on_load=ArtDesignContentState.load_content,
+        on_load=[ArtDesignContentState.load_content, MobileTabRailState.collapse_expanded],
     )
     application.add_page(
         science_tech_page,
         route="/science-tech",
         title="Science & Tech | Livia Zaharia",
-        on_load=ScienceTechContentState.load_content,
+        on_load=[ScienceTechContentState.load_content, MobileTabRailState.collapse_expanded],
     )
     return application

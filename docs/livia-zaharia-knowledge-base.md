@@ -4,6 +4,7 @@
 **Based in:** Bucharest, Romania  
 **Roles:** Architect, Parametric Designer, Jewellery Maker, Citizen Scientist, Founder of GlucoseDAO  
 **Instagram:** [@paral_design](https://www.instagram.com/paral_design/)  
+**Facebook:** [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/)  
 **LinkedIn:** [livia-zaharia-4b1425a0](https://www.linkedin.com/in/livia-zaharia-4b1425a0)
 
 ---
@@ -83,25 +84,37 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
   - GitHub: https://github.com/longevity-genie
 
 ### 2. "It's Just a Cell Life — Biology Collection"
-- **Context:** Romanian Jewelry Week 2023
-- **Description:** Built around the narrative "it all started with a cell." Includes pieces "Nucleus" and "Embryo." Forms represent stages of cellular life — division, growth, specialisation, differentiation. Combines digitally modelled, 3D-printed elements with walnut husks and amber via traditional metalworking.
-- **Links:**
-  - ROJW 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
-
-### 3. "Survival"
-- **Context:** Romanian Jewelry Week 2024
-- **Description:** Centred on the story of being lost in a lush, ever-changing jungle. Deep colours and organic forms reminiscent of potentially dangerous but beautiful plants. Each piece is a "tale of survival" in a dense forest of shapes, emphasising resilience and adaptation. Modelled in 3D, cast in silver, mechanisms manually assembled.
-- **Links:**
-  - ROJW 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
-
-### 4. "Biology / Science-Inspired Jewellery"
-- **Context:** Paral Design — ongoing line
-- **Description:** Ongoing stream drawing from microscopic, cellular, or molecular imagery and concepts from longevity and aging conferences. Rings, pendants, and earrings echoing cells, tissues, nanoparticles, or organelles.
+- **Context:** Romanian Jewelry Week 2025 (main exhibition presentation of this collection; ongoing Paral Design line)
+- **Description:** Official collection concept (RJW participant page): *It's just a cell life — Biology collection.* It started with a cell; it grew, divided, specialised. Forms record stages or parts of the cell; start point *Nucleus*, end point *Embryo*. 3D-printed techniques plus natural materials via traditional methods — walnut with metal, amber in digital settings; nano particles as silver (with or without inclusions), per RJW. The same line also includes microscope- and molecule-inspired pieces (Nanot-of-Power, Mitochondria ring) and longevity-conference contexts (e.g. ARDD). There is no separate "science-inspired" category — those pieces belong to this collection.
 - **Links:**
   - ROJW 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
   - ARDD context: https://www.linkedin.com/posts/antonkulaga_ardd-parametricjewelery-biomimetics-activity-7317611459939565568-CZnA
 
-### 5. "Nanot-of-Power" Pendant (also "Nanot")
+### 3. "Beloved Food"
+- **Context:** Romanian Jewelry Week 2024
+- **Description:** Official collection concept (RJW participant page): *Beloved food* — food as inspiration in shape and form; memories tied to taste; non-edible materials recalling familiar forms (e.g. *Nocciola*, *Bird's nest*). "Some of humanity's most persistent memories revolve around food."
+- **Links:**
+  - ROJW 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
+
+### 4. "Survival"
+- **Context:** Romanian Jewelry Week 2023
+- **Description:** Official collection concept (RJW participant page): being lost in a lush jungle where everything is as changing as it is beautiful; deep colours; beauty that can morph into function or form; each piece tells a tale of survival; paths through an ever-changing forest. Silver cast from 3D models; some mechanisms manually assembled.
+- **Links:**
+  - ROJW 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
+
+### 5. "Paths. Memories. Guides"
+- **Context:** Romanian Jewelry Week 2022
+- **Description:** Official collection concept (RJW participant page): a path set by an event or record; memories of what lies inside us (living being, sound wave, building); guides that help find new paths — paths fade to memories, memories become guides. 3D modelled, 3D printed, cast in silver or laser cut; each piece has an individual backstory.
+- **Links:**
+  - ROJW 2022: https://www.romanianjewelryweek.com/participants-2022/livia-zaharia
+
+### 6. "Parametric (by) nature"
+- **Context:** Romanian Jewelry Week 2021
+- **Description:** Official collection concept (RJW participant page): nature follows hidden rules; using those rules, computation and inspiration produced these pieces. Two parts — **elements** (water, in its forms) and **entities** (mostly plants). Each piece 3D modelled and printed, unique.
+- **Links:**
+  - ROJW 2021: https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
+
+### 7. "Nanot-of-Power" Pendant (also "Nanot")
 - **Context:** Nanomedicine / Berlin Longevity Week / ARDD
 - **Description:** Inspired by nanomedicine "nanot" nanoparticles — a new medical technology. Nanoparticle shape interpreted through parametric modelling, 3D-printed and cast in silver. Described on ROJW 2025 as nano particles made of silver, with or without inclusions.
 - **Materials:** Sterling silver
@@ -110,73 +123,77 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
 - **Links:**
   - ROJW 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
 
-### 5b. "Nucleus (Nut of Power)" Pendant
+### 7b. "Nucleus (Nut of Power)" Pendant
 - **Context:** Biology Collection / ROJW 2025
 - **Description:** A pendant combining parametric digital form with natural materials. Part of the "Cell Life" narrative — the nucleus as starting point of the collection.
 - **Materials:** Brass, walnut, amethyst
 - **Dimensions:** 3.4 × 3.4 cm
 - **Year:** 2024
 
-### 5c. "DarkNut" Pendant
+### 7c. "DarkNut" Pendant
 - **Context:** Biology Collection / ROJW 2025
 - **Description:** A pendant integrating walnut husks with metal, continuing the natural-material integration theme.
 - **Materials:** Copper, walnut
 - **Dimensions:** 3.6 × 3.4 cm
 - **Year:** 2024
 
-### 5d. "Embryo" Ring
+### 7d. "Embryo" Ring
 - **Context:** Biology Collection / ROJW 2025
 - **Description:** The "end point" of the Cell Life collection. Natural amber trapped in a digitally designed setting.
 - **Materials:** Amber, sterling silver
 - **Dimensions:** 3.2 × 2.2 cm
 - **Year:** 2024
 
-### 5e. "Mitoring" Ring
+### 7e. "Mitoring" Ring
 - **Context:** Biology Collection / ROJW 2025
 - **Description:** A mitochondria-inspired ring with amber, combining organic form with amber inclusions.
 - **Materials:** Amber, sterling silver
 - **Dimensions:** 3.2 × 2.2 cm
 - **Year:** 2024
 
-### 6. "Mitochondria" Ring
+### 8. "Mitochondria" Ring
 - **Context:** Longevity research collaboration
 - **Description:** Reimagines mitochondria as a sculptural, wearable form with internal cavities and folded structures reminiscent of cristae (the inner membrane folds of mitochondria).
 - **Links:**
   - ROJW 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
 
-### 7. "Berry Nova" Ring
+### 9. "Berry Nova" Ring
 - **Context:** Paral Design / ARDD community
 - **Description:** Clustered, berry-like structure referencing cell clusters or microscopic aggregates, translated into playful parametric geometry. Known within longevity communities as an ARDD-adjacent piece.
 - **Links:**
   - Owner's post: https://www.linkedin.com/posts/kennedymschaal_absolutely-thrilled-with-my-beautiful-berry-activity-7367141216368394240-CRjt
 
-### 8. "Cry, Dance, Repeat"
+### 10. "Cry, Dance, Repeat"
 - **Context:** Data as Wearable Art exhibition
 - **Description:** Data translated into wearable form. Extends her practice into explicit data-to-form translation, aligning with Longevity Genie interest in "sequence to function" and data-driven artefacts.
 - **Links:**
   - Instagram: https://www.instagram.com/p/DWEtVOSkUys/
 
-### 9. "Spotlight Pavilion"
-- **Context:** Architectural origin project (early work)
+### 11. "Spotlight Pavilion"
+- **Context:** Architectural origin project (**2019**), distinct from the RJW 2021 jewellery collection *Parametric (by) nature*
 - **Description:** Early large-scale parametric project exploring how digitally designed geometries become physical structures. Prefigures her later miniaturised parametric jewellery work — the bridge from architecture to body-scale artefact.
 - **Links:**
-  - ROJW 2021: https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
+  - ROJW 2021 jewellery (separate from pavilion): https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
 
 ---
 
 ## Exhibition History
 
+(Within Romanian Jewelry Week rows, years run from **most recent to oldest**.)
+
 | Year | Event | Collection/Focus |
 |------|-------|-----------------|
-| 2021 | Romanian Jewelry Week | Spotlight Pavilion — early parametric work |
-| 2023 | Romanian Jewelry Week | "It's Just a Cell Life" — biology collection |
+| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (materialized-enhancements.longevity-genie.info, site to be updated) |
+| 2025 | Romanian Jewelry Week | "It's Just a Cell Life" — biology collection (Nanot-of-Power, Mitochondria, Embryo, exhibition gallery) |
+| 2024 | Romanian Jewelry Week | "Beloved Food" |
+| 2023 | Romanian Jewelry Week | "Survival" — jungle/resilience collection |
 | 2023 | ROJW Timișoara | Process and parametric method showcase |
-| 2024 | Romanian Jewelry Week | "Survival" — jungle/resilience collection |
-| 2025 | Romanian Jewelry Week | Science-inspired line, Nanot-of-Power, Mitochondria |
+| 2022 | Romanian Jewelry Week | "Paths. Memories. Guides" |
+| 2021 | Romanian Jewelry Week | "Parametric (by) nature" — water / plants |
+| 2019 | (architecture) | Spotlight Pavilion — large-scale parametric pavilion (precursor to jewellery scale) |
 | — | Berlin Longevity Week | Nanomedicine-inspired pieces |
 | — | ARDD conferences | Berry Nova, science-jewellery presentations |
 | — | Data as Wearable Art | "Cry, Dance, Repeat" |
-| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (materialized-enhancements.longevity-genie.info, site to be updated) |
 
 ---
 
@@ -227,6 +244,7 @@ This positions her not just as an artist who references science, but as a practi
 | Platform | URL |
 |----------|-----|
 | Instagram | https://www.instagram.com/paral_design/ |
+| Facebook (byLiviaZaharia) | https://www.facebook.com/byLiviaZaharia/ |
 | LinkedIn | https://www.linkedin.com/in/livia-zaharia-4b1425a0 |
 | Materialized Enhancements | https://materialized-enhancements.longevity-genie.info/ |
 | Longevity Genie | https://longevity-genie.github.io |
@@ -297,7 +315,7 @@ The pieces have an alternate-universe fantasy lore layer — an RPG-flavoured na
 
 ## Gaps / To Be Filled
 
-- **Instagram content** — Instagram blocks automated access (robots.txt). To catalogue individual posts/pieces, manual review of @paral_design is needed, or use of an authenticated Instagram integration
+- **Instagram / Facebook posts** — Instagram blocks automated access (robots.txt). To catalogue individual posts/pieces, manual review of @paral_design and [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) is needed, or use of an authenticated integration. On the site, link specific posts with markdown in tab content (same idea as `[View on Instagram](…)` in `content/art-design/9_Cry, Dance, Repeat.md`): paste each post’s permalink (Facebook: open post → menu → copy link).
 - **Pricing / commissions** — whether pieces are for sale, commission-based, or exhibition-only
 - **High-resolution imagery** — catalogue of piece photographs
 - **Press / reviews** — any critical writing about her work

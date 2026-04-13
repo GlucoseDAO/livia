@@ -1,3 +1,4 @@
+# `order` sorts this tab after numbered .md files (e.g. 14_…); it is not a visible "15" in the UI.
 label: Instagram
-order: 9
+order: 15
 type: instagram_embed

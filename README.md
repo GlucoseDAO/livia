@@ -9,7 +9,7 @@ The site presents two connected facets of one practice:
 
 ## Recent additions
 
-- **Romanian Jewelry Week 2025 photos** — 12 exhibition photographs in `assets/RJW2025/`, documenting Livia's science-inspired jewellery line at ROJW 2025 (Nanot-of-Power, Mitochondria, Embryo, and more).
+- **Romanian Jewelry Week 2025 photos** — 12 exhibition photographs in `assets/RJW2025/`, documenting the *It's Just a Cell Life* collection at ROJW 2025 (Nanot-of-Power, Mitochondria, Embryo, and more).
 - **Artist knowledge base** — comprehensive reference document at `docs/livia-zaharia-knowledge-base.md` covering identity, practice, materials, collections catalogue, exhibition history, ecosystem connections (GlucoseDAO, Longevity Genie, HEALES, ARDD), and RPG lore.
 
 ## Prerequisites
@@ -24,6 +24,35 @@ git lfs pull
 ```
 
 Without this step, image files (e.g. `assets/livia.jpg`) will be small text pointer files instead of real images, and the site background will be broken.
+
+## Adding images (no upload UI)
+
+This project does **not** have a web upload or CMS. You add images the same way you add code: put files in the repo and reference them from markdown.
+
+### 1. Put files under `assets/`
+
+- **Site-wide portrait (homepage / dimmed background):** replace or add `assets/livia.jpg`. It is served at `/livia.jpg`.
+- **Other full-page backgrounds** used in code live next to it, e.g. `assets/green_side.jpg`, `assets/yellow_side.jpg` (URLs `/green_side.jpg`, `/yellow_side.jpg`).
+- **Galleries and inline “artifact” photos:** use a subfolder, e.g. `assets/RJW2025/photo_01.jpg`. Anything under `assets/` is exposed at `/` + relative path (that file → `/RJW2025/photo_01.jpg`).
+
+Supported extensions in galleries: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`. Gallery order follows **filename** (sorted alphabetically).
+
+### 2. Commit with Git LFS
+
+Binary images are tracked with Git LFS (see `.gitattributes`). After adding files, commit and push as usual; collaborators need `git lfs pull` to fetch the real files.
+
+### 3. Reference images in markdown (`content/`)
+
+Use these **single-line** HTML comments on their own line (see `content/art-design/` for examples):
+
+| Directive | What it does |
+|-----------|----------------|
+| `<!-- gallery: FolderName -->` | Renders every image in `assets/FolderName/` as a responsive grid (lightbox on the live site). `FolderName` is only the subfolder under `assets/`, not `assets/` itself. |
+| `<!-- artifact: /Folder/file.jpg -->` | Renders one centered image with the artefact styling. The path is the **URL path** under the site root: leading `/`, then path inside `assets/` (e.g. `/RJW2025/IMG_3493.jpg`). |
+
+Ordinary markdown images work too if you use full URL paths that match files under `assets/` (same as above).
+
+Restart `uv run start` if the dev server does not pick up new files.
 
 ## Quick start
 
@@ -48,12 +77,15 @@ content/
     _meta.yaml                         # page heading, accent colour, background, sidebar side
     _instagram.yaml                    # special tab (Instagram embed)
     1_Overview.md
-    2_Materialized Enhancements.md     # reference → _shared/materialized_enhancements.md
-    3_Cell Life.md
-    4_Survival.md
-    5_Science-Inspired.md
-    6_Cry, Dance, Repeat.md
-    7_Spotlight Pavilion.md
+    2_Livia Lore.md
+    3_Materialized Enhancements.md     # reference → _shared/materialized_enhancements.md
+    4_It's Just a Cell Life (RJW 2025).md
+    5_Beloved Food (RJW 2024).md
+    6_Survival (RJW 2023).md
+    7_Paths. Memories. Guides (RJW 2022).md
+    8_Parametric (by) nature (RJW 2021).md
+    9_Cry, Dance, Repeat.md
+    10_Spotlight Pavilion.md         # 2019 architecture; context for RJW journey
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab (link list)
@@ -67,7 +99,7 @@ content/
 
 ### Naming convention
 
-Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display; you only see "Overview", "Cell Life", etc.
+Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display (for example `4_It's Just a Cell Life (RJW 2025).md` shows as **It's Just a Cell Life (RJW 2025)**).
 
 ### Adding a new tab
 
@@ -135,7 +167,7 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 
 | Route           | Purpose |
 |-----------------|---------|
-| `/`             | Homepage — full-screen portrait, floating bubbles, bottom nav |
+| `/`             | Homepage — full-screen portrait, bottom nav |
 | `/biography`    | Biography + external links |
 | `/art-design`   | Art & Design — tabbed page (auto-discovered from `content/art-design/`) |
 | `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
@@ -204,6 +236,8 @@ The Art & Design page features a collapsible Instagram sidebar for the `@paral_d
 
 No API key or third-party widget system is required — the embed uses Instagram's public `/embed` endpoint.
 
+**Facebook:** there is no embed rail (Facebook does not offer a simple public embed like Instagram). The profile [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) is linked on **Biography** under **Links → Social media & contacts**, and you can link individual posts from tab markdown (see `AGENTS.md`, “Linking Instagram or Facebook posts”).
+
 ## Components
 
 The component set is deliberately small:
@@ -217,7 +251,8 @@ The component set is deliberately small:
 | `markdown_panel`     | Panel that renders markdown from `content/` |
 | `feature_card`       | Project card (extends `panel`) |
 | `link_list`          | Labelled link group (extends `panel`) |
-| `instagram_sidebar`  | Collapsible right-edge `@paral_design` embed |
+| `instagram_sidebar`  | Right-edge tool rail: collapsed `@paral_design` grip; hover or focus-within expands |
+| `github_sidebar`       | Left-edge tool rail: collapsed `GITHUB / TECH` grip; hover or focus-within expands |
 | `page_content`       | Centered content wrapper with bottom padding |
 | `section_heading`    | Page title with accent gradient underline |
 
@@ -227,24 +262,24 @@ Content text is loaded from `content/` at import time:
 - Standalone pages use `load_content(name)` to read a single `.md` file.
 - Tabbed pages use `load_tabs_from_folder(folder)` to scan a subfolder and build tabs automatically.
 
-Structured data is defined as frozen dataclasses at the top of `livia.py`:
+Structured data is defined as frozen dataclasses in `constants.py`:
 
-- `LinkItem(label, href, external)` — a single link
+- `LinkItem(label, href, external=False, icon=None, accent=None, tooltip=None)` — links; `accent` and `tooltip` drive bottom-nav hover styling and tooltips
 - `TabSpec(label, value, content)` — a single tab definition
-- `BubbleItem(icon_label, title, tooltip, preview, href, angle, accent)` — a floating navigation bubble
 
-The app has minimal Reflex state: `InstagramSidebarState` and `GithubSidebarState` (each a single `is_open` boolean).
+The app has minimal Reflex state (for example `GalleryState` for the image lightbox). Instagram and GitHub edge panels are CSS width rails (collapsed until hover on a fine pointer, or until the rail has focus for tap/keyboard), not state toggles.
 
 ## Links
 
 ### Design / personal presence
 
 - Instagram: https://www.instagram.com/paral_design/
+- Facebook (byLiviaZaharia): https://www.facebook.com/byLiviaZaharia/
 - LinkedIn: https://ro.linkedin.com/in/livia-zaharia-4b1425a0
-- Romanian Jewelry Week 2021: https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
-- Romanian Jewelry Week 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
-- Romanian Jewelry Week 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
 - Romanian Jewelry Week 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
+- Romanian Jewelry Week 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia
+- Romanian Jewelry Week 2023: https://www.romanianjewelryweek.com/participants-2023/livia-zaharia
+- Romanian Jewelry Week 2021: https://www.romanianjewelryweek.com/participants-2021/livia-zaharia
 
 ### Longevity / science collaborations
 
