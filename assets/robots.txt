@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
 Sitemap: /sitemap.xml
+
+# Full site content for AI assistants and search crawlers (no JavaScript required)
+# https://llmstxt.org
+LLMs: /llms.txt
