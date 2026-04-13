@@ -79,11 +79,13 @@ content/
     1_Overview.md
     2_Livia Lore.md
     3_Materialized Enhancements.md     # reference → _shared/materialized_enhancements.md
-    4_Cell Life.md                   # RJW 2025 — It's Just a Cell Life (incl. RJW2025 gallery)
-    5_Beloved Food.md                # RJW 2024
-    6_Survival.md                    # RJW 2023
-    7_Cry, Dance, Repeat.md
-    8_Spotlight Pavilion.md
+    4_It's Just a Cell Life (RJW 2025).md
+    5_Beloved Food (RJW 2024).md
+    6_Survival (RJW 2023).md
+    7_Paths. Memories. Guides (RJW 2022).md
+    8_Parametric (by) nature (RJW 2021).md
+    9_Cry, Dance, Repeat.md
+    10_Spotlight Pavilion.md         # 2019 architecture; context for RJW journey
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab (link list)
@@ -97,7 +99,7 @@ content/
 
 ### Naming convention
 
-Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display; you only see "Overview", "Cell Life", etc.
+Files are named `N_Label Name.md` where `N` controls sort order and `Label Name` becomes the tab title. The `N_` prefix is stripped for display (for example `4_It's Just a Cell Life (RJW 2025).md` shows as **It's Just a Cell Life (RJW 2025)**).
 
 ### Adding a new tab
 
@@ -234,6 +236,8 @@ The Art & Design page features a collapsible Instagram sidebar for the `@paral_d
 
 No API key or third-party widget system is required — the embed uses Instagram's public `/embed` endpoint.
 
+**Facebook:** there is no embed rail (Facebook does not offer a simple public embed like Instagram). The profile [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) is linked on **Biography** under **Links → Social media & contacts**, and you can link individual posts from tab markdown (see `AGENTS.md`, “Linking Instagram or Facebook posts”).
+
 ## Components
 
 The component set is deliberately small:
@@ -270,6 +274,7 @@ The app has minimal Reflex state (for example `GalleryState` for the image light
 ### Design / personal presence
 
 - Instagram: https://www.instagram.com/paral_design/
+- Facebook (byLiviaZaharia): https://www.facebook.com/byLiviaZaharia/
 - LinkedIn: https://ro.linkedin.com/in/livia-zaharia-4b1425a0
 - Romanian Jewelry Week 2025: https://www.romanianjewelryweek.com/participants-2025/livia-zaharia
 - Romanian Jewelry Week 2024: https://www.romanianjewelryweek.com/participants-2024/livia-zaharia

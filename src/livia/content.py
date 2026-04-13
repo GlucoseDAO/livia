@@ -2,6 +2,7 @@
 
 import re
 from pathlib import Path
+from urllib.parse import quote
 
 import yaml
 
@@ -79,6 +80,14 @@ def extract_youtube_id(line: str) -> str | None:
     return None
 
 
+def encode_url_path(url_path: str) -> str:
+    """Percent-encode each segment of a site-root URL path (spaces in filenames, etc.)."""
+    if not url_path.startswith("/"):
+        return url_path
+    segments = [quote(segment, safe="") for segment in url_path.split("/") if segment]
+    return "/" + "/".join(segments)
+
+
 def collect_gallery_images(folder: str) -> list[str]:
     """Collect image paths from an assets subfolder, sorted by name."""
     folder_path = ASSETS_DIR / folder
@@ -120,7 +129,7 @@ def preprocess_markdown_for_state(content: str) -> str:
             if images:
                 img_tags = "".join(
                     f'<div style="border-radius:0.6rem;overflow:hidden;border:1px solid rgba(255,248,238,0.12)">'
-                    f'<img src="{src}" style="width:100%;height:auto;object-fit:cover;border-radius:0.6rem" loading="lazy"/>'
+                    f'<img src="{encode_url_path(src)}" style="width:100%;height:auto;object-fit:cover;border-radius:0.6rem" loading="lazy"/>'
                     f'</div>'
                     for src in images
                 )
@@ -132,7 +141,7 @@ def preprocess_markdown_for_state(content: str) -> str:
 
         artifact_match = ARTIFACT_IMAGE_RE.match(stripped)
         if artifact_match is not None:
-            src = artifact_match.group(1)
+            src = encode_url_path(artifact_match.group(1))
             output_lines.append(
                 f'<div style="display:flex;justify-content:center;width:100%;margin:1rem 0">'
                 f'<img src="{src}" style="max-width:400px;width:100%;height:auto;object-fit:contain;'

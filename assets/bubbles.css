@@ -153,9 +153,36 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
 /* Page tabs: match bottom-nav label size (homepage chrome) */
 .livia-page-tabs [role="tablist"] button {
   font-size: calc(19px * var(--livia-ui-scale));
-  padding: calc(0.35rem * var(--livia-ui-scale)) calc(0.55rem * var(--livia-ui-scale));
+  padding: calc(0.45rem * var(--livia-ui-scale)) calc(0.55rem * var(--livia-ui-scale));
   line-height: 1.25;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+/* Mobile: wrapped tab rows — generous gap between buttons; title vs RJW is tight in the component */
+.livia-mobile-tablist {
+  gap: calc(1.35rem * var(--livia-ui-scale)) calc(1rem * var(--livia-ui-scale));
+}
+
+.livia-page-tabs [role="tablist"] button .livia-tab-label-primary,
+.livia-page-tabs [role="tablist"] button .livia-tab-label-single {
+  color: inherit;
+  line-height: 1.28;
+}
+
+/* Tight gap between collection title and centered RJW line */
+.livia-tab-label-stack {
+  gap: 0.2rem !important;
+}
+
+.livia-page-tabs [role="tablist"] button .livia-tab-label-rjw {
+  display: block;
+  margin-top: 0;
+  text-align: center;
+}
+
+.livia-page-tabs [role="tablist"] button[data-state="active"] .livia-tab-label-rjw,
+.livia-page-tabs [role="tablist"] button[aria-selected="true"] .livia-tab-label-rjw {
+  opacity: 0.92;
 }
 
 /* Desktop tab rail: collapsed shows MORE grip; open shows full subtopic labels */
@@ -235,8 +262,40 @@ html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button {
   white-space: normal;
   text-align: inherit;
   font-size: calc(26px * var(--livia-ui-scale));
-  padding: calc(0.5rem * var(--livia-ui-scale)) calc(0.72rem * var(--livia-ui-scale));
-  line-height: 1.3;
+  padding: calc(0.62rem * var(--livia-ui-scale)) calc(0.72rem * var(--livia-ui-scale));
+  line-height: 1.25;
+}
+
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button .livia-tab-label-rjw,
+html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button .livia-tab-label-rjw {
+  font-size: 0.68em;
+  margin-top: 0;
+  text-align: center;
+}
+
+/*
+ * Side rail: selection accent — inset bar on the inner edge (Radix Themes also uses shadows; we add a clear stripe).
+ * Two-line tabs: add a little top padding so the stripe reads with the first line, not through the RJW subtitle.
+ */
+html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[data-state="active"],
+html.livia-wide .livia-tab-rail--left:focus-within [role="tablist"] button[data-state="active"],
+html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[aria-selected="true"],
+html.livia-wide .livia-tab-rail--left:focus-within [role="tablist"] button[aria-selected="true"] {
+  box-shadow: inset 3px 0 0 0 currentColor;
+}
+
+html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[data-state="active"],
+html.livia-wide .livia-tab-rail--right:focus-within [role="tablist"] button[data-state="active"],
+html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[aria-selected="true"],
+html.livia-wide .livia-tab-rail--right:focus-within [role="tablist"] button[aria-selected="true"] {
+  box-shadow: inset -3px 0 0 0 currentColor;
+}
+
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
+html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
+html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"],
+html.livia-wide .livia-tab-rail:focus-within [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+  padding-top: calc(0.28rem * var(--livia-ui-scale));
 }
 
 /* Instagram / GitHub edge tool rails: always collapsed until hover (mouse) or focus (tap / Tab) */

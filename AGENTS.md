@@ -41,11 +41,13 @@ content/
     1_Overview.md
     2_Livia Lore.md
     3_Materialized Enhancements.md     # reference file
-    4_Cell Life.md                    # RJW 2025
-    5_Beloved Food.md                 # RJW 2024
-    6_Survival.md                     # RJW 2023
-    7_Cry, Dance, Repeat.md
-    8_Spotlight Pavilion.md
+    4_It's Just a Cell Life (RJW 2025).md
+    5_Beloved Food (RJW 2024).md
+    6_Survival (RJW 2023).md
+    7_Paths. Memories. Guides (RJW 2022).md
+    8_Parametric (by) nature (RJW 2021).md
+    9_Cry, Dance, Repeat.md
+    10_Spotlight Pavilion.md
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab
@@ -77,6 +79,10 @@ ref: _shared/materialized_enhancements.md
 ```
 
 The loader follows the pointer and renders content from the referenced path. This allows the same content to appear as a tab on multiple pages without duplication.
+
+### Linking Instagram or Facebook posts
+
+Use normal markdown links in tab markdown. Example (see `content/art-design/9_Cry, Dance, Repeat.md`): `[View on Instagram](https://www.instagram.com/p/POST_ID/)`. For Facebook, use the post permalink from [byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/) (open the post → **···** or **Share** → copy link). You can add multiple lines such as `[View on Facebook](https://www.facebook.com/...)` next to collection descriptions.
 
 ### `_meta.yaml` (page config)
 
@@ -140,20 +146,18 @@ When a change affects UI/UX, validation is required before considering the task 
 - When asked to act (e.g. "do stuff for me"), proceed decisively without asking for further confirmation.
 - Edge tool rails (Instagram on the right, GitHub & Tech on the left) stay **collapsed** to a grip strip whose minimum width scales with `--livia-ui-scale`. They **expand** on fine-pointer **hover** or when the rail has **`:focus-within`** (tap the strip on touch). Bottom nav never auto-hides.
 - On large screens, content pages should use sidebar tabs (left for Science & Tech, right for Art & Design) rather than full-width vertical layouts that cause super-wide, hard-to-read text lines.
+- Romanian Jewelry Week collection tabs use labels like `Collection name (RJW YYYY)`; detailed per-piece writeups follow the Livia Lore pattern (`## Pieces`, `###` headings, metadata lines, grouped `<!-- artifact: /path/to/file.jpg -->` directives).
 
 ## Learned Workspace Facts
 
-- `rxconfig.py` must not import from the `src/livia/` package because Reflex's `get_config()` strips `sys.path` during early init; any plugins must be inlined directly in `rxconfig.py`.
+- `rxconfig.py` must not import from the `src/livia/` package because Reflex's `get_config()` strips `sys.path` during early init; `ViteDevServerPlugin` and similar must be inlined there (the old `src/livia/plugins.py` was removed for this reason).
 - The user-visible port is controlled by `frontend_port` in Reflex config, not `backend_port`; default is 3010 with backend at 3011.
 - Git LFS is configured (`.gitattributes`) to track `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.webp`.
-- During dev, Reflex hot-reload may not pick up changes to CSS/JS files in `assets/`; manually copy to `.web/public/` and `.web/styles/` if needed.
-- The `src/livia/plugins.py` file was removed; `ViteDevServerPlugin` is now inlined in `rxconfig.py` to avoid the import isolation issue.
+- `encode_url_path()` in `src/livia/content.py` percent-encodes path segments for `gallery` and `artifact` image URLs so asset filenames with spaces resolve correctly in the browser.
+- `github_sidebar()` is used on the home page only; the Science & Tech page layout does not include that left rail.
 - The site uses per-page-category background images: `green_side.jpg` for Science & Tech pages, `yellow_side.jpg` for Art & Design pages, `livia.jpg` for neutral/home pages.
-- Site navigation structure: Home (`/`), Biography (`/biography`), Art & Design (`/art-design`), Science & Tech (`/science-tech`). No external links in top-level nav.
-- The GitHub remote is `github.com:GlucoseDAO/livia.git`; diverged histories from LFS migration may require `--force` push.
-- Home page uses the portrait background and bottom nav only (no duplicate floating arc nav).
+- Site navigation structure: Home (`/`), Biography (`/biography`), Art & Design (`/art-design`), Science & Tech (`/science-tech`). No external links in top-level nav. Home uses the portrait background and bottom nav only (no duplicate floating arc nav).
 - Art & Design and Science & Tech pages use the folder-based tab system; tabs are auto-discovered from `content/art-design/` and `content/science-tech/` respectively. Bottom nav uses `rx.State.router.page.path` to highlight the active page.
-- GitHub and LinkedIn do not offer embeddable iframe widgets; a custom "tech sidebar" component is used instead with links and icons.
 - The site forces desktop rendering on mobile via `<meta name="viewport" content="width=1280">` in `head_components`. Mobile-specific CSS breakpoints are intentionally bypassed; the page is always rendered as a 1280px-wide desktop layout and scaled down on phones.
 - Edge sidebars (`instagram_sidebar`, `github_sidebar`) are fixed tool rails: a narrow grip (`@paral_design` on the right, `GITHUB / TECH` on the left) with the same typography as before; on fine pointers they **expand on hover** (and `focus-within` for keyboard) via `assets/bubbles.css`. On coarse pointers they stay at a usable width (`min(360px, 88vw)`). No Reflex state for open/close.
 - Bottom nav and bubble labels use CSS `max()` / `clamp()` with pixel minimums to ensure tappability on scaled-down mobile viewports.

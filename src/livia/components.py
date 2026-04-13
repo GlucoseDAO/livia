@@ -1,5 +1,6 @@
 """Reusable UI components for the Livia website."""
 
+import re
 from typing import Literal
 
 import reflex as rx
@@ -800,6 +801,61 @@ def github_sidebar() -> rx.Component:
 # Tabs
 # ---------------------------------------------------------------------------
 
+_RJW_TAB_SUFFIX_RE = re.compile(r"\s*\(RJW\s+(\d{4})\)\s*$")
+
+
+def _split_rjw_tab_label(label: str) -> tuple[str, str | None]:
+    """If label ends with '(RJW YYYY)', return (collection title, 'RJW YYYY')."""
+    m = _RJW_TAB_SUFFIX_RE.search(label)
+    if not m:
+        return label, None
+    primary = label[: m.start()].strip()
+    if not primary:
+        return label, None
+    return primary, f"RJW {m.group(1)}"
+
+
+def _sidebar_tab_label_stack(
+    label: str,
+    sidebar_side: Literal["left", "right"],
+) -> rx.Component:
+    """Two lines when label contains '(RJW YYYY)': title, then RJW + year."""
+    primary, rjw = _split_rjw_tab_label(label)
+    text_align: Literal["left", "right", "center", "start", "end"] = (
+        "left" if sidebar_side == "left" else "right"
+    )
+    if rjw is None:
+        return rx.text(
+            label,
+            width="100%",
+            text_align=text_align,
+            class_name="livia-tab-label-single",
+        )
+    return rx.vstack(
+        rx.text(
+            primary,
+            width="100%",
+            text_align=text_align,
+            class_name="livia-tab-label-primary",
+        ),
+        rx.text(
+            rjw,
+            width="100%",
+            text_align="center",
+            class_name="livia-tab-label-rjw",
+            font_size="0.72em",
+            letter_spacing="0.06em",
+            font_weight="500",
+            color=TEXT_MUTED,
+            line_height="1.2",
+        ),
+        spacing="1",
+        align_items="stretch",
+        width="100%",
+        class_name="livia-tab-label-stack",
+    )
+
+
 def sidebar_tabs(
     tabs: tuple[TabSpec, ...],
     accent: str,
@@ -836,12 +892,21 @@ def sidebar_tabs(
     desktop_sidebar = rx.box(
         tab_rail_grip,
         rx.tabs.list(
-            *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
+            *(
+                rx.tabs.trigger(
+                    _sidebar_tab_label_stack(tab.label, sidebar_side),
+                    value=tab.value,
+                    style=tab_trigger_style,
+                    class_name="livia-tab-trigger-btn",
+                    custom_attrs={"aria-label": tab.label},
+                )
+                for tab in tabs
+            ),
             display="flex",
             flex_direction="column",
             align_items="flex-start" if sidebar_side == "left" else "flex-end",
             justify_content="flex-start",
-            gap="0.6rem",
+            gap="1.95rem",
             width="100%",
         ),
         class_name=f"livia-tab-rail {rail_side_class}",
@@ -859,14 +924,24 @@ def sidebar_tabs(
         custom_attrs={"tabindex": "0", "role": "navigation", "aria-label": "Page sections"},
     )
     mobile_tabs = rx.tabs.list(
-        *(rx.tabs.trigger(tab.label, value=tab.value, style=tab_trigger_style) for tab in tabs),
+        *(
+            rx.tabs.trigger(
+                _sidebar_tab_label_stack(tab.label, sidebar_side),
+                value=tab.value,
+                style=tab_trigger_style,
+                class_name="livia-tab-trigger-btn livia-tab-trigger-btn--mobile",
+                custom_attrs={"aria-label": tab.label},
+            )
+            for tab in tabs
+        ),
         display=["flex", "flex", "none"],
-        gap="0.4rem",
         flex_wrap="wrap",
         justify_content="flex-start",
+        align_content="flex-start",
         border_bottom=f"1px solid {PANEL_BORDER}",
-        padding_bottom="0.5rem",
+        padding_bottom="0.65rem",
         width="100%",
+        class_name="livia-mobile-tablist",
     )
     contents = tuple(rx.tabs.content(tab.content, value=tab.value, width="100%") for tab in tabs)
     content_stack = rx.vstack(

@@ -143,6 +143,7 @@ BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
         "Social media & contacts",
         (
             LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
+            LinkItem("Facebook byLiviaZaharia", "https://www.facebook.com/byLiviaZaharia/", True),
             LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
         ),
     ),
