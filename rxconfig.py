@@ -1,6 +1,8 @@
+import ipaddress
 import os
 import re
 from pathlib import Path
+from urllib.parse import urlparse, urlunparse
 
 import reflex as rx
 import yaml
@@ -161,8 +163,58 @@ class ViteDevServerPlugin(Plugin):
             vite_path.write_text(new_content, encoding="utf-8")
 
 
+def _host_for_url_netloc(host: str) -> str:
+    """Bracket IPv6 literals so they are valid in http://… URLs."""
+    try:
+        if isinstance(ipaddress.ip_address(host), ipaddress.IPv6Address):
+            return f"[{host}]"
+    except ValueError:
+        pass
+    return host
+
+
+def _rewrite_listen_url(url: str, bind_host: str) -> str:
+    """Replace hostname in a parsed listen URL; keep port and path from Vite."""
+    parsed = urlparse(url)
+    if not parsed.scheme or not parsed.netloc:
+        return url
+    port = parsed.port
+    host_lit = _host_for_url_netloc(bind_host)
+    netloc = f"{host_lit}:{port}" if port is not None else host_lit
+    return urlunparse(
+        (parsed.scheme, netloc, parsed.path, parsed.params, parsed.query, parsed.fragment)
+    )
+
+
+def _patch_reflex_console_bind_urls() -> None:
+    """Reflex hardcodes localhost / 0.0.0.0 in startup banners; align with HOST / vite_host."""
+
+    from reflex.utils import console
+    from reflex.utils import exec as reflex_exec
+
+    def notify_backend() -> None:
+        cfg = get_config()
+        h = _host_for_url_netloc(cfg.backend_host)
+        console.print(
+            f"Backend running at: [bold green]http://{h}:{cfg.backend_port}[/bold green]"
+        )
+
+    def notify_frontend(url: str, backend_present: bool) -> None:
+        cfg = get_config()
+        bind = getattr(cfg, "vite_host", None) or cfg.backend_host
+        display_url = _rewrite_listen_url(url, bind)
+        console.print(
+            f"App running at: [bold green]{display_url.rstrip('/')}/[/bold green]"
+            f"{' (Frontend-only mode)' if not backend_present else ''}"
+        )
+
+    reflex_exec.notify_backend = notify_backend
+    reflex_exec.notify_frontend = notify_frontend
+
+
 FRONTEND_PORT = int(os.getenv("PORT", "3010"))
 BACKEND_PORT = int(os.getenv("BACKEND_PORT", str(FRONTEND_PORT + 1)))
+_HOST: str = os.getenv("HOST", "0.0.0.0")
 _DEPLOY_URL: str | None = os.getenv("DEPLOY_URL")
 
 # Enable SSR/prerendering by default so bots and search engines get
@@ -174,12 +226,15 @@ config = rx.Config(
     app_name="livia",
     frontend_port=FRONTEND_PORT,
     backend_port=BACKEND_PORT,
+    backend_host=_HOST,
     **({} if _DEPLOY_URL is None else {"deploy_url": _DEPLOY_URL}),
     vite_allowed_hosts=True,
-    vite_host="0.0.0.0",
+    vite_host=_HOST,
     plugins=[
         rx.plugins.SitemapPlugin(),
         LlmsTxtPlugin(),
         ViteDevServerPlugin(),
     ],
 )
+
+_patch_reflex_console_bind_urls()

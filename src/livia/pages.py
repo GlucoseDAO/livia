@@ -27,7 +27,6 @@ from livia.content import (
     load_content,
     load_folder_raw_md,
     load_page_meta,
-    load_pieces_tab_content,
     load_single_piece_tab_content,
     load_single_tab_md_content,
     parse_pieces_tab_entries,
@@ -108,8 +107,26 @@ _PERSON_SCHEMA: dict = {
     ],
 }
 
-# Empty-string sentinel dicts keyed by all known md slugs — avoids KeyErrors in
-# state-var subscript expressions before content is loaded on demand.
+def _preload_first_tab(folder: str) -> dict[str, str]:
+    """Build initial state with only the first (default) tab pre-loaded for SSR.
+
+    Crawlers see the default tab content in pre-rendered HTML; all other tabs
+    remain empty and are lazy-loaded on click — preserving the original perf profile.
+    """
+    empty = {
+        slug: ""
+        for _, _, slug, st in scan_tab_slugs(folder)
+        if st.startswith("md:")
+    }
+    for _, _, slug, st in scan_tab_slugs(folder):
+        if st.startswith("md:"):
+            content = load_single_tab_md_content(folder, slug)
+            if content is not None:
+                return {**empty, slug: content}
+            break
+    return empty
+
+
 _ART_DESIGN_EMPTY: dict[str, str] = {
     slug: ""
     for _, _, slug, st in scan_tab_slugs("art-design")
@@ -126,20 +143,30 @@ _PIECES_EMPTY: dict[str, str] = {
     **{e.tab_key: "" for e in _entries_pieces},
 }
 
+# First tab pre-loaded for SSR/prerendering; rest stay lazy.
+_ART_DESIGN_INITIAL: dict[str, str] = _preload_first_tab("art-design")
+_SCIENCE_TECH_INITIAL: dict[str, str] = _preload_first_tab("science-tech")
+_PIECES_INITIAL: dict[str, str] = {
+    **_PIECES_EMPTY,
+    **({} if _intro_pieces is None else {
+        "overview": load_single_piece_tab_content("overview") or "",
+    }),
+}
+
 
 # ---------------------------------------------------------------------------
-# Content state classes — lazy: only the active tab's markdown is fetched
+# Content state classes — initial state pre-loaded for SSR; on_load is a no-op
+# when content is already present (crawlers never need WebSocket for content).
 # ---------------------------------------------------------------------------
 
 class ArtDesignContentState(rx.State):
-    """Markdown content for Art & Design tabs. Only the selected tab is loaded from disk."""
-    tab_content: dict[str, str] = _ART_DESIGN_EMPTY
+    """Markdown content for Art & Design tabs, pre-loaded for SSR/prerendering."""
+    tab_content: dict[str, str] = _ART_DESIGN_INITIAL
 
     def load_content(self) -> None:
-        """On page load: reset to empty then load only the first (default) tab."""
-        self.tab_content = _ART_DESIGN_EMPTY.copy()
+        """Ensure the first tab has content (no-op when already pre-loaded via SSR)."""
         for _, _, slug, st in scan_tab_slugs("art-design"):
-            if st.startswith("md:"):
+            if st.startswith("md:") and not self.tab_content.get(slug):
                 content = load_single_tab_md_content("art-design", slug)
                 if content is not None:
                     self.tab_content = {**self.tab_content, slug: content}
@@ -154,14 +181,13 @@ class ArtDesignContentState(rx.State):
 
 
 class ScienceTechContentState(rx.State):
-    """Markdown content for Science & Tech tabs. Only the selected tab is loaded from disk."""
-    tab_content: dict[str, str] = _SCIENCE_TECH_EMPTY
+    """Markdown content for Science & Tech tabs, pre-loaded for SSR/prerendering."""
+    tab_content: dict[str, str] = _SCIENCE_TECH_INITIAL
 
     def load_content(self) -> None:
-        """On page load: reset to empty then load only the first (default) tab."""
-        self.tab_content = _SCIENCE_TECH_EMPTY.copy()
+        """Ensure the first tab has content (no-op when already pre-loaded via SSR)."""
         for _, _, slug, st in scan_tab_slugs("science-tech"):
-            if st.startswith("md:"):
+            if st.startswith("md:") and not self.tab_content.get(slug):
                 content = load_single_tab_md_content("science-tech", slug)
                 if content is not None:
                     self.tab_content = {**self.tab_content, slug: content}
@@ -176,20 +202,21 @@ class ScienceTechContentState(rx.State):
 
 
 class PiecesContentState(rx.State):
-    """Per-tab markdown for Pieces. Only the selected tab is loaded from disk."""
-    tab_content: dict[str, str] = _PIECES_EMPTY
+    """Per-tab markdown for Pieces, pre-loaded for SSR/prerendering."""
+    tab_content: dict[str, str] = _PIECES_INITIAL
 
     def load_content(self) -> None:
-        """On page load: reset to empty then load only the first (default) tab."""
-        self.tab_content = _PIECES_EMPTY.copy()
-        intro, entries = parse_pieces_tab_entries()
-        if intro is not None:
-            self.tab_content = {**self.tab_content, "overview": preprocess_markdown_for_state(intro)}
-        elif entries:
-            first_key = entries[0].tab_key
-            content = load_single_piece_tab_content(first_key)
-            if content is not None:
-                self.tab_content = {**self.tab_content, first_key: content}
+        """Ensure overview/first tab has content (no-op when already pre-loaded via SSR)."""
+        if not self.tab_content.get("overview"):
+            intro, entries = parse_pieces_tab_entries()
+            if intro is not None:
+                self.tab_content = {**self.tab_content, "overview": preprocess_markdown_for_state(intro)}
+            elif entries:
+                first_key = entries[0].tab_key
+                if not self.tab_content.get(first_key):
+                    content = load_single_piece_tab_content(first_key)
+                    if content is not None:
+                        self.tab_content = {**self.tab_content, first_key: content}
 
     def load_tab(self, tab_key: str) -> None:
         """On tab select: load that tab's markdown on demand (no-op if already cached)."""
@@ -206,12 +233,16 @@ class PiecesContentState(rx.State):
 def _build_dynamic_tab_specs(
     folder: str,
     content_state: type[ArtDesignContentState] | type[ScienceTechContentState],
+    static_overrides: dict[str, str] | None = None,
 ) -> list[TabSpec]:
     """Build TabSpecs where markdown tabs render content from a state dict.
 
     Tab structure (labels, slugs) is discovered at compile time.
     Markdown content comes from the state var and is re-read from disk on each page load.
     Special tabs (instagram_embed, link_list) are still built statically.
+
+    When static_overrides is provided, those slugs use a baked-in Python string instead of
+    the state var — no hydration mismatch, and no extra data loaded for the other tabs.
     """
     entries = scan_tab_slugs(folder)
     folder_path = CONTENT_DIR / folder
@@ -219,17 +250,19 @@ def _build_dynamic_tab_specs(
 
     for _order, label, slug, source_type in entries:
         if source_type.startswith("md:"):
-            tabs.append(TabSpec(
-                label=label,
-                value=slug,
-                content=panel(
-                    rx.markdown(
-                        content_state.tab_content[slug],
-                        component_map=MARKDOWN_COMPONENT_MAP,
-                        use_unwrap_images=False,
-                    ),
-                ),
-            ))
+            if static_overrides and slug in static_overrides:
+                md_content: rx.Component = rx.markdown(
+                    static_overrides[slug],
+                    component_map=MARKDOWN_COMPONENT_MAP,
+                    use_unwrap_images=False,
+                )
+            else:
+                md_content = rx.markdown(
+                    content_state.tab_content[slug],
+                    component_map=MARKDOWN_COMPONENT_MAP,
+                    use_unwrap_images=False,
+                )
+            tabs.append(TabSpec(label=label, value=slug, content=panel(md_content)))
         elif source_type == "instagram_embed":
             tabs.append(TabSpec(label=label, value=slug, content=instagram_embed_panel()))
         elif source_type == "link_list":
@@ -253,6 +286,47 @@ def _build_dynamic_tab_specs(
             ))
 
     return tabs
+
+
+def _make_tab_sub_page(
+    folder: str,
+    content_state: type[ArtDesignContentState] | type[ScienceTechContentState],
+    active_slug: str,
+    active_content: str,
+) -> rx.Component:
+    """Build a page component with the active tab's content baked in statically.
+
+    Only the active tab embeds a plain Python string — no state var, so no hydration
+    mismatch and no bundle bloat from loading all tabs upfront. All other tabs remain
+    empty state vars and lazy-load on click exactly as on the main page route.
+    """
+    meta = load_page_meta(folder)
+    heading: str = meta.get("heading", folder.replace("-", " ").title())
+    accent_key: str = meta.get("accent", "amber")
+    accent = ACCENT_MAP.get(accent_key, AMBER)
+    bg_key: str = meta.get("background", "default")
+    bg_func = BG_FUNC_MAP.get(bg_key, fullscreen_bg)
+    sidebar_side: Literal["left", "right"] = meta.get("sidebar_side", "right")  # type: ignore[assignment]
+
+    tabs = tuple(_build_dynamic_tab_specs(
+        folder, content_state, static_overrides={active_slug: active_content},
+    ))
+    return rx.box(
+        bg_func(),
+        page_content(
+            section_heading(heading, accent),
+            sidebar_tabs(
+                tabs=tabs,
+                accent=accent,
+                sidebar_side=sidebar_side,
+                default_value=active_slug,
+                on_tab_select=content_state.load_tab,
+            ),
+        ),
+        bottom_nav(),
+        min_height="100vh",
+        font_family=SANS_FONT,
+    )
 
 
 def _build_pieces_tab_specs() -> tuple[TabSpec, ...]:
@@ -688,4 +762,63 @@ def create_app() -> rx.App:
         description="All content from livia.glucosedao.org in a single page: biography, art & design collections, science & tech projects, and pieces — for search engines and AI assistants.",
         context={"sitemap": {"changefreq": "weekly", "priority": 0.3}},
     )
+
+    # Per-tab sub-routes — each prerenders with only its own content baked in.
+    # Other tabs on these pages still lazy-load on click (no extra bundle cost).
+    _raw_by_slug: dict[str, tuple[str, str]] = {
+        slug: (label, raw) for slug, label, raw in _ART_DESIGN_RAW
+    }
+    for _order, label, slug, source_type in scan_tab_slugs("art-design"):
+        if not source_type.startswith("md:"):
+            continue
+        content = load_single_tab_md_content("art-design", slug) or ""
+        slug_label, raw = _raw_by_slug.get(slug, (label, ""))
+        description = raw[:300].replace("\n", " ").strip()
+
+        def _art_tab_page(s: str = slug, c: str = content) -> rx.Component:
+            return _make_tab_sub_page("art-design", ArtDesignContentState, s, c)
+
+        application.add_page(
+            _art_tab_page,
+            route=f"/art-design/{slug}",
+            title=f"{slug_label} | Art & Design | Livia Zaharia",
+            description=description or f"{slug_label} — parametric jewellery and generative art by Livia Zaharia.",
+            on_load=[MobileTabRailState.collapse_expanded],
+            meta=[
+                {"property": "og:type", "content": "website"},
+                {"property": "og:title", "content": f"{slug_label} | Art & Design | Livia Zaharia"},
+                {"property": "og:description", "content": description or slug_label},
+                {"property": "og:image", "content": "/yellow_side.jpg"},
+                {"name": "twitter:card", "content": "summary_large_image"},
+            ],
+        )
+
+    _sci_raw_by_slug: dict[str, tuple[str, str]] = {
+        slug: (label, raw) for slug, label, raw in _SCI_TECH_RAW
+    }
+    for _order, label, slug, source_type in scan_tab_slugs("science-tech"):
+        if not source_type.startswith("md:"):
+            continue
+        content = load_single_tab_md_content("science-tech", slug) or ""
+        slug_label, raw = _sci_raw_by_slug.get(slug, (label, ""))
+        description = raw[:300].replace("\n", " ").strip()
+
+        def _sci_tab_page(s: str = slug, c: str = content) -> rx.Component:
+            return _make_tab_sub_page("science-tech", ScienceTechContentState, s, c)
+
+        application.add_page(
+            _sci_tab_page,
+            route=f"/science-tech/{slug}",
+            title=f"{slug_label} | Science & Tech | Livia Zaharia",
+            description=description or f"{slug_label} — citizen science and digital health work by Livia Zaharia.",
+            on_load=[MobileTabRailState.collapse_expanded],
+            meta=[
+                {"property": "og:type", "content": "website"},
+                {"property": "og:title", "content": f"{slug_label} | Science & Tech | Livia Zaharia"},
+                {"property": "og:description", "content": description or slug_label},
+                {"property": "og:image", "content": "/green_side.jpg"},
+                {"name": "twitter:card", "content": "summary_large_image"},
+            ],
+        )
+
     return application
