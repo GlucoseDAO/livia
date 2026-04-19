@@ -142,8 +142,9 @@ class ViteDevServerPlugin(Plugin):
 
         # --- SSR / CJS-ESM fix for react-syntax-highlighter ---
         # react-syntax-highlighter (CJS) tries to require() refractor (ESM-only).
-        # Listing it in ssr.noExternal forces Vite to bundle it for SSR, handling
-        # the conversion internally instead of letting Node.js hit the require() error.
+        # Listing both in ssr.noExternal forces Vite/rolldown to bundle them together
+        # for SSR, handling the CJS→ESM conversion internally instead of letting
+        # Node.js hit the require() error at runtime.
         if "noExternal" not in new_content:
             closing = "}));"
             idx = new_content.rfind(closing)
@@ -151,7 +152,7 @@ class ViteDevServerPlugin(Plugin):
                 new_content = (
                     new_content[:idx]
                     + "  ssr: {\n"
-                    "    noExternal: ['react-syntax-highlighter'],\n"
+                    "    noExternal: ['react-syntax-highlighter', 'refractor'],\n"
                     "  },\n"
                     "  optimizeDeps: {\n"
                     "    include: ['react-syntax-highlighter'],\n"
