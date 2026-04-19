@@ -66,23 +66,28 @@ The site will be available at `http://localhost:3010/`.
 
 ## Production deployment
 
-### 1. Build (run after every code or content change)
+### Default: `uv run serve`
 
 ```bash
-uv run build
+uv run serve
 ```
 
-Generates prerendered static HTML + assets into `.web/build/client/`.
+Builds the app, then starts both the frontend (Node.js, port 3010) and the WebSocket/API backend (port 3011). This is the easiest option — no extra web-server configuration required. Caddy (or any reverse proxy) can simply proxy all traffic to port 3010.
 
-### 2. Run the backend (keep alive via systemd or screen)
+Keep it alive with systemd, screen, or tmux.
+
+### Optional optimisation: `uv run build` + `uv run prod` (Caddy `file_server`)
+
+If you want faster page loads and lower memory use, you can pre-generate static HTML and let Caddy serve it directly from disk instead of via Node.js:
 
 ```bash
-uv run prod
+uv run build   # generates prerendered static HTML + assets into .web/build/client/
+uv run prod    # starts the WebSocket/API backend on port 3011 only
 ```
 
-Starts the WebSocket/API backend on port 3011 only. Caddy serves static files directly.
+This removes the Node.js process entirely from the serving path. Caddy reads files straight from disk and handles ETags, gzip, and cache headers automatically.
 
-### Caddy config
+**Caddy config for this mode:**
 
 ```
 livia.glucosedao.org {
@@ -95,7 +100,15 @@ livia.glucosedao.org {
 }
 ```
 
-Replace `/path/to/livia` with the actual checkout path on the server. Caddy handles ETags, gzip, and cache headers automatically — no extra config needed.
+Replace `/path/to/livia` with the actual checkout path on the server.
+
+### Summary
+
+| Command | What runs | When to use |
+|---------|-----------|-------------|
+| `uv run serve` | Node.js frontend + backend | Default — no extra web-server config needed |
+| `uv run build` + `uv run prod` | Backend only (Caddy serves static files) | Optional — faster loads, lower memory, requires Caddy `file_server` |
+| `uv run start` | Dev server (hot-reload) | Local development only |
 
 ## Content system (folder-based tabs)
 

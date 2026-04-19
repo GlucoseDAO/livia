@@ -172,20 +172,22 @@ class ViteDevServerPlugin(Plugin):
                         + closing
                     )
 
-        # Belt-and-suspenders alias: redirect CJS prism-light to its ESM twin so
-        # Node.js never hits the require()-of-ESM error even without bundling interop.
-        _RSH_ALIAS = (
+        # Alias fix: in SSR mode Vite resolves the bare "react-syntax-highlighter"
+        # import via the package's "main" field (CJS), whose prism-light.js then
+        # tries to require() refractor (ESM-only) at runtime.  Aliasing the bare
+        # specifier to the ESM index forces both client and SSR bundles through the
+        # ESM build, which uses import() instead of require().
+        _RSH_ESM_ALIAS = (
             "      {\n"
-            "        find: 'react-syntax-highlighter/dist/cjs/prism-light',\n"
+            "        find: /^react-syntax-highlighter$/,\n"
             "        replacement: fileURLToPath(new URL("
-            "'./node_modules/react-syntax-highlighter/dist/esm/prism-light.js', import.meta.url)),\n"
+            "'./node_modules/react-syntax-highlighter/dist/esm/index.js', import.meta.url)),\n"
             "      },\n"
         )
-        if "prism-light" not in new_content:
-            # Insert as the first entry of the resolve.alias array
+        if "react-syntax-highlighter/dist/esm/index.js" not in new_content:
             new_content = new_content.replace(
                 "    alias: [\n",
-                f"    alias: [\n{_RSH_ALIAS}",
+                f"    alias: [\n{_RSH_ESM_ALIAS}",
                 1,
             )
 
