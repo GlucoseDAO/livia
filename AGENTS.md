@@ -172,3 +172,169 @@ When a change affects UI/UX, validation is required before considering the task 
 - Folder-tab page bodies use `rx.markdown(..., use_unwrap_images=False)` in `pages.py` so HTML injected during markdown preprocessing (gallery grids, artifacts, `sequence` blocks) is not broken by Reflex’s default rehype-unwrap-images pass.
 - SSR/prerendering is enabled by default via `os.environ.setdefault("REFLEX_SSR", "true")` in `rxconfig.py` so production builds emit pre-rendered HTML for bots; this only affects `reflex export` / production builds, not the Vite dev server (`uv run start` stays client-hydrated). Set `REFLEX_SSR=false` to disable. `rx.plugins.SitemapPlugin()` and a custom `LlmsTxtPlugin` (in `rxconfig.py`) emit `/sitemap.xml` and `/llms.txt` at compile time so crawlers and LLM fetchers can read all site content without JavaScript.
 - Art & Design includes a **Livia Lore** tab (`content/art-design/2_Livia Lore.md`, positioned after Overview) that renders the artifact connection schema using real artifact images (not ASCII diagrams) and Livia's RPG-style character card with sub-headings separating artifact lore from character stats. Source material is `docs/livia-zaharia-knowledge-base.md`; the Nanot of Power references [nanotics.com](https://www.nanotics.com/).
+- Sub-routes exist for each md tab (`/art-design/{slug}`, `/science-tech/{slug}`) — registered in `create_app()` in `pages.py`. Each prerenders with only its own tab's content baked in as a static Python string (`static_overrides` in `_build_dynamic_tab_specs`); all other tabs remain empty state vars and lazy-load on click. Tab triggers are `<a href>` links (via `as_child=True` on `rx.tabs.trigger` + `rx.el.a` in `_tab_trigger` in `components.py`) so crawlers can follow them. These sub-routes appear in `sitemap.xml` automatically via `SitemapPlugin`.
+
+## Making a Reflex App Crawlable (Universal Guidelines)
+
+These rules apply to any Reflex project, not just this site. Copy-paste to another project's AGENTS.md and adapt.
+
+### Why Reflex is hard for crawlers by default
+
+Reflex is a WebSocket-first framework. Without extra work:
+- The initial HTML is an empty shell (`<div id="app"></div>`)
+- All content loads only after a WebSocket connection to the backend
+- Crawlers (including Googlebot) get empty pages or WebSocket errors
+
+### The fix: prerendering + static initial state
+
+**Step 1 — Enable prerendering** in `rxconfig.py`:
+```python
+os.environ.setdefault("REFLEX_SSR", "true")
+```
+This sets `prerender: true` in `react-router.config.js`, causing `reflex export` to generate a static HTML file for each registered route. No effect on the dev server.
+
+**Step 2 — Pre-populate initial state with content crawlers need.**
+Reflex pre-renders each page using the *default values* of `rx.State` vars — `on_load` handlers do NOT run at prerender time (they require WebSocket). Any content stored in state as empty strings will appear empty in the prerendered HTML.
+
+Rule: **content that must be indexable must be in the state's default value, not loaded by `on_load`.**
+
+For a tab layout where loading all tabs would bloat the bundle, pre-load only the first (default) tab:
+```python
+# Pre-load just the first tab at module level; others lazy-load on click.
+_INITIAL: dict[str, str] = {slug: "" for slug in all_slugs}
+for slug in all_slugs:
+    content = load_tab_content(slug)
+    if content:
+        _INITIAL[slug] = content
+        break  # first tab only
+
+class MyContentState(rx.State):
+    tab_content: dict[str, str] = _INITIAL  # first tab pre-loaded for SSR
+```
+
+For pages where content is fully static (biography, home), load it at module level and pass it directly to the component — no state needed.
+
+**Step 3 — Register per-tab sub-routes** so each tab has its own crawlable URL.
+Each sub-route bakes only its own tab's content as a plain Python string (not a state var) — no hydration mismatch, no extra bundle size:
+```python
+# In _build_dynamic_tab_specs: use static_overrides for the active slug
+if static_overrides and slug in static_overrides:
+    content_component = rx.markdown(static_overrides[slug], ...)  # Python string — no state
+else:
+    content_component = rx.markdown(state.tab_content[slug], ...)  # state var — lazy
+
+# In create_app: register one sub-route per md tab
+for slug in md_tab_slugs:
+    static_content = load_tab_content(slug) or ""
+    def page_fn(s=slug, c=static_content):
+        return build_page_with_active(s, c)
+    app.add_page(page_fn, route=f"/section/{slug}", on_load=[MobileTabRailState.collapse_expanded])
+```
+
+**Step 4 — Make tab triggers render as `<a href>` links.**
+Radix `rx.tabs.trigger` renders as `<button>` by default — crawlers cannot follow buttons. Use `as_child=True` to make the trigger render as its child element:
+```python
+rx.tabs.trigger(
+    rx.el.a(
+        label,
+        href=f"/section/{slug}",
+        style={"text_decoration": "none", "color": "inherit", "display": "block"},
+    ),
+    value=slug,
+    as_child=True,
+    style=trigger_style,
+)
+```
+Add `href: str | None = None` to `TabSpec`. Set it on md tabs in `_build_dynamic_tab_specs`. Special tabs (instagram embeds, link lists) don't need hrefs. Clicking the link triggers client-side React Router navigation to the prerendered sub-route — smooth, no full page reload.
+
+**Step 5 — Add compile-time SEO assets.**
+In `rxconfig.py`, add `rx.plugins.SitemapPlugin()` to `plugins=` — it auto-includes every registered Reflex route in `/sitemap.xml`. All sub-routes registered in `create_app()` appear automatically. Add a custom plugin to emit `/llms.txt` for AI crawlers.
+
+**Step 6 — Add JSON-LD structured data** per page in `app.add_page(meta=[...])`. Use `rx.el.script(json.dumps(schema), type="application/ld+json")` as a meta entry. At minimum: `Person` schema on the home page, `CreativeWork` or `CollectionPage` on content pages.
+
+### What crawlers get after all steps
+
+| Crawler behaviour | Result |
+|---|---|
+| Reads raw HTML (no JS) | Full first-tab content + all page text from prerendered HTML |
+| Follows links | Finds all tab sub-routes via `<a href>` in the page + sitemap.xml |
+| Visits sub-route URL | Gets that tab's content prerendered in HTML, no WebSocket needed |
+| Executes JS (Googlebot) | React hydrates, WebSocket may fail but content already visible — no blank flash |
+
+### What NOT to do
+
+- Don't put indexable content only in `on_load` handlers — they need WebSocket.
+- Don't rely on `rx.tabs.trigger` for navigation without `as_child=True` — buttons are not followed.
+- Don't load all tab content into the initial state if tabs are heavy — it bloats every page's bundle.
+- Don't hide links with `display: none` — Google deprioritises hidden content.
+
+---
+
+## Production Deployment (Universal Guidelines)
+
+### Architecture
+
+```
+Internet → Caddy (HTTPS, static files, compression)
+               └── reverse_proxy /_event /_upload /ping /_health … → localhost:3011  (Reflex backend, WebSocket)
+               └── file_server from .web/build/client/                               (prerendered HTML + assets)
+```
+
+The Node.js frontend server (port 3010) is **not needed in production** — Caddy serves the static files directly, which is faster and eliminates one process.
+
+### Caddyfile
+
+```
+yourdomain.com {
+    @backend path /ping /_event /_event/* /_upload /_upload/* /_health /_all_routes /auth-codespace /api /api/*
+    reverse_proxy @backend localhost:3011
+
+    root * /path/to/project/.web/build/client
+    encode gzip zstd
+    file_server
+}
+```
+
+Caddy adds ETags, gzip/zstd compression, and proper cache headers automatically. No extra config needed.
+
+### Commands
+
+Add these to `pyproject.toml` `[project.scripts]` and implement in `src/<app>/start.py`:
+
+```toml
+[project.scripts]
+start = "myapp.start:app"       # dev server
+build = "myapp.start:build_app" # export static files
+prod  = "myapp.start:prod_app"  # production backend only
+```
+
+```python
+# build: export prerendered static HTML
+export_utils.export(zipping=False, frontend=True, backend=False, env=constants.Env.PROD, ...)
+
+# prod: run backend only (Caddy handles static)
+_run(env=constants.Env.PROD, frontend=False, backend=True)
+```
+
+Workflow on deploy:
+1. Pull latest code
+2. `uv run build` — regenerates `.web/build/client/`
+3. Restart `uv run prod` (or its systemd service)
+
+### Scaling
+
+- **< ~100 concurrent WebSocket users**: one uvicorn worker, no Redis needed. Each user's session state is isolated in-memory per process.
+- **> 100 concurrent users or multiple workers**: add `REDIS_URL=redis://localhost:6379` to `.env` and run `reflex run --env prod --backend-workers N`. Redis shares session state across workers.
+- With prerendered static files served by Caddy, most users never touch the backend at all (only interactive state changes need WebSocket).
+
+### Environment variables (`.env`)
+
+| Variable | Purpose |
+|---|---|
+| `PORT` | Frontend port (default 3010; unused in prod when Caddy serves files directly) |
+| `BACKEND_PORT` | Backend WebSocket port (default `PORT + 1`) |
+| `HOST` | Bind address (default `0.0.0.0`) |
+| `DEPLOY_URL` | Public HTTPS URL — used by Reflex to generate correct `wss://` WebSocket URL in the client bundle |
+| `REDIS_URL` | Redis connection string — only needed with multiple backend workers |
+
+`DEPLOY_URL` is critical: without it, the client bundle hard-codes `ws://localhost:PORT/_event`, which breaks in production.

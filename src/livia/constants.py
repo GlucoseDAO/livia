@@ -156,6 +156,7 @@ class TabSpec:
     label: str
     value: str
     content: rx.Component
+    href: str | None = None
 
 
 NAV_LINKS = (

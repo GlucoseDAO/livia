@@ -860,6 +860,37 @@ def _sidebar_tab_label_stack(
     )
 
 
+def _tab_trigger(
+    tab: TabSpec,
+    sidebar_side: Literal["left", "right"],
+    center_labels: bool,
+    style: dict,
+    class_name: str,
+) -> rx.Component:
+    """Build a tab trigger — renders as <a> when tab.href is set, else as <button>."""
+    label_stack = _sidebar_tab_label_stack(tab.label, sidebar_side, center_labels=center_labels)
+    if tab.href:
+        return rx.tabs.trigger(
+            rx.el.a(
+                label_stack,
+                href=tab.href,
+                style={"text_decoration": "none", "color": "inherit", "display": "block"},
+            ),
+            value=tab.value,
+            as_child=True,
+            style=style,
+            class_name=class_name,
+            custom_attrs={"aria-label": tab.label},
+        )
+    return rx.tabs.trigger(
+        label_stack,
+        value=tab.value,
+        style=style,
+        class_name=class_name,
+        custom_attrs={"aria-label": tab.label},
+    )
+
+
 def sidebar_tabs(
     tabs: tuple[TabSpec, ...],
     accent: str,
@@ -916,16 +947,12 @@ def sidebar_tabs(
         tab_rail_grip,
         rx.tabs.list(
             *(
-                rx.tabs.trigger(
-                    _sidebar_tab_label_stack(
-                        tab.label,
-                        sidebar_side,
-                        center_labels=center_piece_labels,
-                    ),
-                    value=tab.value,
-                    style=tab_trigger_style,
-                    class_name=trigger_btn_class,
-                    custom_attrs={"aria-label": tab.label},
+                _tab_trigger(
+                    tab,
+                    sidebar_side,
+                    center_piece_labels,
+                    tab_trigger_style,
+                    trigger_btn_class,
                 )
                 for tab in tabs
             ),
@@ -955,16 +982,12 @@ def sidebar_tabs(
     )
     mobile_tabs = rx.tabs.list(
         *(
-            rx.tabs.trigger(
-                _sidebar_tab_label_stack(
-                    tab.label,
-                    sidebar_side,
-                    center_labels=center_piece_labels,
-                ),
-                value=tab.value,
-                style=tab_trigger_style,
-                class_name=f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
-                custom_attrs={"aria-label": tab.label},
+            _tab_trigger(
+                tab,
+                sidebar_side,
+                center_piece_labels,
+                tab_trigger_style,
+                f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
             )
             for tab in tabs
         ),

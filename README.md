@@ -55,14 +55,47 @@ Ordinary markdown images work too if you use full URL paths that match files und
 
 Restart `uv run start` if the dev server does not pick up new files.
 
-## Quick start
+## Quick start (dev)
 
 ```bash
 uv sync
 uv run start
 ```
 
-The site will be available at `http://localhost:3000/`.
+The site will be available at `http://localhost:3010/`.
+
+## Production deployment
+
+### 1. Build (run after every code or content change)
+
+```bash
+uv run build
+```
+
+Generates prerendered static HTML + assets into `.web/build/client/`.
+
+### 2. Run the backend (keep alive via systemd or screen)
+
+```bash
+uv run prod
+```
+
+Starts the WebSocket/API backend on port 3011 only. Caddy serves static files directly.
+
+### Caddy config
+
+```
+livia.glucosedao.org {
+    @backend path /ping /_event /_event/* /_upload /_upload/* /_health /_all_routes /auth-codespace /api /api/*
+    reverse_proxy @backend localhost:3011
+
+    root * /path/to/livia/.web/build/client
+    encode gzip zstd
+    file_server
+}
+```
+
+Replace `/path/to/livia` with the actual checkout path on the server. Caddy handles ETags, gzip, and cache headers automatically — no extra config needed.
 
 ## Content system (folder-based tabs)
 

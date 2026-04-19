@@ -9,7 +9,7 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "pythreejs>=2.4.2",
     "pyyaml>=6.0.3",
-    "reflex>=0.8.27",
+    "reflex==0.8.28.post1",
     "typer>=0.15",
 ]
 
@@ -19,3 +19,6 @@ build-backend = "uv_build"
 
 [project.scripts]
 start = "livia.start:app"
+build = "livia.start:build_app"
+prod  = "livia.start:prod_app"
+serve = "livia.start:serve_app"

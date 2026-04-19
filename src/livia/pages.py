@@ -262,7 +262,12 @@ def _build_dynamic_tab_specs(
                     component_map=MARKDOWN_COMPONENT_MAP,
                     use_unwrap_images=False,
                 )
-            tabs.append(TabSpec(label=label, value=slug, content=panel(md_content)))
+            tabs.append(TabSpec(
+                label=label,
+                value=slug,
+                content=panel(md_content),
+                href=f"/{folder}/{slug}",
+            ))
         elif source_type == "instagram_embed":
             tabs.append(TabSpec(label=label, value=slug, content=instagram_embed_panel()))
         elif source_type == "link_list":
