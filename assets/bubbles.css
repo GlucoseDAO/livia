@@ -109,7 +109,7 @@ html.livia-narrow .livia-bottom-nav a[data-href] {
   justify-content: center;
   white-space: normal;
   text-align: center;
-  font-size: calc(19px * var(--livia-bottom-nav-scale));
+  font-size: 13px;
   line-height: 1.22;
   padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.36rem * var(--livia-bottom-nav-scale));
 }
