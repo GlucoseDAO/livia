@@ -142,23 +142,52 @@ class ViteDevServerPlugin(Plugin):
 
         # --- SSR / CJS-ESM fix for react-syntax-highlighter ---
         # react-syntax-highlighter (CJS) tries to require() refractor (ESM-only).
-        # Listing both in ssr.noExternal forces Vite/rolldown to bundle them together
-        # for SSR, handling the CJS→ESM conversion internally instead of letting
-        # Node.js hit the require() error at runtime.
-        if "noExternal" not in new_content:
-            closing = "}));"
-            idx = new_content.rfind(closing)
-            if idx != -1:
-                new_content = (
-                    new_content[:idx]
-                    + "  ssr: {\n"
-                    "    noExternal: ['react-syntax-highlighter', 'refractor'],\n"
-                    "  },\n"
-                    "  optimizeDeps: {\n"
-                    "    include: ['react-syntax-highlighter'],\n"
-                    "  },\n"
-                    + closing
+        # ssr.noExternal forces Vite/rolldown to bundle them together so it handles
+        # the CJS→ESM conversion.  The resolve.alias is a belt-and-suspenders fallback
+        # that redirects the CJS prism-light import directly to the ESM build, which
+        # is needed when rolldown doesn't do CJS interop (Vite 7+).
+        _CORRECT_NO_EXT = "noExternal: ['react-syntax-highlighter', 'refractor']"
+        if _CORRECT_NO_EXT not in new_content:
+            if "noExternal" in new_content:
+                # Outdated entry from a previous deploy (e.g. missing refractor):
+                # replace whatever noExternal value is there with the correct one.
+                new_content = re.sub(
+                    r"noExternal:\s*\[[^\]]*\]",
+                    _CORRECT_NO_EXT,
+                    new_content,
+                    count=1,
                 )
+            else:
+                closing = "}));"
+                idx = new_content.rfind(closing)
+                if idx != -1:
+                    new_content = (
+                        new_content[:idx]
+                        + "  ssr: {\n"
+                        f"    {_CORRECT_NO_EXT},\n"
+                        "  },\n"
+                        "  optimizeDeps: {\n"
+                        "    include: ['react-syntax-highlighter'],\n"
+                        "  },\n"
+                        + closing
+                    )
+
+        # Belt-and-suspenders alias: redirect CJS prism-light to its ESM twin so
+        # Node.js never hits the require()-of-ESM error even without bundling interop.
+        _RSH_ALIAS = (
+            "      {\n"
+            "        find: 'react-syntax-highlighter/dist/cjs/prism-light',\n"
+            "        replacement: fileURLToPath(new URL("
+            "'./node_modules/react-syntax-highlighter/dist/esm/prism-light.js', import.meta.url)),\n"
+            "      },\n"
+        )
+        if "prism-light" not in new_content:
+            # Insert as the first entry of the resolve.alias array
+            new_content = new_content.replace(
+                "    alias: [\n",
+                f"    alias: [\n{_RSH_ALIAS}",
+                1,
+            )
 
         if new_content != raw:
             vite_path.write_text(new_content, encoding="utf-8")

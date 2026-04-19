@@ -1,5 +1,6 @@
 """CLI entry points for the Livia website."""
 
+import shutil
 import typer
 
 from reflex import constants
@@ -7,6 +8,7 @@ from reflex.config import get_config
 from reflex.reflex import _init, _run
 from reflex.utils import console
 from reflex.utils import export as export_utils
+from reflex.utils.prerequisites import get_web_dir
 
 app = typer.Typer(help="Livia website dev server")
 build_app = typer.Typer(help="Build prerendered static files for production")
@@ -25,12 +27,28 @@ def start(
     _run()
 
 
+def _clean_build_cache() -> None:
+    """Remove stale Vite / React-Router caches so the next build is fully fresh."""
+    web = get_web_dir()
+    for path in [
+        web / "node_modules" / ".vite",
+        web / ".react-router",
+        web / "build",
+    ]:
+        if path.exists():
+            shutil.rmtree(path)
+            console.print(f"Cleaned {path}")
+
+
 @build_app.command()
 def build(
     loglevel: str = typer.Option("info", help="Log level"),
+    clean: bool = typer.Option(True, help="Remove Vite/React-Router caches before building"),
 ) -> None:
     """Export prerendered static HTML + assets to .web/build/client/."""
     console.set_log_level(constants.LogLevel.from_string(loglevel))
+    if clean:
+        _clean_build_cache()
     _init(name=get_config().app_name)
     export_utils.export(
         zipping=False,
