@@ -313,7 +313,9 @@ prod  = "myapp.start:prod_app"  # production backend only
 export_utils.export(zipping=False, frontend=True, backend=False, env=constants.Env.PROD, ...)
 
 # prod: run backend only (Caddy handles static)
-_run(env=constants.Env.PROD, frontend=False, backend=True)
+from reflex.constants.base import RunningMode
+
+_run(env=constants.Env.PROD, running_mode=RunningMode.BACKEND_ONLY)
 ```
 
 Workflow on deploy:
