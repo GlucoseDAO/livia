@@ -72,7 +72,7 @@ The site will be available at `http://localhost:3010/`.
 uv run serve
 ```
 
-Builds the app, then starts both the frontend (Node.js, port 3010) and the WebSocket/API backend (port 3011). This is the easiest option — no extra web-server configuration required. Caddy (or any reverse proxy) can simply proxy all traffic to port 3010.
+Builds the app, then starts the production frontend and WebSocket/API backend together on port 3010. To override the port, use either `PORT=3010 uv run serve` or `uv run serve --port 3010`. This is the easiest option — no extra web-server configuration required. Caddy (or any reverse proxy) can simply proxy all traffic to port 3010.
 
 Keep it alive with systemd, screen, or tmux.
 
@@ -329,7 +329,7 @@ The app has minimal Reflex state (for example `GalleryState` for the image light
 
 ### Longevity / science collaborations
 
-- Materialized Enhancements: https://materialized-enhancements.longevity-genie.info/
+- Materialized Enhancements: http://enhancement.bio/
 - Longevity Genie: https://longevity-genie.github.io
 - Longevity Genie GitHub: https://github.com/longevity-genie
 

@@ -79,7 +79,7 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
 - **Context:** Longevity Genie collaboration
 - **Description:** Science-inspired jewellery and object series. Parametric, biologically inspired geometries treated as "enhancement" artefacts at the boundary between ornament and speculative biomedical device. Conceptually linked to open-source longevity tooling and AI-driven biology infrastructure.
 - **Links:**
-  - Project site: https://materialized-enhancements.longevity-genie.info/
+  - Project site: http://enhancement.bio/
   - Longevity Genie: https://longevity-genie.github.io
   - GitHub: https://github.com/longevity-genie
 
@@ -183,7 +183,7 @@ Some works explicitly translate datasets into physical geometry (e.g. "Cry, Danc
 
 | Year | Event | Collection/Focus |
 |------|-------|-----------------|
-| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (materialized-enhancements.longevity-genie.info, site to be updated) |
+| 2026 | Milano Design Week | Codame event — presenting "Materialized Enhancements" (enhancement.bio) |
 | 2025 | Romanian Jewelry Week | "It's Just a Cell Life" — biology collection (Nanot-of-Power, Mitochondria, Embryo, exhibition gallery) |
 | 2024 | Romanian Jewelry Week | "Beloved Food" |
 | 2023 | Romanian Jewelry Week | "Survival" — jungle/resilience collection |
@@ -246,7 +246,7 @@ This positions her not just as an artist who references science, but as a practi
 | Instagram | https://www.instagram.com/paral_design/ |
 | Facebook (byLiviaZaharia) | https://www.facebook.com/byLiviaZaharia/ |
 | LinkedIn | https://www.linkedin.com/in/livia-zaharia-4b1425a0 |
-| Materialized Enhancements | https://materialized-enhancements.longevity-genie.info/ |
+| Materialized Enhancements | http://enhancement.bio/ |
 | Longevity Genie | https://longevity-genie.github.io |
 | Longevity Genie GitHub | https://github.com/longevity-genie |
 | ROJW 2025 | https://www.romanianjewelryweek.com/participants-2025/livia-zaharia |

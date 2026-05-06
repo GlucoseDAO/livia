@@ -4,4 +4,4 @@ She is a member of [HEALES](https://heales.org/) (Healthy Life Extension Society
 
 Beyond her design practice, Livia works with a scientific and engineering stack including Python, PyTorch, Polars, NeuralForecaster for time-series forecasting, and agentic AI frameworks. She has taught numerous AI agentic workshops in bioinformatics, positioning her not just as an artist who references science, but as a practitioner who actively builds and deploys ML pipelines.
 
-Her work spans founding [GlucoseDAO](https://glucosedao.org/) for open glucose prediction research, contributing to [Longevity Genie](https://longevity-genie.github.io) open-source tools, and creating [Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) — a platform turning synthetic biology into participatory generative art.
+Her work spans founding [GlucoseDAO](https://glucosedao.org/) for open glucose prediction research, contributing to [Longevity Genie](https://longevity-genie.github.io) open-source tools, and creating [Materialized Enhancements](http://enhancement.bio/) — a platform turning synthetic biology into participatory generative art.

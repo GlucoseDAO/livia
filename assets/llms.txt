@@ -15,7 +15,7 @@ Her tools include **Grasshopper** (visual programming for Rhino), **COMPAS** (co
 
 Beyond her art practice, Livia is the founder of [GlucoseDAO](https://github.com/GlucoseDAO/), a healthtech initiative building open-source tools for glucose prediction and metabolic health, including the [Sugar-Sugar Game](https://sugar-sugar.glucosedao.org) — a browser-based tool where participants predict blood glucose trajectories and compare their accuracy against ML models. GlucoseDAO operates in collaboration with Universitätsmedizin Rostock.
 
-She is a contributor to the [Longevity Genie](https://longevity-genie.github.io) open-source ecosystem, where her [Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) project bridges physical artefact-making and computational biology. She is affiliated with [HEALES](https://heales.org/) (Healthy Life Extension Society) and has taught AI agentic workshops in bioinformatics.
+She is a contributor to the [Longevity Genie](https://longevity-genie.github.io) open-source ecosystem, where her [Materialized Enhancements](http://enhancement.bio/) project bridges physical artefact-making and computational biology. She is affiliated with [HEALES](https://heales.org/) (Healthy Life Extension Society) and has taught AI agentic workshops in bioinformatics.
 
 Outside the studio and the lab, Livia is an avid **swimmer** — her proper stroke is crawl, and she is currently learning butterfly and monofin. She is also a dedicated **hiker**, with Jepii Mici being her favourite Romanian hiking route and the Predeal mountain race her favourite running event. She is obsessed with **gemstones** and with **growing plants** — passions that feed directly back into her nature-inspired parametric work.
 
@@ -238,7 +238,7 @@ Livia is a dual-class wielder: as an **Artifactor**, she forges enchanted artifa
 
 ### Materialized Enhancements
 
-[Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) is a platform that translates human biological upgrades into generative, wearable art. Users select desired "enhancement genes" through an intuitive interface built in [Reflex](https://reflex.dev/), and the system generates a unique, 3D-printable artefact shaped by their biological choices.
+[Materialized Enhancements](http://enhancement.bio/) is a platform that translates human biological upgrades into generative, wearable art. Users select desired "enhancement genes" through an intuitive interface built in [Reflex](https://reflex.dev/), and the system generates a unique, 3D-printable artefact shaped by their biological choices.
 
 The gene library draws from extreme survival traits found across life on Earth — shark longevity, tardigrade radiation shields, axolotl regeneration, mantis shrimp optics, and more — each backed by a peer-reviewed research paper. The result is a personal totem: an unrepeatable 3D form that materialises your vision of your own biological future.
 
@@ -1011,7 +1011,7 @@ She is a member of [HEALES](https://heales.org/) (Healthy Life Extension Society
 
 Beyond her design practice, Livia works with a scientific and engineering stack including Python, PyTorch, Polars, NeuralForecaster for time-series forecasting, and agentic AI frameworks. She has taught numerous AI agentic workshops in bioinformatics, positioning her not just as an artist who references science, but as a practitioner who actively builds and deploys ML pipelines.
 
-Her work spans founding [GlucoseDAO](https://glucosedao.org/) for open glucose prediction research, contributing to [Longevity Genie](https://longevity-genie.github.io) open-source tools, and creating [Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) — a platform turning synthetic biology into participatory generative art.
+Her work spans founding [GlucoseDAO](https://glucosedao.org/) for open glucose prediction research, contributing to [Longevity Genie](https://longevity-genie.github.io) open-source tools, and creating [Materialized Enhancements](http://enhancement.bio/) — a platform turning synthetic biology into participatory generative art.
 
 
 ### GlucoseDAO
@@ -1033,7 +1033,7 @@ https://www.youtube.com/watch?v=6aTajGZCnEA
 
 ### Materialized Enhancements
 
-[Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) is a platform that translates human biological upgrades into generative, wearable art. Users select desired "enhancement genes" through an intuitive interface built in [Reflex](https://reflex.dev/), and the system generates a unique, 3D-printable artefact shaped by their biological choices.
+[Materialized Enhancements](http://enhancement.bio/) is a platform that translates human biological upgrades into generative, wearable art. Users select desired "enhancement genes" through an intuitive interface built in [Reflex](https://reflex.dev/), and the system generates a unique, 3D-printable artefact shaped by their biological choices.
 
 The gene library draws from extreme survival traits found across life on Earth — shark longevity, tardigrade radiation shields, axolotl regeneration, mantis shrimp optics, and more — each backed by a peer-reviewed research paper. The result is a personal totem: an unrepeatable 3D form that materialises your vision of your own biological future.
 

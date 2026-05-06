@@ -19,7 +19,15 @@ build_app = typer.Typer(help="Build prerendered static files for production")
 prod_app = typer.Typer(help="Run the production backend (WebSocket + API only)")
 
 
-def _run_compat(*, env: constants.Env, frontend: bool, backend: bool) -> None:
+def _run_compat(
+    *,
+    env: constants.Env,
+    frontend: bool,
+    backend: bool,
+    frontend_port: int | None = None,
+    backend_port: int | None = None,
+    backend_host: str | None = None,
+) -> None:
     """Run Reflex across old/new internal _run signatures."""
     run_params = inspect.signature(_run).parameters
     if "running_mode" in run_params:
@@ -37,10 +45,23 @@ def _run_compat(*, env: constants.Env, frontend: bool, backend: bool) -> None:
             raise ValueError(
                 "Invalid run mode combination; at least one of frontend/backend must be True."
             )
-        _run(env=env, running_mode=mode)
+        _run(
+            env=env,
+            running_mode=mode,
+            frontend_port=frontend_port,
+            backend_port=backend_port,
+            backend_host=backend_host,
+        )
         return
 
-    _run(env=env, frontend=frontend, backend=backend)
+    legacy_kwargs: dict[str, Any] = {"env": env, "frontend": frontend, "backend": backend}
+    if "frontend_port" in run_params:
+        legacy_kwargs["frontend_port"] = frontend_port
+    if "backend_port" in run_params:
+        legacy_kwargs["backend_port"] = backend_port
+    if "backend_host" in run_params:
+        legacy_kwargs["backend_host"] = backend_host
+    _run(**legacy_kwargs)
 
 
 @app.command()
@@ -52,7 +73,15 @@ def start(
     console.set_log_level(constants.LogLevel.from_string(loglevel))
     if init:
         _init(name=get_config().app_name)
-    _run_compat(env=constants.Env.DEV, frontend=True, backend=True)
+    config = get_config()
+    _run_compat(
+        env=constants.Env.DEV,
+        frontend=True,
+        backend=True,
+        frontend_port=config.frontend_port,
+        backend_port=config.backend_port,
+        backend_host=config.backend_host,
+    )
 
 
 def _clean_build_cache() -> None:
@@ -96,7 +125,14 @@ def prod(
     console.set_log_level(constants.LogLevel.from_string(loglevel))
     if init:
         _init(name=get_config().app_name)
-    _run_compat(env=constants.Env.PROD, frontend=False, backend=True)
+    config = get_config()
+    _run_compat(
+        env=constants.Env.PROD,
+        frontend=False,
+        backend=True,
+        backend_port=config.backend_port,
+        backend_host=config.backend_host,
+    )
 
 
 serve_app = typer.Typer(help="Run full production server (frontend + backend). Use when Caddy is not set up for file_server yet.")
@@ -106,12 +142,28 @@ serve_app = typer.Typer(help="Run full production server (frontend + backend). U
 def serve(
     init: bool = typer.Option(True, help="Run 'reflex init' before starting"),
     loglevel: str = typer.Option("info", help="Log level"),
+    port: int | None = typer.Option(
+        None,
+        "--port",
+        "-p",
+        help="Production fullstack port. Defaults to PORT from .env/environment.",
+    ),
 ) -> None:
-    """Start both frontend (port 3010) and backend (port 3011) in production mode."""
+    """Start both frontend and backend on the configured frontend port in production mode."""
     console.set_log_level(constants.LogLevel.from_string(loglevel))
     if init:
         _init(name=get_config().app_name)
-    _run_compat(env=constants.Env.PROD, frontend=True, backend=True)
+    config = get_config()
+    serve_port = port or config.frontend_port
+    # Reflex production fullstack runs the static server and backend on one port.
+    _run_compat(
+        env=constants.Env.PROD,
+        frontend=True,
+        backend=True,
+        frontend_port=serve_port,
+        backend_port=serve_port,
+        backend_host=config.backend_host,
+    )
 
 
 if __name__ == "__main__":

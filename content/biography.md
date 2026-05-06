@@ -6,7 +6,7 @@ Her tools include **Grasshopper** (visual programming for Rhino), **COMPAS** (co
 
 Beyond her art practice, Livia is the founder of [GlucoseDAO](https://github.com/GlucoseDAO/), a healthtech initiative building open-source tools for glucose prediction and metabolic health, including the [Sugar-Sugar Game](https://sugar-sugar.glucosedao.org) — a browser-based tool where participants predict blood glucose trajectories and compare their accuracy against ML models. GlucoseDAO operates in collaboration with Universitätsmedizin Rostock.
 
-She is a contributor to the [Longevity Genie](https://longevity-genie.github.io) open-source ecosystem, where her [Materialized Enhancements](https://materialized-enhancements.longevity-genie.info/) project bridges physical artefact-making and computational biology. She is affiliated with [HEALES](https://heales.org/) (Healthy Life Extension Society) and has taught AI agentic workshops in bioinformatics.
+She is a contributor to the [Longevity Genie](https://longevity-genie.github.io) open-source ecosystem, where her [Materialized Enhancements](http://enhancement.bio/) project bridges physical artefact-making and computational biology. She is affiliated with [HEALES](https://heales.org/) (Healthy Life Extension Society) and has taught AI agentic workshops in bioinformatics.
 
 Outside the studio and the lab, Livia is an avid **swimmer** — her proper stroke is crawl, and she is currently learning butterfly and monofin. She is also a dedicated **hiker**, with Jepii Mici being her favourite Romanian hiking route and the Predeal mountain race her favourite running event. She is obsessed with **gemstones** and with **growing plants** — passions that feed directly back into her nature-inspired parametric work.
 

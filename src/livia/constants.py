@@ -207,7 +207,7 @@ BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
     (
         "Art & Design",
         (
-            LinkItem("Materialized Enhancements", "https://materialized-enhancements.longevity-genie.info/", True),
+            LinkItem("Materialized Enhancements", "http://enhancement.bio/", True),
             LinkItem(
                 "Romanian Jewelry Week 2025",
                 "https://www.romanianjewelryweek.com/participants-2025/livia-zaharia",
