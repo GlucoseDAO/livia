@@ -25,26 +25,26 @@ from livia.constants import (
 
 def load_content(name: str) -> str:
     """Read a standalone markdown file from content/."""
-    return (CONTENT_DIR / f"{name}.md").read_text()
+    return (CONTENT_DIR / f"{name}.md").read_text(encoding="utf-8")
 
 
 def load_page_meta(folder: str) -> dict[str, str]:
     """Read _meta.yaml from a content subfolder. Returns defaults if absent."""
     meta_path = CONTENT_DIR / folder / "_meta.yaml"
     if meta_path.exists():
-        return yaml.safe_load(meta_path.read_text()) or {}
+        return yaml.safe_load(meta_path.read_text(encoding="utf-8")) or {}
     return {}
 
 
 def _resolve_md_content(md_path: Path) -> str:
     """Read a markdown file, following ref: pointers in YAML front-matter."""
-    raw = md_path.read_text()
+    raw = md_path.read_text(encoding="utf-8")
     fm_match = _REF_FRONTMATTER_RE.fullmatch(raw.strip())
     if fm_match:
         meta = yaml.safe_load(fm_match.group(1)) or {}
         ref = meta.get("ref")
         if ref:
-            return (CONTENT_DIR / ref).read_text()
+            return (CONTENT_DIR / ref).read_text(encoding="utf-8")
     return raw
 
 
@@ -516,7 +516,7 @@ def scan_tab_slugs(folder: str) -> list[tuple[int, str, str, str]]:
     for yaml_file in sorted(folder_path.glob("_*.yaml")):
         if yaml_file.stem == "_meta":
             continue
-        spec = yaml.safe_load(yaml_file.read_text()) or {}
+        spec = yaml.safe_load(yaml_file.read_text(encoding="utf-8")) or {}
         order = spec.get("order", 999)
         label = spec.get("label", yaml_file.stem.lstrip("_").replace("_", " ").title())
         slug = _label_to_slug(label)

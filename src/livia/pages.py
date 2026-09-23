@@ -274,12 +274,12 @@ def _build_dynamic_tab_specs(
             yaml_file = next(
                 (f for f in folder_path.glob("_*.yaml")
                  if f.stem != "_meta" and _label_to_slug(
-                     (yaml.safe_load(f.read_text()) or {}).get("label", "")
+                     (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("label", "")
                  ) == slug),
                 None,
             )
             if yaml_file:
-                spec = yaml.safe_load(yaml_file.read_text()) or {}
+                spec = yaml.safe_load(yaml_file.read_text(encoding="utf-8")) or {}
                 tabs.append(TabSpec(label=label, value=slug, content=_build_special_tab(spec)))
             else:
                 tabs.append(TabSpec(label=label, value=slug, content=panel(rx.text("Links", color=TEXT_LIGHT))))
