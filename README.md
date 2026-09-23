@@ -213,7 +213,7 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 
 | Route           | Purpose |
 |-----------------|---------|
-| `/`             | Homepage — full-screen portrait, bottom nav |
+| `/`             | Homepage — full-screen portrait, Livistone entry, bottom nav |
 | `/biography`    | Biography + external links |
 | `/art-design`   | Art & Design — tabbed page (auto-discovered from `content/art-design/`) |
 | `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
@@ -222,7 +222,9 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 
 ### Portrait-first layout
 
-The site is built around a single full-screen portrait photograph (`assets/livia.jpg`). The image fills the entire viewport on every page. On the homepage it appears with only a subtle gradient overlay; on inner pages it is dimmed so text panels remain readable.
+The site is built around a single full-screen portrait photograph (`assets/livia.jpg`). The image fills the entire viewport on every page. On the homepage it appears with a subtle gradient overlay and a prominent “Enter Livistone” link between her chin and the name printed on the portrait; on inner pages it is dimmed so text panels remain readable.
+
+The homepage’s “Enter Livistone” button opens [Livia’s browser-playable 3D world](https://livistone.liviazaharia.com) in the same tab. Its green-to-amber border echoes the portrait, with an opaque backdrop, keyboard focus ring, and a slim phone layout. The full invitation, “Enter Livistone: explore art & science in a 3D world”, uses Manrope throughout, with “Enter Livistone” slightly larger, and wraps on phones. The centered button sizes to its content without unused horizontal space.
 
 There is no traditional page background colour, header image, or hero card. The face **is** the site.
 

@@ -642,3 +642,79 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+/* Match the portrait's cover scaling and center 18% crop: the button sits at
+ * image y=754/1024, in the gap between the chin and the photograph's lettering. */
+.livia-world-entry {
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: calc(18vh + max(37.0885vw, 55.6328vh));
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: max-content;
+  max-width: calc(100% - 76px);
+  min-height: 44px;
+  padding: 9px 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: linear-gradient(115deg, #142a23, #211b12) padding-box,
+    linear-gradient(110deg, #81bba0, #dfb16b) border-box;
+  box-shadow: 0 4px 16px #0005;
+  color: #fff6e8;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: box-shadow 180ms ease;
+}
+.livia-world-copy {
+  min-width: 0;
+  text-align: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.livia-world-title { font-size: 1.2em; font-weight: 600; white-space: nowrap; }
+.livia-world-arrow {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e7ba77;
+  color: #18271f;
+}
+.livia-world-entry:focus-visible {
+  outline: 3px solid #fff6e8;
+  outline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .livia-world-entry:hover {
+    box-shadow: 0 4px 20px #d4943a60;
+    color: #fff6e8;
+    text-decoration: none;
+  }
+}
+@media (max-width: 700px) {
+  .livia-world-entry {
+    padding: 3px 12px;
+    justify-content: center;
+    border-radius: 24px;
+  }
+  .livia-world-copy { font-size: 16px; text-align: center; text-wrap: balance; }
+  /* Give the complete invitation room to wrap without covering the image lettering. */
+  .livia-world-arrow { display: none; }
+}
+@media (max-width: 360px) {
+  .livia-world-copy { font-size: 14px; }
+}
+@media (max-height: 600px) and (min-width: 701px) {
+  .livia-world-entry { padding: 5px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .livia-world-entry { transition: none; }
+}

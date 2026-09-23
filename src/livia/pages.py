@@ -44,6 +44,7 @@ from livia.components import (
     instagram_embed_panel,
     instagram_sidebar,
     link_list_grouped,
+    livistone_entry,
     markdown_panel,
     page_content,
     panel,
@@ -408,7 +409,7 @@ def _build_pieces_tab_specs() -> tuple[TabSpec, ...]:
 # ---------------------------------------------------------------------------
 
 def home_page() -> rx.Component:
-    """Homepage: fullscreen portrait + bottom navigation."""
+    """Homepage: portrait, prominent Livistone entry, and bottom navigation."""
     return rx.box(
         fullscreen_bg(),
         rx.box(
@@ -422,6 +423,7 @@ def home_page() -> rx.Component:
         ),
         instagram_sidebar(),
         github_sidebar(),
+        livistone_entry(),
         bottom_nav(),
         min_height="100vh",
         font_family=SANS_FONT,

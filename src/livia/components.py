@@ -500,6 +500,24 @@ def _nav_divider() -> rx.Component:
     )
 
 
+def livistone_entry() -> rx.Component:
+    """A native link keeps the world reachable before hydration or without a backend."""
+    return rx.el.a(
+        rx.el.span(
+            rx.el.span("Enter Livistone:", class_name="livia-world-title"),
+            " explore art & science in a 3D world",
+            class_name="livia-world-copy",
+        ),
+        rx.el.span(
+            rx.icon("arrow-right", size=24),
+            class_name="livia-world-arrow",
+            aria_hidden="true",
+        ),
+        href="https://livistone.liviazaharia.com",
+        class_name="livia-world-entry",
+    )
+
+
 def bottom_nav() -> rx.Component:
     """Floating bottom navigation dock."""
     nav_items: list[rx.Component] = []
