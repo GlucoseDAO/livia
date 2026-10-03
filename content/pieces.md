@@ -112,7 +112,9 @@ Series of 6 pins cast in silver. The idea came from the flowers which at that po
 
 ## Blooming Ring
 
-Photographs from the studio archive.
+I started with a series of pins, then discovered they can be much more than that. They can be accessories to switch and combine every day. This is how the Blooming Ring came to be: never the same.
+
+**Type:** Ring | **Materials:** Silver, reused silver pins | **Dimensions:** 2.8 × 1.8 × 0.9 cm | **Year:** 2025
 
 <!-- gallery: pieces/Blooming ring -->
 
@@ -126,15 +128,11 @@ Here is all about solving a technical dilemma. I had a rigid bronze bracelet too
 
 ## Brain Ring
 
-Photographs from the studio archive.
+I wanted something organic, something that would look like cellular growth, and the Brain Ring appeared. Its intrinsic shapes remind us of brains. The growth inside it is like algae spreading on the surface.
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.9 × 1.9 × 1 cm | **Year:** 2024
 
 <!-- gallery: pieces/Brain ring -->
-
-## Brancovenesc Wedding Rings
-
-Photographs from the studio archive.
-
-<!-- gallery: pieces/Brancovenesc wedding rings -->
 
 ## Bubble Ring
 
@@ -207,7 +205,9 @@ They have a double use. Using their dimension they can be both worn as earrings 
 
 ## Cloudstone Pendant
 
-Photographs from the studio archive.
+It started with the stone. This is a Shiva agate, known for its irregular shape, which I think looks like a cloud. Some other people thought it looks like something else. And of course we have to trap the stone.
+
+**Type:** Pendant | **Materials:** Shiva agate raw stone, silver, glass beads | **Dimensions:** 5 × 4 × 4 cm | **Year:** 2024
 
 <!-- gallery: pieces/Cloudstone pendant -->
 
@@ -221,7 +221,9 @@ The first cromatic concept for a ring. The idea came from the warm light of a fr
 
 ## Daggers Earings
 
-Photographs from the studio archive.
+Stones started everything. This is actually quartz covered with chlorite, a unique find. More important, they looked like the nails from the Crucifixion, or some other self-defense mechanism, so of course I had to make them as earrings.
+
+**Type:** Earrings | **Materials:** Chlorite quartz, silver | **Dimensions:** 7 × 0.8 × 0.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Daggers earings -->
 
@@ -233,7 +235,9 @@ Or shortly, Dewy. Cast silver piece, with natural treated Swiss blue topaz. It h
 
 ## Dream Catcher Pendant
 
-Photographs from the studio archive.
+This was a custom order. It derived from Vittoria Amazonica but used another script. The gentle tangles look like a dream catcher's web, and it is made to be worn in a pair with a ring.
+
+**Type:** Pendant | **Materials:** Silver, amethyst cabochon | **Dimensions:** 3 × 3 × 0.5 cm | **Year:** 2024
 
 <!-- gallery: pieces/Dream catcher pendant -->
 
@@ -329,13 +333,17 @@ First square ring. The shape was inspired by the set stone, octahedral fluorite 
 
 ## Frog Ring
 
-Photographs from the studio archive.
+This particular case is one of reuse. I found this actual knife holder with a very cute frog. I just liked the shape but didn't want to destroy the piece, so I did an upgrade: I added a ring as a support so the frog can be worn. In practice it can be worn with or without the frog. To affix the frog I first 3D scanned it, to be sure my shape would fit.
+
+**Type:** Ring | **Materials:** Stainless steel (inox), silver | **Dimensions:** 6 × 1.8 × 1.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Frog ring -->
 
 ## Funghi Ring Series
 
-Photographs from the studio archive.
+It is still from my early Voronoi and mesh-editing days. I really wanted a cute cluster of abstract mushrooms, and I got them. Because it had to be abstract, the base is of course hexagonal.
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 2.4 × 2.4 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Funghi ring series -->
 
@@ -383,13 +391,17 @@ Photographs from the studio archive.
 
 ## Hexa Ring
 
-Photographs from the studio archive.
+It has everything because of the stone. I might even be called a stone whisperer, but still. I had bought this really nice stone that I definitely had to set in a ring, only I could not decide which side to put it on. And then it hit me: why should I decide? Why can't I just flip it any way I want? And this is how the rotational models were born.
+
+**Type:** Ring | **Materials:** Silver, synthetic stone | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Hexa ring -->
 
 ## Horn Earings
 
-Photographs from the studio archive.
+These were actually the first attempt at earrings. Since I don't have a way to solder at home, I had to devise a way to make the earrings. Thus I reinvented the screw, literally. These guys are threaded into the ear. The nut and bolts were manually threaded.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3.2 × 1.8 × 1.2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Horn earings -->
 
@@ -514,7 +526,9 @@ Cast in silver, with a culture pearl.
 
 ## Mirror Ring
 
-Photographs from the studio archive.
+How comfortable can a simple laser-cut plastic ring be? It turns out actually really comfortable.
+
+**Type:** Ring | **Materials:** Plexiglass, various types | **Dimensions:** 5 × 1.2 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Mirror ring -->
 
@@ -528,7 +542,9 @@ Photographs from the studio archive.
 
 ## Mountain Earings
 
-Photographs from the studio archive.
+Made from very early code that works with waves. They were reused and rebuilt into Timeface.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3 × 1.2 × 1.2 cm | **Year:** 2020
 
 <!-- gallery: pieces/Mountain earings -->
 
@@ -737,7 +753,9 @@ It is, however,a work in progress because I noticed a detail of the fitting I wa
 
 ## Rotary Ring
 
-Photographs from the studio archive.
+The most complex mini clasps are behind it. Rotary reminds me of the old phones, where you dialed with a rotary pad. I first approached it this way because it uses an indigolite, which slightly changes colour in the light. I had to redo the rotating part once. What can I say? It is always from errors that we learn.
+
+**Type:** Ring | **Materials:** Silver, indigolite tourmaline | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2020
 
 <!-- gallery: pieces/Rotary ring -->
 
@@ -959,11 +977,11 @@ The unusual shape encouraged some to describe it as a mini creature from Dune.
 @Cristian Avram
 @Teodora Mihaela
 
-Pair of 14kt gold wedding rings. The concept was woven. How  fine and precise can you cast a woven like pattern. The end result is seen here :)
-As for the name (a.n. Ro: Brancovenesc) it is because of the similar decoration from this style.
-In the pictures we can see the 3D model, the silver prototype and the final gold cast to spot the differences of gold vs silver casting.
+This pair of rings was complex. I was asked for a woven pattern. The cool part is the logic behind it. Do you even know, or could you imagine, what it takes to code weaving? Not only in position, but in depth as well.
 
-*Mentioned on Facebook between 2020 and 2020.*
+Pair of 14kt gold wedding rings. How fine and precise can you cast a pattern like that. The Romanian name, Brancovenesc, comes from the similar decoration in that style. In the pictures you can see the 3D model, the silver prototype, and the final gold cast, and the difference between casting in gold and in silver.
+
+**Type:** Wedding rings | **Materials:** 14kt gold, silver prototype | **Year:** 2020
 
 <!-- gallery: pieces/Woven wedding rings -->
 
