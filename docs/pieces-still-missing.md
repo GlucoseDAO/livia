@@ -1,14 +1,10 @@
 # Pieces still missing info
 
-Second pass, after the 12 pieces that had no story, size, or date. Each line is a piece that already has some text or a year, and the fields still needed for a full entry: story, materials, dimensions, year.
+Fields still missing after checking the catalogue text and the Romanian Jewelry Week filenames. Facebook and Instagram did not return post captions.
 
-Materials and dimensions mean a metadata line. A story paragraph that mentions silver does not count as materials until it is written on that line.
+60 pieces.
 
-69 pieces.
-
-## Story only
-
-These already have materials, dimensions, and a year. They still need a story.
+## Missing story
 
 - Amberbow Ring
 - Ammonite Ring
@@ -25,6 +21,8 @@ These already have materials, dimensions, and a year. They still need a story.
 - Nucalong Pendant
 - Nut of Power Pendant
 - Piguen Nonaltra Pendant
+- Sunfinder Pendant
+- The Link Pin
 - The Nest Ring
 - Toxic Ring
 - Vittoria Amazonica Pendant
@@ -34,15 +32,10 @@ These already have materials, dimensions, and a year. They still need a story.
 - The Dark Nut of Power Pendant
 - Mitoring (Mitochondria) Ring
 
-## Dimensions only
-
-- Woven Wedding Rings
-
-## Materials and dimensions
+## Missing size
 
 - Art Nouveau Earings
 - Art Nouveau Ring
-- Blooming Pins
 - Bracelet Extension
 - Bubble Ring
 - Cabochon Ring
@@ -53,10 +46,8 @@ These already have materials, dimensions, and a year. They still need a story.
 - Helix Wedding Rings
 - Merlusca (denisa) Ring
 - Merlusca Ring
-- Mushroom Ring
 - Pearl Earrings
 - Peas in Pod Ring
-- Red Wormy Little Apple Ring
 - Roots Ring
 - Soft Art Nouveau Railing Ring
 - The Little Trumpet Ring
@@ -64,30 +55,23 @@ These already have materials, dimensions, and a year. They still need a story.
 - Yellow Submarine Pendant
 - Cheesecacke Pendant
 
-## Materials, dimensions, and year
+## Missing size, year
 
 - Dewdrop Ring
 - Engagement Ring
 - Engagement Ring 2
 - Fistic Ring
 - Florine Ring
-- Greentooth Ring
 - Mr Bean Masca Pendant
-- Peony Ring
 - Pretzel Earings
-- The Eye Pendant
 - Vera Ring
 - War and Peace Ring
 - Weddiing Rings
 - Wormy Ring
-- Untold Galaxy Stage 2017
-- Untold Galaxy Stage 2018
 
-## Story, materials, and dimensions
+## Missing story, material, size
 
 - Half Fistic Earings
 - Interchangable Flower Pendant
 - Moldavian Vault Ring
 - Solid Tourmaline Ring
-- Sunfinder Pendant
-- The Link Pin

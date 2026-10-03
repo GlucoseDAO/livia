@@ -60,6 +60,8 @@ This pair is the first to try out the most comfortable mode of earrings fixing. 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Earrings | **Materials:** Silver | **Year:** 2018
+
 <!-- gallery: pieces/Art-Nouveau earings -->
 
 ## Art Nouveau Ring
@@ -67,6 +69,8 @@ This pair is the first to try out the most comfortable mode of earrings fixing. 
 Cast in silver with an amethist cabouchon. The first complete flush setting. Considering the shape something lightweight and lithe- easy to wear- was needed. The art nouveau inspiration seemed apropriate to an oval shape. Can be worn as a set with the Pretzel earrings.
 
 *Mentioned on Facebook between 2020 and 2020.*
+
+**Type:** Ring | **Materials:** Silver, amethyst cabochon | **Year:** 2020
 
 <!-- gallery: pieces/Art-Nouveau ring -->
 
@@ -108,6 +112,8 @@ Series of 6 pins cast in silver. The idea came from the flowers which at that po
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Pins | **Materials:** Sterling silver | **Dimensions:** Helix large 1.5 × 1.5 × 1.5 cm; Helix small 1.1 × 1.1 × 1.5 cm; Peony, the closure 1.3 × 1.3 × 1.5 cm; Peony, the maturation 1.6 × 1.6 × 1.5 cm; Peony, the opening 1.2 × 1.2 × 1.5 cm; Peony, the separation 1.3 × 1.3 × 1.5 cm | **Year:** 2020
+
 <!-- gallery: pieces/Blooming pins -->
 
 ## Blooming Ring
@@ -124,6 +130,8 @@ Here is all about solving a technical dilemma. I had a rigid bronze bracelet too
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Bracelet | **Materials:** Bronze
+
 <!-- gallery: pieces/Bracelet-extension -->
 
 ## Brain Ring
@@ -139,6 +147,8 @@ I wanted something organic, something that would look like cellular growth, and 
 Cast silver ring with tanzanite. The concept has started, normally from the stone. The shape and look felt very much like a soap bubble. This is why it is a bubble fit into a bubble grid between two rings.
 
 *Mentioned on Facebook between 2020 and 2021.*
+
+**Type:** Ring | **Materials:** Silver, tanzanite
 
 <!-- gallery: pieces/Bubble ring -->
 
@@ -166,6 +176,8 @@ One of the most complex pieces because of the stone fixture method. In fact its 
 
 *Mentioned on Facebook between 2018 and 2020.*
 
+**Type:** Ring | **Materials:** Silver
+
 <!-- gallery: pieces/Cabochon ring -->
 
 ## Cafe Au Lait Ring
@@ -174,6 +186,8 @@ A new type of fixing, the model ensures against occasional damage to the stone a
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver, culture pearl
+
 <!-- gallery: pieces/Cafe-au-lait ring -->
 
 ## Cat Wire Ring
@@ -181,6 +195,8 @@ A new type of fixing, the model ensures against occasional damage to the stone a
 Some of the earlier tries of wire framing, Cast in silver.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver
 
 <!-- gallery: pieces/Cat-wire ring -->
 
@@ -217,6 +233,8 @@ The first cromatic concept for a ring. The idea came from the warm light of a fr
 
 *Mentioned on Facebook between 2019 and 2019.*
 
+**Type:** Ring | **Materials:** Silver, cubic zirconia (aquamarine and lemon peridot coloured)
+
 <!-- gallery: pieces/Colour-window-spring-edition ring -->
 
 ## Daggers Earings
@@ -230,6 +248,8 @@ Stones started everything. This is actually quartz covered with chlorite, a uniq
 ## Dewdrop Ring
 
 Or shortly, Dewy. Cast silver piece, with natural treated Swiss blue topaz. It has two important points: one- it is adjustable and two, it is comfortable and still pretty resistant. The model was inspired by the stone. In this case, the volumetric shape of the stone led to the end-of-piece setting. I still have to find another stone like this one.
+
+**Type:** Ring | **Materials:** Silver, Swiss blue topaz
 
 <!-- gallery: pieces/Dewdrop ring -->
 
@@ -259,11 +279,15 @@ Photographs from the studio archive.
 
 Custom order. Cast in yellow gold of 18k with a blue safire chosen by the client. The model is designed from a previous version which was improved. It is important that this one also got an "Yes"
 
+**Type:** Ring | **Materials:** 18k yellow gold, blue sapphire
+
 <!-- gallery: pieces/Engagement-ring -->
 
 ## Engagement Ring 2
 
 Custom made order. A good friend of mine wanted to surprise his girlfriend and ask for her hand. So for this piece we had plannings, more tests and other adventures. The answer was yes. The final cast was in white gold, but the trial was in silver.
+
+**Type:** Ring | **Materials:** White gold, silver trial
 
 <!-- gallery: pieces/Engagement-ring-2 -->
 
@@ -315,6 +339,8 @@ A bit of inside story. Cam mult de lecturat Ã®nsÄ. Cum se procedeaza? Exist
 
 *Mentioned on Facebook between 2018 and 2022.*
 
+**Type:** Ring | **Materials:** Silver, bronze trial
+
 <!-- gallery: pieces/First ring -->
 
 ## Fistic Ring
@@ -323,11 +349,15 @@ Cast in silver ring with a bullet shaped synthetic peridote. Slightly adaptable.
 
 The ring’s geometry keeps the stone loose so, if you have the same shape, you can replace it. Regarding synthetic stones, they are made in a lab: a natural quartz base is baked in a kiln with minerals (such as iron for the green) to reach the desired colour.
 
+**Type:** Ring | **Materials:** Silver, synthetic peridot
+
 <!-- gallery: pieces/Fistic ring -->
 
 ## Florine Ring
 
 First square ring. The shape was inspired by the set stone, octahedral fluorite cristal. Basically, in nature, crystals like these are formed in soft soils which allow individual growth from the particular component elements. Cast in silver, the stone is a naturally shaped fluorite
+
+**Type:** Ring | **Materials:** Silver, fluorite
 
 <!-- gallery: pieces/Florine ring -->
 
@@ -341,15 +371,17 @@ This particular case is one of reuse. I found this actual knife holder with a ve
 
 ## Funghi Ring Series
 
-It is still from my early Voronoi and mesh-editing days. I really wanted a cute cluster of abstract mushrooms, and I got them. Because it had to be abstract, the base is of course hexagonal.
+It was actually the same base as the Cabochon ring. A good system never goes to waste. The scissor way of settling on the finger can also be used to deploy different heads, especially with special filaments that turn elastic in warm water and then harden once they are outside.
 
-**Type:** Ring | **Materials:** Silver | **Dimensions:** 2.4 × 2.4 × 1 cm | **Year:** 2019
+**Type:** Ring | **Materials:** Thermally changeable plastic, silver | **Dimensions:** 1.8 × 2.5 × 1.8 cm | **Year:** 2023
 
 <!-- gallery: pieces/Funghi ring series -->
 
 ## Greentooth Ring
 
 We all know about bluethooth- the wireless connection with other devices. Greentooth is basically the connection with greenery- in every sense. The flower edge is script generated and can be adapted to various configurations but it is thought in such manner that the stone will be protected in the intensive daily use. It was cast in silver, the stone is natural peridot or olivine.
+
+**Type:** Ring | **Materials:** Sterling silver, peridot | **Dimensions:** 2.4 × 2 × 1.2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Greentooth ring -->
 
@@ -370,6 +402,8 @@ Pair of wedding rings at the moment cast in silver. They are basically the proto
 *No English description was extracted for this piece in the export.*
 
 *Mentioned on Facebook between 2022 and 2022.*
+
+**Type:** Wedding rings | **Materials:** Silver
 
 <!-- gallery: pieces/Helix wedding rings -->
 
@@ -513,6 +547,8 @@ For this piece I altered just the stone setting and the width of the ring. Elsew
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Silver, grown pearl
+
 <!-- gallery: pieces/Merlusca (Denisa) ring -->
 
 ## Merlusca Ring
@@ -521,6 +557,8 @@ First mounting- in the beginning I wanted a perfectly round pearl, like the one 
 Cast in silver, with a culture pearl.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver, culture pearl
 
 <!-- gallery: pieces/Merlusca ring -->
 
@@ -570,6 +608,8 @@ A two-finger ring which can be worn as a pendant, cast in silver with citrine. T
 
 Custom order. It is a pendant cast in silver and was literally the biggest object ever made till now. On the long axis, it is about 7 cm and aprox 120 g after polishing. The image was given by the client but the 3d modeling was made by a script. I've got lots to learn from this project and at the end the owner (for whom it was a surprise gift) was satisfied. It should be mentioned that it is at the upper limit of castable size and weight. At the moment.
 
+**Type:** Pendant | **Materials:** Silver
+
 <!-- gallery: pieces/Mr-bean-masca pendant -->
 
 ## Mushroom Ring
@@ -577,6 +617,8 @@ Custom order. It is a pendant cast in silver and was literally the biggest objec
 It is a symbiosis between polygons and nature. Or that's how I see it. Each mushroom is the hat resulting from the joining of each polygons' center that are closest to a point. Or you could just admire the resulting shape. Cast in silver.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 2.4 × 2.4 × 1 cm
 
 <!-- gallery: pieces/Mushroom ring -->
 
@@ -670,6 +712,8 @@ Made to be a finer version of a pearl fixture. The closure system is similar to 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Earrings | **Materials:** Silver
+
 <!-- gallery: pieces/Pearl earrings -->
 
 ## Peas in Pod Ring
@@ -679,11 +723,15 @@ The ring had to be one the wouldn't hook on clothes, could be worn under latex g
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Silver, jade
+
 <!-- gallery: pieces/Peas-in-pod ring -->
 
 ## Peony Ring
 
 Ring cast in silver with a rectangular cushion cut citrine. The concept started from a warm source that gradually unfolds. For those days when the sun is missing, to have a tiny spark on you. Learning from past models, this one is also adjustable.
+
+**Type:** Ring | **Materials:** Sterling silver, citrine | **Dimensions:** 2.3 × 2 × 1.2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Peony ring -->
 
@@ -709,6 +757,8 @@ Photographs from the studio archive.
 
 Cast in silver, each piece has 2 set amethyst cabochons. The model is a variation of the flexible system in the previous earrings. Now it is fixed and not centered. The Pretzel part of the name comes from the initial sketch which can still be seen in the side view. They can be worn as a set with the amethyst art nouveau ring
 
+**Type:** Earrings | **Materials:** Silver, amethyst cabochons
+
 <!-- gallery: pieces/Pretzel earings -->
 
 ## Red Wormy Little Apple Ring
@@ -719,6 +769,8 @@ the geometry of the piece has a surprising stiffness.
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Sterling silver, dyed shell | **Dimensions:** 3.0 × 2.5 × 1.5 cm | **Year:** 2020
+
 <!-- gallery: pieces/Red-wormy-little-apple ring -->
 
 ## Roots Ring
@@ -726,6 +778,8 @@ the geometry of the piece has a surprising stiffness.
 Started from the same base as Mushroom ring, Roots shows the difference that can be made from the algorithm. It is a slender ring cast in silver and adjustable. To be mentioned that for future castings I will geometrically reinforce it.
 
 *Mentioned on Facebook between 2019 and 2019.*
+
+**Type:** Ring | **Materials:** Silver
 
 <!-- gallery: pieces/Roots ring -->
 
@@ -761,7 +815,9 @@ The most complex mini clasps are behind it. Rotary reminds me of the old phones,
 
 ## Slider Ring
 
-Photographs from the studio archive.
+The stone called it. It simply looked like a switch.
+
+**Type:** Ring | **Materials:** Green tourmaline, silver | **Dimensions:** 2.5 × 1.8 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Slider ring -->
 
@@ -773,6 +829,8 @@ when I first saw these colors the thought was art nouveau, and after remarking u
 https://www.gia.edu/ametrine
 
 *Mentioned on Facebook between 2021 and 2021.*
+
+**Type:** Ring | **Materials:** Silver, synthetic ametrine
 
 <!-- gallery: pieces/Soft-Art-Nouveau-railing ring -->
 
@@ -802,7 +860,9 @@ Pendant. Cast in silver it holds a stone of quartz (rock crystal) inside. It was
 
 ## Star Earings
 
-Photographs from the studio archive.
+They were developed because inside them lies one of the most interesting pieces of geology: petroleum quartz. This stone keeps a small part of ancient oil inside, and that oil is UV reactive.
+
+**Type:** Earrings | **Materials:** Petroleum quartz, silver | **Dimensions:** 2 cm diameter | **Year:** 2023
 
 <!-- gallery: pieces/Star earings -->
 
@@ -855,6 +915,8 @@ As for the technical part- the stone has an axial mounting system with two threa
 
 Silver pendant with a peach coloured sintetic stone. The shape is important about it. It was designed so that it could be worn on either side and on either short or long necklaces.
 
+**Type:** Pendant | **Materials:** Sterling silver, zircon | **Dimensions:** 4 × 2 × 1.5 cm | **Year:** 2019
+
 <!-- gallery: pieces/The eye pendant -->
 
 ## The Link Pin
@@ -862,6 +924,8 @@ Silver pendant with a peach coloured sintetic stone. The shape is important abou
 *No English description was extracted for this piece in the export.*
 
 *Mentioned on Facebook between 2020 and 2020.*
+
+**Type:** Pin | **Materials:** Sterling silver | **Dimensions:** 1.9 × 1.9 × 2 cm | **Year:** 2020
 
 <!-- gallery: pieces/The link pin -->
 
@@ -889,11 +953,15 @@ The ring is an adaptable version for cabochon mounting. Also it has a rather spe
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver, cubic zirconia
+
 <!-- gallery: pieces/The-little-trumpet ring -->
 
 ## Tilia Earings
 
-Photographs from the studio archive.
+Another test of how to make earrings directly from casting. This one is actually a favourite of mine, because they can be worn as rings or earrings.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3 × 3 × 3 cm | **Year:** 2020
 
 <!-- gallery: pieces/Tilia earings -->
 
@@ -919,17 +987,25 @@ In the search for thinner and more flowery shapes I tried this version too. Cast
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver
+
 <!-- gallery: pieces/Tulip ring -->
 
 ## Vera Ring
 
 Custom made ring. Starting from the First ring I adapted the design for a new hand layout. The visual and de usage were take into account for this. So you can notice the general curvature, the with reduction towards the back and the gradual thickening of the polygons towards the front. Cast in silver. And two PLA versions for trials.
 
+**Type:** Ring | **Materials:** Silver, PLA trials
+
 <!-- gallery: pieces/Vera ring -->
 
 ## Vita (b)orum Pendant
 
-Photographs from the studio archive.
+Here is a play on words. Vitaborum for those that live, vitaorum for the travellers... or the other way around. But this piece shows the resilience to succeed even when not everything goes according to our calculation.
+
+It was supposed to be a pendant with silver and a girasol quartz. Due to the shape of the stone, I had to break the silver cast into multiple pieces. To bring them all together, some brass has been used, giving it its current look.
+
+**Type:** Pendant | **Materials:** Girasol quartz, silver, brass | **Dimensions:** 3 × 5 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Vita(b)orum pendant -->
 
@@ -951,11 +1027,15 @@ Photographs from the studio archive.
 
 Silver cast model with labradorite stone. The largest ring I designed- it covers 3 fingers. As it often happens in the case of stones the design came from the gems and how they can come off in a special shape. The name comes from people's reaction when they've seen it- everyone said that it is covered in peace signs but their thoughts were further from that idea and less peaceful.... The opening in the actual cast object allows for a tighter diameter and thus a better grip for it's large size.
 
+**Type:** Ring | **Materials:** Silver, labradorite
+
 <!-- gallery: pieces/War-and-peace ring -->
 
 ## Wavy Circle Pendant
 
-Photographs from the studio archive.
+It was a gift for Anton's mother. She had a pendant she loved stolen, and she missed an amber jewel, so Wavy Circle was created.
+
+**Type:** Pendant | **Materials:** Amber, silver | **Dimensions:** 2.7 × 2.7 × 1.5 cm | **Year:** 2025
 
 <!-- gallery: pieces/Wavy circle pendant -->
 
@@ -963,12 +1043,16 @@ Photographs from the studio archive.
 
 Custom made. Two of my friends decided to tie the knot in a special way so they wanted a pair of wedding rings with some design peculiarities. That is how, after a period of discussions on various issues we managed to get the perfect design they were looking for. And the two rings have now a loving home. Cast in yellow gold (14kt) and trials made in bronze.
 
+**Type:** Wedding rings | **Materials:** 14kt yellow gold, bronze trials
+
 <!-- gallery: pieces/Weddiing-rings -->
 
 ## Wormy Ring
 
 Ring cast in silver with a purple culture pearl. Initially, I tried fixing the pearl, with an intresting shape and color in a way that would maximize its effect. And this is how it came to be. Still, I found out on this occasion how the woven pattern can reinforce the shape. Even though it is an open ring its geometry gives it more resistance.
 The unusual shape encouraged some to describe it as a mini creature from Dune.
+
+**Type:** Ring | **Materials:** Silver, culture pearl
 
 <!-- gallery: pieces/Wormy ring -->
 
@@ -981,13 +1065,15 @@ This pair of rings was complex. I was asked for a woven pattern. The cool part i
 
 Pair of 14kt gold wedding rings. How fine and precise can you cast a pattern like that. The Romanian name, Brancovenesc, comes from the similar decoration in that style. In the pictures you can see the 3D model, the silver prototype, and the final gold cast, and the difference between casting in gold and in silver.
 
-**Type:** Wedding rings | **Materials:** 14kt gold, silver prototype | **Year:** 2020
+**Type:** Wedding rings | **Materials:** 14kt gold, silver prototype | **Dimensions:** 2.4 × 2.4 × 0.6 cm and 1.8 × 1.8 × 0.6 cm | **Year:** 2020
 
 <!-- gallery: pieces/Woven wedding rings -->
 
 ## Wrap Ring
 
-*No English description was extracted for this piece in the export.*
+Here we obviously have a wonderful iolite, and a design I wanted as lightweight as possible, with a weird entry point. So when it was mounted, the stone was inserted sideways.
+
+**Type:** Ring | **Materials:** Iolite, silver | **Dimensions:** 1.8 × 1.8 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Wrap ring -->
 
@@ -997,6 +1083,8 @@ Cast in silver pendant, with yellow jade beads. Besides the Beatles reference, t
 
 *Mentioned on Facebook between 2021 and 2021.*
 
+**Type:** Pendant | **Materials:** Silver, yellow jade
+
 <!-- gallery: pieces/Yellow-submarine pendant -->
 
 ## Cheesecacke Pendant
@@ -1004,6 +1092,8 @@ Cast in silver pendant, with yellow jade beads. Besides the Beatles reference, t
 The model was thought out so that the wearer has the choice of how it is worn- with a single point of contact between the pendant and necklace or "sewn" along the perforated edge.Thus it would be a pendant or included in a choker. The concept was applied to leather band or textile strand. It was cast in silver, but could work out very well in bronze also, since it has quite ample size and volume.
 
 *Mentioned on Facebook between 2022 and 2022.*
+
+**Type:** Pendant | **Materials:** Silver
 
 <!-- gallery: pieces/cheesecacke pendant -->
 
@@ -1082,6 +1172,8 @@ https://www.mindscapestudio.ro/event-design/untold-galaxy-stage-2017-making-of/
 
 Here I helped with the surface division of the stage. Each strip of textile was extracted from the 3d model and then numbered for an easier in situ assembly. The vertical ellipse is 16m x6.5m
 
+**Type:** Stage | **Materials:** Textile | **Dimensions:** 16 × 6.5 m | **Year:** 2017
+
 <!-- gallery: pieces/large-scale-parametrics- Untold Galaxy stage 2017 -->
 
 ## Untold Galaxy Stage 2018
@@ -1090,5 +1182,7 @@ UNTOLD GALAXY STAGE 2018
 client: Mindscape Studio
 
 Here starting from the same idea of the two ellipses we increased the complexity. The vertical ellipse went up to 24m x 8m but the double layer of the wrapping allowed for the light settings to be rearranged
+
+**Type:** Stage | **Materials:** Textile | **Dimensions:** 24 × 8 m | **Year:** 2018
 
 <!-- gallery: pieces/large-scale-parametrics-Untold Galaxy stage 2018 -->
