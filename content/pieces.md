@@ -1047,7 +1047,7 @@ It was a gift for Anton's mother. She had a pendant she loved stolen, and she mi
 
 <!-- gallery: pieces/Wavy circle pendant -->
 
-## Weddiing Rings
+## Wedding Rings
 
 Custom made. Two of my friends decided to tie the knot in a special way so they wanted a pair of wedding rings with some design peculiarities. That is how, after a period of discussions on various issues we managed to get the perfect design they were looking for. And the two rings have now a loving home. Cast in yellow gold (14kt) and trials made in bronze.
 

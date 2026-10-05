@@ -35,7 +35,7 @@ Each tabbed page corresponds to a subfolder under `content/`. Tabs are auto-disc
 content/
   home.md                              # standalone page (no tabs)
   biography.md                         # standalone page (no tabs)
-  pieces.md                            # → /pieces; split on ``##`` into sidebar tabs; images from ``assets/pieces/<folder>/`` (folder name may contain spaces; must match the ``<!-- gallery: pieces/… -->`` path) or, when that folder is empty, matched files under ``assets/RJWYYYY/`` (Romanian Jewelry Week)
+  pieces.md                            # → /pieces; split on ``##`` into sidebar tabs grouped by catalogue year (newest first), then alphabetically, with the year shown as a heading in the list; images from ``assets/pieces/<folder>/`` (folder name may contain spaces; must match the ``<!-- gallery: pieces/… -->`` path) or, when that folder is empty, matched files under ``assets/RJWYYYY/`` (Romanian Jewelry Week)
   art-design/                          # tabbed page → /art-design
     _meta.yaml                         # page-level config
     _instagram.yaml                    # special (non-markdown) tab

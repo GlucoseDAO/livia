@@ -878,6 +878,55 @@ def _sidebar_tab_label_stack(
     )
 
 
+def _tab_year_heading(label: str) -> rx.Component:
+    """Non-interactive year heading shown above a group of piece tabs."""
+    return rx.el.div(
+        label,
+        class_name="livia-tab-year",
+        role="presentation",
+        style={
+            "width": "100%",
+            "flex_basis": "100%",
+            "box_sizing": "border-box",
+            "text_align": "center",
+            "font_family": SERIF_FONT,
+            "font_weight": "700",
+            "letter_spacing": "0.16em",
+            "color": AMBER,
+            "font_size": "calc(1.15rem * max(1, var(--livia-ui-scale, 1)))",
+            "line_height": "1.2",
+            "padding": "0.35rem 0.4rem 0",
+            "margin_bottom": "-1.15rem",
+            "pointer_events": "none",
+            "user_select": "none",
+        },
+    )
+
+
+def _rail_tab_items(
+    tabs: tuple[TabSpec, ...],
+    sidebar_side: Literal["left", "right"],
+    center_labels: bool,
+    trigger_style: dict,
+    trigger_class: str,
+) -> list[rx.Component]:
+    """Tab triggers, with a year heading before the first piece of each year."""
+    items: list[rx.Component] = []
+    for tab in tabs:
+        if tab.section_label:
+            items.append(_tab_year_heading(tab.section_label))
+        items.append(
+            _tab_trigger(
+                tab,
+                sidebar_side,
+                center_labels,
+                trigger_style,
+                trigger_class,
+            ),
+        )
+    return items
+
+
 def _tab_trigger(
     tab: TabSpec,
     sidebar_side: Literal["left", "right"],
@@ -964,15 +1013,12 @@ def sidebar_tabs(
     desktop_sidebar = rx.box(
         tab_rail_grip,
         rx.tabs.list(
-            *(
-                _tab_trigger(
-                    tab,
-                    sidebar_side,
-                    center_piece_labels,
-                    tab_trigger_style,
-                    trigger_btn_class,
-                )
-                for tab in tabs
+            *_rail_tab_items(
+                tabs,
+                sidebar_side,
+                center_piece_labels,
+                tab_trigger_style,
+                trigger_btn_class,
             ),
             display="flex",
             flex_direction="column",
@@ -999,15 +1045,12 @@ def sidebar_tabs(
         custom_attrs={"role": "navigation", "aria-label": "Page sections"},
     )
     mobile_tabs = rx.tabs.list(
-        *(
-            _tab_trigger(
-                tab,
-                sidebar_side,
-                center_piece_labels,
-                tab_trigger_style,
-                f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
-            )
-            for tab in tabs
+        *_rail_tab_items(
+            tabs,
+            sidebar_side,
+            center_piece_labels,
+            tab_trigger_style,
+            f"{trigger_btn_class} livia-tab-trigger-btn--mobile",
         ),
         display="flex",
         flex_wrap="wrap",

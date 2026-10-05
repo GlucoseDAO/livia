@@ -17,8 +17,16 @@ INTRO = """Each section is one object (work). Posts were grouped by topic and at
 """
 
 
+_HEADING_OVERRIDES: dict[str, str] = {
+    "Weddiing-rings": "Wedding Rings",
+}
+
+
 def nice_heading_from_folder(folder: str) -> str:
     """Readable title matching folder name (used for ## and rail)."""
+    override = _HEADING_OVERRIDES.get(folder.strip())
+    if override is not None:
+        return override
     s = folder.strip()
     s = s.replace("(", " (").replace("  (", " (")
     s = s.replace("-", " ")

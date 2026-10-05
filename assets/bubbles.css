@@ -636,6 +636,10 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
   letter-spacing: 0.03em;
 }
 
+.livia-tab-year {
+  margin-bottom: -1.15rem;
+}
+
 .livia-pieces .markdown,
 .livia-pieces [class*="Markdown"] {
   max-width: 100%;

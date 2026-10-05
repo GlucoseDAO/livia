@@ -158,6 +158,27 @@ def heading_to_rail_title(raw: str) -> str:
     return f"{_title_case_phrase(primary)} ({subtitle})"
 
 
+_CATALOGUE_YEAR_RE = re.compile(r"\*\*Year:\*\*\s*(\d{4})")
+_FACEBOOK_YEAR_RE = re.compile(
+    r"\*Mentioned on Facebook between (\d{4}) and (\d{4})\.\*",
+)
+_RJW_HEADING_YEAR_RE = re.compile(r"Romanian Jewelry Week (\d{4})")
+
+
+def extract_piece_catalogue_year(body_md: str) -> int | None:
+    """Year used to group the Pieces list: metadata year, else a Facebook or exhibition year."""
+    meta = _CATALOGUE_YEAR_RE.search(body_md)
+    if meta:
+        return int(meta.group(1))
+    facebook = _FACEBOOK_YEAR_RE.search(body_md)
+    if facebook:
+        return int(facebook.group(2))
+    exhibition = _RJW_HEADING_YEAR_RE.search(body_md)
+    if exhibition:
+        return int(exhibition.group(1))
+    return None
+
+
 def extract_posting_date_hint(body_md: str) -> str | None:
     """Parse ``*Mentioned on Facebook between YYYY and YYYY.*`` into a short caption."""
     m = re.search(
@@ -428,6 +449,7 @@ class PiecesTabEntry:
     raw_heading: str
     body_md: str
     date_hint: str | None
+    year: int | None
 
 
 def title_to_camel_case(raw: str) -> str:
@@ -449,7 +471,8 @@ def parse_pieces_tab_entries() -> tuple[str | None, list[PiecesTabEntry]]:
     """Split ``content/pieces.md`` into an optional intro and piece sections with photo galleries.
 
     Uses ``assets/pieces/<slug>/`` when present; otherwise matches Romanian Jewelry Week files
-    under ``assets/RJWYYYY/`` for the same work.
+    under ``assets/RJWYYYY/`` for the same work. Entries are ordered by catalogue year, newest
+    first, then alphabetically by the rail title.
     """
     raw = load_content("pieces")
     sections = re.split(r"(?m)^## ", raw)
@@ -480,9 +503,16 @@ def parse_pieces_tab_entries() -> tuple[str | None, list[PiecesTabEntry]]:
                 raw_heading=raw_heading,
                 body_md=body_md,
                 date_hint=resolve_piece_date_hint(body_md, tab_key, gallery_slug),
+                year=extract_piece_catalogue_year(body_md),
             ),
         )
 
+    entries.sort(
+        key=lambda entry: (
+            -(entry.year if entry.year is not None else -10**9),
+            heading_to_rail_title(entry.raw_heading).casefold(),
+        ),
+    )
     return intro_out, entries
 
 

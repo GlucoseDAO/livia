@@ -353,8 +353,16 @@ def _build_pieces_tab_specs() -> tuple[TabSpec, ...]:
                 ),
             ),
         )
+    previous_year: int | None = None
+    opened_year_group = False
     for e in entries:
         rail = heading_to_rail_title(e.raw_heading)
+        year_label = str(e.year) if e.year is not None else "Undated"
+        section_label: str | None = None
+        if not opened_year_group or e.year != previous_year:
+            section_label = year_label
+            previous_year = e.year
+            opened_year_group = True
         stack_children: list[rx.Component] = [
             rx.heading(
                 rail,
@@ -391,6 +399,7 @@ def _build_pieces_tab_specs() -> tuple[TabSpec, ...]:
             TabSpec(
                 label=rail,
                 value=e.tab_key,
+                section_label=section_label,
                 content=panel(
                     rx.vstack(
                         *stack_children,
@@ -445,7 +454,7 @@ def biography_page() -> rx.Component:
 
 
 def pieces_page() -> rx.Component:
-    """Object-centric list of works: one sidebar tab per piece (like Art & Design)."""
+    """Object-centric list of works, grouped by year then name."""
     tabs = _build_pieces_tab_specs()
     default_value = tabs[0].value if tabs else "overview"
     body = (
