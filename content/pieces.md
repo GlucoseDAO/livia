@@ -339,7 +339,7 @@ A bit of inside story. Cam mult de lecturat Ã®nsÄ. Cum se procedeaza? Exist
 
 *Mentioned on Facebook between 2018 and 2022.*
 
-**Type:** Ring | **Materials:** Silver, bronze trial | **Dimensions:** 1.8 × 1.8 × 1.4 cm
+**Type:** Ring | **Materials:** Silver, bronze trial | **Dimensions:** 1.8 × 1.8 × 1.4 cm | **Year:** 2017
 
 <!-- gallery: pieces/First ring -->
 
