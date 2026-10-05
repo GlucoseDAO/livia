@@ -16,6 +16,7 @@ from livia.constants import (
     ARTIFACT_IMAGE_RE,
     MARKDOWN_LINK_RE,
     SEQUENCE_DIRECTIVE_RE,
+    VIDEO_DIRECTIVE_RE,
     YOUTUBE_WATCH_RE,
     YOUTUBE_SHORT_RE,
     _REF_FRONTMATTER_RE,
@@ -409,6 +410,17 @@ def preprocess_markdown_for_state(content: str) -> str:
                 f"border-radius:0.8rem;border:2px solid {AMBER_DIM};"
                 f'box-shadow:0 4px 24px rgba(154,101,39,0.3)" loading="lazy"/>'
                 f"</div>"
+            )
+            continue
+
+        video_match = VIDEO_DIRECTIVE_RE.match(stripped)
+        if video_match is not None:
+            raw_path = video_match.group(1).strip()
+            src = encode_url_path(raw_path) if raw_path.startswith("/") else raw_path
+            output_lines.append(
+                f'<video src="{src}" controls playsinline '
+                f'style="display:block;width:100%;max-width:min(960px,100%);'
+                f'margin:1rem auto;border-radius:0.85rem;background:#000"></video>'
             )
             continue
 

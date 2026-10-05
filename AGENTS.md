@@ -72,6 +72,7 @@ Drop a file like `8_New Tab Name.md` into the page's folder. The number sets its
 
 - `<!-- gallery: Subfolder -->` — responsive grid of all images in `assets/Subfolder/` (click to enlarge).
 - `<!-- artifact: /path/under/assets.jpg -->` — one centered image (click to enlarge); path is site-root under `assets/`.
+- `<!-- video: /path/under/assets.mp4 -->` — one player for a video under `assets/`. Piece videos live next to that piece's gallery line.
 - `<!-- sequence: Subfolder -->` — opacity slideshow of files in `assets/Subfolder/` whose names start with `UG_` (assembly-style preview; no lightbox).
 
 ### Reference files (shared content)
@@ -151,6 +152,7 @@ When a change affects UI/UX, validation is required before considering the task 
 - Content panels and text must fill available screen space with generous sizing and large fonts; never render small, narrow text boxes that waste screen real estate.
 - When asked to act (e.g. "do stuff for me"), proceed decisively without asking for further confirmation.
 - Piece stories written in the first person stay in the first person in `content/pieces.md` and when quoted back. Grammar fixes do not change "I" to "you".
+- When the user says "process", link new files under `assets/pieces/`. A still image in a folder that already has `<!-- gallery: pieces/<folder> -->` is already on that piece; do not add a second image line. A new folder that contains stills needs a `##` section and that gallery line. A video needs `<!-- video: /pieces/<folder>/<file>.mp4 -->` after that piece's gallery line. Do not invent a story. Do not commit unless asked.
 - Edge tool rails (Instagram on the right, GitHub & Tech on the left) stay **collapsed** to a grip strip whose minimum width scales with `--livia-ui-scale`. They **expand** on fine-pointer **hover** or when the rail has **`:focus-within`** (tap the strip on touch). Bottom nav never auto-hides.
 - On large screens, content pages should use sidebar tabs (left for Science & Tech, right for Art & Design) rather than full-width vertical layouts that cause super-wide, hard-to-read text lines.
 - Contest and collection tabs: put the work or collection name first, then the competition and year in parentheses (for example `… (RJW YYYY)`, `… (Osmium YYYY)`, `… (Vinca YYYY)`, `… (Spotlight YYYY)`); detailed per-piece writeups follow the Livia Lore pattern (`## Pieces`, `###` headings, metadata lines, grouped `<!-- artifact: /path/to/file.jpg -->` directives). When adding multiple dated competition tabs, order them reverse chronologically (newest first) unless the user specifies otherwise.

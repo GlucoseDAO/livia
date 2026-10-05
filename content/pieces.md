@@ -124,6 +124,8 @@ I started with a series of pins, then discovered they can be much more than that
 
 <!-- gallery: pieces/Blooming ring -->
 
+<!-- video: /pieces/Blooming ring/20230915_212737.mp4 -->
+
 ## Bracelet Extension
 
 Here is all about solving a technical dilemma. I had a rigid bronze bracelet too big for my hand, the hole in which the hand came in being simply to large( however the general diameter of the bracelet being ok). To solve this problem I developed this system of extensions with ornamental endings that can be removed to be able to reduce the opening and to change the model anytime I wanted. Cast in bronze.
@@ -312,6 +314,8 @@ The Eye of Winter is a composite, actually. Two stones just created the perfect 
 <!-- artifact: /RJW2026/LiviaZaharia_ringpendant_eye_of_winter_2026_sterlingsilver_faceted topaz_quartz_4.2x4x3.5cm5.jpg -->
 
 <!-- gallery: pieces/Eye of Winter double ring and pendant -->
+
+<!-- video: /pieces/Eye of Winter double ring and pendant/20260303_063225.mp4 -->
 
 ## Eyelense Pendant
 
@@ -505,6 +509,8 @@ Well, it didn't actually start only from the stone. I was inspired by the arches
 
 <!-- gallery: pieces/King's chapel double ring -->
 
+<!-- video: /pieces/King's chapel double ring/Untitled-3.mp4 -->
+
 ## La Navette Pendant
 
 Cast in silver pendant with free rotation in two directions with synthetic alexandrite.
@@ -527,6 +533,8 @@ https://www.gia.edu/alexandrite
 <!-- artifact: /RJW2022/LiviaZaharia-pendant-La navette-2-2021_silver_syntheticalexandrite_4.5x3.5x1.2cm.jpg -->
 
 <!-- gallery: pieces/La navette pendant -->
+
+<!-- video: /pieces/La navette pendant/LiviaZaharia-pendant-La navette-2021.mp4 -->
 
 ## Ludisia Ring
 
@@ -682,6 +690,10 @@ I found the stone. It looked exactly like a frosted sugar pastry I would love to
 
 <!-- gallery: pieces/Nocciola ring -->
 
+<!-- video: /pieces/Nocciola ring/20230814_232350.mp4 -->
+
+<!-- video: /pieces/Nocciola ring/20230814_232510.mp4 -->
+
 ## Nucalong Pendant
 
 Nucalong was the first, and at the moment the only, pendant to be directly printed in metal. Its whirling shapes remind me of the interior of a nut, or of certain foods, I assume.
@@ -759,6 +771,8 @@ Piguen Nonaltra is an actual meteorite, like the metal of an outer-space stone. 
 
 <!-- gallery: pieces/Piguen Nonaltra pendant -->
 
+<!-- video: /pieces/Piguen Nonaltra pendant/Untitled-2.mp4 -->
+
 ## Pretzel Earings
 
 Cast in silver, each piece has 2 set amethyst cabochons. The model is a variation of the flexible system in the previous earrings. Now it is fixed and not centered. The Pretzel part of the name comes from the initial sketch which can still be seen in the side view. They can be worn as a set with the amethyst art nouveau ring
@@ -819,6 +833,8 @@ The most complex mini clasps are behind it. Rotary reminds me of the old phones,
 
 <!-- gallery: pieces/Rotary ring -->
 
+<!-- video: /pieces/Rotary ring/rotary.mp4 -->
+
 ## Slider Ring
 
 The stone called it. It simply looked like a switch.
@@ -874,6 +890,8 @@ They were developed because inside them lies one of the most interesting pieces 
 
 <!-- gallery: pieces/Star earings -->
 
+<!-- video: /pieces/Star earings/20240101_015404.mp4 -->
+
 ## Sticks and Stones Pendant
 
 Cast in silver pendant with natural pherenite and epidote. Masive-it has around 50g out which 13.9 are the stone. Part of the series with Amberear. Series named somewhat sentimentally Listen to your heart. First we will go into the concept story and then for the technical part.
@@ -898,6 +916,8 @@ As for the technical part- the stone has an axial mounting system with two threa
 <!-- artifact: /RJW2022/pendant-Sticks and stones-side-2021.jpg -->
 
 <!-- gallery: pieces/Sticks-and-stones pendant -->
+
+<!-- video: /pieces/Sticks-and-stones pendant/LiviaZaharia-pendant-Sticks and stones-2021.mp4 -->
 
 ## Sunfinder Pendant
 
@@ -1204,3 +1224,39 @@ Here starting from the same idea of the two ellipses we increased the complexity
 **Type:** Stage | **Materials:** Textile | **Dimensions:** 24 × 8 m | **Year:** 2018
 
 <!-- gallery: pieces/large-scale-parametrics-Untold Galaxy stage 2018 -->
+
+## CamelDALI
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/CamelDALI -->
+
+## Cymatics Geometries
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/Cymatics Geometries -->
+
+## Emerald Stilnness
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/Emerald Stilnness -->
+
+## Impact Flow Ring
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/Impact Flow Ring -->
+
+## Terra Forming
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/Terra forming -->
+
+## Thunderstorm Ring
+
+Photographs from the studio archive.
+
+<!-- gallery: pieces/Thunderstorm Ring -->

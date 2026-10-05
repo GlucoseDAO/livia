@@ -26,6 +26,7 @@ from livia.constants import (
 )
 from livia.content import (
     collect_gallery_images,
+    encode_url_path,
     extract_youtube_id,
     load_content,
     GALLERY_DIRECTIVE_RE,
@@ -33,7 +34,7 @@ from livia.content import (
 )
 
 # re-import the directive regexes via content (which re-exports from constants)
-from livia.constants import GALLERY_DIRECTIVE_RE, ARTIFACT_IMAGE_RE
+from livia.constants import GALLERY_DIRECTIVE_RE, ARTIFACT_IMAGE_RE, VIDEO_DIRECTIVE_RE
 
 
 # ---------------------------------------------------------------------------
@@ -431,6 +432,28 @@ def markdown_with_embeds(content: str) -> rx.Component:
         if artifact_match is not None:
             flush_markdown_buffer()
             components.append(artifact_image(artifact_match.group(1)))
+            continue
+
+        video_match = VIDEO_DIRECTIVE_RE.match(line.strip())
+        if video_match is not None:
+            flush_markdown_buffer()
+            raw_path = video_match.group(1).strip()
+            src = encode_url_path(raw_path) if raw_path.startswith("/") else raw_path
+            components.append(
+                rx.el.video(
+                    src=src,
+                    controls=True,
+                    playsinline=True,
+                    style={
+                        "display": "block",
+                        "width": "100%",
+                        "max_width": "min(960px, 100%)",
+                        "margin": "1rem auto",
+                        "border_radius": "0.85rem",
+                        "background": "#000",
+                    },
+                ),
+            )
             continue
 
         markdown_buffer.append(line)

@@ -11,3 +11,5 @@ Team: Livia Zaharia (Design & Storytelling), Newton Winter (Concept & Biology), 
 https://www.youtube.com/watch?v=OrdT8JCPTdU
 
 Source code: [GitHub](https://github.com/winternewt/materialized-enchancements)
+
+<!-- gallery: materialized enhancements -->
