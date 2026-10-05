@@ -249,7 +249,7 @@ Stones started everything. This is actually quartz covered with chlorite, a uniq
 
 Or shortly, Dewy. Cast silver piece, with natural treated Swiss blue topaz. It has two important points: one- it is adjustable and two, it is comfortable and still pretty resistant. The model was inspired by the stone. In this case, the volumetric shape of the stone led to the end-of-piece setting. I still have to find another stone like this one.
 
-**Type:** Ring | **Materials:** Silver, Swiss blue topaz
+**Type:** Ring | **Materials:** Silver, Swiss blue topaz | **Dimensions:** 1.7 × 2 × 1.2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Dewdrop ring -->
 
@@ -279,7 +279,7 @@ It was all about the stone. There was this cloud-like amber that sat perfectly a
 
 Custom order. Cast in yellow gold of 18k with a blue safire chosen by the client. The model is designed from a previous version which was improved. It is important that this one also got an "Yes"
 
-**Type:** Ring | **Materials:** 18k yellow gold, blue sapphire
+**Type:** Ring | **Materials:** 18k yellow gold, blue sapphire | **Dimensions:** 1.7 × 1.8 × 0.8 cm | **Year:** 2019
 
 <!-- gallery: pieces/Engagement-ring -->
 
@@ -287,7 +287,7 @@ Custom order. Cast in yellow gold of 18k with a blue safire chosen by the client
 
 Custom made order. A good friend of mine wanted to surprise his girlfriend and ask for her hand. So for this piece we had plannings, more tests and other adventures. The answer was yes. The final cast was in white gold, but the trial was in silver.
 
-**Type:** Ring | **Materials:** White gold, silver trial
+**Type:** Ring | **Materials:** White gold, silver trial | **Dimensions:** 1.7 × 1.9 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Engagement-ring-2 -->
 
@@ -349,7 +349,7 @@ Cast in silver ring with a bullet shaped synthetic peridote. Slightly adaptable.
 
 The ring’s geometry keeps the stone loose so, if you have the same shape, you can replace it. Regarding synthetic stones, they are made in a lab: a natural quartz base is baked in a kiln with minerals (such as iron for the green) to reach the desired colour.
 
-**Type:** Ring | **Materials:** Silver, synthetic peridot
+**Type:** Ring | **Materials:** Silver, synthetic peridot | **Dimensions:** 1.7 × 2.5 × 0.8 cm | **Year:** 2020
 
 <!-- gallery: pieces/Fistic ring -->
 
@@ -357,7 +357,7 @@ The ring’s geometry keeps the stone loose so, if you have the same shape, you 
 
 First square ring. The shape was inspired by the set stone, octahedral fluorite cristal. Basically, in nature, crystals like these are formed in soft soils which allow individual growth from the particular component elements. Cast in silver, the stone is a naturally shaped fluorite
 
-**Type:** Ring | **Materials:** Silver, fluorite
+**Type:** Ring | **Materials:** Silver, fluorite | **Dimensions:** 1.7 × 2.5 × 1.3 cm | **Year:** 2018
 
 <!-- gallery: pieces/Florine ring -->
 
@@ -614,7 +614,7 @@ A two-finger ring which can be worn as a pendant, cast in silver with citrine. T
 
 Custom order. It is a pendant cast in silver and was literally the biggest object ever made till now. On the long axis, it is about 7 cm and aprox 120 g after polishing. The image was given by the client but the 3d modeling was made by a script. I've got lots to learn from this project and at the end the owner (for whom it was a surprise gift) was satisfied. It should be mentioned that it is at the upper limit of castable size and weight. At the moment.
 
-**Type:** Pendant | **Materials:** Silver
+**Type:** Pendant | **Materials:** Silver | **Dimensions:** 7 × 3.5 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Mr-bean-masca pendant -->
 
@@ -684,7 +684,7 @@ I found the stone. It looked exactly like a frosted sugar pastry I would love to
 
 ## Nucalong Pendant
 
-Photographs from the studio archive.
+Nucalong was the first, and at the moment the only, pendant to be directly printed in metal. Its whirling shapes remind me of the interior of a nut, or of certain foods, I assume.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -700,7 +700,7 @@ Photographs from the studio archive.
 
 ## Nut of Power Pendant
 
-Photographs from the studio archive.
+One nut to rule them all. It is actually a non-parametric creation: just nature and human ingenuity. It is the husk of an actual walnut and a real stone. Some technical difficulties? Yes. The husk is way too thin, and it was difficult drilling through it without cracking. Let's not forget the 5 kg of nuts I searched through to find the perfect one. Also, inside there are still gear balls to make sure the pendant is balanced, so it is not for naught it is called the Nut of Power.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -718,7 +718,7 @@ Made to be a finer version of a pearl fixture. The closure system is similar to 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Earrings | **Materials:** Silver
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 5 × 0.8 × 0.8 cm
 
 <!-- gallery: pieces/Pearl earrings -->
 
@@ -729,7 +729,7 @@ The ring had to be one the wouldn't hook on clothes, could be worn under latex g
 
 *Mentioned on Facebook between 2020 and 2020.*
 
-**Type:** Ring | **Materials:** Silver, jade
+**Type:** Ring | **Materials:** Silver, jade | **Dimensions:** 1.7 × 2.4 × 0.8 cm
 
 <!-- gallery: pieces/Peas-in-pod ring -->
 
@@ -743,7 +743,7 @@ Ring cast in silver with a rectangular cushion cut citrine. The concept started 
 
 ## Piguen Nonaltra Pendant
 
-Photographs from the studio archive.
+Piguen Nonaltra is an actual meteorite, like the metal of an outer-space stone. Its spiky exterior resembles a creature from the deep seas. You do have to check its method of coming together with a single screw.
 
 ### Romanian Jewelry Week 2022 — *Paths. Memories. Guides*
 
@@ -763,7 +763,7 @@ Photographs from the studio archive.
 
 Cast in silver, each piece has 2 set amethyst cabochons. The model is a variation of the flexible system in the previous earrings. Now it is fixed and not centered. The Pretzel part of the name comes from the initial sketch which can still be seen in the side view. They can be worn as a set with the amethyst art nouveau ring
 
-**Type:** Earrings | **Materials:** Silver, amethyst cabochons
+**Type:** Earrings | **Materials:** Silver, amethyst cabochons | **Dimensions:** 2.5 × 1.2 × 0.8 cm | **Year:** 2018
 
 <!-- gallery: pieces/Pretzel earings -->
 
@@ -785,7 +785,7 @@ Started from the same base as Mushroom ring, Roots shows the difference that can
 
 *Mentioned on Facebook between 2019 and 2019.*
 
-**Type:** Ring | **Materials:** Silver
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.9 × 0.9 cm
 
 <!-- gallery: pieces/Roots ring -->
 
@@ -836,7 +836,7 @@ https://www.gia.edu/ametrine
 
 *Mentioned on Facebook between 2021 and 2021.*
 
-**Type:** Ring | **Materials:** Silver, synthetic ametrine
+**Type:** Ring | **Materials:** Silver, synthetic ametrine | **Dimensions:** 1.7 × 2.4 × 2.7 cm
 
 <!-- gallery: pieces/Soft-Art-Nouveau-railing ring -->
 
@@ -901,7 +901,7 @@ As for the technical part- the stone has an axial mounting system with two threa
 
 ## Sunfinder Pendant
 
-*No English description was extracted for this piece in the export.*
+Did you know that ancient Vikings used the same stone, Iceland spar, to navigate? They had a scratch or marking on one side and they looked into the sun with it. When the marking had the same shade, it meant they were travelling in the direction of the sun, especially handy on foggy days, and at sea. That's where Sunfinder came from.
 
 *Mentioned on Facebook between 2022 and 2022.*
 
@@ -929,7 +929,7 @@ Silver pendant with a peach coloured sintetic stone. The shape is important abou
 
 ## The Link Pin
 
-*No English description was extracted for this piece in the export.*
+The Link pin was a submission for the National Museum of Art of Romania (MNAR), which hosts one of the largest collections of paintings here. I was inspired by their grand staircase. Unfortunately, they were not inspired by my design.
 
 *Mentioned on Facebook between 2020 and 2020.*
 
@@ -939,7 +939,7 @@ Silver pendant with a peach coloured sintetic stone. The shape is important abou
 
 ## The Nest Ring
 
-Photographs from the studio archive.
+The Nest Ring contains a piece of saffrodite. That is a tektite formed after the impact of a meteorite with Earth: the glass resulted from such an impact. The calm covering, wrapping it as a nest, is to offer protection.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -961,7 +961,7 @@ The ring is an adaptable version for cabochon mounting. Also it has a rather spe
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Ring | **Materials:** Silver, cubic zirconia
+**Type:** Ring | **Materials:** Silver, cubic zirconia | **Dimensions:** 1.7 × 1.9 × 1 cm
 
 <!-- gallery: pieces/The-little-trumpet ring -->
 
@@ -975,7 +975,7 @@ Another test of how to make earrings directly from casting. This one is actually
 
 ## Toxic Ring
 
-Photographs from the studio archive.
+I just had a very beautiful bead, really nice, and it had a well conspicuous hole. So I decided, why don't I make a ring to fit it? And if somehow, how about I make interchangeable parts? So the threaded ring came by. The cap, however, was what gave it its name, if you get my feeling.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -995,7 +995,7 @@ In the search for thinner and more flowery shapes I tried this version too. Cast
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Ring | **Materials:** Silver
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.6 × 0.5 cm
 
 <!-- gallery: pieces/Tulip ring -->
 
@@ -1003,7 +1003,7 @@ In the search for thinner and more flowery shapes I tried this version too. Cast
 
 Custom made ring. Starting from the First ring I adapted the design for a new hand layout. The visual and de usage were take into account for this. So you can notice the general curvature, the with reduction towards the back and the gradual thickening of the polygons towards the front. Cast in silver. And two PLA versions for trials.
 
-**Type:** Ring | **Materials:** Silver, PLA trials
+**Type:** Ring | **Materials:** Silver, PLA trials | **Dimensions:** 1.8 × 1.8 × 1.4 cm | **Year:** 2018
 
 <!-- gallery: pieces/Vera ring -->
 
@@ -1019,7 +1019,7 @@ It was supposed to be a pendant with silver and a girasol quartz. Due to the sha
 
 ## Vittoria Amazonica Pendant
 
-Photographs from the studio archive.
+Inspired by the largest lily pad out there, that can even support a human, and their absolutely nice behaviour, where they repel water into forming a bead. That's where my aquamarine came to be. And because beads move, so does my stone, across growth paths from this shape.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1035,7 +1035,7 @@ Photographs from the studio archive.
 
 Silver cast model with labradorite stone. The largest ring I designed- it covers 3 fingers. As it often happens in the case of stones the design came from the gems and how they can come off in a special shape. The name comes from people's reaction when they've seen it- everyone said that it is covered in peace signs but their thoughts were further from that idea and less peaceful.... The opening in the actual cast object allows for a tighter diameter and thus a better grip for it's large size.
 
-**Type:** Ring | **Materials:** Silver, labradorite
+**Type:** Ring | **Materials:** Silver, labradorite | **Dimensions:** 2.7 × 1.9 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/War-and-peace ring -->
 
@@ -1051,7 +1051,7 @@ It was a gift for Anton's mother. She had a pendant she loved stolen, and she mi
 
 Custom made. Two of my friends decided to tie the knot in a special way so they wanted a pair of wedding rings with some design peculiarities. That is how, after a period of discussions on various issues we managed to get the perfect design they were looking for. And the two rings have now a loving home. Cast in yellow gold (14kt) and trials made in bronze.
 
-**Type:** Wedding rings | **Materials:** 14kt yellow gold, bronze trials
+**Type:** Wedding rings | **Materials:** 14kt yellow gold, bronze trials | **Dimensions:** 1.7 × 1.7 × 1.5 cm and 1.6 × 1.6 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Weddiing-rings -->
 
@@ -1060,7 +1060,7 @@ Custom made. Two of my friends decided to tie the knot in a special way so they 
 Ring cast in silver with a purple culture pearl. Initially, I tried fixing the pearl, with an intresting shape and color in a way that would maximize its effect. And this is how it came to be. Still, I found out on this occasion how the woven pattern can reinforce the shape. Even though it is an open ring its geometry gives it more resistance.
 The unusual shape encouraged some to describe it as a mini creature from Dune.
 
-**Type:** Ring | **Materials:** Silver, culture pearl
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 3.0 × 2.5 × 1.5 cm | **Year:** 2020
 
 <!-- gallery: pieces/Wormy ring -->
 
@@ -1091,7 +1091,7 @@ Cast in silver pendant, with yellow jade beads. Besides the Beatles reference, t
 
 *Mentioned on Facebook between 2021 and 2021.*
 
-**Type:** Pendant | **Materials:** Silver, yellow jade
+**Type:** Pendant | **Materials:** Silver, yellow jade | **Dimensions:** 0.9 × 2.5 × 0.9 cm
 
 <!-- gallery: pieces/Yellow-submarine pendant -->
 
@@ -1106,6 +1106,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 <!-- gallery: pieces/cheesecacke pendant -->
 
 ## Hollywood Pendant
+
+It is a refunctioning of some older earrings, but also the discovery of a beautiful fossilized wood with tinges of blue.
 
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
