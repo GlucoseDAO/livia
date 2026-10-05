@@ -4,7 +4,7 @@ Each section is one object (work). For updates, see [Facebook](https://www.faceb
 
 ## Amberbow Ring
 
-Photographs from the studio archive.
+This ring was created with two ideas. First, the stone, which had a nice symmetric shape. Second, the idea of a bow ring, resembling a claw. That is why it is called Amber-Bow.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -40,7 +40,7 @@ Technically speaking the shape helps to protect the mounted stone as not to coll
 
 ## Ammonite Ring
 
-Photographs from the studio archive.
+Ammonite is, nowadays, a shape of a previous age. A fossil, if you want, that has turned from a living creature into either agate or opal, depending on the sediments collected in the shell. This one has turned into a very balanced agate. The spiraling wires are reminiscent of the tentacles of the creature coming out of the shell.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -60,7 +60,7 @@ This pair is the first to try out the most comfortable mode of earrings fixing. 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Earrings | **Materials:** Silver | **Year:** 2018
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 7 × 3 × 1 cm | **Year:** 2018
 
 <!-- gallery: pieces/Art-Nouveau earings -->
 
@@ -70,7 +70,7 @@ Cast in silver with an amethist cabouchon. The first complete flush setting. Con
 
 *Mentioned on Facebook between 2020 and 2020.*
 
-**Type:** Ring | **Materials:** Silver, amethyst cabochon | **Year:** 2020
+**Type:** Ring | **Materials:** Silver, amethyst cabochon | **Dimensions:** 1.7 × 1.7 × 0.8 cm | **Year:** 2020
 
 <!-- gallery: pieces/Art-Nouveau ring -->
 
@@ -92,7 +92,7 @@ Pendant cast in silver with epidote and perhenit. Its story begins with the ston
 
 ## Berrynova Ring
 
-Photographs from the studio archive.
+It is an explosion, of cosmic scale, of a berry. Well, in more detail, it is based on a design sent to a competition where the theme was the stars, and the original name was Supernova. That competition involved a very fancy material called osmium, which is said to sparkle more than diamonds. I never tested it. It is out of my budget range. Anyway, since I didn't have the osmium, I used something more accessible: a synthetic garnet that even glows under UV. It simply looks like a fresh ripe berry, thus the name Berry Nova.
 
 ### Romanian Jewelry Week 2026 — *A world for everyone*
 
@@ -130,7 +130,7 @@ Here is all about solving a technical dilemma. I had a rigid bronze bracelet too
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Bracelet | **Materials:** Bronze
+**Type:** Bracelet | **Materials:** Bronze | **Dimensions:** 1 × 1 × 1 cm
 
 <!-- gallery: pieces/Bracelet-extension -->
 
@@ -148,13 +148,13 @@ Cast silver ring with tanzanite. The concept has started, normally from the ston
 
 *Mentioned on Facebook between 2020 and 2021.*
 
-**Type:** Ring | **Materials:** Silver, tanzanite
+**Type:** Ring | **Materials:** Silver, tanzanite | **Dimensions:** 1.7 × 1.7 × 1 cm
 
 <!-- gallery: pieces/Bubble ring -->
 
 ## Bubinga Heart Pendant
 
-Photographs from the studio archive.
+Here is another story of how an error can actually be useful. I usually cast my pieces in different places, since I don't own the equipment for casting and high-resolution printing in resin at home. Here the person who did it made a bad scale in his settings. The ring, which is in fact the Brain Ring, got scaled to a smaller size. But this is not the way for inventive people to deal with it. I decided it could be reused, and turned it into a pendant. However, not any pendant: it had to have wood, and a hard essence at that, so Bubinga wood was chosen.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -176,7 +176,7 @@ One of the most complex pieces because of the stone fixture method. In fact its 
 
 *Mentioned on Facebook between 2018 and 2020.*
 
-**Type:** Ring | **Materials:** Silver
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 2.7 × 1.5 cm
 
 <!-- gallery: pieces/Cabochon ring -->
 
@@ -186,7 +186,7 @@ A new type of fixing, the model ensures against occasional damage to the stone a
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Ring | **Materials:** Silver, culture pearl
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 1.7 × 2.6 × 0.8 cm
 
 <!-- gallery: pieces/Cafe-au-lait ring -->
 
@@ -196,7 +196,7 @@ Some of the earlier tries of wire framing, Cast in silver.
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Ring | **Materials:** Silver
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.6 × 0.8 cm
 
 <!-- gallery: pieces/Cat-wire ring -->
 
@@ -233,7 +233,7 @@ The first cromatic concept for a ring. The idea came from the warm light of a fr
 
 *Mentioned on Facebook between 2019 and 2019.*
 
-**Type:** Ring | **Materials:** Silver, cubic zirconia (aquamarine and lemon peridot coloured)
+**Type:** Ring | **Materials:** Silver, cubic zirconia (aquamarine and lemon peridot coloured) | **Dimensions:** 1.7 × 2.6 × 2.7 cm
 
 <!-- gallery: pieces/Colour-window-spring-edition ring -->
 
@@ -263,7 +263,7 @@ This was a custom order. It derived from Vittoria Amazonica but used another scr
 
 ## Embryo Ring
 
-Photographs from the studio archive.
+It was all about the stone. There was this cloud-like amber that sat perfectly around the finger. Someone wanted it to be a bead. That only gave me a reason and a way to make it stable in the setting. I knew I needed a wide band and some sort of attachment. So it came to be.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -293,7 +293,7 @@ Custom made order. A good friend of mine wanted to surprise his girlfriend and a
 
 ## Eye of Winter Double Ring and Pendant
 
-Photographs from the studio archive.
+The Eye of Winter is a composite, actually. Two stones just created the perfect effect, so we had a faceted topaz and a nice quartz cabochon that, overlapped, looked just like an eye. Now the creativity comes in the assembly. Because, you see, I liked both configurations, so I made it adjustable. People can wear it with the quartz or without it. And since we were adding adjustable elements, I also made it detachable. In the past, transformable jewelry was more common than nowadays. In the end you can wear it as a ring or as a pendant. As for the name... well, the colour would explain why winter, but maybe what is best told is the effect it actually had on the weather. Each time I wore it we had a very rare snowstorm in Bucharest. It even snowed when I went to get the pieces from the caster. Its powers are not yet fully known.
 
 ### Romanian Jewelry Week 2026 — *A world for everyone*
 
@@ -339,7 +339,7 @@ A bit of inside story. Cam mult de lecturat Ã®nsÄ. Cum se procedeaza? Exist
 
 *Mentioned on Facebook between 2018 and 2022.*
 
-**Type:** Ring | **Materials:** Silver, bronze trial
+**Type:** Ring | **Materials:** Silver, bronze trial | **Dimensions:** 1.8 × 1.8 × 1.4 cm
 
 <!-- gallery: pieces/First ring -->
 
@@ -387,9 +387,11 @@ We all know about bluethooth- the wireless connection with other devices. Greent
 
 ## Half Fistic Earings
 
-*No English description was extracted for this piece in the export.*
+They were made to form a set with the Fistic ring: nice, slender, soldered pieces.
 
 *Mentioned on Facebook between 2021 and 2021.*
+
+**Type:** Earrings | **Materials:** Silver, synthetic stone | **Dimensions:** 1 × 2 × 7 cm | **Year:** 2020
 
 <!-- gallery: pieces/Half-fistic earings -->
 
@@ -403,13 +405,13 @@ Pair of wedding rings at the moment cast in silver. They are basically the proto
 
 *Mentioned on Facebook between 2022 and 2022.*
 
-**Type:** Wedding rings | **Materials:** Silver
+**Type:** Wedding rings | **Materials:** Silver | **Dimensions:** 1.6 × 1.6 × 0.6 cm and 1.8 × 1.8 × 0.8 cm
 
 <!-- gallery: pieces/Helix wedding rings -->
 
 ## Hessonite Ring
 
-Photographs from the studio archive.
+Hessonite is a nice stone, second only to ruby in the category of red resilient stones. This particular one has a nice warm yellow sheen to the bright red. The pattern on the ring is, upon closer inspection, something hard to achieve without the 3D printing technique. People ask why 3D printing, isn't it less original, and the answer is no. 3D printing in this case helped to have small multiple intersections in the same plane, and stable, without having to solder each and every point and afterwards polish them away. Keep in mind, 3D printing is just a tool, exactly as the blowtorch is, just more advanced.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -461,7 +463,7 @@ A chalange in this case I would like to mention the irregular shape of the piece
 
 ## Inline Ring
 
-Photographs from the studio archive.
+Inline is a message ring. It is modeled based on a short recording of whatever the creator wants. Since it was made after the pandemic, I wanted it to have an inspirational message, so for me what it recorded is "totul va fi bine" (everything will be all right). It is a lightweight ring that you can carry anywhere, the hidden meaning of your words known only to you.
 
 ### Romanian Jewelry Week 2022 — *Paths. Memories. Guides*
 
@@ -477,15 +479,17 @@ Photographs from the studio archive.
 
 ## Interchangable Flower Pendant
 
-*No English description was extracted for this piece in the export.*
+First attempt at a massive changeable shape. It has a nice mechanism inside, and it actually works. I was always afraid of having it cast because of the weight, though that in itself would make it work better.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Pendant | **Materials:** PLA, beads, waxed thread | **Dimensions:** 2.5 × 2.5 × 5 cm | **Year:** 2018
 
 <!-- gallery: pieces/Interchangable-flower-pendant -->
 
 ## King's Chapel Double Ring
 
-*No English description was extracted for this piece in the export.*
+Well, it didn't actually start only from the stone. I was inspired by the arches in the King's Chapel in England, their ribs so fine and so graceful. And it just so happened I had the second double-finger ring I had to design. So that's how it came to be.
 
 *Mentioned on Facebook between 2022 and 2022.*
 
@@ -526,7 +530,7 @@ https://www.gia.edu/alexandrite
 
 ## Ludisia Ring
 
-Photographs from the studio archive.
+Ludisia, named after a jewel orchid, and who is to say it is not true? With a beautiful black opal, the stone just rises in the most comfortable setting ever devised. And it's all in one print.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -547,7 +551,7 @@ For this piece I altered just the stone setting and the width of the ring. Elsew
 
 *Mentioned on Facebook between 2020 and 2020.*
 
-**Type:** Ring | **Materials:** Silver, grown pearl
+**Type:** Ring | **Materials:** Silver, grown pearl | **Dimensions:** 1.7 × 1.7 × 1.3 cm
 
 <!-- gallery: pieces/Merlusca (Denisa) ring -->
 
@@ -558,7 +562,7 @@ Cast in silver, with a culture pearl.
 
 *Mentioned on Facebook between 2018 and 2018.*
 
-**Type:** Ring | **Materials:** Silver, culture pearl
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 1.7 × 1.7 × 1.3 cm
 
 <!-- gallery: pieces/Merlusca ring -->
 
@@ -572,9 +576,11 @@ How comfortable can a simple laser-cut plastic ring be? It turns out actually re
 
 ## Moldavian Vault Ring
 
-*No English description was extracted for this piece in the export.*
+I made it for my sister. She usually doesn't wear jewellery, but she does like architecture. Unfortunately, she still hasn't used it.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.8 × 1.8 × 2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Moldavian vault ring -->
 
@@ -644,7 +650,7 @@ https://www.youtube.com/watch?v=TFjyhCmkPyM
 
 ## Nanot Pendant
 
-Photographs from the studio archive.
+Nanot is the most famous of them all. It is based, actually, on a real particle developed by a company named Nanotics. The particle, in real-life use cases, is used to trap dangerous substances that float around in the body. Basically the core attracts them and they get stuck in the outer shell (in this case TNF-alpha receptors, but you might need to google that). The shape came to mind after a biotech conference where I heard the presentation. I went to the presenter and said, "Great talk, I think I can make a wonderful pendant out of it." I just saw the shapes. Later on he bought the first model for his wife, who was really happy about it, and Nanot became a classic. The shapes have spoken.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -662,7 +668,7 @@ Photographs from the studio archive.
 
 ## Nocciola Ring
 
-Photographs from the studio archive.
+I found the stone. It looked exactly like a frosted sugar pastry I would love to eat. I just had to imagine its setting, and I like to think it looks either like pâtisserie pliers or like frosted silver chocolate on top of it.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -836,9 +842,11 @@ https://www.gia.edu/ametrine
 
 ## Solid Tourmaline Ring
 
-*No English description was extracted for this piece in the export.*
+It was a commission for a pinky ring, a solid one.
 
 *Mentioned on Facebook between 2022 and 2022.*
+
+**Type:** Ring | **Materials:** Tourmaline, silver | **Dimensions:** 1.3 × 1.3 × 0.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Solid-tourmaline ring -->
 
@@ -1093,7 +1101,7 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 *Mentioned on Facebook between 2022 and 2022.*
 
-**Type:** Pendant | **Materials:** Silver
+**Type:** Pendant | **Materials:** Silver | **Dimensions:** 2.8 × 2.8 × 0.6 cm
 
 <!-- gallery: pieces/cheesecacke pendant -->
 
@@ -1113,6 +1121,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 ## Timeface Pendant
 
+Actually, here I have reused some earrings I made earlier. I wanted to create a new shape, so I turned them into a simple, elegant pendant reminiscent of an hourglass.
+
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
 **Type:** Pendant | **Materials:** Sterling silver | **Dimensions:** 7 × 2.5 × 2.5 cm | **Year:** 2025
@@ -1126,6 +1136,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 <!-- gallery: pieces/Timeface pendant -->
 
 ## Deep Sea Pearl (Karmazina) Ring
+
+It was a pun on the La Peregrina pearl. Though this is amber, it resembles a scoop out of the deepest part of a mystical lake.
 
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
@@ -1141,6 +1153,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 ## The Dark Nut of Power Pendant
 
+The Dark Nut is the opposite of the Nut of Power. It focuses on curses. It is made non-parametrically, with a stark contrast between the dark, dried material and the shining copper ore.
+
 **Collection (Romanian Jewelry Week 2025):** *It's just a cell life — Biology collection.*
 
 **Type:** Pendant | **Materials:** Copper, walnut | **Dimensions:** 3.4 × 3.4 cm | **Year:** 2024
@@ -1152,6 +1166,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 <!-- gallery: pieces/The Dark Nut of Power pendant -->
 
 ## Mitoring (Mitochondria) Ring
+
+The Mitoring is the ring of power and energy. Basically, the amber. When I saw its shape I just knew it had to be a part of a cell body, and the yellow colour made me think of mitochondria. I mean, clearly, the powerhouse of the cell, just smaller in dimension. So that's how one of the most important artifacts came to be.
 
 **Collection (Romanian Jewelry Week 2025):** *It's just a cell life — Biology collection.*
 
