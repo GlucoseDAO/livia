@@ -13,3 +13,9 @@ https://www.youtube.com/watch?v=OrdT8JCPTdU
 Source code: [GitHub](https://github.com/winternewt/materialized-enchancements)
 
 <!-- gallery: materialized enhancements -->
+
+<!-- video: /materialized enhancements/20260906_164145.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_164203.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_200951.mp4 -->

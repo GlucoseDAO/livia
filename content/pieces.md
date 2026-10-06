@@ -373,6 +373,8 @@ This particular case is one of reuse. I found this actual knife holder with a ve
 
 <!-- gallery: pieces/Frog ring -->
 
+<!-- video: /pieces/Frog ring/20250721_164925.mp4 -->
+
 ## Funghi Ring Series
 
 It was actually the same base as the Cabochon ring. A good system never goes to waste. The scissor way of settling on the finger can also be used to deploy different heads, especially with special filaments that turn elastic in warm water and then harden once they are outside.
@@ -436,6 +438,10 @@ It has everything because of the stone. I might even be called a stone whisperer
 **Type:** Ring | **Materials:** Silver, synthetic stone | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Hexa ring -->
+
+<!-- video: /pieces/Hexa ring/20250131_155645.mp4 -->
+
+<!-- video: /pieces/Hexa ring/20250208_232231.mp4 -->
 
 ## Horn Earings
 
@@ -803,6 +809,14 @@ Started from the same base as Mushroom ring, Roots shows the difference that can
 
 <!-- gallery: pieces/Roots ring -->
 
+## Second Rotary
+
+It is the first hybrid from the Hexa ring, with a symmetrical rotation system.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2025
+
+<!-- gallery: pieces/Second rotary -->
+
 ## Rotary Magnetic Ring
 
 Work in progress (or in alteration)
@@ -824,6 +838,10 @@ It is, however,a work in progress because I noticed a detail of the fitting I wa
 <!-- artifact: /RJW2026/LiviaZaharia_ring_rotary_magneticfields_2025_sterlingsilver_amber_3.5x3.2x3.2cm2.jpg -->
 
 <!-- gallery: pieces/Rotary magnetic ring -->
+
+<!-- video: /pieces/Rotary magnetic ring/20250723_193211.mp4 -->
+
+<!-- video: /pieces/Rotary magnetic ring/20251128_092558.mp4 -->
 
 ## Rotary Ring
 
@@ -1037,6 +1055,8 @@ It was supposed to be a pendant with silver and a girasol quartz. Due to the sha
 
 <!-- gallery: pieces/Vita(b)orum pendant -->
 
+<!-- video: /pieces/Vita(b)orum pendant/20250408_091013.mp4 -->
+
 ## Vittoria Amazonica Pendant
 
 Inspired by the largest lily pad out there, that can even support a human, and their absolutely nice behaviour, where they repel water into forming a bead. That's where my aquamarine came to be. And because beads move, so does my stone, across growth paths from this shape.
@@ -1141,6 +1161,8 @@ It is a refunctioning of some older earrings, but also the discovery of a beauti
 
 <!-- gallery: pieces/Hollywood pendant -->
 
+<!-- video: /pieces/Hollywood pendant/20260101_203708.mp4 -->
+
 ## Timeface Pendant
 
 Actually, here I have reused some earrings I made earlier. I wanted to create a new shape, so I turned them into a simple, elegant pendant reminiscent of an hourglass.
@@ -1172,6 +1194,8 @@ It was a pun on the La Peregrina pearl. Though this is amber, it resembles a sco
 <!-- artifact: /RJW2026/LiviaZaharia_ring_deep_sea_pearl_Karmazina_2026_sterlingsilver_amber_4.1x3.5x2.5cm2.jpg -->
 
 <!-- gallery: pieces/Deep sea pearl Karmazina -->
+
+<!-- video: /pieces/Deep sea pearl Karmazina/20251128_093924.mp4 -->
 
 ## The Dark Nut of Power Pendant
 
@@ -1225,38 +1249,70 @@ Here starting from the same idea of the two ellipses we increased the complexity
 
 <!-- gallery: pieces/large-scale-parametrics-Untold Galaxy stage 2018 -->
 
+## Airwing
+
+It looks like the wing of a plane, or at least an aerodynamic thing. That was what I thought when I created it.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 1.7 × 1.7 × 1.8 cm | **Year:** 2025
+
+<!-- gallery: pieces/Airwing -->
+
 ## CamelDALI
 
-Photographs from the studio archive.
+That piece of almost drooling copper just reminds me of Dalí, and his drooling, melting clocks. Here, however, it is obviously a camel. We have a futuristic camel disintegrating into a Dalí-like world.
+
+**Type:** Pendant | **Materials:** PLA, leather, copper parts, native copper | **Dimensions:** 7 × 7 × 3 cm | **Year:** 2026
 
 <!-- gallery: pieces/CamelDALI -->
 
 ## Cymatics Geometries
 
-Photographs from the studio archive.
+It will be a series. It just started. It is inspired by the laws of physics, where objects are defined by waves and end up in unexpected shapes. How you guide the wave, though, leaves space for multiple interpretations. Emerald Stillness is part of this series.
+
+**Type:** Series | **Materials:** Mixed | **Year:** 2026
 
 <!-- gallery: pieces/Cymatics Geometries -->
 
-## Emerald Stilnness
+<!-- video: /pieces/Cymatics Geometries/20260907_172229.mp4 -->
 
-Photographs from the studio archive.
+## Emerald Stillness
 
-<!-- gallery: pieces/Emerald Stilnness -->
+The perfect combo between colour, size, and shape. It is created from the Cymatics series.
+
+**Materials:** PLA, fluorite | **Dimensions:** 8 × 2.5 × 2.5 cm | **Year:** 2026
+
+<!-- gallery: pieces/Emerald Stillness -->
 
 ## Impact Flow Ring
 
-Photographs from the studio archive.
+I just found the moldavite. It was so perfect. I mean, I had to complete the circle that seemed broken, in a nice flowing manner. Thus the name, Impact Flow.
+
+**Type:** Ring | **Materials:** Moldavite, silver | **Dimensions:** 1.8 × 1.8 × 1 cm | **Year:** 2026
 
 <!-- gallery: pieces/Impact Flow Ring -->
 
+## The Pillbridge
+
+The Pillbridge was devised as a structure spanning long distances to hold the long amber.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 1.7 × 1.9 × 0.8 cm | **Year:** 2026
+
+<!-- gallery: pieces/The Pillbridge -->
+
 ## Terra Forming
 
-Photographs from the studio archive.
+This piece of amber reminded me of the duality of earth: hilly sides on one part and a clear depth on another. So I devised its setting in a similar way to a reliquary. It can be opened and worn without the stone, or the stone can be kept showcased.
+
+**Type:** Pendant | **Materials:** PLA, amber, brass | **Dimensions:** 10 × 8 × 2 cm | **Year:** 2026
 
 <!-- gallery: pieces/Terra forming -->
 
 ## Thunderstorm Ring
 
-Photographs from the studio archive.
+Thunderstorm Ring is part of the rotary troupe. Here the amber upwards means sun, while the pietersite upwards means rain.
+
+**Type:** Ring | **Materials:** Amber, pietersite, silver | **Dimensions:** 2.1 × 2.4 × 1.4 cm | **Year:** 2026
 
 <!-- gallery: pieces/Thunderstorm Ring -->
+
+<!-- video: /pieces/Thunderstorm Ring/20260523_120709.mp4 -->

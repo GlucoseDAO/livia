@@ -21,6 +21,8 @@ Includes work such as *Sticks and stones* (silver, epidote, prehnite), *La navet
 
 <!-- artifact: /RJW2022/LiviaZaharia-pendant-La navette-2-2021_silver_syntheticalexandrite_4.5x3.5x1.2cm.jpg -->
 
+<!-- video: /RJW2022/LiviaZaharia-pendant-La navette-2021.mp4 -->
+
 ---
 
 ### Piguen
@@ -50,6 +52,8 @@ Includes work such as *Sticks and stones* (silver, epidote, prehnite), *La navet
 <!-- artifact: /RJW2022/LiviaZaharia-pendant-Sticks and stones-3-2021-silver_epidote_prehnite-6.5x4.6x3.5cm.jpg -->
 
 <!-- artifact: /RJW2022/pendant-Sticks and stones-side-2021.jpg -->
+
+<!-- video: /RJW2022/LiviaZaharia-pendant-Sticks and stones-2021.mp4 -->
 
 ---
 

@@ -11,3 +11,9 @@ The programme explores humanity’s pursuit of longevity, immortality, and the t
 **Curators:** Ala Leresteux, Lufo Art, and Li Anna Töppe — connecting scientific research with artistic imagination.
 
 **Themes:** Ethical, social, and spiritual dimensions of life extension, human–machine integration, and what it means to die.
+
+## Exhibition
+
+<!-- gallery: Life or death exhibition 2026 -->
+
+<!-- video: /Life or death exhibition 2026/20260217_001146.mp4 -->
