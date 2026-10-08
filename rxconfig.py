@@ -67,7 +67,7 @@ def _build_llms_txt() -> str:
         lines.append("\n\n")
 
     # Tabbed folders
-    for folder, heading in [("art-design", "Art & Design"), ("science-tech", "Science & Tech")]:
+    for folder, heading in [("art-design", "Collections"), ("digital-art", "Digital Art"), ("science-tech", "Science & Tech")]:
         folder_path = _CONTENT_DIR / folder
         if not folder_path.is_dir():
             continue
@@ -88,6 +88,12 @@ def _build_llms_txt() -> str:
         lines.append("## Pieces\n\n")
         raw = pieces_file.read_text(encoding="utf-8")
         lines.append(raw)
+        lines.append("\n\n")
+
+    collaboration = _CONTENT_DIR / "collaboration.md"
+    if collaboration.exists():
+        lines.append("## Let's work together\n\n")
+        lines.append(_read_md(collaboration))
         lines.append("\n\n")
 
     return "".join(lines)

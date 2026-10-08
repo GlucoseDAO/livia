@@ -32,16 +32,16 @@
       path = "/";
     }
     var links = document.querySelectorAll(".livia-bottom-nav a[data-href]");
+    var activeHref = "";
     links.forEach(function (a) {
       var href = a.getAttribute("data-href");
-      var isActive = href === path;
-      a.style.color = isActive ? "#f5f0e8" : "";
-      a.style.fontWeight = isActive ? "700" : "";
-      var bar = a.querySelector(".livia-nav-indicator");
-      if (bar) {
-        bar.style.width = isActive ? "100%" : "";
+      var isActive = href === path || (href !== "/" && path.indexOf(href + "/") === 0);
+      if (isActive) {
+        activeHref = href;
       }
     });
+    // Keep React-owned link attributes intact during hydration; CSS reads the section from html.
+    document.documentElement.setAttribute("data-livia-page", activeHref);
   }
 
   function initSequenceCyclers() {
@@ -80,6 +80,7 @@
     var seqObserver = new MutationObserver(function () {
       if (seqObserverTimer) window.clearTimeout(seqObserverTimer);
       seqObserverTimer = window.setTimeout(function () {
+        highlightActiveNav();
         initSequenceCyclers();
       }, 120);
     });
@@ -87,6 +88,7 @@
       seqObserver.observe(document.body, { childList: true, subtree: true });
     }
   } catch (e) {}
+  window.addEventListener("popstate", highlightActiveNav);
   window.setTimeout(highlightActiveNav, 500);
   window.setTimeout(highlightActiveNav, 1500);
 

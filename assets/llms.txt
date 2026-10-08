@@ -21,12 +21,18 @@ Outside the studio and the lab, Livia is an avid **swimmer** — her proper stro
 
 Her design work is presented under [@paral_design](https://www.instagram.com/paral_design/) on Instagram, on [Facebook](https://www.facebook.com/byLiviaZaharia/) as **byLiviaZaharia**, and professionally on [LinkedIn](https://www.linkedin.com/in/livia-zaharia-4b1425a0). Together, these two branches — art and science — form one interdisciplinary practice between living systems and computational form.
 
+## Work with Livia
 
-## Art & Design
+Livia is easy to talk to and welcomes an early idea. Invite her as an artist, suggest a freelance project, or explore scientific collaboration on glucose prediction, agentic AI, or genomics. [Start a conversation](/collaboration).
+
+
+## Collections
 
 ### Overview
 
-# Parametric Design Practice
+# Collections and exhibitions
+
+Explore Livia's jewellery collections, exhibitions, and the stories behind them using the tabs. For individual works, browse [Pieces](/pieces).
 
 Livia Zaharia is a Romanian architect and parametric jewellery artist working under the label **Paral Design** (Parametric Livia). She translates computational architectural methods into intimate, research-driven, body-scale artefacts — rings, pendants, earrings, and wearable objects that sit at the intersection of generative art, speculative design, and experimental contemporary jewellery.
 
@@ -51,6 +57,10 @@ Silver, brass, copper, quartz, amber, walnut husks, 3D-printed elements, and rep
 - **Complex curvature** — non-planar surfaces inviting tactile exploration
 
 Pieces appear inspired by shells, corals, plants, or cellular structures — yet are generated entirely through code and parametric rules. This raises the question of what counts as "original" versus "copy" when an algorithm produces forms indistinguishable from natural ones.
+
+## Digital art & collaboration
+
+Explore the interactive projects in [Digital Art](/digital-art), including Livistone, Materialized Enhancements, and Whale and Dolphin Orchestra. To invite Livia as an artist or suggest a freelance project, [start a conversation](/collaboration).
 
 
 ### Livia Lore
@@ -252,6 +262,14 @@ https://www.youtube.com/watch?v=OrdT8JCPTdU
 
 Source code: [GitHub](https://github.com/winternewt/materialized-enchancements)
 
+<!-- gallery: materialized enhancements -->
+
+<!-- video: /materialized enhancements/20260906_164145.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_164203.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_200951.mp4 -->
+
 
 ### A world for everyone (RJW 2026)
 
@@ -373,6 +391,12 @@ The programme explores humanity’s pursuit of longevity, immortality, and the t
 **Curators:** Ala Leresteux, Lufo Art, and Li Anna Töppe — connecting scientific research with artistic imagination.
 
 **Themes:** Ethical, social, and spiritual dimensions of life extension, human–machine integration, and what it means to die.
+
+## Exhibition
+
+<!-- gallery: Life or death exhibition 2026 -->
+
+<!-- video: /Life or death exhibition 2026/20260217_001146.mp4 -->
 
 
 ### It's Just a Cell Life (RJW 2025)
@@ -680,6 +704,8 @@ Includes work such as *Sticks and stones* (silver, epidote, prehnite), *La navet
 
 <!-- artifact: /RJW2022/LiviaZaharia-pendant-La navette-2-2021_silver_syntheticalexandrite_4.5x3.5x1.2cm.jpg -->
 
+<!-- video: /RJW2022/LiviaZaharia-pendant-La navette-2021.mp4 -->
+
 ---
 
 ### Piguen
@@ -709,6 +735,8 @@ Includes work such as *Sticks and stones* (silver, epidote, prehnite), *La navet
 <!-- artifact: /RJW2022/LiviaZaharia-pendant-Sticks and stones-3-2021-silver_epidote_prehnite-6.5x4.6x3.5cm.jpg -->
 
 <!-- artifact: /RJW2022/pendant-Sticks and stones-side-2021.jpg -->
+
+<!-- video: /RJW2022/LiviaZaharia-pendant-Sticks and stones-2021.mp4 -->
 
 ---
 
@@ -1001,6 +1029,94 @@ Participation continued in **still mapping** in **2018**. Edition pages: [iMapp 
 <!-- gallery: imapp_2018 -->
 
 
+## Digital Art
+
+### Overview
+
+# Art you can explore
+
+These projects invite you to take part. Choose genes and make a printable form, walk through a town built from jewellery, or hear an orchestra made from whale and dolphin recordings.
+
+## Materialized Enhancements
+
+Pick biological traits from real animals and see your choices become a unique 3D form. A game about possible human futures, with research behind each gene and an object you can print.
+
+[Explore Materialized Enhancements](/digital-art/materialized-enhancements) · [Try it at enhancement.bio](https://enhancement.bio/)
+
+## Livistone
+
+Livia's rings and pendants grow into buildings in a town you can walk through. Find the original pieces, read their stories, and visit places inspired by her art and science projects.
+
+[Discover Livistone](/digital-art/livistone) · [Enter the town](https://livistone.liviazaharia.com/)
+
+## Whale and Dolphin Orchestra
+
+Choose real recordings on an ocean map and hear music shaped by the animals' rhythms and pitch. This working prototype also explores how a recorded call could shape a piece of jewellery.
+
+[Meet the orchestra](/digital-art/whale-and-dolphin-orchestra) · [Listen and explore](https://whales.liviazaharia.com/)
+
+Have an idea for an artwork, an exhibition, or something we could build together? [Work with Livia](/collaboration).
+
+
+### Materialized Enhancements
+
+# Materialized Enhancements
+
+What would you choose if you could borrow a biological trait from another animal? Regeneration from an axolotl, perhaps, or a tardigrade's resistance to radiation?
+
+[Materialized Enhancements](https://enhancement.bio/) lets you build a character from real genes within a limited credit budget. Each gene comes with research references and a description of how far the evidence has reached. Your choices generate a unique crystal-like 3D form that you can download and print.
+
+The project combines a game, a gene knowledgebase, and bioart. The character is imagined; the scientific references help you explore the biology behind it.
+
+<!-- artifact: /digital-art/materialized-enhancements.jpg -->
+
+## From the screen to an object
+
+The digital form can become a physical piece you can hold or wear.
+
+<!-- artifact: /digital-art/materialized-enhancements-person-with-piece.jpg -->
+
+Livia worked on **design and storytelling**, alongside Newton Winter (concept and biology), Anton Kulaga (engineering and data), and Markel Kori (video and storytelling).
+
+[Build a character and materialize it](https://enhancement.bio/)
+
+[See the physical artefacts, project video, and exhibition story](/art-design/materialized-enhancements)
+
+
+### Livistone
+
+# Livistone
+
+Walk into a town where rings and pendants have become buildings.
+
+In [Livistone](https://livistone.liviazaharia.com/), Livia's jewellery grows to the scale of architecture. Arrive at an amber station, pass through a ring-shaped gate, and explore a town whose buildings begin with objects she has made. A walnut shell becomes City Hall; silver folds around amber become the Ministry of Energy.
+
+<!-- artifact: /digital-art/livistone.jpg -->
+
+You can walk through the town or use the map to jump between places. Displays show photographs of the original pieces and their stories. Her research projects have places of their own, too. The town and the powers it gives its objects are fiction, rooted in real artworks and research.
+
+The background music is Livia playing kalimba, recorded on her phone.
+
+[Enter Livistone](https://livistone.liviazaharia.com/) · [Browse the physical pieces](/pieces)
+
+
+### Whale and Dolphin Orchestra
+
+# Whale and Dolphin Orchestra
+
+Choose your musicians on an ocean map. Each one is a real recording of a whale or dolphin.
+
+[Whale and Dolphin Orchestra](https://whales.liviazaharia.com/) measures the timing and pitch of recorded calls, then uses those patterns to guide generated music. You can hear finished pieces, listen to the individual animals, and follow the recordings and music in spectrograms: pictures of how sound changes over time.
+
+<!-- artifact: /digital-art/whale-and-dolphin-orchestra.png -->
+
+The project is a **working prototype** by Livia Zaharia and Anton Kulaga. It was developed for an ArtWaves residency proposal; the listening installation is a proposed next step.
+
+Another part of the project, **Sound to silver**, explores how an animal's recorded phrase can bend the form of one of Livia's rings. These sound-shaped rings are still in development and have not yet been cast.
+
+[Listen to the orchestra](https://whales.liviazaharia.com/) · [Explore Sound to silver](https://whales.liviazaharia.com/?view=silver)
+
+
 ## Science & Tech
 
 ### Overview
@@ -1012,6 +1128,10 @@ She is a member of [HEALES](https://heales.org/) (Healthy Life Extension Society
 Beyond her design practice, Livia works with a scientific and engineering stack including Python, PyTorch, Polars, NeuralForecaster for time-series forecasting, and agentic AI frameworks. She has taught numerous AI agentic workshops in bioinformatics, positioning her not just as an artist who references science, but as a practitioner who actively builds and deploys ML pipelines.
 
 Her work spans founding [GlucoseDAO](https://glucosedao.org/) for open glucose prediction research, contributing to [Longevity Genie](https://longevity-genie.github.io) open-source tools, and creating [Materialized Enhancements](http://enhancement.bio/) — a platform turning synthetic biology into participatory generative art.
+
+## Research together
+
+Livia welcomes collaboration on glucose prediction, agentic AI, and genomics, including practical workshops. An early question or an idea is enough to [start a conversation](/collaboration). Her interactive art projects have their own home in [Digital Art](/digital-art).
 
 
 ### GlucoseDAO
@@ -1047,6 +1167,14 @@ https://www.youtube.com/watch?v=OrdT8JCPTdU
 
 Source code: [GitHub](https://github.com/winternewt/materialized-enchancements)
 
+<!-- gallery: materialized enhancements -->
+
+<!-- video: /materialized enhancements/20260906_164145.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_164203.mp4 -->
+
+<!-- video: /materialized enhancements/20260906_200951.mp4 -->
+
 
 ### Longevity Genie
 
@@ -1067,7 +1195,7 @@ Each section is one object (work). For updates, see [Facebook](https://www.faceb
 
 ## Amberbow Ring
 
-Photographs from the studio archive.
+This ring was created with two ideas. First, the stone, which had a nice symmetric shape. Second, the idea of a bow ring, resembling a claw. That is why it is called Amber-Bow.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1103,7 +1231,7 @@ Technically speaking the shape helps to protect the mounted stone as not to coll
 
 ## Ammonite Ring
 
-Photographs from the studio archive.
+Ammonite is, nowadays, a shape of a previous age. A fossil, if you want, that has turned from a living creature into either agate or opal, depending on the sediments collected in the shell. This one has turned into a very balanced agate. The spiraling wires are reminiscent of the tentacles of the creature coming out of the shell.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -1123,6 +1251,8 @@ This pair is the first to try out the most comfortable mode of earrings fixing. 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 7 × 3 × 1 cm | **Year:** 2018
+
 <!-- gallery: pieces/Art-Nouveau earings -->
 
 ## Art Nouveau Ring
@@ -1130,6 +1260,8 @@ This pair is the first to try out the most comfortable mode of earrings fixing. 
 Cast in silver with an amethist cabouchon. The first complete flush setting. Considering the shape something lightweight and lithe- easy to wear- was needed. The art nouveau inspiration seemed apropriate to an oval shape. Can be worn as a set with the Pretzel earrings.
 
 *Mentioned on Facebook between 2020 and 2020.*
+
+**Type:** Ring | **Materials:** Silver, amethyst cabochon | **Dimensions:** 1.7 × 1.7 × 0.8 cm | **Year:** 2020
 
 <!-- gallery: pieces/Art-Nouveau ring -->
 
@@ -1151,7 +1283,7 @@ Pendant cast in silver with epidote and perhenit. Its story begins with the ston
 
 ## Berrynova Ring
 
-Photographs from the studio archive.
+It is an explosion, of cosmic scale, of a berry. Well, in more detail, it is based on a design sent to a competition where the theme was the stars, and the original name was Supernova. That competition involved a very fancy material called osmium, which is said to sparkle more than diamonds. I never tested it. It is out of my budget range. Anyway, since I didn't have the osmium, I used something more accessible: a synthetic garnet that even glows under UV. It simply looks like a fresh ripe berry, thus the name Berry Nova.
 
 ### Romanian Jewelry Week 2026 — *A world for everyone*
 
@@ -1171,13 +1303,19 @@ Series of 6 pins cast in silver. The idea came from the flowers which at that po
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Pins | **Materials:** Sterling silver | **Dimensions:** Helix large 1.5 × 1.5 × 1.5 cm; Helix small 1.1 × 1.1 × 1.5 cm; Peony, the closure 1.3 × 1.3 × 1.5 cm; Peony, the maturation 1.6 × 1.6 × 1.5 cm; Peony, the opening 1.2 × 1.2 × 1.5 cm; Peony, the separation 1.3 × 1.3 × 1.5 cm | **Year:** 2020
+
 <!-- gallery: pieces/Blooming pins -->
 
 ## Blooming Ring
 
-Photographs from the studio archive.
+I started with a series of pins, then discovered they can be much more than that. They can be accessories to switch and combine every day. This is how the Blooming Ring came to be: never the same.
+
+**Type:** Ring | **Materials:** Silver, reused silver pins | **Dimensions:** 2.8 × 1.8 × 0.9 cm | **Year:** 2025
 
 <!-- gallery: pieces/Blooming ring -->
+
+<!-- video: /pieces/Blooming ring/20230915_212737.mp4 -->
 
 ## Bracelet Extension
 
@@ -1185,19 +1323,17 @@ Here is all about solving a technical dilemma. I had a rigid bronze bracelet too
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Bracelet | **Materials:** Bronze | **Dimensions:** 1 × 1 × 1 cm
+
 <!-- gallery: pieces/Bracelet-extension -->
 
 ## Brain Ring
 
-Photographs from the studio archive.
+I wanted something organic, something that would look like cellular growth, and the Brain Ring appeared. Its intrinsic shapes remind us of brains. The growth inside it is like algae spreading on the surface.
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.9 × 1.9 × 1 cm | **Year:** 2024
 
 <!-- gallery: pieces/Brain ring -->
-
-## Brancovenesc Wedding Rings
-
-Photographs from the studio archive.
-
-<!-- gallery: pieces/Brancovenesc wedding rings -->
 
 ## Bubble Ring
 
@@ -1205,11 +1341,13 @@ Cast silver ring with tanzanite. The concept has started, normally from the ston
 
 *Mentioned on Facebook between 2020 and 2021.*
 
+**Type:** Ring | **Materials:** Silver, tanzanite | **Dimensions:** 1.7 × 1.7 × 1 cm
+
 <!-- gallery: pieces/Bubble ring -->
 
 ## Bubinga Heart Pendant
 
-Photographs from the studio archive.
+Here is another story of how an error can actually be useful. I usually cast my pieces in different places, since I don't own the equipment for casting and high-resolution printing in resin at home. Here the person who did it made a bad scale in his settings. The ring, which is in fact the Brain Ring, got scaled to a smaller size. But this is not the way for inventive people to deal with it. I decided it could be reused, and turned it into a pendant. However, not any pendant: it had to have wood, and a hard essence at that, so Bubinga wood was chosen.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -1231,6 +1369,8 @@ One of the most complex pieces because of the stone fixture method. In fact its 
 
 *Mentioned on Facebook between 2018 and 2020.*
 
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 2.7 × 1.5 cm
+
 <!-- gallery: pieces/Cabochon ring -->
 
 ## Cafe Au Lait Ring
@@ -1239,6 +1379,8 @@ A new type of fixing, the model ensures against occasional damage to the stone a
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 1.7 × 2.6 × 0.8 cm
+
 <!-- gallery: pieces/Cafe-au-lait ring -->
 
 ## Cat Wire Ring
@@ -1246,6 +1388,8 @@ A new type of fixing, the model ensures against occasional damage to the stone a
 Some of the earlier tries of wire framing, Cast in silver.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.6 × 0.8 cm
 
 <!-- gallery: pieces/Cat-wire ring -->
 
@@ -1270,7 +1414,9 @@ They have a double use. Using their dimension they can be both worn as earrings 
 
 ## Cloudstone Pendant
 
-Photographs from the studio archive.
+It started with the stone. This is a Shiva agate, known for its irregular shape, which I think looks like a cloud. Some other people thought it looks like something else. And of course we have to trap the stone.
+
+**Type:** Pendant | **Materials:** Shiva agate raw stone, silver, glass beads | **Dimensions:** 5 × 4 × 4 cm | **Year:** 2024
 
 <!-- gallery: pieces/Cloudstone pendant -->
 
@@ -1280,11 +1426,15 @@ The first cromatic concept for a ring. The idea came from the warm light of a fr
 
 *Mentioned on Facebook between 2019 and 2019.*
 
+**Type:** Ring | **Materials:** Silver, cubic zirconia (aquamarine and lemon peridot coloured) | **Dimensions:** 1.7 × 2.6 × 2.7 cm
+
 <!-- gallery: pieces/Colour-window-spring-edition ring -->
 
 ## Daggers Earings
 
-Photographs from the studio archive.
+Stones started everything. This is actually quartz covered with chlorite, a unique find. More important, they looked like the nails from the Crucifixion, or some other self-defense mechanism, so of course I had to make them as earrings.
+
+**Type:** Earrings | **Materials:** Chlorite quartz, silver | **Dimensions:** 7 × 0.8 × 0.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Daggers earings -->
 
@@ -1292,17 +1442,21 @@ Photographs from the studio archive.
 
 Or shortly, Dewy. Cast silver piece, with natural treated Swiss blue topaz. It has two important points: one- it is adjustable and two, it is comfortable and still pretty resistant. The model was inspired by the stone. In this case, the volumetric shape of the stone led to the end-of-piece setting. I still have to find another stone like this one.
 
+**Type:** Ring | **Materials:** Silver, Swiss blue topaz | **Dimensions:** 1.7 × 2 × 1.2 cm | **Year:** 2019
+
 <!-- gallery: pieces/Dewdrop ring -->
 
 ## Dream Catcher Pendant
 
-Photographs from the studio archive.
+This was a custom order. It derived from Vittoria Amazonica but used another script. The gentle tangles look like a dream catcher's web, and it is made to be worn in a pair with a ring.
+
+**Type:** Pendant | **Materials:** Silver, amethyst cabochon | **Dimensions:** 3 × 3 × 0.5 cm | **Year:** 2024
 
 <!-- gallery: pieces/Dream catcher pendant -->
 
 ## Embryo Ring
 
-Photographs from the studio archive.
+It was all about the stone. There was this cloud-like amber that sat perfectly around the finger. Someone wanted it to be a bead. That only gave me a reason and a way to make it stable in the setting. I knew I needed a wide band and some sort of attachment. So it came to be.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -1318,17 +1472,21 @@ Photographs from the studio archive.
 
 Custom order. Cast in yellow gold of 18k with a blue safire chosen by the client. The model is designed from a previous version which was improved. It is important that this one also got an "Yes"
 
+**Type:** Ring | **Materials:** 18k yellow gold, blue sapphire | **Dimensions:** 1.7 × 1.8 × 0.8 cm | **Year:** 2019
+
 <!-- gallery: pieces/Engagement-ring -->
 
 ## Engagement Ring 2
 
 Custom made order. A good friend of mine wanted to surprise his girlfriend and ask for her hand. So for this piece we had plannings, more tests and other adventures. The answer was yes. The final cast was in white gold, but the trial was in silver.
 
+**Type:** Ring | **Materials:** White gold, silver trial | **Dimensions:** 1.7 × 1.9 × 1 cm | **Year:** 2019
+
 <!-- gallery: pieces/Engagement-ring-2 -->
 
 ## Eye of Winter Double Ring and Pendant
 
-Photographs from the studio archive.
+The Eye of Winter is a composite, actually. Two stones just created the perfect effect, so we had a faceted topaz and a nice quartz cabochon that, overlapped, looked just like an eye. Now the creativity comes in the assembly. Because, you see, I liked both configurations, so I made it adjustable. People can wear it with the quartz or without it. And since we were adding adjustable elements, I also made it detachable. In the past, transformable jewelry was more common than nowadays. In the end you can wear it as a ring or as a pendant. As for the name... well, the colour would explain why winter, but maybe what is best told is the effect it actually had on the weather. Each time I wore it we had a very rare snowstorm in Bucharest. It even snowed when I went to get the pieces from the caster. Its powers are not yet fully known.
 
 ### Romanian Jewelry Week 2026 — *A world for everyone*
 
@@ -1347,6 +1505,8 @@ Photographs from the studio archive.
 <!-- artifact: /RJW2026/LiviaZaharia_ringpendant_eye_of_winter_2026_sterlingsilver_faceted topaz_quartz_4.2x4x3.5cm5.jpg -->
 
 <!-- gallery: pieces/Eye of Winter double ring and pendant -->
+
+<!-- video: /pieces/Eye of Winter double ring and pendant/20260303_063225.mp4 -->
 
 ## Eyelense Pendant
 
@@ -1374,6 +1534,8 @@ A bit of inside story. Cam mult de lecturat Ã®nsÄ. Cum se procedeaza? Exist
 
 *Mentioned on Facebook between 2018 and 2022.*
 
+**Type:** Ring | **Materials:** Silver, bronze trial | **Dimensions:** 1.8 × 1.8 × 1.4 cm | **Year:** 2017
+
 <!-- gallery: pieces/First ring -->
 
 ## Fistic Ring
@@ -1382,23 +1544,33 @@ Cast in silver ring with a bullet shaped synthetic peridote. Slightly adaptable.
 
 The ring’s geometry keeps the stone loose so, if you have the same shape, you can replace it. Regarding synthetic stones, they are made in a lab: a natural quartz base is baked in a kiln with minerals (such as iron for the green) to reach the desired colour.
 
+**Type:** Ring | **Materials:** Silver, synthetic peridot | **Dimensions:** 1.7 × 2.5 × 0.8 cm | **Year:** 2020
+
 <!-- gallery: pieces/Fistic ring -->
 
 ## Florine Ring
 
 First square ring. The shape was inspired by the set stone, octahedral fluorite cristal. Basically, in nature, crystals like these are formed in soft soils which allow individual growth from the particular component elements. Cast in silver, the stone is a naturally shaped fluorite
 
+**Type:** Ring | **Materials:** Silver, fluorite | **Dimensions:** 1.7 × 2.5 × 1.3 cm | **Year:** 2018
+
 <!-- gallery: pieces/Florine ring -->
 
 ## Frog Ring
 
-Photographs from the studio archive.
+This particular case is one of reuse. I found this actual knife holder with a very cute frog. I just liked the shape but didn't want to destroy the piece, so I did an upgrade: I added a ring as a support so the frog can be worn. In practice it can be worn with or without the frog. To affix the frog I first 3D scanned it, to be sure my shape would fit.
+
+**Type:** Ring | **Materials:** Stainless steel (inox), silver | **Dimensions:** 6 × 1.8 × 1.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Frog ring -->
 
+<!-- video: /pieces/Frog ring/20250721_164925.mp4 -->
+
 ## Funghi Ring Series
 
-Photographs from the studio archive.
+It was actually the same base as the Cabochon ring. A good system never goes to waste. The scissor way of settling on the finger can also be used to deploy different heads, especially with special filaments that turn elastic in warm water and then harden once they are outside.
+
+**Type:** Ring | **Materials:** Thermally changeable plastic, silver | **Dimensions:** 1.8 × 2.5 × 1.8 cm | **Year:** 2023
 
 <!-- gallery: pieces/Funghi ring series -->
 
@@ -1406,13 +1578,17 @@ Photographs from the studio archive.
 
 We all know about bluethooth- the wireless connection with other devices. Greentooth is basically the connection with greenery- in every sense. The flower edge is script generated and can be adapted to various configurations but it is thought in such manner that the stone will be protected in the intensive daily use. It was cast in silver, the stone is natural peridot or olivine.
 
+**Type:** Ring | **Materials:** Sterling silver, peridot | **Dimensions:** 2.4 × 2 × 1.2 cm | **Year:** 2019
+
 <!-- gallery: pieces/Greentooth ring -->
 
 ## Half Fistic Earings
 
-*No English description was extracted for this piece in the export.*
+They were made to form a set with the Fistic ring: nice, slender, soldered pieces.
 
 *Mentioned on Facebook between 2021 and 2021.*
+
+**Type:** Earrings | **Materials:** Silver, synthetic stone | **Dimensions:** 1 × 2 × 7 cm | **Year:** 2020
 
 <!-- gallery: pieces/Half-fistic earings -->
 
@@ -1426,11 +1602,13 @@ Pair of wedding rings at the moment cast in silver. They are basically the proto
 
 *Mentioned on Facebook between 2022 and 2022.*
 
+**Type:** Wedding rings | **Materials:** Silver | **Dimensions:** 1.6 × 1.6 × 0.6 cm and 1.8 × 1.8 × 0.8 cm
+
 <!-- gallery: pieces/Helix wedding rings -->
 
 ## Hessonite Ring
 
-Photographs from the studio archive.
+Hessonite is a nice stone, second only to ruby in the category of red resilient stones. This particular one has a nice warm yellow sheen to the bright red. The pattern on the ring is, upon closer inspection, something hard to achieve without the 3D printing technique. People ask why 3D printing, isn't it less original, and the answer is no. 3D printing in this case helped to have small multiple intersections in the same plane, and stable, without having to solder each and every point and afterwards polish them away. Keep in mind, 3D printing is just a tool, exactly as the blowtorch is, just more advanced.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1446,13 +1624,21 @@ Photographs from the studio archive.
 
 ## Hexa Ring
 
-Photographs from the studio archive.
+It has everything because of the stone. I might even be called a stone whisperer, but still. I had bought this really nice stone that I definitely had to set in a ring, only I could not decide which side to put it on. And then it hit me: why should I decide? Why can't I just flip it any way I want? And this is how the rotational models were born.
+
+**Type:** Ring | **Materials:** Silver, synthetic stone | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2025
 
 <!-- gallery: pieces/Hexa ring -->
 
+<!-- video: /pieces/Hexa ring/20250131_155645.mp4 -->
+
+<!-- video: /pieces/Hexa ring/20250208_232231.mp4 -->
+
 ## Horn Earings
 
-Photographs from the studio archive.
+These were actually the first attempt at earrings. Since I don't have a way to solder at home, I had to devise a way to make the earrings. Thus I reinvented the screw, literally. These guys are threaded into the ear. The nut and bolts were manually threaded.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3.2 × 1.8 × 1.2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Horn earings -->
 
@@ -1478,7 +1664,7 @@ A chalange in this case I would like to mention the irregular shape of the piece
 
 ## Inline Ring
 
-Photographs from the studio archive.
+Inline is a message ring. It is modeled based on a short recording of whatever the creator wants. Since it was made after the pandemic, I wanted it to have an inspirational message, so for me what it recorded is "totul va fi bine" (everything will be all right). It is a lightweight ring that you can carry anywhere, the hidden meaning of your words known only to you.
 
 ### Romanian Jewelry Week 2022 — *Paths. Memories. Guides*
 
@@ -1494,15 +1680,17 @@ Photographs from the studio archive.
 
 ## Interchangable Flower Pendant
 
-*No English description was extracted for this piece in the export.*
+First attempt at a massive changeable shape. It has a nice mechanism inside, and it actually works. I was always afraid of having it cast because of the weight, though that in itself would make it work better.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Pendant | **Materials:** PLA, beads, waxed thread | **Dimensions:** 2.5 × 2.5 × 5 cm | **Year:** 2018
 
 <!-- gallery: pieces/Interchangable-flower-pendant -->
 
 ## King's Chapel Double Ring
 
-*No English description was extracted for this piece in the export.*
+Well, it didn't actually start only from the stone. I was inspired by the arches in the King's Chapel in England, their ribs so fine and so graceful. And it just so happened I had the second double-finger ring I had to design. So that's how it came to be.
 
 *Mentioned on Facebook between 2022 and 2022.*
 
@@ -1517,6 +1705,8 @@ Photographs from the studio archive.
 <!-- artifact: /RJW2022/LiviaZaharia-ring-King_s Chapel-2-2022-silver_enhanced tourmaline-3x5x1.5cm.jpg -->
 
 <!-- gallery: pieces/King's chapel double ring -->
+
+<!-- video: /pieces/King's chapel double ring/Untitled-3.mp4 -->
 
 ## La Navette Pendant
 
@@ -1541,9 +1731,11 @@ https://www.gia.edu/alexandrite
 
 <!-- gallery: pieces/La navette pendant -->
 
+<!-- video: /pieces/La navette pendant/LiviaZaharia-pendant-La navette-2021.mp4 -->
+
 ## Ludisia Ring
 
-Photographs from the studio archive.
+Ludisia, named after a jewel orchid, and who is to say it is not true? With a beautiful black opal, the stone just rises in the most comfortable setting ever devised. And it's all in one print.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1564,6 +1756,8 @@ For this piece I altered just the stone setting and the width of the ring. Elsew
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Silver, grown pearl | **Dimensions:** 1.7 × 1.7 × 1.3 cm
+
 <!-- gallery: pieces/Merlusca (Denisa) ring -->
 
 ## Merlusca Ring
@@ -1573,25 +1767,33 @@ Cast in silver, with a culture pearl.
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 1.7 × 1.7 × 1.3 cm
+
 <!-- gallery: pieces/Merlusca ring -->
 
 ## Mirror Ring
 
-Photographs from the studio archive.
+How comfortable can a simple laser-cut plastic ring be? It turns out actually really comfortable.
+
+**Type:** Ring | **Materials:** Plexiglass, various types | **Dimensions:** 5 × 1.2 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Mirror ring -->
 
 ## Moldavian Vault Ring
 
-*No English description was extracted for this piece in the export.*
+I made it for my sister. She usually doesn't wear jewellery, but she does like architecture. Unfortunately, she still hasn't used it.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.8 × 1.8 × 2 cm | **Year:** 2019
 
 <!-- gallery: pieces/Moldavian vault ring -->
 
 ## Mountain Earings
 
-Photographs from the studio archive.
+Made from very early code that works with waves. They were reused and rebuilt into Timeface.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3 × 1.2 × 1.2 cm | **Year:** 2020
 
 <!-- gallery: pieces/Mountain earings -->
 
@@ -1617,6 +1819,8 @@ A two-finger ring which can be worn as a pendant, cast in silver with citrine. T
 
 Custom order. It is a pendant cast in silver and was literally the biggest object ever made till now. On the long axis, it is about 7 cm and aprox 120 g after polishing. The image was given by the client but the 3d modeling was made by a script. I've got lots to learn from this project and at the end the owner (for whom it was a surprise gift) was satisfied. It should be mentioned that it is at the upper limit of castable size and weight. At the moment.
 
+**Type:** Pendant | **Materials:** Silver | **Dimensions:** 7 × 3.5 × 1 cm | **Year:** 2019
+
 <!-- gallery: pieces/Mr-bean-masca pendant -->
 
 ## Mushroom Ring
@@ -1624,6 +1828,8 @@ Custom order. It is a pendant cast in silver and was literally the biggest objec
 It is a symbiosis between polygons and nature. Or that's how I see it. Each mushroom is the hat resulting from the joining of each polygons' center that are closest to a point. Or you could just admire the resulting shape. Cast in silver.
 
 *Mentioned on Facebook between 2018 and 2018.*
+
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 2.4 × 2.4 × 1 cm
 
 <!-- gallery: pieces/Mushroom ring -->
 
@@ -1649,7 +1855,7 @@ https://www.youtube.com/watch?v=TFjyhCmkPyM
 
 ## Nanot Pendant
 
-Photographs from the studio archive.
+Nanot is the most famous of them all. It is based, actually, on a real particle developed by a company named Nanotics. The particle, in real-life use cases, is used to trap dangerous substances that float around in the body. Basically the core attracts them and they get stuck in the outer shell (in this case TNF-alpha receptors, but you might need to google that). The shape came to mind after a biotech conference where I heard the presentation. I went to the presenter and said, "Great talk, I think I can make a wonderful pendant out of it." I just saw the shapes. Later on he bought the first model for his wife, who was really happy about it, and Nanot became a classic. The shapes have spoken.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -1667,7 +1873,7 @@ Photographs from the studio archive.
 
 ## Nocciola Ring
 
-Photographs from the studio archive.
+I found the stone. It looked exactly like a frosted sugar pastry I would love to eat. I just had to imagine its setting, and I like to think it looks either like pâtisserie pliers or like frosted silver chocolate on top of it.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -1681,9 +1887,13 @@ Photographs from the studio archive.
 
 <!-- gallery: pieces/Nocciola ring -->
 
+<!-- video: /pieces/Nocciola ring/20230814_232350.mp4 -->
+
+<!-- video: /pieces/Nocciola ring/20230814_232510.mp4 -->
+
 ## Nucalong Pendant
 
-Photographs from the studio archive.
+Nucalong was the first, and at the moment the only, pendant to be directly printed in metal. Its whirling shapes remind me of the interior of a nut, or of certain foods, I assume.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -1699,7 +1909,7 @@ Photographs from the studio archive.
 
 ## Nut of Power Pendant
 
-Photographs from the studio archive.
+One nut to rule them all. It is actually a non-parametric creation: just nature and human ingenuity. It is the husk of an actual walnut and a real stone. Some technical difficulties? Yes. The husk is way too thin, and it was difficult drilling through it without cracking. Let's not forget the 5 kg of nuts I searched through to find the perfect one. Also, inside there are still gear balls to make sure the pendant is balanced, so it is not for naught it is called the Nut of Power.
 
 ### Romanian Jewelry Week 2025 — *It's just a cell life*
 
@@ -1717,6 +1927,8 @@ Made to be a finer version of a pearl fixture. The closure system is similar to 
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 5 × 0.8 × 0.8 cm
+
 <!-- gallery: pieces/Pearl earrings -->
 
 ## Peas in Pod Ring
@@ -1726,17 +1938,21 @@ The ring had to be one the wouldn't hook on clothes, could be worn under latex g
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Silver, jade | **Dimensions:** 1.7 × 2.4 × 0.8 cm
+
 <!-- gallery: pieces/Peas-in-pod ring -->
 
 ## Peony Ring
 
 Ring cast in silver with a rectangular cushion cut citrine. The concept started from a warm source that gradually unfolds. For those days when the sun is missing, to have a tiny spark on you. Learning from past models, this one is also adjustable.
 
+**Type:** Ring | **Materials:** Sterling silver, citrine | **Dimensions:** 2.3 × 2 × 1.2 cm | **Year:** 2019
+
 <!-- gallery: pieces/Peony ring -->
 
 ## Piguen Nonaltra Pendant
 
-Photographs from the studio archive.
+Piguen Nonaltra is an actual meteorite, like the metal of an outer-space stone. Its spiky exterior resembles a creature from the deep seas. You do have to check its method of coming together with a single screw.
 
 ### Romanian Jewelry Week 2022 — *Paths. Memories. Guides*
 
@@ -1752,9 +1968,13 @@ Photographs from the studio archive.
 
 <!-- gallery: pieces/Piguen Nonaltra pendant -->
 
+<!-- video: /pieces/Piguen Nonaltra pendant/Untitled-2.mp4 -->
+
 ## Pretzel Earings
 
 Cast in silver, each piece has 2 set amethyst cabochons. The model is a variation of the flexible system in the previous earrings. Now it is fixed and not centered. The Pretzel part of the name comes from the initial sketch which can still be seen in the side view. They can be worn as a set with the amethyst art nouveau ring
+
+**Type:** Earrings | **Materials:** Silver, amethyst cabochons | **Dimensions:** 2.5 × 1.2 × 0.8 cm | **Year:** 2018
 
 <!-- gallery: pieces/Pretzel earings -->
 
@@ -1766,6 +1986,8 @@ the geometry of the piece has a surprising stiffness.
 
 *Mentioned on Facebook between 2020 and 2020.*
 
+**Type:** Ring | **Materials:** Sterling silver, dyed shell | **Dimensions:** 3.0 × 2.5 × 1.5 cm | **Year:** 2020
+
 <!-- gallery: pieces/Red-wormy-little-apple ring -->
 
 ## Roots Ring
@@ -1774,7 +1996,17 @@ Started from the same base as Mushroom ring, Roots shows the difference that can
 
 *Mentioned on Facebook between 2019 and 2019.*
 
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.9 × 0.9 cm
+
 <!-- gallery: pieces/Roots ring -->
+
+## Second Rotary
+
+It is the first hybrid from the Hexa ring, with a symmetrical rotation system.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2025
+
+<!-- gallery: pieces/Second rotary -->
 
 ## Rotary Magnetic Ring
 
@@ -1798,15 +2030,25 @@ It is, however,a work in progress because I noticed a detail of the fitting I wa
 
 <!-- gallery: pieces/Rotary magnetic ring -->
 
+<!-- video: /pieces/Rotary magnetic ring/20250723_193211.mp4 -->
+
+<!-- video: /pieces/Rotary magnetic ring/20251128_092558.mp4 -->
+
 ## Rotary Ring
 
-Photographs from the studio archive.
+The most complex mini clasps are behind it. Rotary reminds me of the old phones, where you dialed with a rotary pad. I first approached it this way because it uses an indigolite, which slightly changes colour in the light. I had to redo the rotating part once. What can I say? It is always from errors that we learn.
+
+**Type:** Ring | **Materials:** Silver, indigolite tourmaline | **Dimensions:** 3 × 1.8 × 1.8 cm | **Year:** 2020
 
 <!-- gallery: pieces/Rotary ring -->
 
+<!-- video: /pieces/Rotary ring/rotary.mp4 -->
+
 ## Slider Ring
 
-Photographs from the studio archive.
+The stone called it. It simply looked like a switch.
+
+**Type:** Ring | **Materials:** Green tourmaline, silver | **Dimensions:** 2.5 × 1.8 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Slider ring -->
 
@@ -1819,13 +2061,17 @@ https://www.gia.edu/ametrine
 
 *Mentioned on Facebook between 2021 and 2021.*
 
+**Type:** Ring | **Materials:** Silver, synthetic ametrine | **Dimensions:** 1.7 × 2.4 × 2.7 cm
+
 <!-- gallery: pieces/Soft-Art-Nouveau-railing ring -->
 
 ## Solid Tourmaline Ring
 
-*No English description was extracted for this piece in the export.*
+It was a commission for a pinky ring, a solid one.
 
 *Mentioned on Facebook between 2022 and 2022.*
+
+**Type:** Ring | **Materials:** Tourmaline, silver | **Dimensions:** 1.3 × 1.3 × 0.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Solid-tourmaline ring -->
 
@@ -1847,9 +2093,13 @@ Pendant. Cast in silver it holds a stone of quartz (rock crystal) inside. It was
 
 ## Star Earings
 
-Photographs from the studio archive.
+They were developed because inside them lies one of the most interesting pieces of geology: petroleum quartz. This stone keeps a small part of ancient oil inside, and that oil is UV reactive.
+
+**Type:** Earrings | **Materials:** Petroleum quartz, silver | **Dimensions:** 2 cm diameter | **Year:** 2023
 
 <!-- gallery: pieces/Star earings -->
+
+<!-- video: /pieces/Star earings/20240101_015404.mp4 -->
 
 ## Sticks and Stones Pendant
 
@@ -1876,9 +2126,11 @@ As for the technical part- the stone has an axial mounting system with two threa
 
 <!-- gallery: pieces/Sticks-and-stones pendant -->
 
+<!-- video: /pieces/Sticks-and-stones pendant/LiviaZaharia-pendant-Sticks and stones-2021.mp4 -->
+
 ## Sunfinder Pendant
 
-*No English description was extracted for this piece in the export.*
+Did you know that ancient Vikings used the same stone, Iceland spar, to navigate? They had a scratch or marking on one side and they looked into the sun with it. When the marking had the same shade, it meant they were travelling in the direction of the sun, especially handy on foggy days, and at sea. That's where Sunfinder came from.
 
 *Mentioned on Facebook between 2022 and 2022.*
 
@@ -1900,19 +2152,23 @@ As for the technical part- the stone has an axial mounting system with two threa
 
 Silver pendant with a peach coloured sintetic stone. The shape is important about it. It was designed so that it could be worn on either side and on either short or long necklaces.
 
+**Type:** Pendant | **Materials:** Sterling silver, zircon | **Dimensions:** 4 × 2 × 1.5 cm | **Year:** 2019
+
 <!-- gallery: pieces/The eye pendant -->
 
 ## The Link Pin
 
-*No English description was extracted for this piece in the export.*
+The Link pin was a submission for the National Museum of Art of Romania (MNAR), which hosts one of the largest collections of paintings here. I was inspired by their grand staircase. Unfortunately, they were not inspired by my design.
 
 *Mentioned on Facebook between 2020 and 2020.*
+
+**Type:** Pin | **Materials:** Sterling silver | **Dimensions:** 1.9 × 1.9 × 2 cm | **Year:** 2020
 
 <!-- gallery: pieces/The link pin -->
 
 ## The Nest Ring
 
-Photographs from the studio archive.
+The Nest Ring contains a piece of saffrodite. That is a tektite formed after the impact of a meteorite with Earth: the glass resulted from such an impact. The calm covering, wrapping it as a nest, is to offer protection.
 
 ### Romanian Jewelry Week 2024 — *Beloved food*
 
@@ -1934,17 +2190,21 @@ The ring is an adaptable version for cabochon mounting. Also it has a rather spe
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver, cubic zirconia | **Dimensions:** 1.7 × 1.9 × 1 cm
+
 <!-- gallery: pieces/The-little-trumpet ring -->
 
 ## Tilia Earings
 
-Photographs from the studio archive.
+Another test of how to make earrings directly from casting. This one is actually a favourite of mine, because they can be worn as rings or earrings.
+
+**Type:** Earrings | **Materials:** Silver | **Dimensions:** 3 × 3 × 3 cm | **Year:** 2020
 
 <!-- gallery: pieces/Tilia earings -->
 
 ## Toxic Ring
 
-Photographs from the studio archive.
+I just had a very beautiful bead, really nice, and it had a well conspicuous hole. So I decided, why don't I make a ring to fit it? And if somehow, how about I make interchangeable parts? So the threaded ring came by. The cap, however, was what gave it its name, if you get my feeling.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1964,23 +2224,33 @@ In the search for thinner and more flowery shapes I tried this version too. Cast
 
 *Mentioned on Facebook between 2018 and 2018.*
 
+**Type:** Ring | **Materials:** Silver | **Dimensions:** 1.7 × 1.6 × 0.5 cm
+
 <!-- gallery: pieces/Tulip ring -->
 
 ## Vera Ring
 
 Custom made ring. Starting from the First ring I adapted the design for a new hand layout. The visual and de usage were take into account for this. So you can notice the general curvature, the with reduction towards the back and the gradual thickening of the polygons towards the front. Cast in silver. And two PLA versions for trials.
 
+**Type:** Ring | **Materials:** Silver, PLA trials | **Dimensions:** 1.8 × 1.8 × 1.4 cm | **Year:** 2018
+
 <!-- gallery: pieces/Vera ring -->
 
 ## Vita (b)orum Pendant
 
-Photographs from the studio archive.
+Here is a play on words. Vitaborum for those that live, vitaorum for the travellers... or the other way around. But this piece shows the resilience to succeed even when not everything goes according to our calculation.
+
+It was supposed to be a pendant with silver and a girasol quartz. Due to the shape of the stone, I had to break the silver cast into multiple pieces. To bring them all together, some brass has been used, giving it its current look.
+
+**Type:** Pendant | **Materials:** Girasol quartz, silver, brass | **Dimensions:** 3 × 5 × 1.8 cm | **Year:** 2024
 
 <!-- gallery: pieces/Vita(b)orum pendant -->
 
+<!-- video: /pieces/Vita(b)orum pendant/20250408_091013.mp4 -->
+
 ## Vittoria Amazonica Pendant
 
-Photographs from the studio archive.
+Inspired by the largest lily pad out there, that can even support a human, and their absolutely nice behaviour, where they repel water into forming a bead. That's where my aquamarine came to be. And because beads move, so does my stone, across growth paths from this shape.
 
 ### Romanian Jewelry Week 2023 — *Survival*
 
@@ -1996,17 +2266,23 @@ Photographs from the studio archive.
 
 Silver cast model with labradorite stone. The largest ring I designed- it covers 3 fingers. As it often happens in the case of stones the design came from the gems and how they can come off in a special shape. The name comes from people's reaction when they've seen it- everyone said that it is covered in peace signs but their thoughts were further from that idea and less peaceful.... The opening in the actual cast object allows for a tighter diameter and thus a better grip for it's large size.
 
+**Type:** Ring | **Materials:** Silver, labradorite | **Dimensions:** 2.7 × 1.9 × 1 cm | **Year:** 2019
+
 <!-- gallery: pieces/War-and-peace ring -->
 
 ## Wavy Circle Pendant
 
-Photographs from the studio archive.
+It was a gift for Anton's mother. She had a pendant she loved stolen, and she missed an amber jewel, so Wavy Circle was created.
+
+**Type:** Pendant | **Materials:** Amber, silver | **Dimensions:** 2.7 × 2.7 × 1.5 cm | **Year:** 2025
 
 <!-- gallery: pieces/Wavy circle pendant -->
 
-## Weddiing Rings
+## Wedding Rings
 
 Custom made. Two of my friends decided to tie the knot in a special way so they wanted a pair of wedding rings with some design peculiarities. That is how, after a period of discussions on various issues we managed to get the perfect design they were looking for. And the two rings have now a loving home. Cast in yellow gold (14kt) and trials made in bronze.
+
+**Type:** Wedding rings | **Materials:** 14kt yellow gold, bronze trials | **Dimensions:** 1.7 × 1.7 × 1.5 cm and 1.6 × 1.6 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Weddiing-rings -->
 
@@ -2015,6 +2291,8 @@ Custom made. Two of my friends decided to tie the knot in a special way so they 
 Ring cast in silver with a purple culture pearl. Initially, I tried fixing the pearl, with an intresting shape and color in a way that would maximize its effect. And this is how it came to be. Still, I found out on this occasion how the woven pattern can reinforce the shape. Even though it is an open ring its geometry gives it more resistance.
 The unusual shape encouraged some to describe it as a mini creature from Dune.
 
+**Type:** Ring | **Materials:** Silver, culture pearl | **Dimensions:** 3.0 × 2.5 × 1.5 cm | **Year:** 2020
+
 <!-- gallery: pieces/Wormy ring -->
 
 ## Woven Wedding Rings
@@ -2022,17 +2300,19 @@ The unusual shape encouraged some to describe it as a mini creature from Dune.
 @Cristian Avram
 @Teodora Mihaela
 
-Pair of 14kt gold wedding rings. The concept was woven. How  fine and precise can you cast a woven like pattern. The end result is seen here :)
-As for the name (a.n. Ro: Brancovenesc) it is because of the similar decoration from this style.
-In the pictures we can see the 3D model, the silver prototype and the final gold cast to spot the differences of gold vs silver casting.
+This pair of rings was complex. I was asked for a woven pattern. The cool part is the logic behind it. Do you even know, or could you imagine, what it takes to code weaving? Not only in position, but in depth as well.
 
-*Mentioned on Facebook between 2020 and 2020.*
+Pair of 14kt gold wedding rings. How fine and precise can you cast a pattern like that. The Romanian name, Brancovenesc, comes from the similar decoration in that style. In the pictures you can see the 3D model, the silver prototype, and the final gold cast, and the difference between casting in gold and in silver.
+
+**Type:** Wedding rings | **Materials:** 14kt gold, silver prototype | **Dimensions:** 2.4 × 2.4 × 0.6 cm and 1.8 × 1.8 × 0.6 cm | **Year:** 2020
 
 <!-- gallery: pieces/Woven wedding rings -->
 
 ## Wrap Ring
 
-*No English description was extracted for this piece in the export.*
+Here we obviously have a wonderful iolite, and a design I wanted as lightweight as possible, with a weird entry point. So when it was mounted, the stone was inserted sideways.
+
+**Type:** Ring | **Materials:** Iolite, silver | **Dimensions:** 1.8 × 1.8 × 1 cm | **Year:** 2019
 
 <!-- gallery: pieces/Wrap ring -->
 
@@ -2042,6 +2322,8 @@ Cast in silver pendant, with yellow jade beads. Besides the Beatles reference, t
 
 *Mentioned on Facebook between 2021 and 2021.*
 
+**Type:** Pendant | **Materials:** Silver, yellow jade | **Dimensions:** 0.9 × 2.5 × 0.9 cm
+
 <!-- gallery: pieces/Yellow-submarine pendant -->
 
 ## Cheesecacke Pendant
@@ -2050,9 +2332,13 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 *Mentioned on Facebook between 2022 and 2022.*
 
+**Type:** Pendant | **Materials:** Silver | **Dimensions:** 2.8 × 2.8 × 0.6 cm
+
 <!-- gallery: pieces/cheesecacke pendant -->
 
 ## Hollywood Pendant
+
+It is a refunctioning of some older earrings, but also the discovery of a beautiful fossilized wood with tinges of blue.
 
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
@@ -2066,7 +2352,11 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 <!-- gallery: pieces/Hollywood pendant -->
 
+<!-- video: /pieces/Hollywood pendant/20260101_203708.mp4 -->
+
 ## Timeface Pendant
+
+Actually, here I have reused some earrings I made earlier. I wanted to create a new shape, so I turned them into a simple, elegant pendant reminiscent of an hourglass.
 
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
@@ -2082,6 +2372,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 ## Deep Sea Pearl (Karmazina) Ring
 
+It was a pun on the La Peregrina pearl. Though this is amber, it resembles a scoop out of the deepest part of a mystical lake.
+
 **Collection (Romanian Jewelry Week 2026):** *A world for everyone.*
 
 **Type:** Ring | **Materials:** Sterling silver, amber | **Dimensions:** 4.1 × 3.5 × 2.5 cm | **Year:** 2026
@@ -2094,7 +2386,11 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 
 <!-- gallery: pieces/Deep sea pearl Karmazina -->
 
+<!-- video: /pieces/Deep sea pearl Karmazina/20251128_093924.mp4 -->
+
 ## The Dark Nut of Power Pendant
+
+The Dark Nut is the opposite of the Nut of Power. It focuses on curses. It is made non-parametrically, with a stark contrast between the dark, dried material and the shining copper ore.
 
 **Collection (Romanian Jewelry Week 2025):** *It's just a cell life — Biology collection.*
 
@@ -2107,6 +2403,8 @@ The model was thought out so that the wearer has the choice of how it is worn- w
 <!-- gallery: pieces/The Dark Nut of Power pendant -->
 
 ## Mitoring (Mitochondria) Ring
+
+The Mitoring is the ring of power and energy. Basically, the amber. When I saw its shape I just knew it had to be a part of a cell body, and the yellow colour made me think of mitochondria. I mean, clearly, the powerhouse of the cell, just smaller in dimension. So that's how one of the most important artifacts came to be.
 
 **Collection (Romanian Jewelry Week 2025):** *It's just a cell life — Biology collection.*
 
@@ -2127,6 +2425,8 @@ https://www.mindscapestudio.ro/event-design/untold-galaxy-stage-2017-making-of/
 
 Here I helped with the surface division of the stage. Each strip of textile was extracted from the 3d model and then numbered for an easier in situ assembly. The vertical ellipse is 16m x6.5m
 
+**Type:** Stage | **Materials:** Textile | **Dimensions:** 16 × 6.5 m | **Year:** 2017
+
 <!-- gallery: pieces/large-scale-parametrics- Untold Galaxy stage 2017 -->
 
 ## Untold Galaxy Stage 2018
@@ -2136,6 +2436,111 @@ client: Mindscape Studio
 
 Here starting from the same idea of the two ellipses we increased the complexity. The vertical ellipse went up to 24m x 8m but the double layer of the wrapping allowed for the light settings to be rearranged
 
+**Type:** Stage | **Materials:** Textile | **Dimensions:** 24 × 8 m | **Year:** 2018
+
 <!-- gallery: pieces/large-scale-parametrics-Untold Galaxy stage 2018 -->
+
+## Airwing
+
+It looks like the wing of a plane, or at least an aerodynamic thing. That was what I thought when I created it.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 1.7 × 1.7 × 1.8 cm | **Year:** 2025
+
+<!-- gallery: pieces/Airwing -->
+
+## CamelDALI
+
+That piece of almost drooling copper just reminds me of Dalí, and his drooling, melting clocks. Here, however, it is obviously a camel. We have a futuristic camel disintegrating into a Dalí-like world.
+
+**Type:** Pendant | **Materials:** PLA, leather, copper parts, native copper | **Dimensions:** 7 × 7 × 3 cm | **Year:** 2026
+
+<!-- gallery: pieces/CamelDALI -->
+
+## Cymatics Geometries
+
+It will be a series. It just started. It is inspired by the laws of physics, where objects are defined by waves and end up in unexpected shapes. How you guide the wave, though, leaves space for multiple interpretations. Emerald Stillness is part of this series.
+
+**Type:** Series | **Materials:** Mixed | **Year:** 2026
+
+<!-- gallery: pieces/Cymatics Geometries -->
+
+<!-- video: /pieces/Cymatics Geometries/20260907_172229.mp4 -->
+
+## Emerald Stillness
+
+The perfect combo between colour, size, and shape. It is created from the Cymatics series.
+
+**Materials:** PLA, fluorite | **Dimensions:** 8 × 2.5 × 2.5 cm | **Year:** 2026
+
+<!-- gallery: pieces/Emerald Stillness -->
+
+## Impact Flow Ring
+
+I just found the moldavite. It was so perfect. I mean, I had to complete the circle that seemed broken, in a nice flowing manner. Thus the name, Impact Flow.
+
+**Type:** Ring | **Materials:** Moldavite, silver | **Dimensions:** 1.8 × 1.8 × 1 cm | **Year:** 2026
+
+<!-- gallery: pieces/Impact Flow Ring -->
+
+## The Pillbridge
+
+The Pillbridge was devised as a structure spanning long distances to hold the long amber.
+
+**Type:** Ring | **Materials:** Amber, silver | **Dimensions:** 1.7 × 1.9 × 0.8 cm | **Year:** 2026
+
+<!-- gallery: pieces/The Pillbridge -->
+
+## Terra Forming
+
+This piece of amber reminded me of the duality of earth: hilly sides on one part and a clear depth on another. So I devised its setting in a similar way to a reliquary. It can be opened and worn without the stone, or the stone can be kept showcased.
+
+**Type:** Pendant | **Materials:** PLA, amber, brass | **Dimensions:** 10 × 8 × 2 cm | **Year:** 2026
+
+<!-- gallery: pieces/Terra forming -->
+
+## Thunderstorm Ring
+
+Thunderstorm Ring is part of the rotary troupe. Here the amber upwards means sun, while the pietersite upwards means rain.
+
+**Type:** Ring | **Materials:** Amber, pietersite, silver | **Dimensions:** 2.1 × 2.4 × 1.4 cm | **Year:** 2026
+
+<!-- gallery: pieces/Thunderstorm Ring -->
+
+<!-- video: /pieces/Thunderstorm Ring/20260523_120709.mp4 -->
+
+
+## Let's work together
+
+You can invite me to join a project as an artist, suggest freelance work, or get in touch about research. I'm easy to talk to, and a few lines about an idea are enough to start. We can figure out the details together.
+
+## Invite me as an artist
+
+I'd be happy to hear about an exhibition, a residency, or an artwork we could make together. I work with parametric jewellery, objects, and digital art, often using ideas from biology. A collaboration can start with a material, a place, or a question you're curious about.
+
+You can see examples in [Collections](/art-design) and [Digital Art](/digital-art).
+
+## Freelance projects
+
+Have a piece in mind, need a 3D model, or want to turn an idea into an interactive experience? You can approach me about a commission or freelance project. My work includes computational design, jewellery, and turning digital forms into physical objects.
+
+Tell me what you want to make. If you have references, a deadline, or a budget in mind, those help too. It's fine if you're still working those out.
+
+## Buy or design a piece
+
+Some of my jewellery is for sale. If a piece catches your eye in the [Pieces catalogue](/pieces), just ask. Send me its name or a photo, and I can tell you about availability and price.
+
+You can also get in touch to design a piece with me. Tell me what you have in mind, even if it's just a starting idea, and we can work on it together.
+
+## Research together
+
+I'm also open to scientific collaboration on **glucose prediction, agentic AI, and genomics**. That might mean comparing glucose forecasts, building AI agents that help with research tasks, or exploring gene-expression data. I also enjoy practical workshops where we learn by making something.
+
+I founded [GlucoseDAO](/science-tech/glucosedao) and contribute to the [Longevity Genie](/science-tech/longevity-genie) ecosystem. You can read more about that work in [Science & Tech](/science-tech).
+
+## Say hello
+
+Message me on [Instagram @paral_design](https://www.instagram.com/paral_design/) or connect with me on [LinkedIn](https://www.linkedin.com/in/livia-zaharia-4b1425a0). You can also reach me through [Facebook byLiviaZaharia](https://www.facebook.com/byLiviaZaharia/).
+
+Tell me what you're thinking about and how you'd like us to work together.
 
 

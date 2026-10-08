@@ -170,9 +170,9 @@ def panel(*children: rx.Component) -> rx.Component:
     )
 
 
-def section_heading(title: str, accent: str) -> rx.Component:
+def section_heading(title: str, accent: str, show_collaboration: bool = True) -> rx.Component:
     """Page section heading."""
-    return rx.vstack(
+    heading = rx.vstack(
         rx.heading(
             title,
             font_family=SERIF_FONT,
@@ -189,6 +189,21 @@ def section_heading(title: str, accent: str) -> rx.Component:
         align_items="start",
         spacing="2",
         width="100%",
+    )
+    if not show_collaboration:
+        return heading
+    return rx.flex(
+        rx.box(heading, flex="1 1 18rem"),
+        rx.el.a(
+            "Work with Livia",
+            href="/collaboration",
+            class_name="livia-collaboration-link",
+        ),
+        gap="1rem",
+        align="center",
+        justify="between",
+        width="100%",
+        flex_wrap="wrap",
     )
 
 
@@ -476,7 +491,7 @@ def _nav_link(link: LinkItem) -> rx.Component:
     if link.href == "/":
         is_active = (rx.State.router.page.path == "/") | (rx.State.router.page.path == "")
     else:
-        is_active = rx.State.router.page.path == link.href
+        is_active = (rx.State.router.page.path == link.href) | rx.State.router.page.path.startswith(link.href + "/")
     accent_attr = link.accent or "neutral"
     return rx.link(
         rx.vstack(
@@ -490,6 +505,7 @@ def _nav_link(link: LinkItem) -> rx.Component:
                 spacing="2",
                 align="center",
                 wrap="nowrap",
+                class_name="livia-nav-label-row",
             ),
             rx.el.span(link.tooltip or "", class_name="livia-nav-tooltip"),
             rx.box(
@@ -509,7 +525,11 @@ def _nav_link(link: LinkItem) -> rx.Component:
         font_weight=rx.cond(is_active, "700", "500"),
         text_decoration="none",
         transition="color 0.2s ease",
-        custom_attrs={"data-href": link.href, "data-accent": accent_attr},
+        custom_attrs={
+            "data-href": link.href,
+            "data-accent": accent_attr,
+            "aria-current": rx.cond(is_active, "page", "false"),
+        },
     )
 
 
@@ -1156,7 +1176,7 @@ def _build_special_tab(spec: dict) -> rx.Component:
 
 
 def instagram_embed_panel() -> rx.Component:
-    """Full-width Instagram embed for the Art & Design Instagram tab."""
+    """Full-width Instagram embed for the Collections Instagram tab."""
     return panel(
         rx.vstack(
             rx.link(
@@ -1204,5 +1224,3 @@ def instagram_embed_panel() -> rx.Component:
             align_items="start",
         ),
     )
-
-

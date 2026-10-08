@@ -56,10 +56,12 @@ _LIVIA_NAV_JS = (ASSETS_DIR / "livia_nav.js").read_text(encoding="utf-8")
 
 _BIOGRAPHY_TEXT = load_content("biography")
 _HOME_TEXT = load_content("home")
+_COLLABORATION_TEXT = load_content("collaboration")
 
 # Rich tab content loaded once at module level for JSON-LD and the content-map page.
 _ART_DESIGN_RAW: list[tuple[str, str, str]] = load_folder_raw_md("art-design")   # (slug, label, raw)
 _SCI_TECH_RAW: list[tuple[str, str, str]] = load_folder_raw_md("science-tech")
+_DIGITAL_ART_RAW: list[tuple[str, str, str]] = load_folder_raw_md("digital-art")
 _PIECES_INTRO, _PIECES_ENTRIES = parse_pieces_tab_entries()
 
 
@@ -147,6 +149,7 @@ _PIECES_EMPTY: dict[str, str] = {
 # First tab pre-loaded for SSR/prerendering; rest stay lazy.
 _ART_DESIGN_INITIAL: dict[str, str] = _preload_first_tab("art-design")
 _SCIENCE_TECH_INITIAL: dict[str, str] = _preload_first_tab("science-tech")
+_DIGITAL_ART_INITIAL: dict[str, str] = _preload_first_tab("digital-art")
 _PIECES_INITIAL: dict[str, str] = {
     **_PIECES_EMPTY,
     **({} if _intro_pieces is None else {
@@ -161,7 +164,7 @@ _PIECES_INITIAL: dict[str, str] = {
 # ---------------------------------------------------------------------------
 
 class ArtDesignContentState(rx.State):
-    """Markdown content for Art & Design tabs, pre-loaded for SSR/prerendering."""
+    """Markdown content for Collections tabs, pre-loaded for SSR/prerendering."""
     tab_content: dict[str, str] = _ART_DESIGN_INITIAL
 
     def load_content(self) -> None:
@@ -202,6 +205,23 @@ class ScienceTechContentState(rx.State):
                 self.tab_content = {**self.tab_content, slug: content}
 
 
+class DigitalArtContentState(rx.State):
+    """Digital Art content, with the overview pre-loaded for prerendering."""
+    tab_content: dict[str, str] = _DIGITAL_ART_INITIAL
+
+    def load_content(self) -> None:
+        """Ensure the overview is available on the main section route."""
+        if not self.tab_content.get("overview"):
+            self.load_tab("overview")
+
+    def load_tab(self, slug: str) -> None:
+        """Load a project's markdown when its tab is selected."""
+        if not self.tab_content.get(slug):
+            content = load_single_tab_md_content("digital-art", slug)
+            if content is not None:
+                self.tab_content = {**self.tab_content, slug: content}
+
+
 class PiecesContentState(rx.State):
     """Per-tab markdown for Pieces, pre-loaded for SSR/prerendering."""
     tab_content: dict[str, str] = _PIECES_INITIAL
@@ -233,7 +253,7 @@ class PiecesContentState(rx.State):
 
 def _build_dynamic_tab_specs(
     folder: str,
-    content_state: type[ArtDesignContentState] | type[ScienceTechContentState],
+    content_state: type[ArtDesignContentState] | type[ScienceTechContentState] | type[DigitalArtContentState],
     static_overrides: dict[str, str] | None = None,
 ) -> list[TabSpec]:
     """Build TabSpecs where markdown tabs render content from a state dict.
@@ -296,7 +316,7 @@ def _build_dynamic_tab_specs(
 
 def _make_tab_sub_page(
     folder: str,
-    content_state: type[ArtDesignContentState] | type[ScienceTechContentState],
+    content_state: type[ArtDesignContentState] | type[ScienceTechContentState] | type[DigitalArtContentState],
     active_slug: str,
     active_content: str,
 ) -> rx.Component:
@@ -330,6 +350,7 @@ def _make_tab_sub_page(
             ),
         ),
         bottom_nav(),
+        class_name="livia-digital-art" if folder == "digital-art" else "",
         min_height="100vh",
         font_family=SANS_FONT,
     )
@@ -453,6 +474,27 @@ def biography_page() -> rx.Component:
     )
 
 
+def collaboration_page() -> rx.Component:
+    """A personal invitation with direct contact links, visible before hydration."""
+    return rx.box(
+        fullscreen_bg_dimmed(),
+        page_content(
+            section_heading("Let's work together", GREEN, show_collaboration=False),
+            rx.box(markdown_panel("collaboration"), max_width="76rem", width="100%"),
+        ),
+        bottom_nav(),
+        min_height="100vh",
+        font_family=SANS_FONT,
+    )
+
+
+def digital_art_page() -> rx.Component:
+    """Interactive projects in the same folder-based layout as the other sections."""
+    return _make_tab_sub_page(
+        "digital-art", DigitalArtContentState, "overview", _DIGITAL_ART_INITIAL["overview"],
+    )
+
+
 def pieces_page() -> rx.Component:
     """Object-centric list of works, grouped by year then name."""
     tabs = _build_pieces_tab_specs()
@@ -488,7 +530,7 @@ def pieces_page() -> rx.Component:
 
 def art_design_page() -> rx.Component:
     meta = load_page_meta("art-design")
-    heading = meta.get("heading", "Art & Design")
+    heading = meta.get("heading", "Collections")
     accent_key = meta.get("accent", "amber")
     accent = ACCENT_MAP.get(accent_key, AMBER)
     bg_key = meta.get("background", "default")
@@ -568,6 +610,7 @@ def content_map_page() -> rx.Component:
     """
     art_sections = [_content_section(label, raw) for _slug, label, raw in _ART_DESIGN_RAW]
     sci_sections = [_content_section(label, raw) for _slug, label, raw in _SCI_TECH_RAW]
+    digital_sections = [_content_section(label, raw) for _slug, label, raw in _DIGITAL_ART_RAW]
 
     pieces_sections: list[rx.Component] = []
     if _PIECES_INTRO:
@@ -587,14 +630,19 @@ def content_map_page() -> rx.Component:
             rx.heading("Biography", size="5", margin_top="1.5rem"),
             _content_section("Biography", _BIOGRAPHY_TEXT),
             rx.divider(margin_top="2rem"),
-            rx.heading("Art & Design", size="5", margin_top="1.5rem"),
+            rx.heading("Collections", size="5", margin_top="1.5rem"),
             *art_sections,
+            rx.divider(margin_top="2rem"),
+            rx.heading("Digital Art", size="5", margin_top="1.5rem"),
+            *digital_sections,
             rx.divider(margin_top="2rem"),
             rx.heading("Science & Tech", size="5", margin_top="1.5rem"),
             *sci_sections,
             rx.divider(margin_top="2rem"),
             rx.heading("Pieces", size="5", margin_top="1.5rem"),
             *pieces_sections,
+            rx.divider(margin_top="2rem"),
+            _content_section("Let's work together", _COLLABORATION_TEXT),
             max_width="860px",
             margin="0 auto",
             padding="2rem 1.5rem 4rem",
@@ -671,6 +719,50 @@ def create_app() -> rx.App:
         ],
     )
     application.add_page(
+        collaboration_page,
+        route="/collaboration",
+        title="Let's work together | Livia Zaharia",
+        description="Invite Livia as an artist, suggest a freelance project, or collaborate on glucose prediction, agentic AI, and genomics. An early idea is enough to start.",
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Let's work together | Livia Zaharia"},
+            {"property": "og:description", "content": "Art invitations, freelance projects, and research together. Tell Livia what you're thinking about."},
+            {"property": "og:image", "content": "/livia.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "ContactPage",
+                "name": "Let's work together — Livia Zaharia",
+                "description": _COLLABORATION_TEXT,
+                "about": {"@type": "Person", "name": "Livia Zaharia"},
+            }),
+        ],
+    )
+    application.add_page(
+        digital_art_page,
+        route="/digital-art",
+        title="Digital Art | Livia Zaharia",
+        description="Explore Materialized Enhancements, Livistone, and Whale and Dolphin Orchestra: interactive bioart, a town built from jewellery, and music guided by animal recordings.",
+        on_load=[DigitalArtContentState.load_content, MobileTabRailState.collapse_expanded],
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Digital Art | Livia Zaharia"},
+            {"property": "og:description", "content": "Art you can explore: Materialized Enhancements, Livistone, and Whale and Dolphin Orchestra."},
+            {"property": "og:image", "content": "/digital-art/livistone.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Digital Art — Livia Zaharia",
+                "description": "Interactive worlds, participatory bioart, and music guided by whale and dolphin recordings.",
+                "hasPart": [
+                    {"@type": "CreativeWork", "name": label, "description": raw}
+                    for slug, label, raw in _DIGITAL_ART_RAW if slug != "overview"
+                ],
+            }),
+        ],
+    )
+    application.add_page(
         pieces_page,
         route="/pieces",
         title="Pieces | Livia Zaharia",
@@ -699,19 +791,19 @@ def create_app() -> rx.App:
     application.add_page(
         art_design_page,
         route="/art-design",
-        title="Art & Design | Livia Zaharia",
-        description="Art & Design practice of Livia Zaharia (Paral Design). Parametric jewellery, generative architecture, and wearable art using Grasshopper, COMPAS, and Python — exhibited internationally since 2019.",
+        title="Collections | Livia Zaharia",
+        description="Jewellery collections and exhibitions by Livia Zaharia (Paral Design). Parametric jewellery, wearable objects, and the stories behind the work.",
         on_load=[ArtDesignContentState.load_content, MobileTabRailState.collapse_expanded],
         meta=[
             {"property": "og:type", "content": "website"},
-            {"property": "og:title", "content": "Art & Design | Livia Zaharia"},
-            {"property": "og:description", "content": "Parametric jewellery and generative art by Livia Zaharia (Paral Design). Script-driven 3D design, cast in silver, amber, and natural materials."},
+            {"property": "og:title", "content": "Collections | Livia Zaharia"},
+            {"property": "og:description", "content": "Jewellery collections and exhibitions by Livia Zaharia (Paral Design), with the stories behind the work."},
             {"property": "og:image", "content": "/yellow_side.jpg"},
             {"name": "twitter:card", "content": "summary_large_image"},
             _json_ld_script({
                 "@context": "https://schema.org",
                 "@type": "CreativeWork",
-                "name": "Art & Design — Livia Zaharia / Paral Design",
+                "name": "Collections — Livia Zaharia / Paral Design",
                 "description": (
                     "Parametric jewellery and generative art practice by Livia Zaharia, working under the label Paral Design. "
                     "Uses Grasshopper, COMPAS, and Python scripts to design nature-evoking wearable artefacts — rings, pendants, "
@@ -775,7 +867,7 @@ def create_app() -> rx.App:
         content_map_page,
         route="/content",
         title="Full Content Index | Livia Zaharia",
-        description="All content from livia.glucosedao.org in a single page: biography, art & design collections, science & tech projects, and pieces — for search engines and AI assistants.",
+        description="All content from livia.glucosedao.org in a single page: biography, collections, digital art, science & tech, pieces, and collaboration — for search engines and AI assistants.",
         context={"sitemap": {"changefreq": "weekly", "priority": 0.3}},
     )
 
@@ -797,12 +889,12 @@ def create_app() -> rx.App:
         application.add_page(
             _art_tab_page,
             route=f"/art-design/{slug}",
-            title=f"{slug_label} | Art & Design | Livia Zaharia",
+            title=f"{slug_label} | Collections | Livia Zaharia",
             description=description or f"{slug_label} — parametric jewellery and generative art by Livia Zaharia.",
             on_load=[MobileTabRailState.collapse_expanded],
             meta=[
                 {"property": "og:type", "content": "website"},
-                {"property": "og:title", "content": f"{slug_label} | Art & Design | Livia Zaharia"},
+                {"property": "og:title", "content": f"{slug_label} | Collections | Livia Zaharia"},
                 {"property": "og:description", "content": description or slug_label},
                 {"property": "og:image", "content": "/yellow_side.jpg"},
                 {"name": "twitter:card", "content": "summary_large_image"},
@@ -833,6 +925,28 @@ def create_app() -> rx.App:
                 {"property": "og:title", "content": f"{slug_label} | Science & Tech | Livia Zaharia"},
                 {"property": "og:description", "content": description or slug_label},
                 {"property": "og:image", "content": "/green_side.jpg"},
+                {"name": "twitter:card", "content": "summary_large_image"},
+            ],
+        )
+
+    for slug, label, raw in _DIGITAL_ART_RAW:
+        content = load_single_tab_md_content("digital-art", slug) or ""
+        description = raw[:300].replace("\n", " ").strip()
+
+        def _digital_tab_page(s: str = slug, c: str = content) -> rx.Component:
+            return _make_tab_sub_page("digital-art", DigitalArtContentState, s, c)
+
+        application.add_page(
+            _digital_tab_page,
+            route=f"/digital-art/{slug}",
+            title=f"{label} | Digital Art | Livia Zaharia",
+            description=description,
+            on_load=[MobileTabRailState.collapse_expanded],
+            meta=[
+                {"property": "og:type", "content": "website"},
+                {"property": "og:title", "content": f"{label} | Digital Art | Livia Zaharia"},
+                {"property": "og:description", "content": description},
+                {"property": "og:image", "content": "/digital-art/livistone.jpg"},
                 {"name": "twitter:card", "content": "summary_large_image"},
             ],
         )

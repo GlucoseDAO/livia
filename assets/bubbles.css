@@ -1,6 +1,6 @@
 /*
  * UI typography scale: 1 = laptop (html.livia-wide), 2.5 = phone (html.livia-narrow).
- * Set by livia_nav.js on <html>. Narrow bottom nav: one row of four buttons, same font size as laptop; labels wrap inside a button when needed. Home tool rails use --livia-tool-rail-scale (1.5 on narrow).
+ * Set by livia_nav.js on <html>. Narrow bottom nav: one row of equal-width buttons; labels wrap inside a button when needed. Home tool rails use --livia-tool-rail-scale (1.5 on narrow).
  */
 html {
   --livia-ui-scale: 1;
@@ -14,7 +14,46 @@ html.livia-narrow {
   --livia-tool-rail-scale: 1.5;
 }
 
-/* Bottom navigation dock — laptop type size; narrow: one row × four equal cells, text wraps inside each cell */
+/* Bottom navigation dock — narrow: one row of equal cells, text wraps inside each cell */
+
+.livia-collaboration-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(94, 168, 130, 0.55);
+  border-radius: 999px;
+  background: rgba(18, 15, 12, 0.9);
+  color: #f5f0e8;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.livia-collaboration-link:hover {
+  border-color: #5ea882;
+  background: #120f0c;
+}
+
+.livia-collaboration-link:focus-visible {
+  outline: 2px solid #5ea882;
+  outline-offset: 4px;
+}
+
+/* Digital project previews need room for interface details; portraits retain their proportions. */
+.livia-digital-art .livia-artifact-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.livia-digital-art .livia-artifact-wrap img {
+  max-width: min(960px, 100%) !important;
+  max-height: 72vh;
+  width: auto !important;
+}
 
 .livia-bottom-nav {
   box-sizing: border-box;
@@ -44,12 +83,12 @@ html.livia-wide .livia-bottom-nav .rt-HStack {
   flex-shrink: 0;
   white-space: nowrap;
   font-size: calc(19px * var(--livia-bottom-nav-scale));
-  font-weight: 500;
+  font-weight: 500 !important;
   line-height: 1.2;
   padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.36rem * var(--livia-bottom-nav-scale));
   border-radius: 999px;
   text-decoration: none;
-  color: rgba(245, 240, 232, 0.7);
+  color: rgba(245, 240, 232, 0.7) !important;
   border: 1px solid transparent;
   background: transparent;
   transform: scale(1);
@@ -66,6 +105,29 @@ html.livia-wide .livia-bottom-nav .rt-HStack {
   white-space: nowrap;
 }
 
+.livia-bottom-nav .livia-nav-indicator {
+  width: 0% !important;
+}
+
+html[data-livia-page="/"] .livia-bottom-nav a[data-href="/"],
+html[data-livia-page="/biography"] .livia-bottom-nav a[data-href="/biography"],
+html[data-livia-page="/art-design"] .livia-bottom-nav a[data-href="/art-design"],
+html[data-livia-page="/pieces"] .livia-bottom-nav a[data-href="/pieces"],
+html[data-livia-page="/digital-art"] .livia-bottom-nav a[data-href="/digital-art"],
+html[data-livia-page="/science-tech"] .livia-bottom-nav a[data-href="/science-tech"] {
+  color: #f5f0e8 !important;
+  font-weight: 700 !important;
+}
+
+html[data-livia-page="/"] .livia-bottom-nav a[data-href="/"] .livia-nav-indicator,
+html[data-livia-page="/biography"] .livia-bottom-nav a[data-href="/biography"] .livia-nav-indicator,
+html[data-livia-page="/art-design"] .livia-bottom-nav a[data-href="/art-design"] .livia-nav-indicator,
+html[data-livia-page="/pieces"] .livia-bottom-nav a[data-href="/pieces"] .livia-nav-indicator,
+html[data-livia-page="/digital-art"] .livia-bottom-nav a[data-href="/digital-art"] .livia-nav-indicator,
+html[data-livia-page="/science-tech"] .livia-bottom-nav a[data-href="/science-tech"] .livia-nav-indicator {
+  width: 100% !important;
+}
+
 .livia-bottom-nav a[data-href] .rt-HStack {
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -79,13 +141,14 @@ html.livia-wide .livia-bottom-nav .rt-HStack {
 }
 
 html.livia-narrow .livia-bottom-nav {
+  width: calc(100vw - 0.6rem);
   max-width: calc(100vw - 0.6rem);
   white-space: normal;
   overflow: visible;
 }
 
 /*
- * Narrow: exactly four buttons in one row. Same font/padding as laptop; each cell flexes equally
+ * Narrow: one row of equal-width buttons; each cell flexes equally
  * and label text wraps (two lines max is typical) instead of shrinking type or scrolling.
  */
 html.livia-narrow .livia-bottom-nav .livia-bottom-nav-row,
@@ -116,10 +179,19 @@ html.livia-narrow .livia-bottom-nav a[data-href] {
 
 html.livia-narrow .livia-bottom-nav a[data-href] .livia-nav-label {
   display: block;
+  width: 100%;
+  min-width: 0;
   max-width: 100%;
   white-space: normal;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   text-align: center;
+}
+
+html.livia-narrow .livia-bottom-nav .livia-nav-label-row {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 html.livia-narrow .livia-bottom-nav a[data-href] .rt-HStack {
@@ -169,7 +241,7 @@ html.livia-narrow .livia-bottom-nav .livia-nav-divider {
 
 @media (hover: hover) and (pointer: fine) {
   .livia-bottom-nav a[data-href]:hover {
-    color: #f5f0e8;
+    color: #f5f0e8 !important;
     transform: scale(1.08);
     border-color: rgba(255, 248, 238, 0.35);
   }
@@ -208,17 +280,26 @@ html.livia-narrow .livia-bottom-nav .livia-nav-divider {
  * Page tabs: on narrow viewports, --livia-ui-scale is 2.5 (tappable bottom nav).
  * With width=device-width, that same scale on tab buttons dominates the screen — cap tab chrome.
  */
-.livia-page-tabs [role="tablist"] button {
+.livia-page-tabs [role="tablist"] [role="tab"] {
   font-size: calc(19px * var(--livia-ui-scale));
   padding: calc(0.45rem * var(--livia-ui-scale)) calc(0.55rem * var(--livia-ui-scale));
   line-height: 1.25;
   white-space: normal;
 }
 
-html.livia-narrow .livia-page-tabs [role="tablist"] button {
+html.livia-narrow .livia-page-tabs [role="tablist"] [role="tab"] {
   font-size: calc(19px * min(var(--livia-ui-scale), 1.28));
   padding: calc(0.4rem * min(var(--livia-ui-scale), 1.28))
     calc(0.5rem * min(var(--livia-ui-scale), 1.28));
+}
+
+/* Tabs are links or buttons; wrapped labels must grow beyond the theme's fixed height. */
+.livia-page-tabs [role="tab"] {
+  height: auto;
+  min-height: 44px;
+  flex-shrink: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 /* Mobile: wrapped tab rows — generous gap; submenu labels centered */
@@ -231,7 +312,7 @@ html.livia-narrow .livia-mobile-tab-more-row {
   justify-content: center;
 }
 
-html.livia-narrow .livia-page-tabs .livia-mobile-tablist button,
+html.livia-narrow .livia-page-tabs .livia-mobile-tablist [role="tab"],
 html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-primary,
 html.livia-narrow .livia-page-tabs .livia-mobile-tablist .livia-tab-label-single {
   text-align: center !important;
@@ -272,8 +353,8 @@ html.livia-wide .livia-desktop-tab-rail {
   flex-direction: column;
 }
 
-.livia-page-tabs [role="tablist"] button .livia-tab-label-primary,
-.livia-page-tabs [role="tablist"] button .livia-tab-label-single {
+.livia-page-tabs [role="tablist"] [role="tab"] .livia-tab-label-primary,
+.livia-page-tabs [role="tablist"] [role="tab"] .livia-tab-label-single {
   color: inherit;
   line-height: 1.28;
 }
@@ -283,18 +364,18 @@ html.livia-wide .livia-desktop-tab-rail {
   gap: 0.2rem !important;
 }
 
-.livia-page-tabs [role="tablist"] button:has(.livia-tab-label-stack) {
+.livia-page-tabs [role="tablist"] [role="tab"]:has(.livia-tab-label-stack) {
   text-align: center !important;
 }
 
-.livia-page-tabs [role="tablist"] button .livia-tab-label-sub {
+.livia-page-tabs [role="tablist"] [role="tab"] .livia-tab-label-sub {
   display: block;
   margin-top: 0;
   text-align: center;
 }
 
-.livia-page-tabs [role="tablist"] button[data-state="active"] .livia-tab-label-sub,
-.livia-page-tabs [role="tablist"] button[aria-selected="true"] .livia-tab-label-sub {
+.livia-page-tabs [role="tablist"] [role="tab"][data-state="active"] .livia-tab-label-sub,
+.livia-page-tabs [role="tablist"] [role="tab"][aria-selected="true"] .livia-tab-label-sub {
   opacity: 0.92;
 }
 
@@ -367,7 +448,7 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] {
   -webkit-overflow-scrolling: touch;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] [role="tab"] {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
   white-space: normal;
@@ -377,7 +458,7 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button {
   line-height: 1.25;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button .livia-tab-label-sub {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] [role="tab"] .livia-tab-label-sub {
   font-size: 0.68em;
   margin-top: 0;
   text-align: center;
@@ -387,18 +468,18 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button .livia-tab-label-s
  * Side rail: selection accent — inset bar on the inner edge (Radix Themes also uses shadows; we add a clear stripe).
  * Two-line tabs: add a little top padding so the stripe reads with the first line, not through the RJW subtitle.
  */
-html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--left:hover [role="tablist"] button[aria-selected="true"] {
+html.livia-wide .livia-tab-rail--left:hover [role="tablist"] [role="tab"][data-state="active"],
+html.livia-wide .livia-tab-rail--left:hover [role="tablist"] [role="tab"][aria-selected="true"] {
   box-shadow: inset 3px 0 0 0 currentColor;
 }
 
-html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[data-state="active"],
-html.livia-wide .livia-tab-rail--right:hover [role="tablist"] button[aria-selected="true"] {
+html.livia-wide .livia-tab-rail--right:hover [role="tablist"] [role="tab"][data-state="active"],
+html.livia-wide .livia-tab-rail--right:hover [role="tablist"] [role="tab"][aria-selected="true"] {
   box-shadow: inset -3px 0 0 0 currentColor;
 }
 
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
-html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+html.livia-wide .livia-tab-rail:hover [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[data-state="active"],
+html.livia-wide .livia-tab-rail:hover [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[aria-selected="true"] {
   padding-top: calc(0.28rem * var(--livia-ui-scale));
 }
 
@@ -426,7 +507,7 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
     -webkit-overflow-scrolling: touch;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"] {
     writing-mode: horizontal-tb;
     text-orientation: mixed;
     white-space: normal;
@@ -436,24 +517,24 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
     line-height: 1.25;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button .livia-tab-label-sub {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"] .livia-tab-label-sub {
     font-size: 0.68em;
     margin-top: 0;
     text-align: center;
   }
 
-  html.livia-wide .livia-tab-rail--left [role="tablist"] button[data-state="active"],
-  html.livia-wide .livia-tab-rail--left [role="tablist"] button[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail--left [role="tablist"] [role="tab"][data-state="active"],
+  html.livia-wide .livia-tab-rail--left [role="tablist"] [role="tab"][aria-selected="true"] {
     box-shadow: inset 3px 0 0 0 currentColor;
   }
 
-  html.livia-wide .livia-tab-rail--right [role="tablist"] button[data-state="active"],
-  html.livia-wide .livia-tab-rail--right [role="tablist"] button[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail--right [role="tablist"] [role="tab"][data-state="active"],
+  html.livia-wide .livia-tab-rail--right [role="tablist"] [role="tab"][aria-selected="true"] {
     box-shadow: inset -3px 0 0 0 currentColor;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
-  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[data-state="active"],
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[aria-selected="true"] {
     padding-top: calc(0.28rem * var(--livia-ui-scale));
   }
 }
@@ -486,7 +567,7 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
     -webkit-overflow-scrolling: touch;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"] {
     writing-mode: horizontal-tb;
     text-orientation: mixed;
     white-space: normal;
@@ -496,24 +577,24 @@ html.livia-wide .livia-tab-rail:hover [role="tablist"] button:has(.livia-tab-lab
     line-height: 1.25;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button .livia-tab-label-sub {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"] .livia-tab-label-sub {
     font-size: 0.68em;
     margin-top: 0;
     text-align: center;
   }
 
-  html.livia-wide .livia-tab-rail--left [role="tablist"] button[data-state="active"],
-  html.livia-wide .livia-tab-rail--left [role="tablist"] button[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail--left [role="tablist"] [role="tab"][data-state="active"],
+  html.livia-wide .livia-tab-rail--left [role="tablist"] [role="tab"][aria-selected="true"] {
     box-shadow: inset 3px 0 0 0 currentColor;
   }
 
-  html.livia-wide .livia-tab-rail--right [role="tablist"] button[data-state="active"],
-  html.livia-wide .livia-tab-rail--right [role="tablist"] button[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail--right [role="tablist"] [role="tab"][data-state="active"],
+  html.livia-wide .livia-tab-rail--right [role="tablist"] [role="tab"][aria-selected="true"] {
     box-shadow: inset -3px 0 0 0 currentColor;
   }
 
-  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[data-state="active"],
-  html.livia-wide .livia-tab-rail [role="tablist"] button:has(.livia-tab-label-stack)[aria-selected="true"] {
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[data-state="active"],
+  html.livia-wide .livia-tab-rail [role="tablist"] [role="tab"]:has(.livia-tab-label-stack)[aria-selected="true"] {
     padding-top: calc(0.28rem * var(--livia-ui-scale));
   }
 }

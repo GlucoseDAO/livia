@@ -1,4 +1,6 @@
-# Parametric Design Practice
+# Collections and exhibitions
+
+Explore Livia's jewellery collections, exhibitions, and the stories behind them using the tabs. For individual works, browse [Pieces](/pieces).
 
 Livia Zaharia is a Romanian architect and parametric jewellery artist working under the label **Paral Design** (Parametric Livia). She translates computational architectural methods into intimate, research-driven, body-scale artefacts — rings, pendants, earrings, and wearable objects that sit at the intersection of generative art, speculative design, and experimental contemporary jewellery.
 
@@ -23,3 +25,7 @@ Silver, brass, copper, quartz, amber, walnut husks, 3D-printed elements, and rep
 - **Complex curvature** — non-planar surfaces inviting tactile exploration
 
 Pieces appear inspired by shells, corals, plants, or cellular structures — yet are generated entirely through code and parametric rules. This raises the question of what counts as "original" versus "copy" when an algorithm produces forms indistinguishable from natural ones.
+
+## Digital art & collaboration
+
+Explore the interactive projects in [Digital Art](/digital-art), including Livistone, Materialized Enhancements, and Whale and Dolphin Orchestra. To invite Livia as an artist or suggest a freelance project, [start a conversation](/collaboration).

@@ -193,7 +193,7 @@ livia/
 ├── content/
 │   ├── home.md            # Homepage tagline
 │   ├── biography.md       # Biography page
-│   ├── art-design/        # Tabbed page: Art & Design (each .md = one tab)
+│   ├── art-design/        # Tabbed page: Collections (each .md = one tab)
 │   ├── science-tech/      # Tabbed page: Science & Tech
 │   └── _shared/           # Shared markdown referenced by multiple pages
 ├── assets/
@@ -215,7 +215,7 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 |-----------------|---------|
 | `/`             | Homepage — full-screen portrait, Livistone entry, bottom nav |
 | `/biography`    | Biography + external links |
-| `/art-design`   | Art & Design — tabbed page (auto-discovered from `content/art-design/`) |
+| `/art-design`   | Collections — tabbed page (auto-discovered from `content/art-design/`) |
 | `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
 
 ## Design principles
@@ -280,7 +280,7 @@ Content is a single column; the portrait fills the remaining space.
 
 ### Instagram integration
 
-The Art & Design page features a collapsible Instagram sidebar for the `@paral_design` profile. A vertical tab handle is always visible on the right edge of the viewport; clicking it slides open a panel with the live Instagram embed. The sidebar uses the same dark glass styling as the rest of the site and works on both mobile (overlay) and desktop (float alongside).
+The Collections page features a collapsible Instagram sidebar for the `@paral_design` profile. A vertical tab handle is always visible on the right edge of the viewport; clicking it slides open a panel with the live Instagram embed. The sidebar uses the same dark glass styling as the rest of the site and works on both mobile (overlay) and desktop (float alongside).
 
 No API key or third-party widget system is required — the embed uses Instagram's public `/embed` endpoint.
 

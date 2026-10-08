@@ -175,16 +175,22 @@ NAV_LINKS = (
         tooltip="Designer, maker, founder",
     ),
     LinkItem(
-        "Art & Design",
+        "Collections",
         "/art-design",
         accent="amber",
-        tooltip="Parametric form and fabrication",
+        tooltip="Jewellery collections and exhibitions",
     ),
     LinkItem(
         "Pieces",
         "/pieces",
         accent="amber",
         tooltip="Works and objects",
+    ),
+    LinkItem(
+        "Digital Art",
+        "/digital-art",
+        accent="amber",
+        tooltip="Interactive worlds, bioart, and sound",
     ),
     LinkItem(
         "Science & Tech",
@@ -207,7 +213,7 @@ BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
         ),
     ),
     (
-        "Art & Design",
+        "Collections",
         (
             LinkItem("Materialized Enhancements", "http://enhancement.bio/", True),
             LinkItem(
@@ -220,10 +226,10 @@ BIOGRAPHY_LINK_GROUPS: tuple[tuple[str, tuple[LinkItem, ...]], ...] = (
     (
         "Social media & contacts",
         (
+            LinkItem("Work with Livia", "/collaboration"),
             LinkItem("Instagram @paral_design", "https://www.instagram.com/paral_design/", True),
             LinkItem("Facebook byLiviaZaharia", "https://www.facebook.com/byLiviaZaharia/", True),
             LinkItem("LinkedIn", "https://www.linkedin.com/in/livia-zaharia-4b1425a0", True),
         ),
     ),
 )
-
