@@ -5,10 +5,10 @@
 - `src/livia/livia.py`: thin app entrypoint — imports `create_app()` from `pages.py` and exposes `app`.
 - `src/livia/constants.py`: shared constants (colors, fonts, paths, regexes), data classes (`LinkItem`, `TabSpec`), and static config data (nav links with optional `accent` / `tooltip`).
 - `src/livia/content.py`: content loading from the `content/` directory — markdown file reading, YAML front-matter ref resolution, tab slug scanning, YouTube/gallery/artifact directive preprocessing for dynamic state rendering.
-- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars (CSS hover-expand tool rails, no sidebar state), tabs layout, gallery/lightbox, markdown rendering with custom embeds. Also contains `GalleryState` for the lightbox.
+- `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars (CSS hover-expand tool rails, no sidebar state), tabs layout, gallery/lightbox markup, markdown rendering with custom embeds. Contains `MobileTabRailState` for the narrow tab list; image enlargement is handled by `assets/livia_nav.js`.
 - `src/livia/pages.py`: page functions (`home_page`, `biography_page`, `art_design_page`, `digital_art_page`, `science_tech_page`, `collaboration_page`), content state classes (`ArtDesignContentState`, `DigitalArtContentState`, `ScienceTechContentState`), dynamic tab spec building, and `create_app()` which registers all pages.
 - `src/livia/__init__.py`: package init (do not hardcode package version here).
-- `src/livia/plugins.py`: removed; `ViteDevServerPlugin` is now inlined in `rxconfig.py`.
+- `src/livia/plugins.py`: legacy plugin module, unused by the runtime; the active `ViteDevServerPlugin` is inlined in `rxconfig.py`.
 - `src/livia/start.py`: CLI entry point (`uv run start`); uses `typer`.
 - `assets/`: static assets used by the app (for example, background images).
   - `assets/livia.jpg`: full-screen portrait used as the site background.
@@ -21,6 +21,7 @@
 - `rxconfig.py`: Reflex runtime/config entrypoint.
 - `pyproject.toml`: Python project metadata and dependency source of truth.
 - `uv.lock`: dependency lockfile managed by `uv`.
+- `reflex.lock/`: persisted frontend `package.json` and Bun lockfile managed by Reflex. Include both in version control so production builds use the verified frontend dependencies; `.web/` remains generated output.
 - `.python-version`: interpreter pin used by local tooling.
 - `.web/`: generated frontend/build output from Reflex toolchain; treat as generated artifacts unless a task explicitly requires editing them. Note: Reflex copies assets to `.web/public/` and stylesheets to `.web/styles/` at compile time; during dev, CSS/JS asset changes may need manual copy to `.web/styles/` and `.web/public/` if hot-reload does not pick them up.
 - `.states/`: local state artifacts.
@@ -139,6 +140,7 @@ For `link_list` type, additional fields:
 - Use absolute imports; do not introduce relative imports.
 - For CLI additions, use `typer`.
 - Use `uv` workflow for this project (`uv sync`, `uv add`, `uv run ...`).
+- When upgrading Reflex, upgrade its component packages together with `uv lock --upgrade`, then run `uv sync`. Updating only `reflex` can leave old component packages incompatible with `reflex-base`. Verify `uv pip check`, a production build, backend health, and browser interactions after synchronizing.
 
 ## Documentation Freshness Rule
 
@@ -178,7 +180,8 @@ When a change affects UI/UX, validation is required before considering the task 
 - `content/collaboration.md` renders at `/collaboration` as a personal invitation for art, freelance work, and research on glucose prediction, agentic AI, and genomics. The native “Work with Livia” link beside inner-page headings makes it accessible without adding another bottom-nav button. Biography and section overviews also link to it. Both new sections are included in `/content`, `/llms.txt`, and the sitemap.
 - Bottom-nav highlighting matches section sub-routes as well as the main route. `livia_nav.js` sets `data-livia-page` on `html` for CSS selection and refreshes after React navigation, without changing React-owned link styles before hydration. `components.py` sets `aria-current` from the router state.
 
-- `rxconfig.py` must not import from the `src/livia/` package because Reflex's `get_config()` strips `sys.path` during early init; `ViteDevServerPlugin` and similar must be inlined there (the old `src/livia/plugins.py` was removed for this reason).
+- `rxconfig.py` must not import from the `src/livia/` package because Reflex's `get_config()` strips `sys.path` during early init; `ViteDevServerPlugin` and similar must be inlined there. The legacy `src/livia/plugins.py` module is not used by the runtime.
+- Radix styling is enabled explicitly with `rx.plugins.RadixThemesPlugin()` in `rxconfig.py`. The current Lucide package has no GitHub or LinkedIn brand glyphs; the home rail uses supported `git_branch` and `contact_round` icons alongside full text labels.
 - The user-visible port is controlled by `frontend_port` in Reflex config, not `backend_port`; default is 3010 with backend at 3011. Bind address defaults to `0.0.0.0` for both the Reflex backend and the Vite dev server; set `HOST` in `.env` (loaded at the top of `rxconfig.py` via `load_dotenv()`) to override. `rxconfig.py` patches Reflex’s startup banners so “App running at” / “Backend running at” use that host (upstream Reflex otherwise prints `localhost` / hardcoded `0.0.0.0`).
 - Git LFS is configured (`.gitattributes`) to track `*.jpg`, `*.jpeg`, `*.png`, `*.gif`, `*.webp`.
 - `encode_url_path()` in `src/livia/content.py` percent-encodes path segments for `gallery` and `artifact` image URLs so path segments resolve in the browser; still prefer simple URL-safe names under `assets/` (no spaces; avoid `+` in filenames) because static hosting and tooling can fail on awkward paths even when encoded.
@@ -355,7 +358,8 @@ Workflow on deploy:
 | `PORT` | Frontend port (default 3010; unused in prod when Caddy serves files directly) |
 | `BACKEND_PORT` | Backend WebSocket port (default `PORT + 1`) |
 | `HOST` | Bind address (default `0.0.0.0`) |
-| `DEPLOY_URL` | Public HTTPS URL — used by Reflex to generate correct `wss://` WebSocket URL in the client bundle |
+| `DEPLOY_URL` | Public HTTPS URL — used for absolute frontend URLs, including the generated sitemap |
+| `REFLEX_API_URL` | Optional backend URL when it has a different public address from the frontend |
 | `REDIS_URL` | Redis connection string — only needed with multiple backend workers |
 
-`DEPLOY_URL` is critical: without it, the client bundle hard-codes `ws://localhost:PORT/_event`, which breaks in production.
+Set `DEPLOY_URL` to the production site so generated sitemap URLs are correct. Reflex's default localhost API URL is normalized in the browser to the page's hostname; on HTTPS it uses the page's origin without a backend port, which works with this site's Caddy proxy. Set `REFLEX_API_URL` explicitly if the backend has a different public address. See [Reflex self-hosting](https://reflex.dev/docs/hosting/self-hosting/).

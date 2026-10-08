@@ -701,7 +701,7 @@ def instagram_sidebar() -> rx.Component:
         border_radius="1.2rem 0 0 1.2rem",
         box_shadow=SHADOW,
         z_index="51",
-        custom_attrs={"tabindex": "0"},
+        custom_attrs={"tabIndex": "0"},
     )
 
 
@@ -732,7 +732,7 @@ def github_sidebar() -> rx.Component:
             rx.vstack(
                 rx.box(
                     rx.hstack(
-                        rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
+                        rx.icon(tag="git_branch", size=18, color=GREEN, flex_shrink="0"),
                         rx.text("GlucoseDAO", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
                         align="center",
                         spacing="2",
@@ -749,7 +749,7 @@ def github_sidebar() -> rx.Component:
                 ),
                 rx.box(
                     rx.hstack(
-                        rx.icon(tag="github", size=18, color=GREEN, flex_shrink="0"),
+                        rx.icon(tag="git_branch", size=18, color=GREEN, flex_shrink="0"),
                         rx.text("Longevity Genie", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
                         align="center",
                         spacing="2",
@@ -766,7 +766,7 @@ def github_sidebar() -> rx.Component:
                 ),
                 rx.box(
                     rx.hstack(
-                        rx.icon(tag="linkedin", size=18, color=GREEN, flex_shrink="0"),
+                        rx.icon(tag="contact_round", size=18, color=GREEN, flex_shrink="0"),
                         rx.text("LinkedIn", font_size="1rem", font_weight="bold", color=TEXT_LIGHT),
                         align="center",
                         spacing="2",
@@ -816,7 +816,7 @@ def github_sidebar() -> rx.Component:
         border_radius="0 1.2rem 1.2rem 0",
         box_shadow=SHADOW,
         z_index="100",
-        custom_attrs={"tabindex": "0"},
+        custom_attrs={"tabIndex": "0"},
     )
 
 

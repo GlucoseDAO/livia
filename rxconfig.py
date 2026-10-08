@@ -269,6 +269,7 @@ config = rx.Config(
     vite_allowed_hosts=True,
     vite_host=_HOST,
     plugins=[
+        rx.plugins.RadixThemesPlugin(),
         rx.plugins.SitemapPlugin(),
         LlmsTxtPlugin(),
         ViteDevServerPlugin(),

@@ -5,10 +5,10 @@ description = "Livia Zaharia personal website built with Reflex"
 readme = "README.md"
 requires-python = ">=3.13,<3.14"
 dependencies = [
-    "python-dotenv>=1.2.2",
+    "python-dotenv>=1.2.4",
     "pyyaml>=6.0.3",
-    "reflex>=0.9.1",
-    "typer>=0.24.1",
+    "reflex>=0.9.12",
+    "typer>=0.27.3",
 ]
 
 [build-system]
