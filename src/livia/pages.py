@@ -680,6 +680,11 @@ def create_app() -> rx.App:
                 content="rwVg_JOvfmsKPIt2j1kcJ3wT7XW-vTCtajAd4p5i7Ts",
             ),
             rx.script(_LIVIA_NAV_JS),
+            rx.el.script(
+                src="https://umami.glucosedao.org/script.js",
+                defer=True,
+                custom_attrs={"data-website-id": "b1138d9d-2c68-4bbd-8bd2-6933fd8d199d"},
+            ),
             _json_ld_script(_PERSON_SCHEMA),
         ],
     )
