@@ -6,6 +6,7 @@ from typing import Literal
 import reflex as rx
 import yaml
 
+from livia.clean_urls import serve_pages_without_redirect
 from livia.constants import (
     ACCENT_MAP,
     AMBER,
@@ -687,6 +688,7 @@ def create_app() -> rx.App:
             ),
             _json_ld_script(_PERSON_SCHEMA),
         ],
+        api_transformer=serve_pages_without_redirect,
     )
     application.add_page(
         home_page,

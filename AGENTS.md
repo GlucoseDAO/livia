@@ -7,6 +7,7 @@
 - `src/livia/content.py`: content loading from the `content/` directory — markdown file reading, YAML front-matter ref resolution, tab slug scanning, YouTube/gallery/artifact directive preprocessing for dynamic state rendering.
 - `src/livia/components.py`: reusable UI components — backgrounds, panels, navigation, sidebars (CSS hover-expand tool rails, no sidebar state), tabs layout, gallery/lightbox markup, markdown rendering with custom embeds. Contains `MobileTabRailState` for the narrow tab list; image enlargement is handled by `assets/livia_nav.js`.
 - `src/livia/pages.py`: page functions (`home_page`, `biography_page`, `art_design_page`, `digital_art_page`, `science_tech_page`, `collaboration_page`), content state classes (`ArtDesignContentState`, `DigitalArtContentState`, `ScienceTechContentState`), dynamic tab spec building, and `create_app()` which registers all pages.
+- `src/livia/clean_urls.py`: `serve_pages_without_redirect`, passed as `api_transformer` in `create_app()`. Under `uv run serve`, Starlette's static server would answer `/page` with a 307 to `http://…/page/` (it sees `http` behind Caddy), so every sitemap URL took two redirects. The wrapper rewrites `/page` to the prerendered `page.html` when that file exists, so sitemap URLs return 200 directly.
 - `src/livia/__init__.py`: package init (do not hardcode package version here).
 - `src/livia/plugins.py`: legacy plugin module, unused by the runtime; the active `ViteDevServerPlugin` is inlined in `rxconfig.py`.
 - `src/livia/start.py`: CLI entry point (`uv run start`); uses `typer`.
