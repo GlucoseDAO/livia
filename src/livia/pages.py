@@ -83,7 +83,7 @@ _PERSON_SCHEMA: dict = {
         "of generative art, speculative design for health/longevity, and experimental "
         "contemporary jewellery. Founder of GlucoseDAO."
     ),
-    "url": "https://livia.glucosedao.org",
+    "url": "https://liviazaharia.com",
     "sameAs": [
         "https://www.instagram.com/paral_design/",
         "https://www.facebook.com/byLiviaZaharia/",
@@ -872,7 +872,7 @@ def create_app() -> rx.App:
         content_map_page,
         route="/content",
         title="Full Content Index | Livia Zaharia",
-        description="All content from livia.glucosedao.org in a single page: biography, collections, digital art, science & tech, pieces, and collaboration — for search engines and AI assistants.",
+        description="All content from liviazaharia.com in a single page: biography, collections, digital art, science & tech, pieces, and collaboration — for search engines and AI assistants.",
         context={"sitemap": {"changefreq": "weekly", "priority": 0.3}},
     )
 

@@ -161,7 +161,7 @@ When a change affects UI/UX, validation is required before considering the task 
 - All text rendered over background images must have a sufficiently opaque panel or backdrop behind it to ensure readability; never place gray or low-contrast text directly on a photo.
 - Do not bloat the homepage with all content at once; show content only when the user navigates to it.
 - Prefer Reflex internal Python APIs (e.g. `_init`, `_run` from `reflex.reflex`) over spawning subprocesses for Reflex commands.
-- The deployment server runs Caddy as a reverse proxy; Caddy is not on the local dev machine. The production site URL is https://livia.glucosedao.org (set as DEPLOY_URL in .env).
+- The deployment server runs Caddy as a reverse proxy; Caddy is not on the local dev machine. The production site URL is https://liviazaharia.com (set as DEPLOY_URL in .env).
 - Content panels and text must fill available screen space with generous sizing and large fonts; never render small, narrow text boxes that waste screen real estate.
 - When asked to act (e.g. "do stuff for me"), proceed decisively without asking for further confirmation.
 - Piece stories written in the first person stay in the first person in `content/pieces.md` and when quoted back. Grammar fixes do not change "I" to "you".

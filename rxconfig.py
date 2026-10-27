@@ -54,7 +54,7 @@ def _build_llms_txt() -> str:
     lines.append("# Livia Zaharia\n\n")
     lines.append(
         "> Romanian architect, parametric jewellery artist, and citizen scientist.\n"
-        "> Website: https://livia.glucosedao.org\n"
+        "> Website: https://liviazaharia.com\n"
         "> Instagram: https://www.instagram.com/paral_design/\n"
         "> GitHub (GlucoseDAO): https://github.com/GlucoseDAO/\n\n"
     )

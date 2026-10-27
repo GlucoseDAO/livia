@@ -90,7 +90,7 @@ This removes the Node.js process entirely from the serving path. Caddy reads fil
 **Caddy config for this mode:**
 
 ```
-livia.glucosedao.org {
+liviazaharia.com {
     @backend path /ping /_event /_event/* /_upload /_upload/* /_health /_all_routes /auth-codespace /api /api/*
     reverse_proxy @backend localhost:3011
 
