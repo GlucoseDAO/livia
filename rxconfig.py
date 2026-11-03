@@ -67,7 +67,7 @@ def _build_llms_txt() -> str:
         lines.append("\n\n")
 
     # Tabbed folders
-    for folder, heading in [("art-design", "Collections"), ("digital-art", "Digital Art"), ("science-tech", "Science & Tech")]:
+    for folder, heading in [("art-design", "Collections"), ("digital-art", "Digital Art"), ("science-tech", "Science & Tech"), ("architecture", "Architecture")]:
         folder_path = _CONTENT_DIR / folder
         if not folder_path.is_dir():
             continue

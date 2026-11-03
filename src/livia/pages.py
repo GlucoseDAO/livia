@@ -63,6 +63,7 @@ _COLLABORATION_TEXT = load_content("collaboration")
 _ART_DESIGN_RAW: list[tuple[str, str, str]] = load_folder_raw_md("art-design")   # (slug, label, raw)
 _SCI_TECH_RAW: list[tuple[str, str, str]] = load_folder_raw_md("science-tech")
 _DIGITAL_ART_RAW: list[tuple[str, str, str]] = load_folder_raw_md("digital-art")
+_ARCHITECTURE_RAW: list[tuple[str, str, str]] = load_folder_raw_md("architecture")
 _PIECES_INTRO, _PIECES_ENTRIES = parse_pieces_tab_entries()
 
 
@@ -151,6 +152,7 @@ _PIECES_EMPTY: dict[str, str] = {
 _ART_DESIGN_INITIAL: dict[str, str] = _preload_first_tab("art-design")
 _SCIENCE_TECH_INITIAL: dict[str, str] = _preload_first_tab("science-tech")
 _DIGITAL_ART_INITIAL: dict[str, str] = _preload_first_tab("digital-art")
+_ARCHITECTURE_INITIAL: dict[str, str] = _preload_first_tab("architecture")
 _PIECES_INITIAL: dict[str, str] = {
     **_PIECES_EMPTY,
     **({} if _intro_pieces is None else {
@@ -223,6 +225,23 @@ class DigitalArtContentState(rx.State):
                 self.tab_content = {**self.tab_content, slug: content}
 
 
+class ArchitectureContentState(rx.State):
+    """Architecture portfolio content, with the overview pre-loaded for prerendering."""
+    tab_content: dict[str, str] = _ARCHITECTURE_INITIAL
+
+    def load_content(self) -> None:
+        """Ensure the overview is available on the main section route."""
+        if not self.tab_content.get("overview"):
+            self.load_tab("overview")
+
+    def load_tab(self, slug: str) -> None:
+        """Load a project's markdown when its tab is selected."""
+        if not self.tab_content.get(slug):
+            content = load_single_tab_md_content("architecture", slug)
+            if content is not None:
+                self.tab_content = {**self.tab_content, slug: content}
+
+
 class PiecesContentState(rx.State):
     """Per-tab markdown for Pieces, pre-loaded for SSR/prerendering."""
     tab_content: dict[str, str] = _PIECES_INITIAL
@@ -254,7 +273,12 @@ class PiecesContentState(rx.State):
 
 def _build_dynamic_tab_specs(
     folder: str,
-    content_state: type[ArtDesignContentState] | type[ScienceTechContentState] | type[DigitalArtContentState],
+    content_state: (
+        type[ArtDesignContentState]
+        | type[ScienceTechContentState]
+        | type[DigitalArtContentState]
+        | type[ArchitectureContentState]
+    ),
     static_overrides: dict[str, str] | None = None,
 ) -> list[TabSpec]:
     """Build TabSpecs where markdown tabs render content from a state dict.
@@ -317,7 +341,12 @@ def _build_dynamic_tab_specs(
 
 def _make_tab_sub_page(
     folder: str,
-    content_state: type[ArtDesignContentState] | type[ScienceTechContentState] | type[DigitalArtContentState],
+    content_state: (
+        type[ArtDesignContentState]
+        | type[ScienceTechContentState]
+        | type[DigitalArtContentState]
+        | type[ArchitectureContentState]
+    ),
     active_slug: str,
     active_content: str,
 ) -> rx.Component:
@@ -351,7 +380,7 @@ def _make_tab_sub_page(
             ),
         ),
         bottom_nav(),
-        class_name="livia-digital-art" if folder == "digital-art" else "",
+        class_name=f"livia-{folder}" if folder in ("digital-art", "architecture") else "",
         min_height="100vh",
         font_family=SANS_FONT,
     )
@@ -496,6 +525,13 @@ def digital_art_page() -> rx.Component:
     )
 
 
+def architecture_page() -> rx.Component:
+    """Architecture portfolio: office work, competitions, and university projects."""
+    return _make_tab_sub_page(
+        "architecture", ArchitectureContentState, "overview", _ARCHITECTURE_INITIAL["overview"],
+    )
+
+
 def pieces_page() -> rx.Component:
     """Object-centric list of works, grouped by year then name."""
     tabs = _build_pieces_tab_specs()
@@ -612,6 +648,7 @@ def content_map_page() -> rx.Component:
     art_sections = [_content_section(label, raw) for _slug, label, raw in _ART_DESIGN_RAW]
     sci_sections = [_content_section(label, raw) for _slug, label, raw in _SCI_TECH_RAW]
     digital_sections = [_content_section(label, raw) for _slug, label, raw in _DIGITAL_ART_RAW]
+    architecture_sections = [_content_section(label, raw) for _slug, label, raw in _ARCHITECTURE_RAW]
 
     pieces_sections: list[rx.Component] = []
     if _PIECES_INTRO:
@@ -639,6 +676,9 @@ def content_map_page() -> rx.Component:
             rx.divider(margin_top="2rem"),
             rx.heading("Science & Tech", size="5", margin_top="1.5rem"),
             *sci_sections,
+            rx.divider(margin_top="2rem"),
+            rx.heading("Architecture", size="5", margin_top="1.5rem"),
+            *architecture_sections,
             rx.divider(margin_top="2rem"),
             rx.heading("Pieces", size="5", margin_top="1.5rem"),
             *pieces_sections,
@@ -770,6 +810,30 @@ def create_app() -> rx.App:
         ],
     )
     application.add_page(
+        architecture_page,
+        route="/architecture",
+        title="Architecture | Livia Zaharia",
+        description="Architecture by Livia Zaharia: residential towers with XArchitecture in Bucharest, competition installations and festival stages, and university projects shaped by parametric design.",
+        on_load=[ArchitectureContentState.load_content, MobileTabRailState.collapse_expanded],
+        meta=[
+            {"property": "og:type", "content": "website"},
+            {"property": "og:title", "content": "Architecture | Livia Zaharia"},
+            {"property": "og:description", "content": "Office work, competitions, festival stages, and university projects from Livia Zaharia's architecture portfolio."},
+            {"property": "og:image", "content": "/architecture/covers/one-mircea-eliade.jpg"},
+            {"name": "twitter:card", "content": "summary_large_image"},
+            _json_ld_script({
+                "@context": "https://schema.org",
+                "@type": "CollectionPage",
+                "name": "Architecture — Livia Zaharia",
+                "description": "Buildings, competition installations, festival stages, and university projects by architect Livia Zaharia.",
+                "hasPart": [
+                    {"@type": "CreativeWork", "name": label, "description": raw}
+                    for slug, label, raw in _ARCHITECTURE_RAW if slug != "overview"
+                ],
+            }),
+        ],
+    )
+    application.add_page(
         pieces_page,
         route="/pieces",
         title="Pieces | Livia Zaharia",
@@ -874,7 +938,7 @@ def create_app() -> rx.App:
         content_map_page,
         route="/content",
         title="Full Content Index | Livia Zaharia",
-        description="All content from liviazaharia.com in a single page: biography, collections, digital art, science & tech, pieces, and collaboration — for search engines and AI assistants.",
+        description="All content from liviazaharia.com in a single page: biography, collections, digital art, science & tech, architecture, pieces, and collaboration — for search engines and AI assistants.",
         context={"sitemap": {"changefreq": "weekly", "priority": 0.3}},
     )
 
@@ -954,6 +1018,28 @@ def create_app() -> rx.App:
                 {"property": "og:title", "content": f"{label} | Digital Art | Livia Zaharia"},
                 {"property": "og:description", "content": description},
                 {"property": "og:image", "content": "/digital-art/livistone.jpg"},
+                {"name": "twitter:card", "content": "summary_large_image"},
+            ],
+        )
+
+    for slug, label, raw in _ARCHITECTURE_RAW:
+        content = load_single_tab_md_content("architecture", slug) or ""
+        description = raw[:300].replace("\n", " ").strip()
+
+        def _architecture_tab_page(s: str = slug, c: str = content) -> rx.Component:
+            return _make_tab_sub_page("architecture", ArchitectureContentState, s, c)
+
+        application.add_page(
+            _architecture_tab_page,
+            route=f"/architecture/{slug}",
+            title=f"{label} | Architecture | Livia Zaharia",
+            description=description,
+            on_load=[MobileTabRailState.collapse_expanded],
+            meta=[
+                {"property": "og:type", "content": "website"},
+                {"property": "og:title", "content": f"{label} | Architecture | Livia Zaharia"},
+                {"property": "og:description", "content": description},
+                {"property": "og:image", "content": "/architecture/covers/one-mircea-eliade.jpg"},
                 {"name": "twitter:card", "content": "summary_large_image"},
             ],
         )

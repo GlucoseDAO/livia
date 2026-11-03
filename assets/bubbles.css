@@ -42,14 +42,16 @@ html.livia-narrow {
   outline-offset: 4px;
 }
 
-/* Digital project previews need room for interface details; portraits retain their proportions. */
-.livia-digital-art .livia-artifact-wrap {
+/* Digital project previews and architecture covers need room for detail; portraits retain their proportions. */
+.livia-digital-art .livia-artifact-wrap,
+.livia-architecture .livia-artifact-wrap {
   display: flex;
   justify-content: center;
   margin: 1.5rem 0;
 }
 
-.livia-digital-art .livia-artifact-wrap img {
+.livia-digital-art .livia-artifact-wrap img,
+.livia-architecture .livia-artifact-wrap img {
   max-width: min(960px, 100%) !important;
   max-height: 72vh;
   width: auto !important;
@@ -111,6 +113,7 @@ html.livia-wide .livia-bottom-nav .rt-HStack {
 
 html[data-livia-page="/"] .livia-bottom-nav a[data-href="/"],
 html[data-livia-page="/biography"] .livia-bottom-nav a[data-href="/biography"],
+html[data-livia-page="/architecture"] .livia-bottom-nav a[data-href="/architecture"],
 html[data-livia-page="/art-design"] .livia-bottom-nav a[data-href="/art-design"],
 html[data-livia-page="/pieces"] .livia-bottom-nav a[data-href="/pieces"],
 html[data-livia-page="/digital-art"] .livia-bottom-nav a[data-href="/digital-art"],
@@ -121,6 +124,7 @@ html[data-livia-page="/science-tech"] .livia-bottom-nav a[data-href="/science-te
 
 html[data-livia-page="/"] .livia-bottom-nav a[data-href="/"] .livia-nav-indicator,
 html[data-livia-page="/biography"] .livia-bottom-nav a[data-href="/biography"] .livia-nav-indicator,
+html[data-livia-page="/architecture"] .livia-bottom-nav a[data-href="/architecture"] .livia-nav-indicator,
 html[data-livia-page="/art-design"] .livia-bottom-nav a[data-href="/art-design"] .livia-nav-indicator,
 html[data-livia-page="/pieces"] .livia-bottom-nav a[data-href="/pieces"] .livia-nav-indicator,
 html[data-livia-page="/digital-art"] .livia-bottom-nav a[data-href="/digital-art"] .livia-nav-indicator,
@@ -150,6 +154,7 @@ html.livia-narrow .livia-bottom-nav {
 /*
  * Narrow: one row of equal-width buttons; each cell flexes equally
  * and label text wraps (two lines max is typical) instead of shrinking type or scrolling.
+ * Seven buttons share a phone width, so gaps and side padding stay small to give labels room.
  */
 html.livia-narrow .livia-bottom-nav .livia-bottom-nav-row,
 html.livia-narrow .livia-bottom-nav .rt-HStack {
@@ -157,7 +162,7 @@ html.livia-narrow .livia-bottom-nav .rt-HStack {
   flex-wrap: nowrap !important;
   justify-content: center !important;
   align-items: stretch;
-  gap: 0.35rem;
+  gap: 0.15rem;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -174,7 +179,7 @@ html.livia-narrow .livia-bottom-nav a[data-href] {
   text-align: center;
   font-size: 13px;
   line-height: 1.22;
-  padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.36rem * var(--livia-bottom-nav-scale));
+  padding: calc(0.28rem * var(--livia-bottom-nav-scale)) calc(0.1rem * var(--livia-bottom-nav-scale));
 }
 
 html.livia-narrow .livia-bottom-nav a[data-href] .livia-nav-label {
@@ -184,6 +189,7 @@ html.livia-narrow .livia-bottom-nav a[data-href] .livia-nav-label {
   max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
+  hyphens: auto;
   text-align: center;
 }
 

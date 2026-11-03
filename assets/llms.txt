@@ -1187,6 +1187,267 @@ Livia's contributions bridge physical artefact-making and computational biology 
 GitHub: [github.com/longevity-genie](https://github.com/longevity-genie)
 
 
+## Architecture
+
+### Overview
+
+# Architecture
+
+Livia is an architect by training. She has worked on residential towers in Bucharest, entered competitions with fellow architects, and solved the geometry of festival stages. This section follows her 2020 architecture portfolio.
+
+The tools behind her jewellery appear here first, at the scale of buildings. A Grasshopper script shaped a canopy. A gravity simulation found the form of a pavilion. A Processing script turned sound into the texture of a façade. Large stage surfaces were divided into panels that a crew could assemble on site.
+
+## Office work at XArchitecture
+
+- [One Mircea Eliade](/architecture/one-mircea-eliade-xarchitecture): three residential towers and an office tower beside Hala Ford in Bucharest. Livia coordinated architecture, structure, and building services, designed interior stairs, and worked on the terraces and the plaza.
+- [Citta](/architecture/citta-xarchitecture): a residential development in Pantelimon built in phases. Livia drew the exterior details, including the joints between phases.
+
+## Competitions and collaborations
+
+- [The Plastic Monument](/architecture/the-plastic-monument-competition-2019): a relocatable installation that shows passers-by the weight of their own plastic waste.
+- [A Sky for All](/architecture/a-sky-for-all-spotlight-2019): first prize at Spotlight 2019, then built and exhibited.
+- [Galaxy Stage](/architecture/galaxy-stage-untold-2017-2018): the panelled stage surface at Untold, designed with Mindscape in 2017 and 2018.
+
+## University projects
+
+- [Equestrian Centre](/architecture/equestrian-centre-diploma-2015): Livia's diploma project, a riding centre that links a network of historic manor houses, under a folded timber roof.
+- [Justice Quarter](/architecture/justice-quarter-2014): several justice institutions joined under one canopy that Livia generated in Grasshopper.
+- [Office Tower, Asmita Gardens](/architecture/office-tower-asmita-gardens-2014): a diagrid tower that changes from a circle at its base to an ellipse at its top.
+- [Pavilion](/architecture/pavilion-2013): a form found by simulating gravity, then tested in folded cardboard.
+- [Contemporary Dance School](/architecture/contemporary-dance-school-2013): a façade textured with the sound of dance.
+- [ASE Extension](/architecture/ase-extension-2013): two new faculties for the Bucharest University of Economic Studies in Piața Romană.
+
+Planning a building, an installation, or a stage with unusual geometry? [Work with Livia](/collaboration).
+
+
+### One Mircea Eliade (XArchitecture)
+
+# One Mircea Eliade
+
+<!-- artifact: /architecture/covers/one-mircea-eliade.jpg -->
+
+- **Design firm:** XArchitecture
+- **Location:** beside Hala Ford, Bucharest. The buildings can be seen from Mircea Eliade Boulevard and Calea Floreasca.
+- **Programme:** mixed-use development with three residential towers and one office tower
+
+In 2020 the construction site was nearing completion. Livia worked on the project as part of the office team.
+
+## Livia's role
+
+- Coordinated architecture, structure, and building services while the structure was going up, and again for later changes.
+- Designed parts of the ensemble, such as the interior stairs.
+- Worked with colleagues on larger parts of the project, including the building terraces and the plaza.
+- Handled ceilings, checked façades and exterior elements, and coordinated them with the engineering disciplines, alone or with the team.
+
+## Renderings
+
+The renderings were made in the office for the project.
+
+<!-- gallery: architecture/one-mircea-eliade/renderings -->
+
+## On site, July 2020
+
+Livia took these photographs during site visits. They show the building from the west, the secondary car park entrance, the stair core of tower T1 from the basement to the roof terrace, and the view from the T1 terrace towards towers T2 and T3.
+
+<!-- gallery: architecture/one-mircea-eliade/site-2020 -->
+
+
+### Citta (XArchitecture)
+
+# Citta
+
+<!-- artifact: /architecture/covers/citta.jpg -->
+
+- **Design firm:** XArchitecture
+- **Location:** Pantelimon, Bucharest
+- **Programme:** housing built in several phases, ground floor plus ten storeys
+
+Livia joined this project in its final stages. Her main task was the exterior details. These differed from the details of the office's other projects. Because the development was built in phases, it needed joints between the parts, and each joint had to be resolved for the area where it appeared.
+
+The renderings were made in the office for the project. The office team took the site photographs during visits at different stages.
+
+<!-- gallery: architecture/citta -->
+
+
+### The Plastic Monument (Competition 2019)
+
+# The Plastic Monument
+
+<!-- artifact: /architecture/covers/plastic-monument.jpg -->
+
+- **Type:** competition entry, August 2019
+- **Team:** Livia Zaharia, Delia Prisecaru, Robert Vișan
+
+The brief asked for an installation that would draw attention to how much plastic people use every day. It also had to be movable from one location to another.
+
+The team proposed a mechanism. Passers-by hang their plastic waste on it, and the structure deforms under the load, so each person sees the direct effect of their own plastic. It works like a scale with no numbers. Elastic fibres are woven together with light-emitting fibres, so the installation stays visible at night.
+
+<!-- gallery: architecture/plastic-monument -->
+
+
+### A Sky for All (Spotlight 2019)
+
+# A Sky for All
+
+<!-- artifact: /architecture/covers/spotlight-2019.jpg -->
+
+- **Type:** competition entry, first prize, April 2019
+- **Festival:** [Spotlight 2019](https://spotlightfestival.ro/en/instalatii/a-sky-for-all)
+
+The design won first prize, so it was built and exhibited at the festival. A company associated with the organiser built the installation. Livia stayed in contact with them and supplied the information they needed.
+
+The pavilion has a metal structure, polycarbonate cladding, and adhesive film on the inside. At the end of the festival, it was clear that visitors had enjoyed being inside the space itself.
+
+## Built pavilion and 3D proposal
+
+The portfolio sets photographs of the built pavilion beside the 3D proposal.
+
+<!-- gallery: architecture/spotlight-2019 -->
+
+The same pavilion appears among the Collections as [A Sky for All](/art-design/a-sky-for-all-spotlight-2019), with full-size photographs.
+
+
+### Galaxy Stage (Untold 2017-2018)
+
+# Galaxy Stage
+
+<!-- artifact: /architecture/covers/galaxy-stage.jpg -->
+
+- **Venue:** stage in the Polyvalent Hall (Sala Polivalentă), Untold festival, Cluj-Napoca
+- **Collaboration:** with Mindscape, August 2017 and August 2018
+
+For both editions, Livia worked out how to divide the stage surface into panels.
+
+## 2018
+
+The brief kept two ellipses, changed from the previous edition. It also kept the textiles used the year before, and asked for something different from the previous year.
+
+The technical conditions matched 2017, with criteria for projection, lighting, and access. The stage needed a fairly well-defined surface so that projections would read clearly. It also had to take artistic lighting when nothing was projected, and let the DJ reach the central area.
+
+The textile strips were printable canvas. Their edges were sewn by hand so they could be fixed with cables. The site photographs come from the organiser. The assembly diagrams come from the installation guide that Livia prepared for the crew.
+
+<!-- gallery: architecture/galaxy-stage/2018 -->
+
+The full assembly sequence is in the Collections tab [Untold Galaxy Stage](/art-design/untold-galaxy-stage-untold-2018).
+
+## 2017
+
+The two ellipses were given, but how to close the surface between them was left to study. The form could not move far from a minimal surface, or projections on it would distort. The model also had to look good as an object under simple lights and work for fabrication. Livia studied the material and the choice of solution together with the company that built the stage. Mindscape took the site photographs.
+
+The last diagrams compare two solutions. The final version was approved and checked. The first proposal did not go ahead: its joints took too much labour, and the material could not withstand the tension during assembly.
+
+<!-- gallery: architecture/galaxy-stage/2017 -->
+
+
+### Equestrian Centre (Diploma 2015)
+
+# Equestrian Centre in Broșteni
+
+<!-- artifact: /architecture/covers/equestrian-centre.jpg -->
+
+- **Type:** diploma project, defended July 2015
+- **Location:** Broșteni village, near Urziceni
+
+The project develops the rural area around Urziceni with a programme suited to local resources. The area holds a network of manor houses, each in a different state of preservation. Livia proposed an equestrian centre that could act as a hub for them. It connects the manors physically, through the horses, and through what horses and manors represent.
+
+## Structure
+
+The structure is a defining part of the project. Regular delivery of building materials to the site is difficult, so Livia chose a prefabricated system. The entire roof is made of prefabricated wood-based panels on a glued laminated timber frame.
+
+Large spans such as the riding arena also had to look right. For these, Livia chose a folded geometry: the pleats stiffen the whole roof. Every flat element is subdivided so it is easier to handle. A hierarchy of structural elements also uses the building material more efficiently.
+
+<!-- gallery: architecture/equestrian-centre -->
+
+
+### Justice Quarter (2014)
+
+# Justice Quarter
+
+<!-- artifact: /architecture/covers/justice-quarter.jpg -->
+
+- **Type:** university team project, defended July 2014
+- **Team:** Adelina Andrei, Mihai Popa, Delia Prisecaru, Robert Vișan, Andrei Voica, and Livia Zaharia
+- **Location:** vacant land next to the National Library, Bucharest
+
+The project started from a request by the Ministry of Justice for a competition. The site would hold the headquarters of several institutions within the ministry, an office development, and a future Philharmonic. Teams first drew a masterplan, then focused on the buildings. Each person detailed one part individually.
+
+The proposal places every function in what looks like a single compact volume. In fact, separate buildings are joined under one canopy. The inner courtyard acts as a buffer and gives each institution its own breathing space.
+
+## The canopy
+
+Livia detailed the canopy. It rests on a metal frame, and lightweight prefabricated panels close each opening of the frame. Similar roofs can be seen at Munich Airport and at King's Cross station in London. Livia generated the geometry parametrically with Grasshopper, starting from sketches and early ideas for the element that links the buildings.
+
+<!-- gallery: architecture/justice-quarter -->
+
+
+### Office Tower, Asmita Gardens (2014)
+
+# Office Tower, Asmita Gardens
+
+<!-- artifact: /architecture/covers/office-tower.jpg -->
+
+- **Type:** university project, defended April 2014
+- **Location:** Asmita Gardens area, Bucharest
+
+The brief focused on the problems of designing a tall building. Two requirements shaped this one. The structure had to resist forces from the building's height, from wind, and from Bucharest's earthquakes. The form had to work with the structure and also function well, with enough space and daylight on every floor.
+
+The answer is a diagrid, a grid of diagonal members that frees floor space and holds the form. The tower starts as a circle in plan and ends as an ellipse. With no corners, it avoids the strong air currents that form along a building's edges.
+
+The three diagrams show the steps: wind conditions, functional requirements, and the formal and structural response.
+
+<!-- gallery: architecture/office-tower -->
+
+
+### Pavilion (2013)
+
+# Pavilion
+
+<!-- artifact: /architecture/covers/pavilion.jpg -->
+
+- **Type:** university project, defended November 2013
+
+The brief asked for a pavilion whose form expresses its structure. Livia worked with surfaces deformed by gravity, in the spirit of Gaudí's hanging catenary models. A computer simulation let a surface sag under gravity. Turning the result upside down gives the structure.
+
+Livia tested the simulation on a 1:50 model made only of folded cardboard. The model reproduced the whole volume and proved stronger than the plain material would suggest.
+
+<!-- gallery: architecture/pavilion -->
+
+
+### Contemporary Dance School (2013)
+
+# Contemporary Dance School
+
+<!-- artifact: /architecture/covers/dance-school.jpg -->
+
+- **Type:** university project, defended July 2013
+- **Location:** Calea Moșilor, Bucharest
+
+The brief asked students to choose a function for the site and to design the building. Livia chose a dance school and set out to turn the movement and sound of dance into form.
+
+Sound, as the result of dance or the impulse behind it, became the building's envelope. A Processing script captured the sound wave. Its graphic representation became a soundmap, the texture of the façade.
+
+The model and perspective show the façade texture. The sections and plans show how the building's dynamic form shapes its structure.
+
+<!-- gallery: architecture/dance-school -->
+
+
+### ASE Extension (2013)
+
+# ASE Extension
+
+<!-- artifact: /architecture/covers/ase-extension.jpg -->
+
+- **Type:** university team project, defended March 2013
+- **Team:** Adelina Andrei, Mihai Popa, and Livia Zaharia
+- **Location:** Piața Romană, Bucharest
+
+The Bucharest University of Economic Studies (ASE) asked to add two faculties on land it had recently acquired in Piața Romană. With only one month to deliver, the students worked in a team.
+
+The proposal respects the existing buildings and the status of the Nanu Muscel house. It offers a contemporary interpretation of the two earlier volumes.
+
+<!-- gallery: architecture/ase-extension -->
+
+
 ## Pieces
 
 Each section is one object (work). For updates, see [Facebook](https://www.facebook.com/byLiviaZaharia/).

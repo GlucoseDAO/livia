@@ -175,6 +175,12 @@ NAV_LINKS = (
         tooltip="Designer, maker, founder",
     ),
     LinkItem(
+        "Architecture",
+        "/architecture",
+        accent="amber",
+        tooltip="Buildings, competitions, and stages",
+    ),
+    LinkItem(
         "Collections",
         "/art-design",
         accent="amber",

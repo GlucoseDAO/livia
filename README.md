@@ -132,6 +132,11 @@ content/
     7_Shine bright like a star (Osmium 2025).md
     8_Beloved Food (RJW 2024).md
     … (reverse-chronological tabs through 19_iMAPP …)
+  architecture/                        # tabbed page → /architecture (from the 2020 portfolio)
+    _meta.yaml
+    1_Overview.md
+    2_One Mircea Eliade (XArchitecture).md
+    … (office work, competitions, university projects through 12_ASE Extension (2013).md)
   science-tech/                        # tabbed page → /science-tech
     _meta.yaml
     _links.yaml                        # special tab (link list)
@@ -195,9 +200,11 @@ livia/
 │   ├── biography.md       # Biography page
 │   ├── art-design/        # Tabbed page: Collections (each .md = one tab)
 │   ├── science-tech/      # Tabbed page: Science & Tech
+│   ├── architecture/      # Tabbed page: Architecture (2020 portfolio)
 │   └── _shared/           # Shared markdown referenced by multiple pages
 ├── assets/
 │   ├── livia.jpg          # Full-screen portrait used as the background
+│   ├── architecture/      # Architecture covers and per-project galleries
 │   └── RJW2025/           # Romanian Jewelry Week 2025 exhibition photos (12 images)
 ├── docs/
 │   └── livia-zaharia-knowledge-base.md  # Artist knowledge base & catalogue
@@ -217,6 +224,7 @@ Tabbed pages auto-discover tabs from their content subfolder. See the "Content s
 | `/biography`    | Biography + external links |
 | `/art-design`   | Collections — tabbed page (auto-discovered from `content/art-design/`) |
 | `/science-tech` | Science & Tech — tabbed page (auto-discovered from `content/science-tech/`) |
+| `/architecture` | Architecture — tabbed page (auto-discovered from `content/architecture/`) |
 
 ## Design principles
 
@@ -240,7 +248,7 @@ No text is ever placed directly on the photograph without a backing panel.
 
 ### Bottom navigation dock
 
-Navigation is a single floating pill fixed to the bottom of the viewport. It contains four page links — no logo, no subtitle, no duplicate content. The dock uses the same dark glass treatment as the content panels.
+Navigation is a single floating pill fixed to the bottom of the viewport. It contains seven page links — no logo, no subtitle, no duplicate content. The dock uses the same dark glass treatment as the content panels.
 
 The top of the page is completely clear so the portrait is unobstructed.
 
