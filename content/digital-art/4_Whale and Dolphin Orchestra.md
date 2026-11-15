@@ -6,7 +6,7 @@ Choose your musicians on an ocean map. Each one is a real recording of a whale o
 
 <!-- artifact: /digital-art/whale-and-dolphin-orchestra.png -->
 
-The project is a **working prototype** by Livia Zaharia and Anton Kulaga. It was developed for an ArtWaves residency proposal; the listening installation is a proposed next step.
+The project is a **working prototype** by Livia Zaharia and Anton Kulaga.
 
 Another part of the project, **Sound to silver**, explores how an animal's recorded phrase can bend the form of one of Livia's rings. These sound-shaped rings are still in development and have not yet been cast.
 
